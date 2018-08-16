@@ -10,7 +10,8 @@
 
 ## RULES
 
-* [Naming Rules](library_jeongmin/naming-rules-1.md)
+* [DB TABLES](library_jeongmin/naming-rules-1.md)
+* [NAMING](library_jeongmin/naming.md)
 
 ## NOTES
 
