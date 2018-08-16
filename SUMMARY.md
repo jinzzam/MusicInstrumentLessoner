@@ -5,6 +5,7 @@
 ## DEVELOPMENT GOAL
 
 * [최종 목표](library_youjin/undefined.md)
+* [계획](library_youjin/undefined-1.md)
 * [18.08.16](library_youjin/18.08.16.md)
 
 ## RULES
