@@ -24,5 +24,7 @@
 
 ## LIBRARY\_JEONGMIN
 
+* [18.08.16](library_jeongmin-1/18.08.16.md)
+
 ## LIBRARY\_HYERIM
 
