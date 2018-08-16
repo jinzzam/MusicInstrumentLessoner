@@ -3,4 +3,16 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorMainBackGround">#2C3256</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="iconColor">#00E5C3</color>
+    <color name="formFontColor">#457DA5</color>
+    <color name="notificationUserColor">#516573</color>
+    <color name="notificationMiColor">#3B3E60</color>
+    <color name="commonDateColor">#8C8F95</color>
+    <color name="commonMenuColor">#121422</color>
+    <color name="positiveGreen">#5DCA57</color>
+    <color name="naturalBlue">#004DB7</color>
+    <color name="musicPersonalColor">#EA5855</color>
 </resources>
