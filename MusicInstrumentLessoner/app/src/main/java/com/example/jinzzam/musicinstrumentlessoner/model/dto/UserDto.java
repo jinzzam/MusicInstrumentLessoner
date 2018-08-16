@@ -8,9 +8,9 @@ public class UserDto {
     /**
      * create UserDto
      *
-     * @param email
-     * @param password
-     * @param username
+     * @param email    primary key
+     * @param password not null
+     * @param username not null
      */
 
     public UserDto(String email, String password, String username) {
