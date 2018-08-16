@@ -1,2 +1,2 @@
-# MusicInstrumentLessoner
-K-hackathon repository
+# Initial page
+
