@@ -2,3 +2,24 @@
 
 * [Initial page](README.md)
 
+## DEVELOPMENT GOAL
+
+* [최종 목표](library_youjin/undefined.md)
+* [18.08.16](library_youjin/18.08.16.md)
+
+## RULES
+
+* [Naming Rules](library_jeongmin/naming-rules-1.md)
+
+## NOTES
+
+* [개발 참고사항](library_hyerim/undefined-1.md)
+
+## LIBRARY\_YOUJIN
+
+* [18.08.16](development-goal/18.08.16.md)
+
+## LIBRARY\_JEONGMIN
+
+## LIBRARY\_HYERIM
+
