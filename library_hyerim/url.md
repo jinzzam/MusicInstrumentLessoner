@@ -24,3 +24,9 @@
 
 {% embed data="{\"url\":\"https://kukaro.gitbooks.io/tiraumisu/content/erd.html\",\"type\":\"link\",\"title\":\"ERD · Tiraumisu\",\"icon\":{\"type\":\"icon\",\"url\":\"https://kukaro.gitbooks.io/tiraumisu/content/gitbook/images/apple-touch-icon-precomposed-152.png\",\"width\":152,\"height\":152,\"aspectRatio\":1}}" %}
 
+## AWS 서버
+
+{% embed data="{\"url\":\"https://aws.amazon.com/ko/premiumsupport/knowledge-center/convert-pem-file-into-ppk/\",\"type\":\"link\",\"title\":\"Windows 및 Linux에서 .pem 파일을 .ppk로 또는 .ppk 파일을 .pem으로 변환\",\"icon\":{\"type\":\"icon\",\"url\":\"https://a0.awsstatic.com/main/images/site/touch-icon-ipad-144-smile.png\",\"width\":144,\"height\":144,\"aspectRatio\":1},\"thumbnail\":{\"type\":\"thumbnail\",\"url\":\"https://a0.awsstatic.com/main/images/logos/aws\_logo\_smile\_1200x630.png\",\"width\":1200,\"height\":630,\"aspectRatio\":0.525}}" %}
+
+{% embed data="{\"url\":\"https://docs.aws.amazon.com/ko\_kr/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html\",\"type\":\"link\",\"title\":\"SSH를 사용하여 Linux 인스턴스에 연결 - Amazon Elastic Compute Cloud\",\"description\":\"SSH 클라이언트를 사용하여 Linux 인스턴스에 연결합니다.\",\"icon\":{\"type\":\"icon\",\"url\":\"https://docs.aws.amazon.com/images/favicon.ico\",\"aspectRatio\":0}}" %}
+
