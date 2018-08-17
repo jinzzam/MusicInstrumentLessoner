@@ -7,6 +7,7 @@
 * [최종 목표](library_youjin/undefined.md)
 * [계획](library_youjin/undefined-1.md)
 * [18.08.16](library_youjin/18.08.16.md)
+* [18.08.17](library_youjin/18.08.17.md)
 
 ## RULES
 
@@ -21,6 +22,7 @@
 ## LIBRARY\_YOUJIN
 
 * [18.08.16](development-goal/18.08.16.md)
+* [18.08.17](development-goal/18.08.17.md)
 
 ## LIBRARY\_JEONGMIN
 
