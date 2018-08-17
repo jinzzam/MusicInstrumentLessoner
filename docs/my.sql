@@ -65,6 +65,15 @@ create table mi_file(
   constraint fk_mifile_miuser_owner foreign key (owner) references mi_user (email) on delete cascade
 );
 
+create table mi_user_group(
+  group_name varchar(30) primary key,
+  group_teachers ,
+  group_students ,
+  group_instruments varchar(255),
+  group_genres varchar(255),
+  is_mine,
+
+);
 
 /*query examples*/
 insert into mi_user values('jinzzam@namol.ppam', '123', '박유진');
