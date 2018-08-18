@@ -57,7 +57,7 @@ public class Session extends LoginActivity {
     }
 
     private void initVolleySet() {
-        String url = "http://13.209.35.249:3000/";
+        String url = "http://13.209.35.249:3000/api/user";
         url += etEmail.getText().toString() + "/";
         url += etPassword.getText().toString() + "/";
         url += etUsername.getText().toString() + "/";
