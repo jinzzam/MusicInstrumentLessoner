@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -19,13 +20,14 @@ public class LoginActivity extends AppCompatActivity {
     private static Session session;
 
     {
-        instance = LoginActivity.getInstance();
+        instance = this;
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_login);
+        Log.e("LoginActivity", "LoginActivity >>> : ");
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         ivLogin = findViewById(R.id.ivLogin);
@@ -46,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void setSession() {
         session = Session.getInstance();
+
     }
 
     public static LoginActivity getInstance() {
