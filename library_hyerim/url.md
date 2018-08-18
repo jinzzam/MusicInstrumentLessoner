@@ -20,6 +20,8 @@
 
 {% embed data="{\"url\":\"http://kamang-it.tistory.com/31?category=699991\",\"type\":\"link\",\"title\":\"\[플러그인\]ER다이어그램 툴, eXERD\",\"description\":\"eXERD는 ER다이어그램 툴 중에서는 꽤 유명한 툴이다. 이 툴을 이클립스에서도 실행할 수 있다. 이번엔 이클립스에서 실행하는 예제를 보자.  ko.exerd.com에들어가자 그 다음 다운로드를 선택하자.  원래 윈도우..\",\"icon\":{\"type\":\"icon\",\"url\":\"http://i1.daumcdn.net/thumb/C152x152/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F241F093D5701E7380371B5\",\"width\":152,\"height\":152,\"aspectRatio\":1},\"thumbnail\":{\"type\":\"thumbnail\",\"url\":\"http://cfile21.uf.tistory.com/image/267E8E4F595F6D581BC562\",\"width\":900,\"height\":608,\"aspectRatio\":0.6755555555555556}}" %}
 
+[https://zetawiki.com/wiki/MySQL\_원격\_접속\_허용](https://zetawiki.com/wiki/MySQL_원격_접속_허용)
+
 ## 개발 참고
 
 {% embed data="{\"url\":\"https://kukaro.gitbooks.io/tiraumisu/content/erd.html\",\"type\":\"link\",\"title\":\"ERD · Tiraumisu\",\"icon\":{\"type\":\"icon\",\"url\":\"https://kukaro.gitbooks.io/tiraumisu/content/gitbook/images/apple-touch-icon-precomposed-152.png\",\"width\":152,\"height\":152,\"aspectRatio\":1}}" %}
