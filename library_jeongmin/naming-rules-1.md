@@ -108,5 +108,15 @@ owner
 
 **foreign key** : owner &lt;= mi\_user\(email\)
 
+### mi\_group
+
+**primary key** : group\_name
+
+group\_name
+
+group\_info &lt;text\(255\)&gt;
+
+is\_teacher &lt;boolean&gt;
+
  
 
