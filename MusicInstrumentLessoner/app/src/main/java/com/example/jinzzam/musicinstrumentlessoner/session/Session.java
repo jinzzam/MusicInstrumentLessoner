@@ -2,12 +2,9 @@ package com.example.jinzzam.musicinstrumentlessoner.session;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -37,42 +34,41 @@ public class Session extends LoginActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.session_test);
         queue = Volley.newRequestQueue(this);
-        initView();
-        initListener();
+        //initListener();
 
     }
 
-    private void initView() {
-        etEmail = findViewById(R.id.etEmail);
-        etUsername = findViewById(R.id.etUsername);
-        etPassword = findViewById(R.id.etPassword);
-        btnSubmit = findViewById(R.id.btnSubmit);
-    }
-
-    private void initListener() {
-        btnSubmit.setOnClickListener((v) -> {
-            Log.e("TAG", "initListener : ");
-            initVolleySet();
-        });
-    }
-
-    private void initVolleySet() {
-        String url = "http://13.209.35.249:3000/api/user";
-        url += etEmail.getText().toString() + "/";
-        url += etPassword.getText().toString() + "/";
-        url += etUsername.getText().toString() + "/";
-        stringRequest = new StringRequest(Request.Method.POST, url, (response) -> {
-        }, (error) -> {
-        });
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                0,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-        ));
-        stringRequest.setTag(TAG);
-        queue.add(stringRequest);
-
-    }
+//    private void initView() {
+//        etEmail = findViewById(R.id.etEmail);
+//        etUsername = findViewById(R.id.etUsername);
+//        etPassword = findViewById(R.id.etPassword);
+//        btnSubmit = findViewById(R.id.btnSubmit);
+//    }
+//
+//    private void initListener() {
+//        btnSubmit.setOnClickListener((v) -> {
+//            Log.e("TAG", "initListener : ");
+//            initVolleySet();
+//        });
+//    }
+//
+//    private void initVolleySet() {
+//        String url = "http://localhost:3000/api/user";
+//        url += etEmail.getText().toString() + "/";
+//        url += etPassword.getText().toString() + "/";
+//        url += etUsername.getText().toString() + "/";
+//        stringRequest = new StringRequest(Request.Method.POST, url, (response) -> {
+//        }, (error) -> {
+//        });
+//        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+//                0,
+//                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+//        ));
+//        stringRequest.setTag(TAG);
+//        queue.add(stringRequest);
+//
+//    }
 
     public static Session getInstance() {
         if (instance == null)
