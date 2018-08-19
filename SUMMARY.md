@@ -30,6 +30,7 @@
 
 * [18.08.16](library_jeongmin-1/18.08.16.md)
 * [18.08.18](library_jeongmin-1/18.08.18.md)
+* [18.08.19](library_jeongmin-1/18.08.19.md)
 
 ## LIBRARY\_HYERIM
 
