@@ -10,7 +10,7 @@
 
     <hack.the.wap.musicinstrumentlessoner.mylayout.MySearchLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></hack.the.wap.musicinstrumentlessoner.mylayout.MySearchLayout>
+        android:layout_height="wrap_content" />
 
     <hack.the.wap.musicinstrumentlessoner.mylayout.MySeparatorLayout
         android:layout_width="match_parent"
@@ -19,10 +19,10 @@
     </hack.the.wap.musicinstrumentlessoner.mylayout.MySeparatorLayout>
 
     <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:gravity="left"-->
-        <!--android:text="Notification Fragment" />-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="left"-->
+    <!--android:text="Notification Fragment" />-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,8 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="top"
-            android:orientation="vertical">
-        </LinearLayout>
+            android:orientation="vertical"></LinearLayout>
     </ScrollView>
 
 </LinearLayout>
