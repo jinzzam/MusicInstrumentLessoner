@@ -1,12 +1,10 @@
 package hack.the.wap.musicinstrumentlessoner.session;
 
-import android.os.Debug;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import hack.the.wap.musicinstrumentlessoner.debug.DebugMode;
 import hack.the.wap.musicinstrumentlessoner.model.dto.NotificationDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.TemplateDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.UserDto;

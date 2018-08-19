@@ -75,7 +75,7 @@ public class MiNotificationLayout extends LinearLayout {
         typedArray.recycle();
     }
 
-    public void setCustomAttr(NotificationDto dto){
+    public void setCustomAttr(NotificationDto dto) {
         tvMiNotificationLayName.setText(getResources().getText(R.string.app_name_kor));
         tvMiNotificationLayDate.setText(dto.getDate());
         tvMiNotificationLayMain.setText(dto.getMain());

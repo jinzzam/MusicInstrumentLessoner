@@ -159,7 +159,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="@string/guide_button"
+            android:text="@string/tvActTemplateDetailGuideButton"
             android:textColor="@color/black" />
 
         <LinearLayout
@@ -196,7 +196,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:textColor="@color/musicPersonalColor"
-                android:text="@string/teacher_listen_music" />
+                android:text="@string/tvActTemplateDetailListenTeacherMusic" />
         </LinearLayout>
     </LinearLayout>
 

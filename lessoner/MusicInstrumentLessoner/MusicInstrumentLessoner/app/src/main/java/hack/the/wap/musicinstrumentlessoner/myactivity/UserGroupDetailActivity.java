@@ -72,12 +72,12 @@ public class UserGroupDetailActivity extends AppCompatActivity {
         if(mainUserGroup.getMain()!=null){
             tvActUserGroupDetailMain.setText(mainUserGroup.getMain());
         }else{
-            tvActUserGroupDetailMain.setText(getResources().getString(R.string.user_group_empty_default));
+            tvActUserGroupDetailMain.setText(getResources().getString(R.string.userGroupEmptyDefault));
         }
         if(mainUserGroup.getSub()!=null){
             tvActUserGroupDetailSub.setText(mainUserGroup.getSub());
         }else{
-            tvActUserGroupDetailSub.setText(getResources().getString(R.string.user_group_empty_default));
+            tvActUserGroupDetailSub.setText(getResources().getString(R.string.userGroupEmptyDefault));
         }
     }
 }

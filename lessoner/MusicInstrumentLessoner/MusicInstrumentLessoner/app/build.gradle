@@ -16,6 +16,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'armeabi-v7a'
+            universalApk true
+        }
+    }
+
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
@@ -33,6 +43,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.github.Semantive:waveform-android:v1.2'
     implementation 'com.github.adrielcafe:AndroidAudioRecorder:0.3.0'
-    compile 'com.github.adrielcafe:AndroidAudioConverter:0.0.8'
+    implementation 'com.github.adrielcafe:AndroidAudioConverter:0.0.8'
 
 }

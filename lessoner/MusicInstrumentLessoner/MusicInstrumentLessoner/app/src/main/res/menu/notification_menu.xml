@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/notificationMenuRmAllNotificationItem"
-        android:title="@string/notification_menu_rm_a"/>
+        android:title="@string/notificationMenuRemoveAll"/>
     <item
         android:id="@+id/notificationMenuRmRecentNotificationItem"
-        android:title="@string/notification_menu_rm_recent"></item>
+        android:title="@string/notificationMenuRemoveRecent"></item>
 </menu>

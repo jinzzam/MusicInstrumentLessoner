@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="store_lay_instrument">주요 악기 :&#160;</string>
-    <string name="store_lay_genre">주요 장르 :&#160;</string>
-    <string name="store_lay_comma">,&#160;</string>
-</resources>

@@ -86,14 +86,14 @@ public class GroupLayout extends LinearLayout {
         ivGroupLayEduImage.setImageResource(DebugImageMatch.getImageFromName(dto.getName()));
         tvGroupLayName.setText(dto.getName());
         tvGroupLayMain.setText(""
-                + getResources().getText(R.string.group_lay_teacher) + dto.getTeachers().size() + getResources().getText(R.string.punit)
-                + getResources().getText(R.string.sep)
-                + getResources().getText(R.string.group_lay_user) + dto.getUsers().size() + getResources().getText(R.string.punit));
+                + getResources().getText(R.string.groupLayTeacherNum) + dto.getTeachers().size() + getResources().getText(R.string.groupLayPunit)
+                + getResources().getText(R.string.groupLaySeperator)
+                + getResources().getText(R.string.groupLayUserNum) + dto.getUsers().size() + getResources().getText(R.string.groupLayPunit));
         int templateCount = 0;
         for (TeacherDto atom : dto.getTeachers().values()) {
             templateCount += atom.getTemplates().size();
         }
-        tvGroupLayMusicTitle.setText("" + getResources().getText(R.string.group_lay_tempate_count)
-                + templateCount + getResources().getText(R.string.cunit));
+        tvGroupLayMusicTitle.setText("" + getResources().getText(R.string.groupLayUsageTempates)
+                + templateCount + getResources().getText(R.string.groupLayCunit));
     }
 }

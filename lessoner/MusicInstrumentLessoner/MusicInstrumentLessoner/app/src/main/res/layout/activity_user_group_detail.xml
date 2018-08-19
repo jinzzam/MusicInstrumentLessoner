@@ -48,7 +48,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/a_old_l"
                 android:gravity="center"
-                android:text="그룹이름"
+                android:text="@string/tvActUserGroupName"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
 
@@ -98,8 +98,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/a_old_l"
                     android:gravity="left"
-                    android:text="메인"
                     android:paddingBottom="10dp"
+                    android:text="메인"
                     android:textColor="@color/white"
                     android:textSize="20dp" />
 
@@ -107,8 +107,8 @@
                     android:id="@+id/tvActUserGroupDetailSub"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/commonDateColor"
-                    android:text="서브" />
+                    android:text="서브"
+                    android:textColor="@color/commonDateColor" />
             </LinearLayout>
 
         </LinearLayout>
@@ -135,7 +135,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/a_old_l"
-                android:text="@string/tv_teacher"
+                android:text="@string/tvUserGroupTeachers"
                 android:textSize="14dp" />
 
             <ScrollView
@@ -146,7 +146,7 @@
                     android:id="@+id/llActUserGroupDetailTeacher"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"></LinearLayout>
+                    android:orientation="vertical" />
             </ScrollView>
 
         </LinearLayout>
@@ -165,7 +165,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/a_old_l"
-                android:text="@string/tv_user"
+                android:text="@string/tvUserGroupStudents"
                 android:textSize="14dp" />
 
             <ScrollView
@@ -176,7 +176,7 @@
                     android:id="@+id/llActUserGroupDetailUser"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"></LinearLayout>
+                    android:orientation="vertical" />
             </ScrollView>
 
         </LinearLayout>

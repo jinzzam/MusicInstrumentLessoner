@@ -3,4 +3,8 @@
     <string name="tvActGuideMain">설명</string>
     <string name="tvActGuideSub">세부사항</string>
     <string name="tvActGuideNoData">올린 정보가 없습니다.</string>
+    <string name="tvActGuideTeachersGuide">선생님 가이드</string>
+    <string name="tvActGuideTeacherName">선생님 이름</string>
+    <string name="tvActGuideMusicTitle">노래 제목</string>
+    <string name="tvActGuideEnterGuide">설명 적어주세요</string>
 </resources>

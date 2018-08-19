@@ -47,7 +47,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/a_old_l"
                 android:gravity="center"
-                android:text="선생님 가이드"
+                android:text="@string/tvActGuideTeachersGuide"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
 
@@ -121,7 +121,7 @@
                         android:fontFamily="@font/a_old_l"
                         android:gravity="left"
                         android:paddingLeft="10dp"
-                        android:text="선생님이름"
+                        android:text="@string/tvActGuideTeacherName"
                         android:textColor="@color/white"
                         android:textSize="20dp" />
 
@@ -132,7 +132,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:text="노래이름" />
+                    android:text="@string/tvActGuideMusicTitle" />
             </LinearLayout>
 
         </LinearLayout>
@@ -158,8 +158,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/a_old_l"
-                android:text="@string/tvActGuideMain"
                 android:paddingBottom="10dp"
+                android:text="@string/tvActGuideMain"
                 android:textSize="14dp" />
 
             <LinearLayout
@@ -172,7 +172,7 @@
                     android:id="@+id/tvGuideActMusicMainExplain"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="설명적어주세요" />
+                    android:text="@string/tvActGuideEnterGuide" />
             </LinearLayout>
         </LinearLayout>
 
@@ -189,8 +189,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/a_old_l"
-                android:text="@string/tvActGuideSub"
                 android:paddingBottom="10dp"
+                android:text="@string/tvActGuideSub"
                 android:textSize="14dp" />
 
             <ScrollView
@@ -201,7 +201,7 @@
                     android:id="@+id/llActUserGroupDetailUser"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"></LinearLayout>
+                    android:orientation="vertical" />
             </ScrollView>
 
         </LinearLayout>
