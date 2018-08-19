@@ -1,8 +1,6 @@
 package hack.the.wap.musicinstrumentlessoner.mylayout;
 
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.os.Debug;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
@@ -13,7 +11,6 @@ import java.util.Random;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugMode;
-import hack.the.wap.musicinstrumentlessoner.model.dto.TemplateDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.TemplatePracticeDto;
 
 /*
@@ -58,10 +55,10 @@ public class TemplatePositivePracticeLayout extends LinearLayout {
     }
 
     public void setCustomAttr(TemplatePracticeDto dto) {
-        tvTemplatePositivePracticeLayCount.setText(getResources().getText(R.string.template_practice_lay_count) + (dto.getPracticeId() + ""));
+        tvTemplatePositivePracticeLayCount.setText(getResources().getText(R.string.LayTemplatePracticeMusicNum) + (dto.getPracticeId() + ""));
         if (DebugMode.DEBUG_MOD) {
-            tvTemplatePositiveLayPercent.setText(""+getResources().getText(R.string.template_practice_lay_percent)
-                    + dto.getPercent() + getResources().getText(R.string.template_practice_lay_percent_end));
+            tvTemplatePositiveLayPercent.setText(""+getResources().getText(R.string.LayTemplatePracticeSuccessPercent)
+                    + dto.getPercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd));
         }
     }
 

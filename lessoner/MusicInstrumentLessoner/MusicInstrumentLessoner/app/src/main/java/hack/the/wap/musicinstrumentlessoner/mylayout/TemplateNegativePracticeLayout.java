@@ -43,6 +43,6 @@ public class TemplateNegativePracticeLayout extends LinearLayout {
     }
 
     public void setCustomAttr(TemplatePracticeDto dto) {
-        tvTemplateNegativePracticeLayCount.setText(getResources().getText(R.string.template_practice_lay_count) + (dto.getPracticeId() + ""));
+        tvTemplateNegativePracticeLayCount.setText(getResources().getText(R.string.LayTemplatePracticeMusicNum) + (dto.getPracticeId() + ""));
     }
 }

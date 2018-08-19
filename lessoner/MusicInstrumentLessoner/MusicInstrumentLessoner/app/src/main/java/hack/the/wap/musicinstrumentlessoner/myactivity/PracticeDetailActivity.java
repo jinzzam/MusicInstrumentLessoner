@@ -1,9 +1,9 @@
 package hack.the.wap.musicinstrumentlessoner.myactivity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,7 +37,6 @@ public class PracticeDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_practice_detail);
         Intent intent = getIntent();
         customWaveformFragment = new CustomWaveformFragment();
@@ -72,9 +71,9 @@ public class PracticeDetailActivity extends AppCompatActivity {
         ivPracticeDetailLayTeacher.setImageResource(DebugImageMatch.getImageFromName(mainTemplate.getOwner().getName()));
         ivPracticeDetailLayMusician.setImageResource(DebugImageMatch.getImageFromName(mainTemplate.getMusician()));
         tvPracticeDetailLayName.setText("" + mainTemplate.getMusicTitle());
-        tvPracticeDetailLayCount.setText("" + getResources().getText(R.string.template_practice_lay_count) + mainTemplatePractice.getPracticeId());
-        tvPracticeDetailLayPercent.setText("" + getResources().getText(R.string.template_practice_lay_percent) + mainTemplatePractice.getPercent() + getResources().getText(R.string.template_practice_lay_percent_end));
-        tvPracticeDetailLayFileName.setText("" + getResources().getText(R.string.template_practice_lay_fileName_pre) + mainTemplatePractice.getFileName());
+        tvPracticeDetailLayCount.setText("" + getResources().getText(R.string.LayTemplatePracticeMusicNum) + mainTemplatePractice.getPracticeId());
+        tvPracticeDetailLayPercent.setText("" + getResources().getText(R.string.LayTemplatePracticeSuccessPercent) + mainTemplatePractice.getPercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd));
+        tvPracticeDetailLayFileName.setText("" + getResources().getText(R.string.LayTemplatePracticeFilePath) + mainTemplatePractice.getFileName());
         PresentFile.fileName = mainTemplatePractice.getFileName();
     }
 }

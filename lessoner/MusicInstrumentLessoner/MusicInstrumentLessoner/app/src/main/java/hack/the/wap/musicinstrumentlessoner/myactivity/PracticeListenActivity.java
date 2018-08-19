@@ -58,9 +58,9 @@ public class PracticeListenActivity extends AppCompatActivity {
         ivPracticeListenLayTeacher.setImageResource(DebugImageMatch.getImageFromName(mainTemplate.getOwner().getName()));
         ivPracticeListenLayMusician.setImageResource(DebugImageMatch.getImageFromName(mainTemplate.getMusician()));
         tvPracticeListenLayName.setText("" + mainTemplate.getMusicTitle());
-        tvPracticeListenLayCount.setText("" + getResources().getText(R.string.template_practice_lay_count) + mainTemplatePractice.getPracticeId());
-        tvPracticeListenLayPercent.setText("" + getResources().getText(R.string.template_practice_lay_percent) + mainTemplatePractice.getPercent() + getResources().getText(R.string.template_practice_lay_percent_end));
-        tvPracticeListenLayFileName.setText("" + getResources().getText(R.string.template_practice_lay_fileName_pre) + mainTemplatePractice.getFileName());
+        tvPracticeListenLayCount.setText("" + getResources().getText(R.string.LayTemplatePracticeMusicNum) + mainTemplatePractice.getPracticeId());
+        tvPracticeListenLayPercent.setText("" + getResources().getText(R.string.LayTemplatePracticeSuccessPercent) + mainTemplatePractice.getPercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd));
+        tvPracticeListenLayFileName.setText("" + getResources().getText(R.string.LayTemplatePracticeFilePath) + mainTemplatePractice.getFileName());
         TreeMap<String, String> tm = new TreeMap<>(mainTemplatePractice.getData());
         if(!mainTemplatePractice.getData().isEmpty()){
             for(String key:tm.keySet()){

@@ -13,7 +13,7 @@
         android:layout_margin="10dp"
         android:fontFamily="@font/a_old_l"
         android:gravity="center"
-        android:text="@string/debug_template_practice_lay_count1"
+        android:text="@string/debug_LayTemplatePracticeMusicNum1"
         android:textColor="@color/black" />
 
     <TextView
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="@string/template_practice_lay_add_state"
+        android:text="@string/LayTemplatePracticeAddState"
         android:textColor="@color/black" />
 
     <LinearLayout
@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="@string/template_practice_lay_add"
+            android:text="@string/LayTemplatePracticeViewDetail"
             android:textColor="@color/positiveGreen" />
     </LinearLayout>
 
