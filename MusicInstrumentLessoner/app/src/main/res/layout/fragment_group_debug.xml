@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/group_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".myfragment.GroupFragment">
+
+    <com.example.jinzzam.musicinstrumentlessoner.mylayout.MySearchLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.example.jinzzam.musicinstrumentlessoner.mylayout.MySearchLayout>
+
+    <com.example.jinzzam.musicinstrumentlessoner.mylayout.MySeparatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.example.jinzzam.musicinstrumentlessoner.mylayout.MySeparatorLayout>
+
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="TemplateDto Fragment" />-->
+
+    <LinearLayout
+        android:id="@+id/llFragGroup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="top"
+        android:orientation="vertical">
+
+
+        <com.example.jinzzam.musicinstrumentlessoner.mylayout.GroupLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:group_lay_main="@string/debug_libre_main"
+            app:group_lay_name="@string/debug_libre_name"
+            app:group_lay_sub="@string/debug_libre_sub">
+
+        </com.example.jinzzam.musicinstrumentlessoner.mylayout.GroupLayout>
+
+        <com.example.jinzzam.musicinstrumentlessoner.mylayout.GroupLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:group_lay_edu_image="@drawable/logo_user_round"
+            app:group_lay_main="@string/debug_smma_main"
+            app:group_lay_name="@string/debug_smma_name"
+            app:group_lay_sub="@string/debug_smma_sub">
+
+        </com.example.jinzzam.musicinstrumentlessoner.mylayout.GroupLayout>
+    </LinearLayout>
+
+</LinearLayout>

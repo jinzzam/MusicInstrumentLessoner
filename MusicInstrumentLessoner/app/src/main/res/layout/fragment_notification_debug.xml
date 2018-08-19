@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/notification_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".myfragment.NotificationFragment">
+
+    <com.example.jinzzam.musicinstrumentlessoner.mylayout.MySearchLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.example.jinzzam.musicinstrumentlessoner.mylayout.MySeparatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="left"-->
+    <!--android:text="Notification Fragment" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="top"
+        android:orientation="vertical">
+
+        <com.example.jinzzam.musicinstrumentlessoner.mylayout.NotificationLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:notification_lay_date="@string/debug_aoa_choa_date1"
+            app:notification_lay_main="@string/debug_aoa_choa_main"
+            app:notification_lay_music_title="@string/debug_aoa_choa_music_title"
+            app:notification_lay_name="@string/debug_aoa_choa_name"
+            app:notification_lay_user_image="@drawable/choa_round" />
+
+        <com.example.jinzzam.musicinstrumentlessoner.mylayout.MiNotificationLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mi_notification_lay_date="@string/debug_mi_date1"
+            app:mi_notification_lay_main="@string/debug_mi_main"
+            app:mi_notification_lay_music_title="@string/debug_mi_music_title" />
+
+        <com.example.jinzzam.musicinstrumentlessoner.mylayout.NotificationLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:notification_lay_date="@string/debug_twice_dahyun_date1"
+            app:notification_lay_main="@string/debug_twice_dahyun_main"
+            app:notification_lay_music_title="@string/debug_twice_dahyun_music_title"
+            app:notification_lay_name="@string/debug_twice_dahyun_name"
+            app:notification_lay_user_image="@drawable/dahyun_round" />
+    </LinearLayout>
+
+</LinearLayout>

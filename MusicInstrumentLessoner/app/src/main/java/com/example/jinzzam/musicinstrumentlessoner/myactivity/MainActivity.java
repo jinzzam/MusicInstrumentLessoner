@@ -1,6 +1,7 @@
 package com.example.jinzzam.musicinstrumentlessoner.myactivity;
 
-import android.content.Intent;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity
     private String userEmail;
 
     {
-        instance = MainActivity.getInstance();
+        instance = this;
         session = Session.getInstance();
         groupFragment = GroupFragment.getInstance();
         notificationFragment = NotificationFragment.getInstance();
@@ -67,10 +68,12 @@ public class MainActivity extends AppCompatActivity
         MyNavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
 
-//        FragmentManager fm = getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-//        fragmentTransaction.add(R.id.flFragment, notificationFragment);
-//        fragmentTransaction.commit();
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.add(R.id.flFragment, groupFragment);
+
+        fragmentTransaction.add(R.id.flFragment, notificationFragment);
+        fragmentTransaction.commit();
     }
 
 

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="debug_canon_rock_name">Lim jung hyeon</string>
+    <string name="debug_canon_rock_music">캐논 락버전</string>
+    <string name="debug_canon_rock_main">남은 반복횟수 : 7 / 10</string>
+    <string name="debug_canon_rock_sub">곡 성공률 : 70%</string>
+
+    <string name="debug_taryeong_name">Folk song</string>
+    <string name="debug_taryeong_music">타령</string>
+    <string name="debug_taryeong_main">남은 반복횟수 : 7 / 10</string>
+    <string name="debug_taryeong_sub">곡 성공률 : 70%</string>
+
+    <string name="debug_enter_the_sand_man_name">Metallica</string>
+    <string name="debug_enter_the_sand_man_music">enter the sandman</string>
+    <string name="debug_enter_the_sand_man_main">남은 반복횟수 : 7 / 10</string>
+    <string name="debug_enter_the_sand_man_sub">곡 성공률 : 70%</string>
+
+    <string name="debug_airplane_name">Yoon suk joon</string>
+    <string name="debug_airplane_music">떳다 떳다 비행기</string>
+    <string name="debug_airplane_main">남은 반복횟수 : 7 / 10</string>
+    <string name="debug_airplane_sub">곡 성공률 : 70%</string>
+
+    <string name="debug_fantasia_name">Chopin</string>
+    <string name="debug_fantasia_music">즉흥환상곡</string>
+    <string name="debug_fantasia_main">남은 반복횟수 : 7 / 10</string>
+    <string name="debug_fantasia_sub">곡 성공률 : 70%</string>
+
+    <string name="debug_mhwgo_name">Celine dion</string>
+    <string name="debug_mhwgo_music">My heart will go on</string>
+    <string name="debug_mhwgo_main">남은 반복횟수 : 7 / 10</string>
+    <string name="debug_mhwgo_sub">곡 성공률 : 70%</string>
+
+    <string name="debug_turkie_name">Mozart</string>
+    <string name="debug_turkie_music">터키행진곡</string>
+    <string name="debug_turkie_main">남은 반복횟수 : 7 / 10</string>
+    <string name="debug_turkie_sub">곡 성공률 : 70%</string>
+
+    <string name="debug_czerny80_name">Czerny</string>
+    <string name="debug_czerny80_music">체르니 80번</string>
+    <string name="debug_czerny80_main">남은 반복횟수 : 7 / 10</string>
+    <string name="debug_czerny80_sub">곡 성공률 : 70%</string>
+
+    <string name="debug_vivaldi_name">Vivaldi</string>
+    <string name="debug_vivaldi_music">사계</string>
+    <string name="debug_vivaldi_main">남은 반복횟수 : 7 / 10</string>
+    <string name="debug_vivaldi_sub">곡 성공률 : 70%</string>
+
+    <string name="debug_arirang_name">Folk Song2</string>
+    <string name="debug_arirang_music">아리랑 민요</string>
+    <string name="debug_arirang_main">남은 반복횟수 : 7 / 10</string>
+    <string name="debug_arirang_sub">곡 성공률 : 70%</string>
+
+    <string name="debug_schubert_name">Schubert</string>
+    <string name="debug_schubert_music">마왕</string>
+    <string name="debug_schubert_main">남은 반복횟수 : 7 / 10</string>
+    <string name="debug_schubert_sub">곡 성공률 : 70%</string>
+
+    <string name="debug_realsanae_name">Han in hyun</string>
+    <string name="debug_realsanae_music">진짜 사나이</string>
+    <string name="debug_realsanae_main">남은 반복횟수 : 7 / 10</string>
+    <string name="debug_realsanae_sub">곡 성공률 : 70%</string>
+
+    <string name="debug_wapthehack_name">WAP</string>
+    <string name="debug_wapthehack_music">THE HACK</string>
+    <string name="debug_wapthehack_main">남은 반복횟수 : 7 / 10</string>
+    <string name="debug_wapthehack_sub">곡 성공률 : 70%</string>
+
+</resources>

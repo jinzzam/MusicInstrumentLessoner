@@ -1,6 +1,11 @@
 package com.example.jinzzam.musicinstrumentlessoner.myfragment;
 
-public class NotificationFragment {
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.View;
+
+public class NotificationFragment extends Fragment{
+    private static View notificationFragmentView;
 
     private static NotificationFragment instance;
 
@@ -9,4 +14,12 @@ public class NotificationFragment {
             instance = new NotificationFragment();
         return instance;
     }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (getArguments() != null) {
+        }
+    }
+
 }

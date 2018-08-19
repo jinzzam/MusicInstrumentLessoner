@@ -1,6 +1,8 @@
 package com.example.jinzzam.musicinstrumentlessoner.myfragment;
 
-public class TemplateFragment {
+import android.support.v4.app.Fragment;
+
+public class TemplateFragment extends Fragment {
 
     private static TemplateFragment instance;
 

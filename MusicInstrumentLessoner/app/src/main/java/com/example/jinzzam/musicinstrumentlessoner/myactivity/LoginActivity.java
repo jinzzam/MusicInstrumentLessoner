@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         ivLogin = findViewById(R.id.ivLogin);
         ivLogin.setOnClickListener((v) -> {
             String name = loginProcess(etEmail.getText().toString(), etPassword.getText().toString());
-            Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra("actLoginName", name);
             intent.putExtra("actLoginEmail", etEmail.getText().toString());
             startActivity(intent);
@@ -52,8 +52,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public static LoginActivity getInstance() {
-        if (instance == null)
-            instance = new LoginActivity();
         return instance;
     }
 }

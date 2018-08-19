@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tvActGuideMain">설명</string>
+    <string name="tvActGuideSub">세부사항</string>
+    <string name="tvActGuideNoData">올린 정보가 없습니다.</string>
+</resources>

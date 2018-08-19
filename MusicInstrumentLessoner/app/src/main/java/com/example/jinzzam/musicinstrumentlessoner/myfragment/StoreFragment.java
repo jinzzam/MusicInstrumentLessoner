@@ -1,6 +1,8 @@
 package com.example.jinzzam.musicinstrumentlessoner.myfragment;
 
-public class StoreFragment {
+import android.support.v4.app.Fragment;
+
+public class StoreFragment extends Fragment{
     private static StoreFragment instance;
 
     public static StoreFragment getInstance() {
