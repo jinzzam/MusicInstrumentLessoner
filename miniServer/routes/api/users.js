@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var async = require('async');
-var miUser = require('../../model.dao/miUserDao');
+var miUser = require('../../model/Dao/miUserDao');
 
 router.get('/', function (req, res, next) {
     var data;

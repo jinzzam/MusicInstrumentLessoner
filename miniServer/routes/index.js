@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var async = require('async');
-var miUser = require('../model.dao/miUserDao');
+var miUser = require('../model/Dao/miUserDao');
 
 /* GET home page. */
 router.get('/hi', function (req, res, next) {
