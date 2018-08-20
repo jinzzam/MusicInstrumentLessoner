@@ -1,16 +1,15 @@
 package hack.the.wap.musicinstrumentlessoner.myfragment;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import hack.the.wap.musicinstrumentlessoner.R;
@@ -30,16 +29,10 @@ import hack.the.wap.musicinstrumentlessoner.session.Session;
  * create an instance of this fragment.
  */
 public class TemplateFragment extends Fragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     private static View templateFragmentView;
     private static LinearLayout llFragTemplate;
     private static Session session;
     private static HashMap<String, TemplateDto> templates;
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -59,8 +52,6 @@ public class TemplateFragment extends Fragment {
     public static TemplateFragment newInstance(String param1, String param2) {
         TemplateFragment fragment = new TemplateFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -69,8 +60,6 @@ public class TemplateFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 

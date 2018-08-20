@@ -1,14 +1,13 @@
 package hack.the.wap.musicinstrumentlessoner.myfragment;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.util.HashMap;
@@ -16,11 +15,8 @@ import java.util.HashMap;
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.model.dto.UserGroupDto;
 import hack.the.wap.musicinstrumentlessoner.myactivity.MainActivity;
-import hack.the.wap.musicinstrumentlessoner.myactivity.TemplateDetailActivity;
 import hack.the.wap.musicinstrumentlessoner.myactivity.UserGroupDetailActivity;
 import hack.the.wap.musicinstrumentlessoner.mylayout.GroupLayout;
-import hack.the.wap.musicinstrumentlessoner.mylayout.ImageLayout;
-import hack.the.wap.musicinstrumentlessoner.mylayout.NotificationLayout;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 
@@ -33,16 +29,10 @@ import hack.the.wap.musicinstrumentlessoner.session.Session;
  * create an instance of this fragment.
  */
 public class GroupFragment extends Fragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     private static View groupFragmentView;
     private static LinearLayout llFragGroup;
     private static Session session;
     private static HashMap<String, UserGroupDto> userGroups;
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -62,8 +52,6 @@ public class GroupFragment extends Fragment {
     public static GroupFragment newInstance(String param1, String param2) {
         GroupFragment fragment = new GroupFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -72,8 +60,6 @@ public class GroupFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 

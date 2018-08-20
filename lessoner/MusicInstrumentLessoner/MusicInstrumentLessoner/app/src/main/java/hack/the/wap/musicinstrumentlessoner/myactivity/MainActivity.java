@@ -180,18 +180,18 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.flFragment, storeFragment);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_information) {
-
+            //pass
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     private void setUserNameAndEmail() {
         Intent intent = getIntent();
-        userName = getIntent().getStringExtra("actLoginName");
-        userEmail = getIntent().getStringExtra("actLoginEmail");
+        userEmail = intent.getStringExtra("actLoginName");
+        userName = intent.getStringExtra("actLoginName");
         DEBUG_ON_SET_USER_NAME_AND_EMAIL(userName, userEmail);
 
     }
