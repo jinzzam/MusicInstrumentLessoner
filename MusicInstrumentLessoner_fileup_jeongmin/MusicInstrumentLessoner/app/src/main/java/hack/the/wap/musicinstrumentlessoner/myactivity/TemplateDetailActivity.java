@@ -119,17 +119,13 @@ public class TemplateDetailActivity extends AppCompatActivity {
                 atom.setCustomAttr(dto);
                 atom.setOnClickListener(v -> {
                     rootDir = mkdir(dto);
-                    dirForUpload = dirForUpload(dto);
+                    dirForUpload = "/"+mainTemplate.getMusicTitle() + "/" + dto.getPracticeId();
                     filePath = rootDir + getResources().getString(R.string.file_default_name);
 
-                    //Log.d("pplease",dto.getFileName());
                     int requestCode = 0;
                     curPractice = dto.getPracticeId();
-                    /*String count = String.valueOf(curPractice);
-                    Log.d("count",count);*/
                     curFile = filePath;
-                    Log.d("filename",curFile);
-                    //Log.d("pleas",upDir);
+
                     AndroidAudioRecorder.with(this)
                             // Required
                             .setFilePath(filePath)
@@ -193,7 +189,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
                                 finish();
                                 Log.e("TAG", "onSuccess: " + file.getAbsolutePath());
 
-                                //*************upload to server***************
+                                //upload to server
                                 uploadFileToServer();
                             }
 
@@ -222,18 +218,6 @@ public class TemplateDetailActivity extends AppCompatActivity {
             dir.mkdir();
         }
         return getResources().getString(R.string.file_default_dir) + mainTemplate.getMusicTitle() + "/" + dto.getPracticeId();
-    }
-
-    private String dirForUpload(TemplatePracticeDto dto) {
-        File dir = new File(getResources().getString(R.string.file_default_dir) + mainTemplate.getMusicTitle());
-        if (!dir.isDirectory()) {
-            dir.mkdir();
-        }
-        dir = new File(getResources().getString(R.string.file_default_dir) + mainTemplate.getMusicTitle() + "/" + dto.getPracticeId());
-        if (!dir.isDirectory()) {
-            dir.mkdir();
-        }
-        return "/"+mainTemplate.getMusicTitle() + "/" + dto.getPracticeId();
     }
 
     public void uploadFileToServer(){
