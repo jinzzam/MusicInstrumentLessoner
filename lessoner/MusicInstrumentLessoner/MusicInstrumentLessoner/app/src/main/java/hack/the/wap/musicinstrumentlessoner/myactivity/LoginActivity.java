@@ -27,19 +27,25 @@ public class LoginActivity extends AppCompatActivity {
     private static EditText etPassword;
     private static Session session;
 
-    /*
-     init block
-     */ {
+    {
         instance = this;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initView();
+        loginButtonEvent();
+    }
+
+    private void initView() {
         setContentView(R.layout.activity_login);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         ivLogin = findViewById(R.id.ivLogin);
+    }
+
+    private void loginButtonEvent() {
         ivLogin.setOnClickListener(v -> {
             String name = loginProcess(etEmail.getText().toString(), etPassword.getText().toString());
             if (name != null) {
