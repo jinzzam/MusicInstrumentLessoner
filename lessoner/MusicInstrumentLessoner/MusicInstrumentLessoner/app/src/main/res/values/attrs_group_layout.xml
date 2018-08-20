@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="GroupLayout">
+        <attr name="group_lay_edu_image" format="reference|integer"></attr>
+        <attr name="group_lay_name" format="reference|string"></attr>
+        <attr name="group_lay_main" format="reference|string"></attr>
+        <attr name="group_lay_sub" format="reference|string"></attr>
+    </declare-styleable>
+</resources>
