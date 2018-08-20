@@ -2,17 +2,18 @@ var mysql = require('mysql');
 
 var connection = mysql.createConnection({
     host: 'localhost',
-    port: 3306,
+    port: '3306',
     user: 'root',
     password: '123',
     database: 'midb'
 });
+console.log('dbdb');
 
 connection.connect();
 
 this.selectAll = (callback) => {
     var sql = 'select * from mi_user';
-    connection.query(sql, (err, rows, fields) => {
+    connection.query(sql, function (err, rows, fields) {
         if (!err) {
             callback(rows);
         }
@@ -20,8 +21,8 @@ this.selectAll = (callback) => {
 };
 
 this.selectOne = (email, callback) => {
-    var sql = 'select * from mi_user where email=?';
-    connection.query(sql, email, (err, rows, fields) => {
+    var sql = 'select * from mi_user where email =?';
+    connection.query(sql, [email], function (err, rows, fields) {
         if (!err) {
             callback(rows);
         }
@@ -29,7 +30,7 @@ this.selectOne = (email, callback) => {
 };
 
 this.insert = (email, password, username, callback) => {
-    var sql = 'insert into mi_user (email,password,username) values (?,?,?)';
+    var sql = 'insert into mi_user values (?,?,?)';
     connection.query(sql, [email, password, username], (err, rows, fields) => {
         if (!err) {
             callback(rows);
@@ -39,3 +40,4 @@ this.insert = (email, password, username, callback) => {
         }
     });
 };
+

@@ -6,7 +6,14 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var userApiRouter = require('./routes/api/users');
+var userApiRouter = require('./routes/api/miUser');
+var tempRouter = require('./routes/api/Template');
+var tempGuideRouter = require('./routes/api/TempGuide');
+var tempPracticeRouter = require('./routes/api/TempPractice');
+var notiRouter = require('./routes/api/miNotification');
+var tempWrongRouter = require('./routes/api/TempWrong');
+var fileRouter = require('./routes/api/miFile');
+var groupRouter = require('./routes/api/miGroup');
 
 var app = express();
 
@@ -22,7 +29,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/api/user', userApiRouter);
+app.use('/api/miUser', userApiRouter);
+app.use('/api/Template', tempRouter);
+app.use('/api/TempGuide', tempGuideRouter);
+app.use('/api/TempPractice', tempPracticeRouter);
+app.use('/api/miNotification', notiRouter);
+app.use('/api/TempWrong', tempWrongRouter);
+app.use('/api/miFile', fileRouter);
+app.use('/api/miGroup', groupRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
