@@ -21,6 +21,7 @@ import hack.the.wap.musicinstrumentlessoner.model.dto.UserGroupDto;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class LoginActivity extends AppCompatActivity {
+    private static final String TAG = "MAIN";
     private static LoginActivity instance;
     private static ImageView ivLogin;
     private static EditText etEmail;
@@ -34,12 +35,12 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
         initView();
         loginButtonEvent();
     }
 
     private void initView() {
-        setContentView(R.layout.activity_login);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         ivLogin = findViewById(R.id.ivLogin);
