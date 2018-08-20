@@ -44,5 +44,7 @@ dependencies {
     implementation 'com.github.Semantive:waveform-android:v1.2'
     implementation 'com.github.adrielcafe:AndroidAudioRecorder:0.3.0'
     implementation 'com.github.adrielcafe:AndroidAudioConverter:0.0.8'
+    implementation group: 'com.android.volley', name: 'volley', version: '1.1.1'
+
 
 }
