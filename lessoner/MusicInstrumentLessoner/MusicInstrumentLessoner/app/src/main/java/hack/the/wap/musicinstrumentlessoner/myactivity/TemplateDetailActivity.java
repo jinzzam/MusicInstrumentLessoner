@@ -1,12 +1,9 @@
 package hack.the.wap.musicinstrumentlessoner.myactivity;
 
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,7 +22,6 @@ import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.model.dto.TemplateDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.TemplatePracticeDto;
-import hack.the.wap.musicinstrumentlessoner.myfragment.TemplateFragment;
 import hack.the.wap.musicinstrumentlessoner.mylayout.TemplateNegativePracticeLayout;
 import hack.the.wap.musicinstrumentlessoner.mylayout.TemplatePositivePracticeLayout;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
@@ -191,15 +187,15 @@ public class TemplateDetailActivity extends AppCompatActivity {
     }
 
     private String mkdir(TemplatePracticeDto dto) {
-        File dir = new File(getResources().getString(R.string.file_default_dir) + mainTemplate.getMusicTitle());
+        File dir = new File(getResources().getString(R.string.fileDefaultDir) + mainTemplate.getMusicTitle());
         if (!dir.isDirectory()) {
             dir.mkdir();
         }
-        dir = new File(getResources().getString(R.string.file_default_dir) + mainTemplate.getMusicTitle() + "/" + dto.getPracticeId());
+        dir = new File(getResources().getString(R.string.fileDefaultDir) + mainTemplate.getMusicTitle() + "/" + dto.getPracticeId());
         if (!dir.isDirectory()) {
             dir.mkdir();
         }
-        return getResources().getString(R.string.file_default_dir) + mainTemplate.getMusicTitle() + "/" + dto.getPracticeId();
+        return getResources().getString(R.string.fileDefaultDir) + mainTemplate.getMusicTitle() + "/" + dto.getPracticeId();
     }
 
 }
