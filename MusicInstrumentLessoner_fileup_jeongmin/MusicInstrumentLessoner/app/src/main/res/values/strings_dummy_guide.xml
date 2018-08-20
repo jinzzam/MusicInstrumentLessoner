@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="debug_haydn_exp_data_time1">00:15</string>
+    <string name="debug_haydn_exp_data_main1">브릴란테로 하세요</string>
+    <string name="debug_haydn_exp_data_time2">01:33</string>
+    <string name="debug_haydn_exp_data_main2">크레센도 느낌 살려야합니다</string>
+    <string name="debug_haydn_exp_data_time3">01:40</string>
+    <string name="debug_haydn_exp_data_main3">여기서는 한번 브레이크 걸어줍니다</string>
+    <string name="debug_haydn_exp_data_time4">02:37</string>
+    <string name="debug_haydn_exp_data_main4">브릴란테로 하세요</string>
+    <string name="debug_haydn_exp_data_time5">03:00</string>
+    <string name="debug_haydn_exp_data_main5">코다 조심하세요</string>
+</resources>
