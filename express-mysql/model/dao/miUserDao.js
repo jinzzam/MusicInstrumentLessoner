@@ -37,13 +37,4 @@ this.insert =(email, password, username, callback)=>{
         }
     });
 };
-//
-// this.join = (callback)=>{
-//     var sql = 'select ' +
-//         'mi_user.email, ' +
-//         'mi_user.username, ' +
-//         'music_template.music_title' +
-//         'from mi_user' +
-//         'left join music_template' +
-//         'on mi_user.email = music_template.owner';
-// }
+
