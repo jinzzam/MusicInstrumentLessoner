@@ -51,7 +51,7 @@ router.get('/:email/:password/:username', function (req, res, next) {
     var userUsername = req.params['username'];
     const task1 = function (callback) {
         miUser.insert(userEmail, userPassword, userUsername, function (rows) {
-            callback(null);
+                callback(null);
         });
         res.send('Hello World');
     };
