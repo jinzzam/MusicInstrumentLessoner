@@ -25,6 +25,8 @@
 * [18.08.16](development-goal/18.08.16.md)
 * [18.08.17](development-goal/18.08.17.md)
 * [18.08.18](development-goal/18.08.18.md)
+* [18.08.19](development-goal/18.08.19.md)
+* [18.08.20](development-goal/18.08.20.md)
 
 ## LIBRARY\_JEONGMIN
 
