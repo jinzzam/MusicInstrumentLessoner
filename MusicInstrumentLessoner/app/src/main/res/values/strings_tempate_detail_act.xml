@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="guide_button">guide</string>
+    <string name="teacher_listen_music">선생님이 녹음한 음악 듣기</string>
+</resources>

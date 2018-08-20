@@ -1,0 +1,7 @@
+<resources>
+    <declare-styleable name="MiNotificationLayout">
+        <attr name="mi_notification_lay_date" format="reference|string"></attr>
+        <attr name="mi_notification_lay_main" format="reference|string"></attr>
+        <attr name="mi_notification_lay_music_title" format="reference|string"></attr>
+    </declare-styleable>
+</resources>

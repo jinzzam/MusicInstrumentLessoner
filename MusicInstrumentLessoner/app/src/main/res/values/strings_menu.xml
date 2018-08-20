@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_menu_rm_a">모든 알림 삭제</string>
+    <string name="notification_menu_rm_recent">최근 알림 1개 삭제</string>
+</resources>

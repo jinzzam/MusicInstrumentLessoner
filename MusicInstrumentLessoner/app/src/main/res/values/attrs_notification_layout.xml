@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NotificationLayout">
+        <attr name="notification_lay_user_image" format="reference|integer"></attr>
+        <attr name="notification_lay_name" format="reference|string"></attr>
+        <attr name="notification_lay_date" format="reference|string"></attr>
+        <attr name="notification_lay_main" format="reference|string"></attr>
+        <attr name="notification_lay_music_title" format="reference|string"></attr>
+    </declare-styleable>
+</resources>
