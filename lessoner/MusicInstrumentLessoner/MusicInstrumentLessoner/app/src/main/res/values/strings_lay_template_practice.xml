@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--real resource-->
+    <string name="LayTemplatePracticeMusicNum">No.</string>
+    <string name="LayTemplatePracticeSuccessPercent">곡 완성도 : </string>
+    <string name="LayTemplatePracticeSuccessPercentEnd">%</string>
+    <string name="LayTemplatePracticeViewDetail">view detail</string>
+    <string name="LayTemplatePracticeAdd">add practice</string>
+    <string name="LayTemplatePracticeAddState">연주하세요</string>
+    <string name="LayTemplatePracticeFilePath">파일 주소 : </string>
+
+    <!--debug resource-->
+    <string name="debug_LayTemplatePracticeMusicNum1">No.1</string>
+    <string name="debug_LayTemplatePracticeSuccessPercent1">곡 완성도 : 90%</string>
+
+    <string name="debug_LayTemplatePracticeMusicNum2">No.10</string>
+    <string name="debug_LayTemplatePracticeSuccessPercent2">곡 완성도 : 0%</string>
+
+    <string name="template_teacher_practice_act_pre">연주자 : </string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_margin="2dp"
+    android:orientation="horizontal"
+    android:background="@drawable/notification_mi_rounded">
+
+    <TextView
+        android:id="@+id/tvExplainLayUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@color/musicPersonalColor"
+        android:text="시간 혹은 마디" />
+
+    <TextView
+        android:id="@+id/tvExplainLayMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="left|center"
+        android:text="설명" />
+</LinearLayout>

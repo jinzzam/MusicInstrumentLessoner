@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flute">플룻</string>
+    <string name="recorder">리코더</string>
+    <string name="violin">바이올린</string>
+    <string name="danso">단소</string>
+    <string name="piano">피아노</string>
+    <string name="elec_guitar">일렉기타</string>
+    <string name="guitar">기타</string>
+    <string name="trumpet">트럼펫</string>
+    <string name="saxophone">색소폰</string>
+</resources>

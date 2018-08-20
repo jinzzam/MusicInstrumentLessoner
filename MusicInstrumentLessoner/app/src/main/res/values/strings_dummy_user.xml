@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="debug_segyong_name">Segyong</string>
+    <string name="debug_segyong_email">jinzza@namol.pam</string>
+    <string name="debug_segyong_password">3456</string>
+
+    <string name="debug_gain_name">Gain</string>
+    <string name="debug_gain_email">han@hain.dev</string>
+    <string name="debug_gain_password">no pain no gain</string>
+
+    <string name="debug_hyoju_name">Hyoju</string>
+    <string name="debug_hyoju_email">hyoju@gyoju.devil</string>
+    <string name="debug_hyoju_password">mola</string>
+
+    <string name="debug_kanna_name">Kanna</string>
+    <string name="debug_kanna_email">dokdo@woorittang.kanna</string>
+    <string name="debug_kanna_password">hasimoto</string>
+
+    <string name="debug_jia_name">Jia</string>
+    <string name="debug_jia_email">jijiji@bebe.com</string>
+    <string name="debug_jia_password">abcde</string>
+
+    <string name="debug_dongwon_name">Dongwon</string>
+    <string name="debug_dongwon_email">kang12@tuna.fish</string>
+    <string name="debug_dongwon_password">abcdf</string>
+
+    <string name="debug_jihyun_name">Jihyun</string>
+    <string name="debug_jihyun_email">jun@beauty.com</string>
+    <string name="debug_jihyun_password">abcder</string>
+
+    <string name="debug_sarang_name">Sarang</string>
+    <string name="debug_sarang_email">nana@sarang.boo</string>
+    <string name="debug_sarang_password">abced</string>
+
+    <string name="debug_woobin_name">Woobin</string>
+    <string name="debug_woobin_email">ya@esaeki.ya</string>
+    <string name="debug_woobin_password">abckd</string>
+
+    <string name="debug_dongsuck_name">Dongsuck</string>
+    <string name="debug_dongsuck_email">baby@boy.com</string>
+    <string name="debug_dongsuck_password">abcdboyman</string>
+
+    <string name="debug_jiho_name">Jiho</string>
+    <string name="debug_jiho_email">wooo@jiii.hooo</string>
+    <string name="debug_jiho_password">abcdhoho</string>
+
+    <string name="debug_taehie_name">Taehie</string>
+    <string name="debug_taehie_email">yaho@man.se</string>
+    <string name="debug_taehie_password">abcdsansan</string>
+
+    <string name="debug_youjung_name">Youjung</string>
+    <string name="debug_youjung_email">you@pretty.good</string>
+    <string name="debug_youjung_password">abcdlove</string>
+
+    <string name="debug_sohyun_name">Sohyun</string>
+    <string name="debug_sohyun_email">ayo@man.ssup</string>
+    <string name="debug_sohyun_password">abcdsoso</string>
+
+    <string name="debug_joohyun_name">Joohyun</string>
+    <string name="debug_joohyun_email">nana@irin.vel</string>
+    <string name="debug_joohyun_password">abcdvv</string>
+
+    <string name="debug_jeny_name">Jeny</string>
+    <string name="debug_jeny_email">jenjen@gaga.game</string>
+    <string name="debug_jeny_password">abcdjggm</string>
+
+</resources>

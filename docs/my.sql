@@ -1,16 +1,8 @@
 create table mi_user(
-    -> email varchar(30) primary key,
-    -> password varchar(30) not null,
-    -> username varchar(30) not null
-    -> );
-
-insert into mi_user values('jinzzam@namol.ppam', '123', '박유진');
-insert into mi_user ('email', 'password', 'username')
-  values ('namolppam@pocket.mon', '1234', '나몰빼미');
-
-select * from mi_user WHERE username like '%유%';
-
-delete table mi_user;
+  email varchar(30) primary key,
+  password varchar(30) not null,
+  username varchar(30) not null
+  );
 
 create table music_template(
   music_template_id int primary key auto_increment,
@@ -19,9 +11,6 @@ create table music_template(
   musician varchar(30),
   constraint fk_musictemplate_miuser_email foreign key (owner) references mi_user (email) on delete cascade
 );
-
-insert into music_template (owner, music_title, musician) values
-  ('namolppam@pocket.mon', '나몰나몰송', '나몰빼미');
 
 create table music_template_guide(
   music_template_id int,
@@ -47,11 +36,15 @@ create table music_template_practice(
 create table mi_notification(
   mi_notification_id int primary key,
   music_template_id int,
-  regist_date_time datetime default current_timestamp,
+  regist_date_time datetime,
   type varchar(30) not null,
   comment text(255) not null,
   constraint fk_minotification_musictemplate_musictemplateid foreign key (mi_notification_id) references music_template (music_template_id) on delete cascade
 );
+
+create trigger mi_notification_datetimeInsert
+  before insert on mi_notification for each row
+  set new.regist_date_time = now();
 
 create table music_template_assignment(
   inner_filename varchar(255) primary key,
@@ -71,3 +64,26 @@ create table mi_file(
   outter_filename varchar(255),
   constraint fk_mifile_miuser_owner foreign key (owner) references mi_user (email) on delete cascade
 );
+
+create table mi_user_group(
+  group_name varchar(30) primary key,
+  group_teachers ,
+  group_students ,
+  group_instruments varchar(255),
+  group_genres varchar(255),
+  is_mine,
+
+);
+
+/*query examples*/
+insert into mi_user values('jinzzam@namol.ppam', '123', '박유진');
+
+insert into mi_user ('email', 'password', 'username')
+  values ('namolppam@pocket.mon', '1234', '나몰빼미');
+
+delete table mi_user;
+
+insert into music_template (owner, music_title, musician) values
+    ('namolppam@pocket.mon', '나몰나몰송', '나몰빼미');
+
+select * from mi_user WHERE username like '%유%';

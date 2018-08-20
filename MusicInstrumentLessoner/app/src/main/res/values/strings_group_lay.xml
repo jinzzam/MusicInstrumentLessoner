@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="group_lay_teacher">선생님 수 : </string>
+    <string name="sep">/</string>
+    <string name="punit">명</string>
+    <string name="cunit">개</string>
+    <string name="group_lay_user">학생 수 :</string>
+    <string name="group_lay_tempate_count">내가 사용가능 템플릿 : </string>
+</resources>

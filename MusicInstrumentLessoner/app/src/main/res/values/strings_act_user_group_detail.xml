@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tv_teacher">선생님 목록</string>
+    <string name="tv_user">학생 목록</string>
+</resources>
