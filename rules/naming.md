@@ -1,7 +1,3 @@
----
-description: 파일 및 변수 등 이름을 명명하는 규칙입니다.
----
-
 # NAMING
 
 ## ANDROID-JAVA

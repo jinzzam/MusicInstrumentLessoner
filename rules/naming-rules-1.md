@@ -1,7 +1,3 @@
----
-description: MYSQL DB TABLE 내용입니다.
----
-
 # DB TABLES
 
 ## DB
