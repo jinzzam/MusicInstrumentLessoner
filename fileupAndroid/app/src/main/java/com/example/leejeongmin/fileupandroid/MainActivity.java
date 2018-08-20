@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
     String upLoadServerUri = null;
 
     //file path
-    final String uploadFilePath = "/mnt/sdcard/DCIM/Camera/";
-    final String uploadFileName = "sun.png";
+    final String uploadFilePath = "/mnt/sdcard/Music/";
+    final String uploadFileName = "test11.m4a";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
