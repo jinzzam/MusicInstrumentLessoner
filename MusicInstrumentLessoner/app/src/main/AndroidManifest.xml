@@ -8,35 +8,21 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <!-- android:label="@string/app_name_kor" -->
     <application
         android:allowBackup="true"
-        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
-        android:largeHeap="true"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".myactivity.SplashActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".myactivity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".myactivity.LoginActivity" />
-        <activity
-            android:name=".myactivity.MainActivity"
-            android:theme="@style/MainAppTheme" />
-        <activity android:name=".myactivity.TemplateDetailActivity" />
-        <activity android:name=".myactivity.PracticeDetailActivity" />
-        <activity android:name=".myactivity.TeacherPracticeDetailActivity" />
-        <activity android:name=".myactivity.UserGroupDetailActivity" />
-        <activity android:name=".myactivity.GuideActivity" />
-        <activity android:name=".myactivity.PracticeListenActivity" />
+
     </application>
 
 </manifest>

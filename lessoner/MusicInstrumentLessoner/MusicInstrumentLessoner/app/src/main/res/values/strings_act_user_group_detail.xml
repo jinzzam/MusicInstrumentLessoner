@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="tvUserGroupTeachers">선생님 목록</string>
-    <string name="tvUserGroupStudents">학생 목록</string>
-    <string name="tvActUserGroupName">그룹 이름</string>
-    <string name="userGroupEmptyDefault">입력한 정보가 없습니다.</string>
-</resources>
