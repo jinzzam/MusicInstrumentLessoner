@@ -4,30 +4,28 @@ var router = express.Router();
 var miUser = require('../model/dao/miUserDao');
 var async = require('async');
 
-app.get('/users', (req, res) => {
+app.post('/users', (req, res) => {
     console.log('who get in here/users');
+    console.log('who get in here post /users');
+    var inputData;
     var data;
-    const task1 = function (callback) {
-        miUser.selectAll(function (rows) {
+
+    req.on('data', (data) => {
+        inputData = JSON.parse(data);
+    });
+
+    req.on('end', () => {
+        miUser.selectOne(inputData.searchemail, function (rows) {
             data = rows;
-            callback(null);
+            res.json(data);
         });
-    };
-    const task2 = function (callback) {
-        console.log(data);
-        callback(null);
-    };
-    const task3 = function (callback) {
-        res.json(data);
-        callback(null);
-    };
-    const tasks = [task1, task2, task3];
-    async.series(tasks);
+    });
 });
 
 app.post('/post', (req, res) => {
     console.log('who get in here post /users');
     var inputData;
+    var data;
 
     req.on('data', (data) => {
         inputData = JSON.parse(data);
@@ -35,18 +33,20 @@ app.post('/post', (req, res) => {
 
     req.on('end', () => {
         console.log("useremail : "+ inputData.useremail + " , name : "+inputData.username + ", password : "+ inputData.password);
-       //miUser.insert(inputData.useremail, inputData.password, inputData.username,function (rows) {
-        //});
-        miUser.selectOne(inputData.useremail, function(rows){
-          console.log(rows);
+       miUser.insert(inputData.useremail, inputData.password, inputData.username,function (rows) {
         });
+        // miUser.selectOne(inputData.useremail, function(rows){
+        //     data = rows;
+        //     console.log(data);
+        // });
+        //
     });
-    res.write('wow');
-    res.end();
+ res.write('OK !');
+ res.end();
 });
 
-// app.listen(3100, () => {
-//     console.log('Example app listening on port 3000!');
-// });
+app.listen(3100, () => {
+    console.log('Example app listening on port 3100!');
+});
 
 module.exports = router;
