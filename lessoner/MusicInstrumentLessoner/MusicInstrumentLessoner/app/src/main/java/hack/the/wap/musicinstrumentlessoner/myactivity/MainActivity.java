@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity
         groupFragment = new GroupFragment();
         storeFragment = new StoreFragment();
         session = Session.getInstance();
-        DEBUG_SESSION_DATA();
+       // DEBUG_SESSION_DATA();
     }
 
     @Override

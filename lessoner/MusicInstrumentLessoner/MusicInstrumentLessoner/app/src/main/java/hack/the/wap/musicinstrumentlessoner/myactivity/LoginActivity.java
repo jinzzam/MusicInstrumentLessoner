@@ -1,8 +1,8 @@
 package hack.the.wap.musicinstrumentlessoner.myactivity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -10,8 +10,13 @@ import android.widget.ImageView;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,12 +39,14 @@ public class LoginActivity extends AppCompatActivity {
     private static EditText etEmail;
     private static EditText etPassword;
     private static Session session;
+    private static UserDto userDto;
 
     private RequestQueue queue;
-    private StringRequest stringRequest;
+    private JsonObjectRequest jsonObjectRequest;
 
     {
         instance = this;
+        session = Session.getInstance();
     }
 
     @Override
@@ -48,8 +55,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         queue = Volley.newRequestQueue(this);
         initView();
-        //initListener();
-        loginButtonEvent();
+        initListener();
+        //loginButtonEvent();
     }
 
     private void initView() {
@@ -69,21 +76,49 @@ public class LoginActivity extends AppCompatActivity {
     }
     //test
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (queue != null) {
+            queue.cancelAll(TAG);
+        }
+    }
+
     private void initVolleySet() {
         String url = "http://localhost:3000/api/miUser/";
         url += etEmail.getText().toString();
         Log.e("TAG", url);
-        stringRequest = new StringRequest(Request.Method.GET, url, (response -> {
-        }), (error) -> {
+        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String userName = response.getString("username");
+                            String userEmail = response.getString("email");
+                            String userPassword = response.getString("password");
+                            userDto = new UserDto(userName, userEmail, userPassword);
+                            session.setMainUser(userDto);
+                            Log.e("TAG", userEmail + " " + userPassword);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("TAG", "initvolleysSet >>>> : Json 받지 못함");
+            }
         });
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
                 0,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         ));
-        stringRequest.setTag(TAG);
-        queue.add(stringRequest);
-        Log.e("TAG", "initVolleySet >>>> : ");
+        jsonObjectRequest.setTag(TAG);
+        queue.add(jsonObjectRequest);
+        Log.e("TAG", "initVolleySet >>>> : 큐에 리퀘스트 넣음");
+
+
     }
 
     private void loginButtonEvent() {

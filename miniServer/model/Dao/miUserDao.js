@@ -22,7 +22,7 @@ this.selectAll = (callback) => {
 
 this.selectOne = (email, callback) => {
     var sql = 'select * from mi_user where email =?';
-    connection.query(sql, [email], function (err, rows, fields) {
+    connection.query(sql, email, function (err, rows, fields) {
         if (!err) {
             callback(rows);
         }

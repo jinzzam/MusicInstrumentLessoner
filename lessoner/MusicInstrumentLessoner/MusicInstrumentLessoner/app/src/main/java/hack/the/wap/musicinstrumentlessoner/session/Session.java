@@ -25,7 +25,9 @@ public class Session {
     }
 
     public void setMainUser(UserDto mainUser) {
-        this.mainUser = mainUser;
+        mainUser.setName(mainUser.getName());
+        mainUser.setEmail(mainUser.getEmail());
+        mainUser.setPassword(mainUser.getPassword());
     }
 
     public ArrayList<NotificationDto> getNotifications() {
