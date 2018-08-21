@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39d6fe24-125b-431b-b300-008be00e6591" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../android/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../android/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android/app/src/main/java/com/example/user/datasend/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/example/user/datasend/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SUMMARY.md" beforeDir="false" afterPath="$PROJECT_DIR$/../SUMMARY.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../development-goal/undefined-1.md" beforeDir="false" afterPath="$PROJECT_DIR$/../development-goal/undefined-1.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../library_youjin/18.08.16.md" beforeDir="false" afterPath="$PROJECT_DIR$/../library_youjin/18.08.16.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../library_youjin/18.08.17.md" beforeDir="false" afterPath="$PROJECT_DIR$/../library_youjin/18.08.17.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../library_youjin/18.08.21.md" beforeDir="false" afterPath="$PROJECT_DIR$/../library_youjin/18.08.21.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../miniServer/model/Dao/miUserDao.js" beforeDir="false" afterPath="$PROJECT_DIR$/../miniServer/model/Dao/miUserDao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../miniServer/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../miniServer/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../notes/undefined-1.md" beforeDir="false" afterPath="$PROJECT_DIR$/../notes/undefined-1.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rules/naming-rules-1.md" beforeDir="false" afterPath="$PROJECT_DIR$/../rules/naming-rules-1.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -64,7 +70,7 @@
     <session id="488475940">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.40" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.opened" value="2" />
@@ -98,8 +104,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+            <state relative-caret-position="207">
+              <caret line="21" column="7" lean-forward="true" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -302,7 +308,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71491000" />
+    <option name="totallyTimeSpent" value="71502000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -315,7 +321,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="9" y="0" width="974" height="1047" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3440171" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -323,7 +328,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.35565314" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.35565314" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -550,8 +555,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+        <state relative-caret-position="207">
+          <caret line="21" column="7" lean-forward="true" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
         </state>
       </provider>
     </entry>

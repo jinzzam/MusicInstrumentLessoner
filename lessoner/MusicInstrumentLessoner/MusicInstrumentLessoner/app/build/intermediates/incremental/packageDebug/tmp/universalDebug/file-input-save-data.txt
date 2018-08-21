@@ -1,0 +1,31 @@
+#Internal package file, do not edit.
+#Mon Aug 20 02:52:25 KST 2018
+2.base=/Users/jinzzam/Desktop/MusicInstrumentLessoner/lessoner/MusicInstrumentLessoner/MusicInstrumentLessoner/app/build/intermediates/assets/debug
+5.set=DEX
+0.path=lib/armeabi/libARM_ARCH.so
+2.baseType=DIRECTORY
+3.base=/Users/jinzzam/Desktop/MusicInstrumentLessoner/lessoner/MusicInstrumentLessoner/MusicInstrumentLessoner/app/build/intermediates/transforms/mergeJniLibs/debug/0
+2.set=ASSET
+1.path=classes.dex
+4.base=/Users/jinzzam/Desktop/MusicInstrumentLessoner/lessoner/MusicInstrumentLessoner/MusicInstrumentLessoner/app/build/intermediates/transforms/dexMerger/debug/12
+count=7
+5.baseType=DIRECTORY
+2.path=armeabi-v7a/ffmpeg
+5.base=/Users/jinzzam/Desktop/MusicInstrumentLessoner/lessoner/MusicInstrumentLessoner/MusicInstrumentLessoner/app/build/intermediates/transforms/dexMerger/debug/13
+4.set=DEX
+3.path=lib/armeabi-v7a/libARM_ARCH.so
+6.base=/Users/jinzzam/Desktop/MusicInstrumentLessoner/lessoner/MusicInstrumentLessoner/MusicInstrumentLessoner/app/build/intermediates/transforms/dexMerger/debug/11
+3.baseType=DIRECTORY
+1.set=DEX
+4.path=classes.dex
+6.set=DEX
+1.baseType=DIRECTORY
+6.baseType=DIRECTORY
+5.path=classes.dex
+0.base=/Users/jinzzam/Desktop/MusicInstrumentLessoner/lessoner/MusicInstrumentLessoner/MusicInstrumentLessoner/app/build/intermediates/transforms/mergeJniLibs/debug/0
+0.baseType=DIRECTORY
+3.set=NATIVE_RESOURCE
+6.path=classes.dex
+1.base=/Users/jinzzam/Desktop/MusicInstrumentLessoner/lessoner/MusicInstrumentLessoner/MusicInstrumentLessoner/app/build/intermediates/transforms/dexMerger/debug/14
+4.baseType=DIRECTORY
+0.set=NATIVE_RESOURCE
