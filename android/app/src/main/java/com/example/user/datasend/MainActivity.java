@@ -1,6 +1,5 @@
 package com.example.user.datasend;
 
-
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         //get버튼이 클릭되면 여기 리스너로 옴
         getbtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                new JSONgetTask().execute("http://192.168.43.98:3100/users");
+                new JSONgetTask().execute("http://192.168.43.98:3000/users");
             }
         });
 
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                new JSONpostTask().execute("http://192.168.43.98:3100/post");//AsyncTask 시작시킴
+                new JSONpostTask().execute("http://192.168.43.98:3000/post");//AsyncTask 시작시킴
             }
         });
     }

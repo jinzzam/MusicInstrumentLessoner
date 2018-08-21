@@ -45,8 +45,8 @@ app.post('/post', (req, res) => {
     res.end();
 });
 
-app.listen(3100, () => {
-    console.log('Example app listening on port 3000!');
-});
+// app.listen(3100, () => {
+//     console.log('Example app listening on port 3000!');
+// });
 
 module.exports = router;
