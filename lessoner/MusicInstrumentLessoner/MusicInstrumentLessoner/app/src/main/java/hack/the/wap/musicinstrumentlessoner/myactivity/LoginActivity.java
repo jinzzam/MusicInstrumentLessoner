@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         });
     }
+    //test
 
     private void initVolleySet() {
         String url = "http://localhost:3000/api/miUser/";
