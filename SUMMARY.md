@@ -41,15 +41,9 @@
 * [18.08.18](library_hyerim/18.08.18.md)
 * [18.08.19](library_hyerim/18.08.19.md)
 * [18.08.20](library_hyerim/18.08.20.md)
-* [18.08.16](library_hyerim/18.08.16-1.md)
-* [18.08.17](library_hyerim/18.08.17-1.md)
+* [18.08.21](library_hyerim/18.08.21.md)
 
 ## LIBRARY\_JEONGMIN
 
 * [18.08.16](library_jeongmin-1/18.08.16.md)
-
-## LIBRARY\_HYERIM
-
-* [18.08.16](library_hyerim-1/18.08.16.md)
-* [18.08.17](library_hyerim-1/18.08.17.md)
 
