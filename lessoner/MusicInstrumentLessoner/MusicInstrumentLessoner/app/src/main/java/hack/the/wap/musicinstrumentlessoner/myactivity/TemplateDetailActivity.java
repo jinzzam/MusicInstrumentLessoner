@@ -104,7 +104,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
                 atom.setCustomAttr(dto);
                 atom.setOnClickListener(v -> {
                     rootDir = mkdir(dto);
-                    filePath = rootDir + getResources().getString(R.string.file_default_name);
+                    filePath = rootDir + getResources().getString(R.string.fileDefaultName);
                     int requestCode = 0;
                     curPractice = dto.getPracticeId();
                     curFile = filePath;

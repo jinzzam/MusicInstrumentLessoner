@@ -7,9 +7,9 @@ var connection = mysql.createConnection({
     password: '123',
     database: 'midb'
 });
-console.log('dbdb');
 
 connection.connect();
+console.log('dbConnection');
 
 this.selectAll = (callback) => {
     var sql = 'select * from mi_user';

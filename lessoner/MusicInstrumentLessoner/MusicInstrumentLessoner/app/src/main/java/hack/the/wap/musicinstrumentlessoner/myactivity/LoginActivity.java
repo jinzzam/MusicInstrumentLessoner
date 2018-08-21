@@ -3,8 +3,15 @@ package hack.the.wap.musicinstrumentlessoner.myactivity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +35,9 @@ public class LoginActivity extends AppCompatActivity {
     private static EditText etPassword;
     private static Session session;
 
+    private RequestQueue queue;
+    private StringRequest stringRequest;
+
     {
         instance = this;
     }
@@ -36,14 +46,40 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        queue = Volley.newRequestQueue(this);
         initView();
-        loginButtonEvent();
+        initListener();
+        //loginButtonEvent();
     }
 
     private void initView() {
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         ivLogin = findViewById(R.id.ivLogin);
+    }
+
+    private void initListener() {
+        ivLogin.setOnClickListener((v) -> {
+            Log.e("TAG", "initListener >>>> : ");
+            initVolleySet();
+        });
+    }
+
+    private void initVolleySet() {
+        String url = "http://localhost:3000/api/miUser/";
+        url += etEmail.getText().toString();
+        Log.e("TAG", url);
+        stringRequest = new StringRequest(Request.Method.GET, url, (response -> {
+        }), (error) -> {
+        });
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+        stringRequest.setTag(TAG);
+        queue.add(stringRequest);
+        Log.e("TAG", "initVolleySet >>>> : ");
     }
 
     private void loginButtonEvent() {
