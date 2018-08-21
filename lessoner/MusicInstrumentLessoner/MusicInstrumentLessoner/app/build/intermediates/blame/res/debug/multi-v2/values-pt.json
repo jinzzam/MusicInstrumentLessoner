@@ -1,0 +1,60 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/jinzzam/Desktop/MusicInstrumentLessoner/lessoner/MusicInstrumentLessoner/MusicInstrumentLessoner/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pt/values-pt.xml",
+            "map": [
+                {
+                    "source": "/Users/jinzzam/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/4b9c070fd81248aad4e53d4c77682815/res/values-pt/values-pt.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,225,331,438,527,628,746,829,909,996,1103,1215,1317,1425,1532,1642,1804,1904",
+                        "endColumns": "119,105,106,88,100,117,82,79,86,106,111,101,107,106,109,161,99,84",
+                        "endOffsets": "220,326,433,522,623,741,824,904,991,1098,1210,1312,1420,1527,1637,1799,1899,1984"
+                    },
+                    "to": {
+                        "startLines": "6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "300,420,526,633,722,823,941,1024,1104,1191,1298,1410,1512,1620,1727,1837,1999,2099",
+                        "endColumns": "119,105,106,88,100,117,82,79,86,106,111,101,107,106,109,161,99,84",
+                        "endOffsets": "415,521,628,717,818,936,1019,1099,1186,1293,1405,1507,1615,1722,1832,1994,2094,2179"
+                    }
+                },
+                {
+                    "source": "/Users/jinzzam/.gradle/caches/transforms-1/files-1.1/AndroidAudioRecorder-0.3.0.aar/2d8d48a1f3c1e7cc4a34509f1fb29d61/res/values-pt/values-pt.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,102,155,206",
+                        "endColumns": "46,52,50,43",
+                        "endOffsets": "97,150,201,245"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "105,152,205,256",
+                        "endColumns": "46,52,50,43",
+                        "endOffsets": "147,200,251,295"
+                    }
+                },
+                {
+                    "source": "/Users/jinzzam/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/1b4d46e7f824d2a5d1ac7b7ee5b9fa3f/res/values-pt/values-pt.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "24",
+                        "startColumns": "4",
+                        "startOffsets": "2184",
+                        "endColumns": "100",
+                        "endOffsets": "2280"
+                    }
+                }
+            ]
+        }
+    ]
+}
