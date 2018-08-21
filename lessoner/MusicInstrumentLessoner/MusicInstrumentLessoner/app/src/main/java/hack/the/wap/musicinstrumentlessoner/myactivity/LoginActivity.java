@@ -48,8 +48,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         queue = Volley.newRequestQueue(this);
         initView();
-        initListener();
-        //loginButtonEvent();
+        //initListener();
+        loginButtonEvent();
     }
 
     private void initView() {
@@ -62,6 +62,9 @@ public class LoginActivity extends AppCompatActivity {
         ivLogin.setOnClickListener((v) -> {
             Log.e("TAG", "initListener >>>> : ");
             initVolleySet();
+            Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 
