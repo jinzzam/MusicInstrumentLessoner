@@ -16,7 +16,7 @@ username / not null
 
 ### music\_template
 
-**primary key** : music\_template\_id 
+**primary key** : music\_template\_id
 
 music\_template\_id &lt;int&gt; / auto\_increment
 
@@ -48,9 +48,9 @@ music\_template\_practice\_id &lt;int&gt; / auto\_increment
 
 student\_email
 
-inner\_filename &lt;varchar\(255\)&gt; 
+inner\_filename &lt;varchar\(255\)&gt;
 
- music\_template\_id &lt;int&gt;
+music\_template\_id &lt;int&gt;
 
 **foreign key** : music\_template\_id &lt;= music\_template \(music\_template\_id\)
 
@@ -103,6 +103,4 @@ outter\_filename &lt;varchar\(255\)&gt;
 owner
 
 **foreign key** : owner &lt;= mi\_user\(email\)
-
- 
 
