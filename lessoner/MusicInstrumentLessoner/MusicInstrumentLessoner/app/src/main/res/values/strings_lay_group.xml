@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="groupLayTeacherNum">선생님 수 : </string>
-    <string name="groupLaySeperator">/</string>
-    <string name="groupLayPunit">명</string>
-    <string name="groupLayCunit">개</string>
-    <string name="groupLayUserNum">학생 수 :</string>
-    <string name="groupLayUsageTempates">내가 사용가능 템플릿 : </string>
-</resources>
