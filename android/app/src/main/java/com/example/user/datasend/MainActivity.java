@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         //get버튼이 클릭되면 여기 리스너로 옴
         getbtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                new JSONgetTask().execute("http://192.168.43.98:3000/users");
+                new JSONgetTask().execute("http://192.168.1.237:3100/users");
             }
         });
 
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                new JSONpostTask().execute("http://192.168.43.98:3000/post");//AsyncTask 시작시킴
+                new JSONpostTask().execute("http://192.168.1.237:3100/post");//AsyncTask 시작시킴
             }
         });
     }
@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
             try {
                 //JSONObject를 만들고 key value 형식으로 값을 저장해준다.
                 JSONObject jsonObject = new JSONObject();
-                jsonObject.accumulate("user_id", "androidTest");
-                jsonObject.accumulate("name", "yun");
+                jsonObject.accumulate("searchEmail", sEmail.getText());
+
 
                 HttpURLConnection con = null;
                 BufferedReader reader = null;
@@ -77,7 +77,20 @@ public class MainActivity extends AppCompatActivity {
 
                     URL url = new URL(urls[0]);//url을 가져온다.
                     con = (HttpURLConnection) url.openConnection();
+                    con.setRequestProperty("Cache-Control", "no-cache");//캐시 설정
+                    con.setRequestProperty("Content-Type", "application/json");//application JSON 형식으로 전송
+                    con.setRequestProperty("Accept", "text/html");//서버에 response 데이터를 html로 받음
+                    con.setDoOutput(true);//Outstream으로 post 데이터를 넘겨주겠다는 의미
+                    con.setDoInput(true);//Inputstream으로 서버로부터 응답을 받겠다는 의미
                     con.connect();//연결 수행
+
+                    //서버로 보내기위해서 스트림 만듬
+                    OutputStream outStream = con.getOutputStream();
+                    //버퍼를 생성하고 넣음
+                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outStream));
+                    writer.write(jsonObject.toString());
+                    writer.flush();
+                    writer.close();//버퍼를 받아줌
 
                     //입력 스트림 생성
                     InputStream stream = con.getInputStream();
@@ -141,9 +154,9 @@ public class MainActivity extends AppCompatActivity {
             try {
                 //JSONObject를 만들고 key value 형식으로 값을 저장해준다.
                 JSONObject jsonObject = new JSONObject();
-                jsonObject.accumulate("useremail", usEmail.getText());
-                jsonObject.accumulate("username", usName.getText());
-                jsonObject.accumulate("password", usPass.getText());
+                jsonObject.accumulate("userEmail", usEmail.getText());
+                jsonObject.accumulate("userName", usName.getText());
+                jsonObject.accumulate("userPassword", usPass.getText());
 
                 HttpURLConnection con = null;
                 BufferedReader reader = null;
