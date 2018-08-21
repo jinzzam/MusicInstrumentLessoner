@@ -4,55 +4,23 @@
 
 ## DEVELOPMENT GOAL
 
-<<<<<<< HEAD
-* [최종 목표](development-goal/undefined.md)
-* [계획](development-goal/undefined-1.md)
-* [18.08.16](development-goal/18.08.16.md)
-* [18.08.17](development-goal/18.08.17.md)
-* [18.08.18](development-goal/18.08.18.md)
-=======
 * [최종 목표](library_youjin/undefined.md)
 * [계획](library_youjin/undefined-1.md)
 * [18.08.16](library_youjin/18.08.16.md)
 * [18.08.17](library_youjin/18.08.17.md)
->>>>>>> db
 
 ## RULES
 
-* [DB TABLES](rules/naming-rules-1.md)
-* [NAMING](rules/naming.md)
+* [DB TABLES](library_jeongmin/naming-rules-1.md)
+* [NAMING](library_jeongmin/naming.md)
 
 ## NOTES
 
-* [개발 참고사항](notes/undefined-1.md)
-* [참고 URL](notes/url.md)
+* [개발 참고사항](library_hyerim/undefined-1.md)
+* [참고 URL](library_hyerim/url.md)
 
 ## LIBRARY\_YOUJIN
 
-<<<<<<< HEAD
-* [18.08.16](library_youjin/18.08.16.md)
-* [18.08.17](library_youjin/18.08.17.md)
-* [18.08.18](library_youjin/18.08.18.md)
-* [18.08.19](library_youjin/18.08.19.md)
-* [18.08.20](library_youjin/18.08.20.md)
-* [18.08.21](library_youjin/18.08.21.md)
-
-## LIBRARY\_JEONGMIN
-
-* [18.08.16](library_jeongmin/18.08.16.md)
-* [18.08.18](library_jeongmin/18.08.18.md)
-* [18.08.19](library_jeongmin/18.08.19.md)
-* [18.08.20](library_jeongmin/18.08.20.md)
-* [18.08.21](library_jeongmin/18.08.21.md)
-
-## LIBRARY\_HYERIM
-
-* [18.08.16](library_hyerim/18.08.16.md)
-* [18.08.17](library_hyerim/18.08.17.md)
-* [18.08.18](library_hyerim/18.08.18.md)
-* [18.08.19](library_hyerim/18.08.19.md)
-* [18.08.20](library_hyerim/18.08.20.md)
-=======
 * [18.08.16](development-goal/18.08.16.md)
 * [18.08.17](development-goal/18.08.17.md)
 
@@ -64,5 +32,4 @@
 
 * [18.08.16](library_hyerim-1/18.08.16.md)
 * [18.08.17](library_hyerim-1/18.08.17.md)
->>>>>>> db
 
