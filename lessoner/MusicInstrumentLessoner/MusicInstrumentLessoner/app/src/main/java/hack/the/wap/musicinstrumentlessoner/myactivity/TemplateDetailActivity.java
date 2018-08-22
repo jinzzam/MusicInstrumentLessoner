@@ -225,7 +225,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
                 final String uploadFilePath = "/mnt/sdcard/Music"+dirForUpload+"/";
 
                 final String uploadFileName = "recorded_audio.mp3";
-                String upLoadServerUrl = "http://192.168.1.227:3000/";
+                String upLoadServerUrl = "http://192.168.1.37:3000/";
                 Log.d("url",upLoadServerUrl);
 
 
