@@ -10,8 +10,15 @@ import android.widget.ImageView;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.JsonParser;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,7 +41,10 @@ public class LoginActivity extends AppCompatActivity {
     private static EditText etEmail;
     private static EditText etPassword;
     private static Session session;
-
+    private static String url = "http://192.168.43.36:3000/api/miUser/";
+    private static JSONObject userName;
+    private static JSONObject userEmail;
+    private static JSONObject userPassword;
     private RequestQueue queue;
     private StringRequest stringRequest;
 
@@ -69,24 +79,40 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initVolleySet() {
-        String url = "http://localhost:3000/api/miUser/";
-        url += etEmail.getText().toString();
+        queue = Volley.newRequestQueue(this);
         Log.e("TAG", url);
-        stringRequest = new StringRequest(Request.Method.GET, url, (response -> {
-        }), (error) -> {
+        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    JsonParser parser = new JsonParser();
+                    userName = response.getJSONObject(0);
+                    Log.e("TAG", "initVolleySet >>>> : " + userName);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("TAG", "initVolleySet >>>> : " + error);
+            }
         });
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
                 0,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         ));
-        stringRequest.setTag(TAG);
-        queue.add(stringRequest);
-        Log.e("TAG", "initVolleySet >>>> : ");
+        jsonArrayRequest.setTag(TAG);
+        queue.add(jsonArrayRequest);
+        Log.e("TAG", "initVolleySet >>>> : END");
     }
 
     private void loginButtonEvent() {
         ivLogin.setOnClickListener(v -> {
+            url += etEmail.getText().toString();
+            initVolleySet();
             String name = loginProcess(etEmail.getText().toString(), etPassword.getText().toString());
             if (name != null) {
                 Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
