@@ -42,7 +42,12 @@ public class UserGroupDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         mainUserGroup = (UserGroupDto) intent.getSerializableExtra("data");
         Log.e("SAFE", "onCreate >>> " + mainUserGroup);
+        initView();
+        viewSetListener();
+        viewSetValue();
+    }
 
+    private void initView() {
         ivActUserGroupDetailLeftArrow = findViewById(R.id.ivActUserGroupDetailLeftArrow);
         ivActUserGroupDetailMusicPlace = findViewById(R.id.ivActUserGroupDetailMusicPlace);
         tvActUserGroupDetailName = findViewById(R.id.tvActUserGroupDetailName);
@@ -56,8 +61,6 @@ public class UserGroupDetailActivity extends AppCompatActivity {
         for (UserDto dto : mainUserGroup.getUsers().values()) {
             llActUserGroupDetailUser.addView(new UserImageLayout(this, dto));
         }
-        viewSetListener();
-        viewSetValue();
     }
 
     private void viewSetListener() {
@@ -69,14 +72,14 @@ public class UserGroupDetailActivity extends AppCompatActivity {
     private void viewSetValue() {
         ivActUserGroupDetailMusicPlace.setImageResource(DebugImageMatch.getImageFromName(mainUserGroup.getName()));
         tvActUserGroupDetailName.setText(mainUserGroup.getName());
-        if(mainUserGroup.getMain()!=null){
+        if (mainUserGroup.getMain() != null) {
             tvActUserGroupDetailMain.setText(mainUserGroup.getMain());
-        }else{
+        } else {
             tvActUserGroupDetailMain.setText(getResources().getString(R.string.userGroupEmptyDefault));
         }
-        if(mainUserGroup.getSub()!=null){
+        if (mainUserGroup.getSub() != null) {
             tvActUserGroupDetailSub.setText(mainUserGroup.getSub());
-        }else{
+        } else {
             tvActUserGroupDetailSub.setText(getResources().getString(R.string.userGroupEmptyDefault));
         }
     }

@@ -40,18 +40,22 @@ public class TeacherPracticeDetailActivity extends AppCompatActivity {
         customWaveformFragment = new CustomWaveformFragment();
         mainTemplate = (TemplateDto) intent.getSerializableExtra("main");
         Log.e("SAFE", "onCreate >>> " + mainTemplate);
-        ivTeacherPracticeDetailLayLeftArrow = findViewById(R.id.ivTeacherPracticeDetailLayLeftArrow);
-        ivTeacherPracticeDetailLayTeacher = findViewById(R.id.ivTeacherPracticeDetailLayTeacher);
-        ivTeacherPracticeDetailLayMusician = findViewById(R.id.ivTeacherPracticeDetailLayMusician);
-        tvTeacherPracticeDetailLayName = findViewById(R.id.tvTeacherPracticeDetailLayName);
-        tvTeacherPracticeDetailLayTeacherName = findViewById(R.id.tvTeacherPracticeDetailLayTeacherName);
-        tvTeacherPracticeDetailLayFileName = findViewById(R.id.tvTeacherPracticeDetailLayFileName);
+        initView();
         viewSetValue();
         viewSetListener();
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().add(R.id.flTeacherPracticeFragment, customWaveformFragment).commit();
         }
 
+    }
+
+    private void initView() {
+        ivTeacherPracticeDetailLayLeftArrow = findViewById(R.id.ivTeacherPracticeDetailLayLeftArrow);
+        ivTeacherPracticeDetailLayTeacher = findViewById(R.id.ivTeacherPracticeDetailLayTeacher);
+        ivTeacherPracticeDetailLayMusician = findViewById(R.id.ivTeacherPracticeDetailLayMusician);
+        tvTeacherPracticeDetailLayName = findViewById(R.id.tvTeacherPracticeDetailLayName);
+        tvTeacherPracticeDetailLayTeacherName = findViewById(R.id.tvTeacherPracticeDetailLayTeacherName);
+        tvTeacherPracticeDetailLayFileName = findViewById(R.id.tvTeacherPracticeDetailLayFileName);
     }
 
     private void viewSetListener() {

@@ -44,14 +44,7 @@ public class PracticeDetailActivity extends AppCompatActivity {
         mainTemplate = (TemplateDto) intent.getSerializableExtra("main");
         Log.e("SAFE", "onCreate >>> " + mainTemplate);
         Log.e("SAFE", "onCreate >>> " + mainTemplatePractice);
-        ivPracticeDetailLayLeftArrow = findViewById(R.id.ivPracticeDetailLayLeftArrow);
-        tvPracticeDetailLayName = findViewById(R.id.tvPracticeDetailLayName);
-        tvPracticeDetailLayCount = findViewById(R.id.tvPracticeDetailLayCount);
-        tvPracticeDetailLayPercent = findViewById(R.id.tvPracticeDetailLayPercent);
-        tvPracticeDetailLayFileName = findViewById(R.id.tvPracticeDetailLayFileName);
-        ivPracticeDetailLayTeacher = findViewById(R.id.ivPracticeDetailLayTeacher);
-        ivPracticeDetailLayMusician = findViewById(R.id.ivPracticeDetailLayMusician);
-
+        initView();
         viewSetValue();
         viewSetListener();
 
@@ -59,6 +52,16 @@ public class PracticeDetailActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().add(R.id.flPracticeFragment, customWaveformFragment).commit();
         }
 
+    }
+
+    private void initView() {
+        ivPracticeDetailLayLeftArrow = findViewById(R.id.ivPracticeDetailLayLeftArrow);
+        tvPracticeDetailLayName = findViewById(R.id.tvPracticeDetailLayName);
+        tvPracticeDetailLayCount = findViewById(R.id.tvPracticeDetailLayCount);
+        tvPracticeDetailLayPercent = findViewById(R.id.tvPracticeDetailLayPercent);
+        tvPracticeDetailLayFileName = findViewById(R.id.tvPracticeDetailLayFileName);
+        ivPracticeDetailLayTeacher = findViewById(R.id.ivPracticeDetailLayTeacher);
+        ivPracticeDetailLayMusician = findViewById(R.id.ivPracticeDetailLayMusician);
     }
 
     private void viewSetListener() {

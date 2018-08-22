@@ -32,6 +32,15 @@ public class PracticeListenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practice_listen);
+        initView();
+        Intent intent = getIntent();
+        mainTemplatePractice = (TemplatePracticeDto) intent.getSerializableExtra("data");
+        mainTemplate = (TemplateDto) intent.getSerializableExtra("main");
+        viewSetValue();
+        viewSetListener();
+    }
+
+    private void initView() {
         ivPracticeListenLayLeftArrow = findViewById(R.id.ivPracticeListenLayLeftArrow);
         ivPracticeListenLayTeacher = findViewById(R.id.ivPracticeListenLayTeacher);
         ivPracticeListenLayMusician = findViewById(R.id.ivPracticeListenLayMusician);
@@ -40,13 +49,6 @@ public class PracticeListenActivity extends AppCompatActivity {
         tvPracticeListenLayPercent = findViewById(R.id.tvPracticeListenLayPercent);
         tvPracticeListenLayFileName = findViewById(R.id.tvPracticeListenLayFileName);
         llPracticeListenLayComment = findViewById(R.id.llPracticeListenLayComment);
-
-        Intent intent = getIntent();
-        mainTemplatePractice = (TemplatePracticeDto) intent.getSerializableExtra("data");
-        mainTemplate = (TemplateDto) intent.getSerializableExtra("main");
-
-        viewSetValue();
-        viewSetListener();
     }
 
     private void viewSetListener() {
@@ -54,6 +56,7 @@ public class PracticeListenActivity extends AppCompatActivity {
             finish();
         });
     }
+
     private void viewSetValue() {
         ivPracticeListenLayTeacher.setImageResource(DebugImageMatch.getImageFromName(mainTemplate.getOwner().getName()));
         ivPracticeListenLayMusician.setImageResource(DebugImageMatch.getImageFromName(mainTemplate.getMusician()));
@@ -62,8 +65,8 @@ public class PracticeListenActivity extends AppCompatActivity {
         tvPracticeListenLayPercent.setText("" + getResources().getText(R.string.LayTemplatePracticeSuccessPercent) + mainTemplatePractice.getPercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd));
         tvPracticeListenLayFileName.setText("" + getResources().getText(R.string.LayTemplatePracticeFilePath) + mainTemplatePractice.getFileName());
         TreeMap<String, String> tm = new TreeMap<>(mainTemplatePractice.getData());
-        if(!mainTemplatePractice.getData().isEmpty()){
-            for(String key:tm.keySet()){
+        if (!mainTemplatePractice.getData().isEmpty()) {
+            for (String key : tm.keySet()) {
                 GuideExplainLayout atom = new GuideExplainLayout(this, key, mainTemplatePractice.getData().get(key));
                 llPracticeListenLayComment.addView(atom);
             }

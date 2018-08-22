@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -58,6 +59,16 @@ public class TemplateDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_template_detail);
+        initView();
+        instance = this;
+        Intent intent = getIntent();
+        mainTemplate = (TemplateDto) intent.getSerializableExtra("data");
+        Log.e("SAFE", "onCreate >>> " + mainTemplate);
+        viewSet();
+        viewSetListener();
+    }
+
+    private void initView() {
         ivTemplateDetailLayLeftArrow = findViewById(R.id.ivTemplateDetailLayLeftArrow);
         ivTemplateDetailLayTeacher = findViewById(R.id.ivTemplateDetailLayTeacher);
         ivTemplateDetailLayMusician = findViewById(R.id.ivTemplateDetailLayMusician);
@@ -68,12 +79,9 @@ public class TemplateDetailActivity extends AppCompatActivity {
         tvTemplateDetailActGuide = findViewById(R.id.tvTemplateDetailActGuide);
         llActTemplateDetail = findViewById(R.id.llActTemplateDetail);
         llTemplateDetailLayTeacherListen = findViewById(R.id.llTemplateDetailLayTeacherListen);
-        instance = this;
+    }
 
-        Intent intent = getIntent();
-        mainTemplate = (TemplateDto) intent.getSerializableExtra("data");
-        Log.e("SAFE", "onCreate >>> " + mainTemplate);
-
+    private void viewSet() {
         ivTemplateDetailLayTeacher.setImageResource(DebugImageMatch.getImageFromName(mainTemplate.getOwner().getName()));
         ivTemplateDetailLayMusician.setImageResource(DebugImageMatch.getImageFromName(mainTemplate.getMusician()));
         tvTemplateDetailLayName.setText(mainTemplate.getMusicTitle());
@@ -127,9 +135,8 @@ public class TemplateDetailActivity extends AppCompatActivity {
                 llActTemplateDetail.addView(atom);
             }
         }
-
-        viewSetListener();
     }
+
 
     private void viewSetListener() {
         ivTemplateDetailLayLeftArrow.setOnClickListener(v -> {
@@ -157,6 +164,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
+                Toast.makeText(this.getApplicationContext(), "녹음을 성공했습니다.", Toast.LENGTH_LONG).show();
                 TemplatePracticeDto dto = new TemplatePracticeDto(curPractice, curFile);
                 mainTemplate.getTemplatePractices().set(curPractice - 1, dto);
                 AndroidAudioConverter.with(this)
@@ -181,6 +189,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
                 session.getTemplates().get(mainTemplate.getMusicTitle()).getTemplatePractices().set(curPractice - 1, dto);
                 session.showAllSession();
             } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this.getApplicationContext(), "녹음을 취소했습니다.", Toast.LENGTH_LONG).show();
                 // Oops! User has canceled the recording
             }
         }
