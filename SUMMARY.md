@@ -43,7 +43,3 @@
 * [18.08.20](library_hyerim/18.08.20.md)
 * [18.08.21](library_hyerim/18.08.21.md)
 
-## LIBRARY\_JEONGMIN
-
-* [18.08.16](library_jeongmin-1/18.08.16.md)
-
