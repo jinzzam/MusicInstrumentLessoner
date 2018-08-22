@@ -129,9 +129,10 @@ public class LoginActivity extends AppCompatActivity {
     private void loginButtonEvent() {
         ivLogin.setOnClickListener(v -> {
             url += etEmail.getText().toString();
+            String inputPassword = etPassword.getText().toString();
             initVolleySet();
-            Log.e("DEBUG", "loginButtonEvent >>>> : " + etPassword.getText().toString());
-            String name = loginProcess(etEmail.getText().toString(), etPassword.getText().toString());
+            Log.e("DEBUG", "loginButtonEvent >>>> : " + inputPassword);
+            String name = loginProcess(inputPassword);
             if (name != null) {
                 Toast.makeText(this.getApplicationContext(), "환영합니다.", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
@@ -139,23 +140,22 @@ public class LoginActivity extends AppCompatActivity {
                 intent.putExtra("actLoginEmail", userEmail);
                 startActivity(intent);
                 finish();
+            } else {
+                Toast.makeText(this.getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
             }
         });
     }
 
     /**
-     * @param email
      * @param password
      * @return If you success login then return is name. Otherwise, it is null.
      */
-    public String loginProcess(String email, String password) {
+    public String loginProcess(String password) {
         if (password.equals(userPassword)) {
             setSession();
             return userName;
-        } else {
-            Toast.makeText(this.getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
-            return null;
         }
+        return null;
 
     }
 

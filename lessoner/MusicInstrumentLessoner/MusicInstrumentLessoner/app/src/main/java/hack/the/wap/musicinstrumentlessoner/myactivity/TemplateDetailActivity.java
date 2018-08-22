@@ -118,7 +118,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
                 atom.setCustomAttr(dto);
                 atom.setOnClickListener(v -> {
                     rootDir = mkdir(dto);
-                    dirForUpload = "/"+mainTemplate.getMusicTitle() + "/" + dto.getPracticeId();
+                    dirForUpload = "/" + mainTemplate.getMusicTitle() + "/" + dto.getPracticeId();
                     filePath = rootDir + getResources().getString(R.string.fileDefaultName);
                     int requestCode = 0;
                     curPractice = dto.getPracticeId();
@@ -217,19 +217,19 @@ public class TemplateDetailActivity extends AppCompatActivity {
         return getResources().getString(R.string.fileDefaultDir) + mainTemplate.getMusicTitle() + "/" + dto.getPracticeId();
     }
 
-    public void uploadFileToServer(){
+    public void uploadFileToServer() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 int serverResponseCode = 0;
-                final String uploadFilePath = "/mnt/sdcard/Music"+dirForUpload+"/";
+                final String uploadFilePath = "/mnt/sdcard/Music" + dirForUpload + "/";
 
                 final String uploadFileName = "recorded_audio.mp3";
-                String upLoadServerUrl = "http://192.168.1.37:3000/";
-                Log.d("url",upLoadServerUrl);
+                String upLoadServerUrl = "http://192.168.1.37:3000/fileUpload";
+                Log.d("url", upLoadServerUrl);
 
 
-                String fileName = uploadFilePath+""+uploadFileName;
+                String fileName = uploadFilePath + "" + uploadFileName;
                 HttpURLConnection conn = null;
                 DataOutputStream dos = null;
                 String lineEnd = "\r\n";
@@ -238,14 +238,14 @@ public class TemplateDetailActivity extends AppCompatActivity {
                 String attachmentName = "userfile";
                 int bytesRead, bytesAvailable, bufferSize;
                 byte[] buffer;
-                int maxBufferSize = 1*1024*1024;
+                int maxBufferSize = 1 * 1024 * 1024;
                 File sourceFile = new File(fileName);
 
-                if(!sourceFile.isFile()){
-                    Log.e("uploadFile","Source File not exist:"+uploadFilePath+""+uploadFileName);
+                if (!sourceFile.isFile()) {
+                    Log.e("uploadFile", "Source File not exist:" + uploadFilePath + "" + uploadFileName);
 
-                }else{
-                    try{
+                } else {
+                    try {
                         //open a URL connection to the Servlet
                         //Log.d("please","done");
                         FileInputStream fileInputStream = new FileInputStream(sourceFile);
@@ -253,47 +253,47 @@ public class TemplateDetailActivity extends AppCompatActivity {
                         //Log.d("url",sourceFile+upLoadServerUrl);
 
                         //open a HTTP connection to the URL
-                        conn = (HttpURLConnection)url.openConnection();
+                        conn = (HttpURLConnection) url.openConnection();
                         conn.setDoInput(true);  //allow inputs
                         conn.setDoOutput(true); //allow outputs
                         conn.setUseCaches(false);   //dont use a cached copy
                         conn.setRequestMethod("POST");
-                        conn.setRequestProperty("Connection","Keep-Alive");
+                        conn.setRequestProperty("Connection", "Keep-Alive");
                         conn.setRequestProperty("Cache-Control", "no-cache");
                         //conn.setRequestProperty("ENCTYPE","multipart/form-data");
-                        conn.setRequestProperty("Content-Type","multipart/form-data;boundary="+boundary);
+                        conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
                         //conn.setRequestProperty("uploaded_file",fileName);
 
                         dos = new DataOutputStream(conn.getOutputStream());
 
-                        dos.writeBytes(twoHyphens+boundary+lineEnd);
-                        dos.writeBytes("Content-Disposition: form-data; name=\""+attachmentName+"\";filename=\""+fileName+"\""+lineEnd);
+                        dos.writeBytes(twoHyphens + boundary + lineEnd);
+                        dos.writeBytes("Content-Disposition: form-data; name=\"" + attachmentName + "\";filename=\"" + fileName + "\"" + lineEnd);
                         dos.writeBytes(lineEnd);
 
                         //create a buffer of maximum size
                         bytesAvailable = fileInputStream.available();
-                        bufferSize = Math.min(bytesAvailable,maxBufferSize);
+                        bufferSize = Math.min(bytesAvailable, maxBufferSize);
                         buffer = new byte[bufferSize];
 
                         //read file and write it into form
-                        bytesRead = fileInputStream.read(buffer,0,bufferSize);
+                        bytesRead = fileInputStream.read(buffer, 0, bufferSize);
 
-                        while(bytesRead>0){
-                            dos.write(buffer,0,bufferSize);
+                        while (bytesRead > 0) {
+                            dos.write(buffer, 0, bufferSize);
                             bytesAvailable = fileInputStream.available();
-                            bufferSize = Math.min(bytesAvailable,maxBufferSize);
-                            bytesRead = fileInputStream.read(buffer,0,bufferSize);
+                            bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                            bytesRead = fileInputStream.read(buffer, 0, bufferSize);
                         }
 
                         //send multipart form data necessary after file data
                         dos.writeBytes(lineEnd);
-                        dos.writeBytes(twoHyphens+boundary+twoHyphens+lineEnd);
+                        dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
 
                         //responses from the server (code and message)
                         serverResponseCode = conn.getResponseCode();
                         String serverResponseMessage = conn.getResponseMessage();
 
-                        Log.i("uploadFile","HTTP Response is : "+serverResponseMessage+":"+serverResponseCode);
+                        Log.i("uploadFile", "HTTP Response is : " + serverResponseMessage + ":" + serverResponseCode);
 
                                         /*if(serverResponseCode==200){
                                             runOnUiThread(new Runnable() {
@@ -312,7 +312,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
                         fileInputStream.close();
                         dos.flush();
                         dos.close();
-                    }catch (MalformedURLException ex){
+                    } catch (MalformedURLException ex) {
                         //dialog.dismiss();
                         ex.printStackTrace();
 
@@ -325,8 +325,8 @@ public class TemplateDetailActivity extends AppCompatActivity {
                                             }
                                         });*/
 
-                        Log.e("Upload file to server","error: "+ex.getMessage(),ex);
-                    }catch (Exception e){
+                        Log.e("Upload file to server", "error: " + ex.getMessage(), ex);
+                    } catch (Exception e) {
                         //dialog.dismiss();
                         e.printStackTrace();
 
@@ -338,7 +338,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
                                             }
                                         });*/
 
-                        Log.e("Upload file exception","Exception : "+e.getMessage(),e);
+                        Log.e("Upload file exception", "Exception : " + e.getMessage(), e);
                     }
                     //dialog.dismiss();
                     //return serverResponseCode;
