@@ -14,6 +14,7 @@ var notiRouter = require('./routes/api/miNotification');
 var tempWrongRouter = require('./routes/api/TempWrong');
 var fileRouter = require('./routes/api/miFile');
 var groupRouter = require('./routes/api/miGroup');
+var fileUploadRouter = require('./routes/fileUpload');
 
 var app = express();
 
@@ -37,6 +38,7 @@ app.use('/api/miNotification', notiRouter);
 app.use('/api/TempWrong', tempWrongRouter);
 app.use('/api/miFile', fileRouter);
 app.use('/api/miGroup', groupRouter);
+app.use('/fileUpload',fileUploadRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
