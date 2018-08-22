@@ -536,7 +536,7 @@ public class LoginActivity extends AppCompatActivity {
                 Dummy Notification3 : not3
             */
             boolean trueUser3 = true;
-            TemplateDto template3 = canon;
+            TemplateDto template3 = celineDion;
             String nMain3 = getResources().getString(R.string.friend_complete_music);
             String nDate3 = getResources().getString(R.string.debug_twice_dahyun_date1);
             NotificationDto not3 = new NotificationDto(trueUser3, template3, nMain3, nDate3);
