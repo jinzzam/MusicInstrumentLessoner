@@ -9,12 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 import cafe.adriel.androidaudioconverter.AndroidAudioConverter;
@@ -55,7 +50,6 @@ public class TemplateDetailActivity extends AppCompatActivity {
     private String curFile;
     private String rootDir;
     private String filePath;
-    private String dirForUpload;
 
     {
         session = Session.getInstance();
@@ -118,7 +112,6 @@ public class TemplateDetailActivity extends AppCompatActivity {
                 atom.setCustomAttr(dto);
                 atom.setOnClickListener(v -> {
                     rootDir = mkdir(dto);
-                    dirForUpload = "/"+mainTemplate.getMusicTitle() + "/" + dto.getPracticeId();
                     filePath = rootDir + getResources().getString(R.string.fileDefaultName);
                     int requestCode = 0;
                     curPractice = dto.getPracticeId();
@@ -184,9 +177,6 @@ public class TemplateDetailActivity extends AppCompatActivity {
                                 dto.setPercent(0);
                                 finish();
                                 Log.e("TAG", "onSuccess: " + file.getAbsolutePath());
-
-                                //upload to server
-                                uploadFileToServer();
                             }
 
                             @Override
@@ -215,136 +205,6 @@ public class TemplateDetailActivity extends AppCompatActivity {
             dir.mkdir();
         }
         return getResources().getString(R.string.fileDefaultDir) + mainTemplate.getMusicTitle() + "/" + dto.getPracticeId();
-    }
-
-    public void uploadFileToServer(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                int serverResponseCode = 0;
-                final String uploadFilePath = "/mnt/sdcard/Music"+dirForUpload+"/";
-
-                final String uploadFileName = "recorded_audio.mp3";
-                String upLoadServerUrl = "http://192.168.1.227:3000/";
-                Log.d("url",upLoadServerUrl);
-
-
-                String fileName = uploadFilePath+""+uploadFileName;
-                HttpURLConnection conn = null;
-                DataOutputStream dos = null;
-                String lineEnd = "\r\n";
-                String twoHyphens = "--";
-                String boundary = "*****";
-                String attachmentName = "userfile";
-                int bytesRead, bytesAvailable, bufferSize;
-                byte[] buffer;
-                int maxBufferSize = 1*1024*1024;
-                File sourceFile = new File(fileName);
-
-                if(!sourceFile.isFile()){
-                    Log.e("uploadFile","Source File not exist:"+uploadFilePath+""+uploadFileName);
-
-                }else{
-                    try{
-                        //open a URL connection to the Servlet
-                        //Log.d("please","done");
-                        FileInputStream fileInputStream = new FileInputStream(sourceFile);
-                        URL url = new URL(upLoadServerUrl);
-                        //Log.d("url",sourceFile+upLoadServerUrl);
-
-                        //open a HTTP connection to the URL
-                        conn = (HttpURLConnection)url.openConnection();
-                        conn.setDoInput(true);  //allow inputs
-                        conn.setDoOutput(true); //allow outputs
-                        conn.setUseCaches(false);   //dont use a cached copy
-                        conn.setRequestMethod("POST");
-                        conn.setRequestProperty("Connection","Keep-Alive");
-                        conn.setRequestProperty("Cache-Control", "no-cache");
-                        //conn.setRequestProperty("ENCTYPE","multipart/form-data");
-                        conn.setRequestProperty("Content-Type","multipart/form-data;boundary="+boundary);
-                        //conn.setRequestProperty("uploaded_file",fileName);
-
-                        dos = new DataOutputStream(conn.getOutputStream());
-
-                        dos.writeBytes(twoHyphens+boundary+lineEnd);
-                        dos.writeBytes("Content-Disposition: form-data; name=\""+attachmentName+"\";filename=\""+fileName+"\""+lineEnd);
-                        dos.writeBytes(lineEnd);
-
-                        //create a buffer of maximum size
-                        bytesAvailable = fileInputStream.available();
-                        bufferSize = Math.min(bytesAvailable,maxBufferSize);
-                        buffer = new byte[bufferSize];
-
-                        //read file and write it into form
-                        bytesRead = fileInputStream.read(buffer,0,bufferSize);
-
-                        while(bytesRead>0){
-                            dos.write(buffer,0,bufferSize);
-                            bytesAvailable = fileInputStream.available();
-                            bufferSize = Math.min(bytesAvailable,maxBufferSize);
-                            bytesRead = fileInputStream.read(buffer,0,bufferSize);
-                        }
-
-                        //send multipart form data necessary after file data
-                        dos.writeBytes(lineEnd);
-                        dos.writeBytes(twoHyphens+boundary+twoHyphens+lineEnd);
-
-                        //responses from the server (code and message)
-                        serverResponseCode = conn.getResponseCode();
-                        String serverResponseMessage = conn.getResponseMessage();
-
-                        Log.i("uploadFile","HTTP Response is : "+serverResponseMessage+":"+serverResponseCode);
-
-                                        /*if(serverResponseCode==200){
-                                            runOnUiThread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    String msg = "File Upload Completed.\n\n See uploaded file here: \n\n"+uploadFileName;
-
-                                                    //tvFile.setText(msg);
-                                                   // Toast.makeText(MainActivity.this, "File Upload Complete", Toast.LENGTH_SHORT).show();
-                                                    Log.d("please","File Upload Completed");
-                                                }
-                                            });
-                                        }*/
-
-                        //close the streams
-                        fileInputStream.close();
-                        dos.flush();
-                        dos.close();
-                    }catch (MalformedURLException ex){
-                        //dialog.dismiss();
-                        ex.printStackTrace();
-
-                                        /*runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                //tvFile.setText("MalformedURLException Exception: check script url.");
-                                                //Toast.makeText(MainActivity.this, "MalfromedURLException", Toast.LENGTH_SHORT).show();
-                                                Log.e("please","MalformedURLException");
-                                            }
-                                        });*/
-
-                        Log.e("Upload file to server","error: "+ex.getMessage(),ex);
-                    }catch (Exception e){
-                        //dialog.dismiss();
-                        e.printStackTrace();
-
-                                        /*runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                //tvFile.setText("Got Exception : see logcat");
-                                                //Toast.makeText(MainActivity.this, "Got Exception : see logcat", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });*/
-
-                        Log.e("Upload file exception","Exception : "+e.getMessage(),e);
-                    }
-                    //dialog.dismiss();
-                    //return serverResponseCode;
-                }
-            }
-        }).start();
     }
 
 }
