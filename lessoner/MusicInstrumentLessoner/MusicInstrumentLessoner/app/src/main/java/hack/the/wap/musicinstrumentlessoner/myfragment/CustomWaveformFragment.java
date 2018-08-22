@@ -34,7 +34,7 @@ public class CustomWaveformFragment extends WaveformFragment {
      */
     @Override
     protected List<Segment> getSegments() {
-        List<Segment> arr = new ArrayList<>();
+        List<Segment> arr=new ArrayList<>();
         if (!PresentFile.fileName.equals("/storage/self/primary/Music/놀람 교향곡/T/recorded_audio.mp3")) {
             arr = Arrays.asList(
                     new Segment(3.0, 4.0, Color.rgb(238, 23, 104)),

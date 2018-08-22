@@ -13,6 +13,7 @@ public class NotificationDto {
      * @param main
      * @param date
      */
+
     public NotificationDto(boolean trueUser, TemplateDto template, String main, String date) {
         this.trueUser = trueUser;
         this.template = template;

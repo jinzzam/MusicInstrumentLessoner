@@ -19,7 +19,6 @@ import hack.the.wap.musicinstrumentlessoner.myactivity.TemplateDetailActivity;
 import hack.the.wap.musicinstrumentlessoner.mylayout.TemplateLayout;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
