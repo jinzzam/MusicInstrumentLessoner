@@ -25,6 +25,7 @@
 * [18.08.19](library_youjin/18.08.19.md)
 * [18.08.20](library_youjin/18.08.20.md)
 * [18.08.21](library_youjin/18.08.21.md)
+* [18.08.22](library_youjin/18.08.22.md)
 
 ## LIBRARY\_JEONGMIN
 
