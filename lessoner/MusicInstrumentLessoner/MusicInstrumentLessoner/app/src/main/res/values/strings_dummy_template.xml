@@ -2,8 +2,8 @@
 <resources>
     <string name="debug_canon_rock_name">Lim jung hyeon</string>
     <string name="debug_canon_rock_music">캐논 락버전</string>
-    <string name="debug_canon_rock_main">남은 반복횟수 : 7 / 10</string>
-    <string name="debug_canon_rock_sub">곡 성공률 : 70%</string>
+    <string name="debug_canon_rock_main">남은 반복횟수 : 3 / 10</string>
+    <string name="debug_canon_rock_sub">곡 성공률 : 45%</string>
 
     <string name="debug_taryeong_name">Folk song</string>
     <string name="debug_taryeong_music">타령</string>
@@ -12,18 +12,18 @@
 
     <string name="debug_enter_the_sand_man_name">Metallica</string>
     <string name="debug_enter_the_sand_man_music">enter the sandman</string>
-    <string name="debug_enter_the_sand_man_main">남은 반복횟수 : 7 / 10</string>
-    <string name="debug_enter_the_sand_man_sub">곡 성공률 : 70%</string>
+    <string name="debug_enter_the_sand_man_main">남은 반복횟수 : 9 / 10</string>
+    <string name="debug_enter_the_sand_man_sub">곡 성공률 : 90%</string>
 
     <string name="debug_airplane_name">Yoon suk joon</string>
     <string name="debug_airplane_music">떳다 떳다 비행기</string>
-    <string name="debug_airplane_main">남은 반복횟수 : 7 / 10</string>
-    <string name="debug_airplane_sub">곡 성공률 : 70%</string>
+    <string name="debug_airplane_main">남은 반복횟수 : 2 / 10</string>
+    <string name="debug_airplane_sub">곡 성공률 : 86%</string>
 
     <string name="debug_fantasia_name">Chopin</string>
     <string name="debug_fantasia_music">즉흥환상곡</string>
-    <string name="debug_fantasia_main">남은 반복횟수 : 7 / 10</string>
-    <string name="debug_fantasia_sub">곡 성공률 : 70%</string>
+    <string name="debug_fantasia_main">남은 반복횟수 : 5 / 10</string>
+    <string name="debug_fantasia_sub">곡 성공률 : 65%</string>
 
     <string name="debug_mhwgo_name">Celine dion</string>
     <string name="debug_mhwgo_music">My heart will go on</string>
@@ -65,4 +65,27 @@
     <string name="debug_wapthehack_main">남은 반복횟수 : 7 / 10</string>
     <string name="debug_wapthehack_sub">곡 성공률 : 70%</string>
 
+    <string name="debug_beethoven_name">Beethoven</string>
+    <string name="debug_beethoven_music">월광 소나타 제3악장</string>
+    <string name="debug_beethoven_main">남은 반복횟수 : 0 / 10</string>
+    <string name="debug_beethoven_sub">곡 성공률 : 0%</string>
+
+    <string name="debug_haydn_name">Haydn</string>
+    <string name="debug_haydn_music">놀람 교향곡</string>
+    <string name="debug_haydn_main">남은 반복횟수 : 9 / 10</string>
+    <string name="debug_haydn_sub">곡 성공률 : 90%</string>
+    <string name="debug_haydn_explain">1악장 - 아다지오 - 비바체 아사이 (Adagio - vivace assai, 느릿느릿하게 - 충분히 빠르고 활기차게)\n2악장 - 안단테 (Andante, 사람의 걸음걸이만큼 느리게)\n3악장 - 메뉴에토: 알레그로 몰토 (Menuetto: Allegro molto, 아주 빠르게)\n4악장 - 피날레: 알레그로 몰토 (Finale: Allegro molto, 아주 빠르게)</string>
+
+    <string name="debug_czerny_name">Czerny</string>
+    <string name="debug_czerny_music">체르니 95번</string>
+    <string name="debug_czerny_main">남은 반복횟수 : 8 / 10</string>
+    <string name="debug_czerny_sub">곡 성공률 : 70%</string>
+
+    <string name="debug_pachelbel_name">Pachelbel</string>
+    <string name="debug_pachelbel_music">요한 파헬벨 캐논 변주곡</string>
+    <string name="debug_pachelbel_main">남은 반복횟수 : 14 / 20</string>
+    <string name="debug_pachelbel_sub">곡 성공률 : 70%</string>
+
+    <string name="tempalte_detail_act_teacher_pre">Teacher : </string>
+    <string name="title_activity_teacher_practice_detail">TeacherPracticeDetailActivity</string>
 </resources>

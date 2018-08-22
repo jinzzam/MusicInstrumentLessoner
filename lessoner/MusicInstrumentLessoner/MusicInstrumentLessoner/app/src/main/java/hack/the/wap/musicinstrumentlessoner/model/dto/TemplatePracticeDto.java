@@ -59,7 +59,6 @@ public class TemplatePracticeDto implements Serializable {
         this.data = data;
     }
 
-
     public void addData(String unit, String value) {
         data.put(unit, value);
     }
@@ -68,7 +67,7 @@ public class TemplatePracticeDto implements Serializable {
     public String toString() {
         return "TemplatePracticeDto{" +
                 "practiceId=" + practiceId +
-                ", percent=" + percent +
+                ", percent=" + percent + // 녹음파일의 완성도
                 ", fileName='" + fileName + '\'' +
                 ", data=" + data +
                 '}';
