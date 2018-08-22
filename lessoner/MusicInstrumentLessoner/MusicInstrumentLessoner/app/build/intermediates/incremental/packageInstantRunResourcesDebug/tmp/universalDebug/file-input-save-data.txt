@@ -1,7 +1,0 @@
-#Internal package file, do not edit.
-#Mon Aug 20 02:52:03 KST 2018
-0.baseType=DIRECTORY
-0.base=/Users/jinzzam/Desktop/MusicInstrumentLessoner/lessoner/MusicInstrumentLessoner/MusicInstrumentLessoner/app/build/intermediates/assets/debug
-0.path=armeabi-v7a/ffmpeg
-0.set=ASSET
-count=1
