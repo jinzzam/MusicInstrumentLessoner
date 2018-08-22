@@ -1,20 +1,6 @@
 <resources>
-    <string name="appName">MusicInstrumentLessoner</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">GirlsDay mina</string>
-    <string name="nav_header_subtitle">justkukaro@naver.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
     <string name="app_name_kor">악기 레스너</string>
     <string name="splash_comment">"Bring the joy \nto your instrument"</string>
-
-    <!--navigation bar string-->
-    <string name="nav_bar_notification">notification</string>
-    <string name="nav_bar_template">template</string>
-    <string name="nav_bar_group">group</string>
-    <string name="nav_bar_store">store</string>
-    <string name="nav_bar_information">information</string>
 
     <!--search_layout string-->
     <string name="search_lay_placeholder">Search messages</string>
