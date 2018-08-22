@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--notification_layout string-->
+    <string name="teacher_upload_music">선생님께서 새로운 곡을 업로드 하였습니다.</string>
+    <string name="friend_complete_music">친구가 올린곡을 완주하였습니다.</string>
+    <string name="debug_aoa_choa_name">AOA Choa</string>
+    <string name="debug_aoa_choa_email">jiharuforgive@league.of.legend</string>
+    <string name="debug_aoa_choa_date1">11:12 AM</string>
+    <string name="debug_aoa_choa_main">선생님께서 새로운 곡을 업로드 하였습니다.</string>
+    <string name="debug_aoa_choa_music_title">월광 소나타 제3악장</string>
+    <string name="debug_twice_dahyun_name">Twice Dahyun</string>
+    <string name="debug_twice_dahyun_emai">ekekdid@pknu.ac.kr</string>
+    <string name="debug_twice_dahyun_date1">07:24 AM</string>
+    <string name="debug_twice_dahyun_main">친구가 올린곡을 완주하였습니다.</string>
+    <string name="debug_twice_dahyun_music_title">요한 파헬벨 캐논 변주곡</string>
+
+    <!--mi_notification_layout string-->
+    <string name="debug_mi_date1">08:13 AM</string>
+    <string name="debug_mi_main">제출기간이 3일 남았습니다.</string>
+    <string name="debug_mi_music_title">체르니 95번</string>
+</resources>

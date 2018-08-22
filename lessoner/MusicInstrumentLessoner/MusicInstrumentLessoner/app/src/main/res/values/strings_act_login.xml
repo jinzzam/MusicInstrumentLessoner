@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tvLoginActEmail">EMAIL ADDRESS</string>
+    <string name="etLoginActEmail">Enter your email</string>
+    <string name="tvLoginActPassword">PASSWORD</string>
+    <string name="etLoginActPassword">Enter your password</string>
+    <string name="tvLoginActForgotPassword">FORGOT \nPASSWORD?</string>
+</resources>

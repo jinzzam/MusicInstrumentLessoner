@@ -1,0 +1,13 @@
+# intelli J file
+.idea
+*.iml
+.gradle
+/local.properties
+
+# Mac os file
+.DS_Store
+
+# Output file
+/build
+/captures
+.externalNativeBuild
