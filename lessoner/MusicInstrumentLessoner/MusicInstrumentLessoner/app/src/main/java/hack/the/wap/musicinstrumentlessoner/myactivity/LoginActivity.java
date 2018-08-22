@@ -135,8 +135,8 @@ public class LoginActivity extends AppCompatActivity {
             String name = loginProcess(etEmail.getText().toString(), etPassword.getText().toString());
             if (name != null) {
                 Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
-                intent.putExtra("actLoginName", name);
-                intent.putExtra("actLoginEmail", etEmail.getText().toString());
+                intent.putExtra("actLoginName", userName);
+                intent.putExtra("actLoginEmail", userEmail);
                 startActivity(intent);
                 finish();
             }
@@ -150,7 +150,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     public String loginProcess(String email, String password) {
         setSession();
-        return getResources().getString(R.string.nav_header_title);
+        return userName;
     }
 
     public static LoginActivity getInstance() {
@@ -176,9 +176,9 @@ public class LoginActivity extends AppCompatActivity {
             /*
                 insert user data
              */
-            String name = getResources().getString(R.string.nav_header_title);
-            String email = getResources().getString(R.string.nav_header_subtitle);
-            UserDto mina = new UserDto(name, email, password);
+            String name = userName;
+            String email = userEmail;
+           // UserDto mina = new UserDto(name, email, password);
 
             /*
                 Dummy User1 : Choa
@@ -621,7 +621,7 @@ public class LoginActivity extends AppCompatActivity {
             userGroups.put(pmc.getName(), pmc);
             userGroups.put(brain.getName(), brain);
 
-            session.setMainUser(mina);
+            session.setMainUser(userDto);
             session.setTemplates(templates);
             session.setNotifications(notifications);
             session.setUserGroups(userGroups);

@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity
     private void setUserNameAndEmail() {
         Intent intent = getIntent();
         userEmail = intent.getStringExtra("actLoginName");
-        userName = intent.getStringExtra("actLoginName");
+        userName = intent.getStringExtra("actLoginEmail");
         DEBUG_ON_SET_USER_NAME_AND_EMAIL(userName, userEmail);
 
     }
