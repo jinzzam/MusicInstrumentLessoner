@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="39d6fe24-125b-431b-b300-008be00e6591" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lessoner/MusicInstrumentLessoner/MusicInstrumentLessoner/app/src/main/java/hack/the/wap/musicinstrumentlessoner/myactivity/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lessoner/MusicInstrumentLessoner/MusicInstrumentLessoner/app/src/main/java/hack/the/wap/musicinstrumentlessoner/myactivity/LoginActivity.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -76,7 +75,7 @@
     <session id="1273381845">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.33" value="1" />
           <entry key="project.open.time.42" value="1" />
           <entry key="project.open.time.63" value="1" />
@@ -214,7 +213,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="y" value="8" />
     <option name="width" value="974" />
     <option name="height" value="584" />
@@ -313,15 +312,15 @@
       <workItem from="1534769030601" duration="1156000" />
       <workItem from="1534849087848" duration="1738000" />
       <workItem from="1534851541338" duration="590000" />
-      <workItem from="1534923015108" duration="665000" />
+      <workItem from="1534923015108" duration="669000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60695000" />
+    <option name="totallyTimeSpent" value="60699000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="8" width="974" height="584" extended-state="1" />
+    <frame x="0" y="8" width="974" height="584" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3440171" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -329,7 +328,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.46205357" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.46205357" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />

@@ -226,5 +226,4 @@ public class MainActivity extends AppCompatActivity {
             tvData.setText(result);//서버로 부터 받은 값을 출력해주는 부
         }
     }
-
 }
