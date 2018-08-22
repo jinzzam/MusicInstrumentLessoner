@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -53,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
     private static ImageView ivLogin;
     private static EditText etEmail;
     private static EditText etPassword;
-    private static Session session;
+    private static Session session = Session.getInstance();
     private static String url = "http://192.168.1.37:3000/api/miUser/";
     private static JSONObject user;
     private static String userName;
@@ -105,9 +106,8 @@ public class LoginActivity extends AppCompatActivity {
                     userEmail = user.get("email").toString();
                     userPassword = user.get("password").toString();
                     userDto = new UserDto(userName, userEmail, userPassword);
-                    session.setMainUser(userDto);
-                    Log.e("TAG", "initVolleySet >>>> : " + session.getMainUser().toString());
-
+//                    session.setMainUser(userDto);
+                    Log.e("TAG", "initVolleySet >>>> : userPassword : " + userPassword);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -132,8 +132,10 @@ public class LoginActivity extends AppCompatActivity {
         ivLogin.setOnClickListener(v -> {
             url += etEmail.getText().toString();
             initVolleySet();
+            Log.e("DEBUG", "loginButtonEvent >>>> : " + etPassword.getText().toString());
             String name = loginProcess(etEmail.getText().toString(), etPassword.getText().toString());
             if (name != null) {
+                Toast.makeText(this.getApplicationContext(), "환영합니다.", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
                 intent.putExtra("actLoginName", userName);
                 intent.putExtra("actLoginEmail", userEmail);
@@ -149,8 +151,14 @@ public class LoginActivity extends AppCompatActivity {
      * @return If you success login then return is name. Otherwise, it is null.
      */
     public String loginProcess(String email, String password) {
-        setSession();
-        return userName;
+        if (password.equals(userPassword)) {
+            setSession();
+            return userName;
+        } else {
+            Toast.makeText(this.getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
+            return null;
+        }
+
     }
 
     public static LoginActivity getInstance() {
@@ -158,7 +166,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void setSession() {
-        session = Session.getInstance();
+        session.setMainUser(userDto);
         if (DebugMode.DEBUG_MOD) {
             DEBUG_SET_SESSION();
         }
@@ -178,7 +186,7 @@ public class LoginActivity extends AppCompatActivity {
              */
             String name = userName;
             String email = userEmail;
-           // UserDto mina = new UserDto(name, email, password);
+            // UserDto mina = new UserDto(name, email, password);
 
             /*
                 Dummy User1 : Choa
