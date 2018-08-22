@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var multer = require('multer');
+var count = 1;
 var storage = multer.diskStorage({
     destination:function (req,file,cb) {
-        cb(null,'./file/')  //경로지정
+        cb(null,'../file/')  //경로지정
     },
     filename:function (req,file,cb) {
         cb(null,file.originalname)  //파일이름지정
