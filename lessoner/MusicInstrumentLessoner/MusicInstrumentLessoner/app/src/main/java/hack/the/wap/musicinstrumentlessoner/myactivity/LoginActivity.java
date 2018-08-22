@@ -41,10 +41,12 @@ public class LoginActivity extends AppCompatActivity {
     private static EditText etEmail;
     private static EditText etPassword;
     private static Session session;
-    private static String url = "http://192.168.43.36:3000/api/miUser/";
-    private static JSONObject userName;
-    private static JSONObject userEmail;
-    private static JSONObject userPassword;
+    private static String url = "http://192.168.1.37:3000/api/miUser/";
+    private static JSONObject user;
+    private static String userName;
+    private static String userEmail;
+    private static String userPassword;
+    private static UserDto userDto;
     private RequestQueue queue;
     private StringRequest stringRequest;
 
@@ -85,9 +87,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
                 try {
-                    JsonParser parser = new JsonParser();
-                    userName = response.getJSONObject(0);
-                    Log.e("TAG", "initVolleySet >>>> : " + userName);
+                    user = response.getJSONObject(0);
+                    userName = user.get("username").toString();
+                    userEmail = user.get("email").toString();
+                    userPassword = user.get("password").toString();
+                    userDto = new UserDto(userName, userEmail, userPassword);
+                    session.setMainUser(userDto);
+                    Log.e("TAG", "initVolleySet >>>> : " + session.getMainUser().toString());
 
                 } catch (Exception e) {
                     e.printStackTrace();
