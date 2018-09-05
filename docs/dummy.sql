@@ -25,7 +25,7 @@ insert into mi_notification values(1, 1, NULL, 'template', '선생님이 템플�
 insert into mi_notification values(2, 2, NULL, 'template', '선생님이 과제를 등록하였습니다.');
 
 # music_template_assignment
-insert into music_template_assignment values('namolnamolsong.mp3', 1);
+insert into music_template_assignment values('namolnamolsong.mp3', 1, 10, 0);
 
 # music_template_wrong
 insert into music_template_wrong values('namolnamolsong.mp3', '00:00:30', '00:01:01');
@@ -36,7 +36,7 @@ insert into mi_file values('namolppam@pocket.mon', 'namolnamolsong.mp3', '/stora
 
 # mi_group
 insert into mi_group values('피아노리브레 강남센터',
-  '강남구 역삼1동 818-5 혜진빌딩 3층',
+  '강남구 역삼1동 818-5 혜진빌딩 3',
   '모든 임직원들이 음악을 전공한 전문가들이며 격이 다른 커리큘럼으로 레슨만 받아도 실력이 향샹되는 검증된 교육시스템을 갖추고 있습니다.',
   '플룻, 리코더, 바이올린',
   '오케스트라, 클래식, 관악, 현악'
