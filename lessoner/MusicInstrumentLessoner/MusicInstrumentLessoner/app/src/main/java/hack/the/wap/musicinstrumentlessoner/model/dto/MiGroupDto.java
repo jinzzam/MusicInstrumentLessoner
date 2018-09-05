@@ -4,25 +4,35 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class UserGroupDto implements Serializable {
-    private String name;
+public class MiGroupDto implements Serializable {
+    private String groupName;
+    private String place;
     private String info;
     private String instruments;
     private String genres;
 
-    public UserGroupDto(String name, String info, String instruments, String genres) {
-        this.name = name;
+    public MiGroupDto(String groupName, String place, String info, String instruments, String genres) {
+        this.groupName = groupName;
+        this.place = place;
         this.info = info;
         this.instruments = instruments;
         this.genres = genres;
     }
 
-    public String getName() {
-        return name;
+    public String getGroupName() {
+        return groupName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
     }
 
     public String getInfo() {
@@ -51,8 +61,9 @@ public class UserGroupDto implements Serializable {
 
     @Override
     public String toString() {
-        return "UserGroupDto{" +
-                "name='" + name + '\'' +
+        return "MiGroupDto{" +
+                "groupName='" + groupName + '\'' +
+                ", place='" + place + '\'' +
                 ", info='" + info + '\'' +
                 ", instruments='" + instruments + '\'' +
                 ", genres='" + genres + '\'' +

@@ -5,50 +5,50 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import hack.the.wap.musicinstrumentlessoner.model.dto.NotificationDto;
-import hack.the.wap.musicinstrumentlessoner.model.dto.TemplateDto;
-import hack.the.wap.musicinstrumentlessoner.model.dto.UserDto;
-import hack.the.wap.musicinstrumentlessoner.model.dto.UserGroupDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiUserDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiNotificationDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
 
 public class Session {
     private static Session instance;
-    private UserDto mainUser;
-    private ArrayList<NotificationDto> notifications;
-    private HashMap<String, TemplateDto> templates;
-    private HashMap<String, UserGroupDto> userGroups;
+    private MiUserDto mainUser;
+    private ArrayList<MiNotificationDto> notifications;
+    private HashMap<String, MusicTemplateDto> templates;
+    private HashMap<String, MiGroupDto> userGroups;
 
     private Session() {
     }
 
-    public UserDto getMainUser() {
+    public MiUserDto getMainUser() {
         return mainUser;
     }
 
-    public void setMainUser(UserDto mainUser) {
+    public void setMainUser(MiUserDto mainUser) {
         this.mainUser = mainUser;
     }
 
-    public ArrayList<NotificationDto> getNotifications() {
+    public ArrayList<MiNotificationDto> getNotifications() {
         return notifications;
     }
 
-    public void setNotifications(ArrayList<NotificationDto> notifications) {
+    public void setNotifications(ArrayList<MiNotificationDto> notifications) {
         this.notifications = notifications;
     }
 
-    public HashMap<String, TemplateDto> getTemplates() {
+    public HashMap<String, MusicTemplateDto> getTemplates() {
         return templates;
     }
 
-    public void setTemplates(HashMap<String, TemplateDto> templates) {
+    public void setTemplates(HashMap<String, MusicTemplateDto> templates) {
         this.templates = templates;
     }
 
-    public HashMap<String, UserGroupDto> getUserGroups() {
+    public HashMap<String, MiGroupDto> getUserGroups() {
         return userGroups;
     }
 
-    public void setUserGroups(HashMap<String, UserGroupDto> userGroups) {
+    public void setUserGroups(HashMap<String, MiGroupDto> userGroups) {
         this.userGroups = userGroups;
     }
 

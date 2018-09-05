@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
-import hack.the.wap.musicinstrumentlessoner.model.dto.TemplateDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.myfragment.CustomWaveformFragment;
 import hack.the.wap.musicinstrumentlessoner.session.PresentFile;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
@@ -26,7 +26,7 @@ public class TeacherPracticeDetailActivity extends AppCompatActivity {
     private TextView tvTeacherPracticeDetailLayTeacherName;
     private TextView tvTeacherPracticeDetailLayFileName;
 
-    private TemplateDto mainTemplate;
+    private MusicTemplateDto mainTemplate;
 
     {
         session = Session.getInstance();
@@ -38,7 +38,7 @@ public class TeacherPracticeDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_teacher_practice_detail);
         Intent intent = getIntent();
         customWaveformFragment = new CustomWaveformFragment();
-        mainTemplate = (TemplateDto) intent.getSerializableExtra("main");
+        mainTemplate = (MusicTemplateDto) intent.getSerializableExtra("main");
         Log.e("SAFE", "onCreate >>> " + mainTemplate);
         initView();
         viewSetValue();

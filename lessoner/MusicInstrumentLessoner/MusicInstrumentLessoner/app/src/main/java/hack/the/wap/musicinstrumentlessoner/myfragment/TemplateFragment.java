@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import java.util.HashMap;
 
 import hack.the.wap.musicinstrumentlessoner.R;
-import hack.the.wap.musicinstrumentlessoner.model.dto.TemplateDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.myactivity.MainActivity;
 import hack.the.wap.musicinstrumentlessoner.myactivity.TemplateDetailActivity;
 import hack.the.wap.musicinstrumentlessoner.mylayout.TemplateLayout;
@@ -31,7 +31,7 @@ public class TemplateFragment extends Fragment {
     private static View templateFragmentView;
     private static LinearLayout llFragTemplate;
     private static Session session;
-    private static HashMap<String, TemplateDto> templates;
+    private static HashMap<String, MusicTemplateDto> templates;
 
     private OnFragmentInteractionListener mListener;
 
@@ -68,7 +68,7 @@ public class TemplateFragment extends Fragment {
         templateFragmentView = inflater.inflate(R.layout.fragment_template, container, false);
         llFragTemplate = templateFragmentView.findViewById(R.id.llFragTemplate);
         templates = session.getTemplates();
-        for (TemplateDto dto : templates.values()) {
+        for (MusicTemplateDto dto : templates.values()) {
             TemplateLayout atom = new TemplateLayout(getContext());
             atom.setCustomAttr(dto);
             atom.setOnClickListener(v -> {

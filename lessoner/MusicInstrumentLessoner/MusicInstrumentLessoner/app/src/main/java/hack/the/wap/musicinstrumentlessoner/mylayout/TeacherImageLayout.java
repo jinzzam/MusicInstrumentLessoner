@@ -1,20 +1,19 @@
 package hack.the.wap.musicinstrumentlessoner.mylayout;
 
 import android.content.Context;
-import android.os.Debug;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
-import hack.the.wap.musicinstrumentlessoner.model.dto.TeacherDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiTeacherDto;
 
 public class TeacherImageLayout extends ImageLayout {
-    private TeacherDto mainTeacher;
+    private MiTeacherDto mainTeacher;
     private TextView tvMyImageName;
     private TextView tvMyImageEmail;
-    public TeacherImageLayout(Context context, TeacherDto dto) {
+    public TeacherImageLayout(Context context, MiTeacherDto dto) {
         super(context);
         mainTeacher = dto;
         tvMyImageName = findViewById(R.id.tvMyImageName);

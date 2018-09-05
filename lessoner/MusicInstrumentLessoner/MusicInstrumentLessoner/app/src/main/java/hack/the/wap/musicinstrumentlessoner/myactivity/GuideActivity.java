@@ -12,14 +12,14 @@ import java.util.TreeMap;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
-import hack.the.wap.musicinstrumentlessoner.model.dto.TemplateDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.mylayout.GuideExplainLayout;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class GuideActivity extends AppCompatActivity {
     private static GuideActivity instance;
     private static Session session;
-    private TemplateDto mainTemplate;
+    private MusicTemplateDto mainTemplate;
     private ImageView ivGuideActLeftArrow;
     private ImageView ivGuideActTeacher;
     private ImageView ivGuideActMusician;
@@ -47,7 +47,7 @@ public class GuideActivity extends AppCompatActivity {
         instance = this;
 
         Intent intent = getIntent();
-        mainTemplate = (TemplateDto) intent.getSerializableExtra("main");
+        mainTemplate = (MusicTemplateDto) intent.getSerializableExtra("main");
         Log.e("SAFE", "onCreate >>> " + mainTemplate);
 
         viewSetListener();

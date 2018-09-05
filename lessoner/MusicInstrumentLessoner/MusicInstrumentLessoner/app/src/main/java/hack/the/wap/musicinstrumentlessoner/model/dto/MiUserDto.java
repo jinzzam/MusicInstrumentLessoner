@@ -2,28 +2,22 @@ package hack.the.wap.musicinstrumentlessoner.model.dto;
 
 import java.io.Serializable;
 
-public class UserDto implements Serializable{
-    private String name;
+public class MiUserDto implements Serializable {
     private String email;
     private String password;
+    private String name;
 
     /**
-     * Create UserDto
-     * @param name
-     * @param email
-     * @param password
+     * Create MiUserDto
+     *
+     * @param email    pk
+     * @param password nn
+     * @param name     nn
      */
-    public UserDto(String name, String email, String password) {
-        this.name = name;
+
+    public MiUserDto(String email, String password, String name) {
         this.email = email;
         this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
     }
 
@@ -43,12 +37,20 @@ public class UserDto implements Serializable{
         this.password = password;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
-        return "UserDto{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
+        return "MiUserDto{" +
+                "email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

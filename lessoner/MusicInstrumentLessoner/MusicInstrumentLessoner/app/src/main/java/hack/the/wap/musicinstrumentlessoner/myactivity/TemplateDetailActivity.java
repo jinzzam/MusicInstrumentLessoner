@@ -26,8 +26,7 @@ import cafe.adriel.androidaudiorecorder.model.AudioSampleRate;
 import cafe.adriel.androidaudiorecorder.model.AudioSource;
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
-import hack.the.wap.musicinstrumentlessoner.model.dto.TemplateDto;
-import hack.the.wap.musicinstrumentlessoner.model.dto.TemplatePracticeDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.mylayout.TemplateNegativePracticeLayout;
 import hack.the.wap.musicinstrumentlessoner.mylayout.TemplatePositivePracticeLayout;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
@@ -36,7 +35,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
     private static Session session;
     private TemplateDetailActivity instance;
     private ArrayList<TemplatePracticeDto> templatePractices;
-    private TemplateDto mainTemplate;
+    private MusicTemplateDto mainTemplate;
     private ImageView ivTemplateDetailLayLeftArrow;
     private ImageView ivTemplateDetailLayTeacher;
     private ImageView ivTemplateDetailLayMusician;
@@ -68,7 +67,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
         initView();
         instance = this;
         Intent intent = getIntent();
-        mainTemplate = (TemplateDto) intent.getSerializableExtra("data");
+        mainTemplate = (MusicTemplateDto) intent.getSerializableExtra("data");
         Log.e("SAFE", "onCreate >>> " + mainTemplate);
         viewSet();
         viewSetListener();

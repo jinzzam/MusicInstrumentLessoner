@@ -11,7 +11,6 @@ import java.util.Random;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugMode;
-import hack.the.wap.musicinstrumentlessoner.model.dto.TemplatePracticeDto;
 
 /*
 참고 사이트 : https://medium.com/@douglas.iacovelli/the-beauty-of-custom-views-and-how-to-do-it-79c7d78e2088
