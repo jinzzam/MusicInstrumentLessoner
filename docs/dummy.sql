@@ -36,6 +36,7 @@ insert into mi_file values('namolppam@pocket.mon', 'namolnamolsong.mp3', '/stora
 
 # mi_group
 insert into mi_group values('피아노리브레 강남센터',
+  '강남구 역삼1동 818-5 혜진빌딩 3층',
   '모든 임직원들이 음악을 전공한 전문가들이며 격이 다른 커리큘럼으로 레슨만 받아도 실력이 향샹되는 검증된 교육시스템을 갖추고 있습니다.',
   '플룻, 리코더, 바이올린',
   '오케스트라, 클래식, 관악, 현악'

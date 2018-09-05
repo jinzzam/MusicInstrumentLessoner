@@ -49,10 +49,10 @@ create table music_template_assignment(
 );
 
 create table music_template_wrong(
-  assignment_inner_filename varchar(255),
+  inner_filename varchar(255),
   wrong_time_start time,
   wrong_time_end time,
-  constraint pk_musicteplatewrong primary key (assignment_inner_filename, wrong_time_start, wrong_time_end)
+  constraint pk_musicteplatewrong primary key (inner_filename, wrong_time_start, wrong_time_end)
 );
 
 create table mi_file(
@@ -64,6 +64,7 @@ create table mi_file(
 
 create table mi_group(
   group_name varchar(50) primary key,
+  place varchar(255),
   info varchar(255),
   instruments varchar(255),
   genre varchar(255)
