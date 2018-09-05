@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     private static EditText etEmail;
     private static EditText etPassword;
     private static Session session = Session.getInstance();
-    private static String url = "http://192.168.1.37:3000/api/miUser/";
+    private static String url = "http://192.168.43.36:3000/api/miUser/";
     private static JSONObject user;
     private static String userName;
     private static String userEmail;
@@ -92,8 +92,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initVolleySet() {
-        String url = "http://192.168.1.37:3000/api/miUser/";
-        url += etEmail.getText().toString();
         Log.e("TAG", url);
         final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
