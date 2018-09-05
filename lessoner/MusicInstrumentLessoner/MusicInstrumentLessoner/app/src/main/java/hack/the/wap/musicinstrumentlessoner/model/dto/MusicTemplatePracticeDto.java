@@ -5,6 +5,8 @@ public class MusicTemplatePracticeDto {
     private int musicTemplateId;
     private String studentEmail;
     private String innerFilename;
+    private boolean isDone;
+    private int completePercent;
 
     /**
      * create MusicTemplatePracticeDto
@@ -13,13 +15,17 @@ public class MusicTemplatePracticeDto {
      * @param musicTemplateId
      * @param studentEmail
      * @param innerFilename
+     * @param isDone
+     * @param completePercent
      */
 
-    public MusicTemplatePracticeDto(int musicTemplatePracticeId, int musicTemplateId, String studentEmail, String innerFilename) {
+    public MusicTemplatePracticeDto(int musicTemplatePracticeId, int musicTemplateId, String studentEmail, String innerFilename, boolean isDone, int completePercent) {
         this.musicTemplatePracticeId = musicTemplatePracticeId;
         this.musicTemplateId = musicTemplateId;
         this.studentEmail = studentEmail;
         this.innerFilename = innerFilename;
+        this.isDone = isDone;
+        this.completePercent = completePercent;
     }
 
     public int getMusicTemplatePracticeId() {
@@ -54,6 +60,22 @@ public class MusicTemplatePracticeDto {
         this.innerFilename = innerFilename;
     }
 
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+
+    public int getCompletePercent() {
+        return completePercent;
+    }
+
+    public void setCompletePercent(int completePercent) {
+        this.completePercent = completePercent;
+    }
+
     @Override
     public String toString() {
         return "MusicTemplatePracticeDto{" +
@@ -61,6 +83,8 @@ public class MusicTemplatePracticeDto {
                 ", musicTemplateId=" + musicTemplateId +
                 ", studentEmail='" + studentEmail + '\'' +
                 ", innerFilename='" + innerFilename + '\'' +
+                ", isDone=" + isDone +
+                ", completePercent=" + completePercent +
                 '}';
     }
 }
