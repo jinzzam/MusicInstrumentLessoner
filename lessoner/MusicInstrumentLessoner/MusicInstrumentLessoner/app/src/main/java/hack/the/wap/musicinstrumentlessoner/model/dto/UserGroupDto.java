@@ -4,60 +4,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class UserGroupDto implements Serializable{
-    private boolean mine;
+public class UserGroupDto implements Serializable {
     private String name;
-    private String main;
-    private String sub;
-    private HashMap<String, TeacherDto> teachers;
-    private HashMap<String, UserDto> users;
-    private HashMap<String, String> instruments;
-    private HashMap<String, String> genres;
+    private String info;
+    private String instruments;
+    private String genres;
 
-    {
-        mine = false;
-    }
-
-    public UserGroupDto(String name) {
+    public UserGroupDto(String name, String info, String instruments, String genres) {
         this.name = name;
-        users = new HashMap<>();
-        teachers = new HashMap<>();
-        instruments = new HashMap<>();
-        genres = new HashMap<>();
-    }
-
-    public UserGroupDto(String name, String main, String sub) {
-        this.name = name;
-        this.main = main;
-        this.sub = sub;
-        users = new HashMap<>();
-        teachers = new HashMap<>();
-        instruments = new HashMap<>();
-        genres = new HashMap<>();
-    }
-
-    public HashMap<String, UserDto> getUsers() {
-        return users;
-    }
-
-    public void setUsers(HashMap<String, UserDto> users) {
-        this.users = users;
-    }
-
-    public HashMap<String, TeacherDto> getTeachers() {
-        return teachers;
-    }
-
-    public void setTeachers(HashMap<String, TeacherDto> teachers) {
-        this.teachers = teachers;
-    }
-
-    public void addTeacher(TeacherDto dto) {
-        teachers.put(dto.getName(), dto);
-    }
-
-    public void addUser(UserDto dto) {
-        users.put(dto.getName(), dto);
+        this.info = info;
+        this.instruments = instruments;
+        this.genres = genres;
     }
 
     public String getName() {
@@ -68,64 +25,37 @@ public class UserGroupDto implements Serializable{
         this.name = name;
     }
 
-    public String getMain() {
-        return main;
+    public String getInfo() {
+        return info;
     }
 
-    public void setMain(String main) {
-        this.main = main;
+    public void setInfo(String info) {
+        this.info = info;
     }
 
-    public String getSub() {
-        return sub;
-    }
-
-    public void setSub(String sub) {
-        this.sub = sub;
-    }
-
-    public HashMap<String, String> getInstrument() {
+    public String getInstruments() {
         return instruments;
     }
 
-    public void setInstrument(HashMap<String, String> instruments) {
+    public void setInstruments(String instruments) {
         this.instruments = instruments;
     }
 
-    public HashMap<String, String> getGenre() {
+    public String getGenres() {
         return genres;
     }
 
-    public void setGenre(HashMap<String, String> genres) {
+    public void setGenres(String genres) {
         this.genres = genres;
-    }
-
-    public void addInstrument(String instrument){
-        this.instruments.put(instrument, instrument);
-    }
-
-    public void addGenre(String genre){
-        this.genres.put(genre, genre);
-    }
-
-    public boolean isMine() {
-        return mine;
-    }
-
-    public void setMine(boolean mine) {
-        this.mine = mine;
     }
 
     @Override
     public String toString() {
         return "UserGroupDto{" +
                 "name='" + name + '\'' +
-                ", main='" + main + '\'' +
-                ", sub='" + sub + '\'' +
-                ", teachers=" + teachers +
-                ", users=" + users +
-                ", instruments=" + instruments +
-                ", genres=" + genres +
+                ", info='" + info + '\'' +
+                ", instruments='" + instruments + '\'' +
+                ", genres='" + genres + '\'' +
                 '}';
     }
 }

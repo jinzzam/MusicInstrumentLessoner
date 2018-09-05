@@ -2,33 +2,36 @@ package hack.the.wap.musicinstrumentlessoner.model.dto;
 
 import java.util.HashMap;
 
-public class TeacherDto extends UserDto {
-    private HashMap<String, TemplateDto> templates;
+public class TeacherDto {
+    private String groupName; //join 할 때 쓰이는 거
+    private String TEmail; //user table 에 의해 fk
 
-    {
-        templates = new HashMap<>();
+    public TeacherDto(String groupName, String TEmail) {
+        this.groupName = groupName;
+        this.TEmail = TEmail;
     }
 
-    /**
-     * Create TeacherDto
-     *
-     * @param name
-     * @param email
-     * @param password
-     */
-    public TeacherDto(String name, String email, String password) {
-        super(name, email, password);
+    public String getGroupName() {
+        return groupName;
     }
 
-    public HashMap<String, TemplateDto> getTemplates() {
-        return templates;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
-    public void setTemplates(HashMap<String, TemplateDto> templates) {
-        this.templates = templates;
+    public String getTEmail() {
+        return TEmail;
     }
 
-    public void addTemplate(TemplateDto dto) {
-        templates.put(dto.getMusicTitle(), dto);
+    public void setTEmail(String TEmail) {
+        this.TEmail = TEmail;
+    }
+
+    @Override
+    public String toString() {
+        return "TeacherDto{" +
+                "groupName='" + groupName + '\'' +
+                ", TEmail='" + TEmail + '\'' +
+                '}';
     }
 }
