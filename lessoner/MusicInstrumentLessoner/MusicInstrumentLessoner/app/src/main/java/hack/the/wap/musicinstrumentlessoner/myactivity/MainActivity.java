@@ -91,19 +91,6 @@ public class MainActivity extends AppCompatActivity
         MyNavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        new Thread(() -> {
-            while (ivUserMain == null) {
-                ivUserMain = findViewById(R.id.mainUser);
-                Log.e("TAG", "onCreate in Thread >>> " + ivUserMain);
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        }).start();
-
         FragmentManager fm = getFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.add(R.id.flFragment, notificationFragment);
