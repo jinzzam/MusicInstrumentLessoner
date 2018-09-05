@@ -11,6 +11,16 @@ public class MiGroupDto implements Serializable {
     private String instruments;
     private String genres;
 
+    /**
+     * create MiGroupDto
+     *
+     * @param groupName
+     * @param place
+     * @param info
+     * @param instruments
+     * @param genres
+     */
+
     public MiGroupDto(String groupName, String place, String info, String instruments, String genres) {
         this.groupName = groupName;
         this.place = place;

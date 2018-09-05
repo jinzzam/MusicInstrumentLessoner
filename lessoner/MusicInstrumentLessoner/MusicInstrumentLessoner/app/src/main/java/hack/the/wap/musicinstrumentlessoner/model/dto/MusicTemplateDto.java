@@ -1,7 +1,6 @@
 package hack.the.wap.musicinstrumentlessoner.model.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class MusicTemplateDto implements Serializable {
     private int musicTemplateId;

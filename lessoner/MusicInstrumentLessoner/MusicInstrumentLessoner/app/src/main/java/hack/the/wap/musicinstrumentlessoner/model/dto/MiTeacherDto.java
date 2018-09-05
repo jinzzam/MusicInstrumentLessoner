@@ -4,6 +4,13 @@ public class MiTeacherDto {
     private String teacherEmail; //user table 에 의해 fk
     private String groupName; //join 할 때 쓰이는 거
 
+    /**
+     * create MiTeacherDto
+     *
+     * @param teacherEmail
+     * @param groupName
+     */
+
     public MiTeacherDto(String teacherEmail, String groupName) {
         this.teacherEmail = teacherEmail;
         this.groupName = groupName;

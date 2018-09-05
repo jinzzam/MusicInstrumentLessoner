@@ -6,6 +6,15 @@ public class MusicTemplatePracticeDto {
     private String studentEmail;
     private String innerFilename;
 
+    /**
+     * create MusicTemplatePracticeDto
+     *
+     * @param musicTemplatePracticeId
+     * @param musicTemplateId
+     * @param studentEmail
+     * @param innerFilename
+     */
+
     public MusicTemplatePracticeDto(int musicTemplatePracticeId, int musicTemplateId, String studentEmail, String innerFilename) {
         this.musicTemplatePracticeId = musicTemplatePracticeId;
         this.musicTemplateId = musicTemplateId;

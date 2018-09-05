@@ -4,6 +4,13 @@ public class MusicTemplateAssignmentDto {
     private String innerFilename;
     private int musicTemplateId;
 
+    /**
+     * create MusicTemplateAssignmentDto
+     *
+     * @param innerFilename
+     * @param musicTemplateId
+     */
+
     public MusicTemplateAssignmentDto(String innerFilename, int musicTemplateId) {
         this.innerFilename = innerFilename;
         this.musicTemplateId = musicTemplateId;

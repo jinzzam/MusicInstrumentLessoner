@@ -5,6 +5,14 @@ public class MiFileDto {
     private String innerFilename;
     private String outterFilename;
 
+    /**
+     * create MiFileDto
+     *
+     * @param owner
+     * @param innerFilename
+     * @param outterFilename
+     */
+
     public MiFileDto(String owner, String innerFilename, String outterFilename) {
         this.owner = owner;
         this.innerFilename = innerFilename;

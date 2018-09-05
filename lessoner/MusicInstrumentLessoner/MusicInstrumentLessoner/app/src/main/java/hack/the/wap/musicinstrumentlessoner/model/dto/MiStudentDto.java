@@ -4,6 +4,13 @@ public class MiStudentDto {
     private String studentEmail;
     private String groupName;
 
+    /**
+     * create MiStudentDto
+     *
+     * @param studentEmail
+     * @param groupName
+     */
+
     public MiStudentDto(String studentEmail, String groupName) {
         this.studentEmail = studentEmail;
         this.groupName = groupName;

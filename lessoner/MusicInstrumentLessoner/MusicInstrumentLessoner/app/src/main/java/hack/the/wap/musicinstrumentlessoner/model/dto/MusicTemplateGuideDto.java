@@ -7,6 +7,14 @@ public class MusicTemplateGuideDto {
     private Time playTime;
     private String comment;
 
+    /**
+     * create MusicTemplateGuideDto
+     *
+     * @param musicTemplateId
+     * @param playTime
+     * @param comment
+     */
+
     public MusicTemplateGuideDto(int musicTemplateId, Time playTime, String comment) {
         this.musicTemplateId = musicTemplateId;
         this.playTime = playTime;

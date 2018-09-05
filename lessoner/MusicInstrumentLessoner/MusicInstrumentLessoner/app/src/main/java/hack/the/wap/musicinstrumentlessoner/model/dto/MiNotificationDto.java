@@ -9,6 +9,16 @@ public class MiNotificationDto {
     private String type;
     private String comment;
 
+    /**
+     * create MiNotificationDto
+     *
+     * @param miNotificationId
+     * @param musicTemplateId
+     * @param registDateTime
+     * @param type
+     * @param comment
+     */
+
     public MiNotificationDto(int miNotificationId, int musicTemplateId, Timestamp registDateTime, String type, String comment) {
         this.miNotificationId = miNotificationId;
         this.musicTemplateId = musicTemplateId;

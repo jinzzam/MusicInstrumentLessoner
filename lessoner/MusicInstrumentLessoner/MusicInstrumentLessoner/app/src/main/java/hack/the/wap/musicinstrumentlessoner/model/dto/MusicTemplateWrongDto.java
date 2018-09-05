@@ -7,6 +7,14 @@ public class MusicTemplateWrongDto {
     private Time wrongTimeStart;
     private Time wrongTimeEnd;
 
+    /**
+     * create MusicTemplateWrongDto
+     *
+     * @param innerFilename
+     * @param wrongTimeStart
+     * @param wrongTimeEnd
+     */
+
     public MusicTemplateWrongDto(String innerFilename, Time wrongTimeStart, Time wrongTimeEnd) {
         this.innerFilename = innerFilename;
         this.wrongTimeStart = wrongTimeStart;
