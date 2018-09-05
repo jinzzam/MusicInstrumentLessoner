@@ -1,16 +1,8 @@
 create table mi_user(
-    -> email varchar(30) primary key,
-    -> password varchar(30) not null,
-    -> username varchar(30) not null
-    -> );
-
-insert into mi_user values('jinzzam@namol.ppam', '123', '박유진');
-insert into mi_user ('email', 'password', 'username')
-  values ('namolppam@pocket.mon', '1234', '나몰빼미');
-
-select * from mi_user WHERE username like '%유%';
-
-delete table mi_user;
+  email varchar(30) primary key,
+  password varchar(30) not null,
+  username varchar(30) not null
+  );
 
 create table music_template(
   music_template_id int primary key auto_increment,
@@ -19,9 +11,6 @@ create table music_template(
   musician varchar(30),
   constraint fk_musictemplate_miuser_email foreign key (owner) references mi_user (email) on delete cascade
 );
-
-insert into music_template (owner, music_title, musician) values
-  ('namolppam@pocket.mon', '나몰나몰송', '나몰빼미');
 
 create table music_template_guide(
   music_template_id int,
@@ -70,4 +59,23 @@ create table mi_file(
   inner_filename varchar(255) primary key,
   outter_filename varchar(255),
   constraint fk_mifile_miuser_owner foreign key (owner) references mi_user (email) on delete cascade
+);
+
+create table mi_group(
+  group_name varchar(50) primary key,
+  info varchar(255),
+  instruments varchar(255),
+  genre varchar(255)
+);
+
+create table mi_teacher(
+  teacher_email varchar(30),
+  group_name varchar(50),
+  constraint fk_miteacher_miuser_teacheremail foreign key (teacher_email) references mi_user (email) on delete cascade
+);
+
+create table mi_student(
+  student_email varchar(30),
+  group_name varchar(50),
+  constraint fk_mistudent_miuser_studentemail foreign key (student_email) references mi_user (email) on delete cascade
 );
