@@ -1,13 +1,17 @@
 # 테이블 컬럼 정보 보기
 # show full columns from 테이블이름;
 
+# 테이블에 저장된 데이터 보기
+# select * from 테이블이름;
+
+# 테이블 삭제하기
+# drop table 테이블이름;
+
 # mi_user
 insert into mi_user values('jinzzam@namol.ppam', '123', '박유진');
 insert into mi_user values('namolppam@pocket.mon', '1234', '나몰빼미');
 
 # select * from mi_user WHERE username like '%유%';
-
-# delete table mi_user;
 
 # music_template
 insert into music_template values(NULL, 'namolppam@pocket.mon', '나몰나몰송', '나몰빼미');
@@ -18,14 +22,14 @@ insert into music_template_guide values(1, '00:03:49', '나몰나몰나몰나모
 insert into music_template_guide values(2, '00:04:01', '깨끗하게 밝게 자신있게');
 
 # music_template_practice
-insert into music_template_practice values(1, 1, 'namolppam@pocket.mon', 'namolnamolsong.mp3');
+insert into music_template_practice values(1, 1, 'namolppam@pocket.mon', 'namolnamolsong.mp3', false, 0);
 
 # mi_notification
 insert into mi_notification values(1, 1, NULL, 'template', '선생님이 템플릿을 등록하였습니다.');
 insert into mi_notification values(2, 2, NULL, 'template', '선생님이 과제를 등록하였습니다.');
 
 # music_template_assignment
-insert into music_template_assignment values('namolnamolsong.mp3', 1, 10, 0);
+insert into music_template_assignment values('namolnamolsong.mp3', 1, 10, 0, 0);
 
 # music_template_wrong
 insert into music_template_wrong values('namolnamolsong.mp3', '00:00:30', '00:01:01');
