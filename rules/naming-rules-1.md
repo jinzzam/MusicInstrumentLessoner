@@ -1,3 +1,7 @@
+---
+description: '자세한 내용은 docs/my.sql , docs/dummy.sql 참고'
+---
+
 # DB TABLES
 
 ## DB
@@ -25,6 +29,8 @@ owner / not null
 music\_title / not null
 
 musician / null이면 작자미상
+
+path / not null
 
 **foreign key** : owner &lt;= mi\_user\(email\)
 
@@ -103,4 +109,32 @@ outter\_filename &lt;varchar\(255\)&gt;
 owner
 
 **foreign key** : owner &lt;= mi\_user\(email\)
+
+### mi\_group
+
+primary key : name &lt;varchar\(50\)&gt;
+
+info &lt;varchar\(255\)&gt;
+
+instruments &lt;varchar\(255\)&gt;
+
+genres &lt;varchar\(255\)&gt;
+
+### mi\_teacher
+
+teacher\_email &lt;varchar&gt;
+
+group\_name &lt;varchar\(50\)&gt;
+
+### mi\_student
+
+student\_email &lt;varchar&gt;
+
+group\_name &lt;varchar\(50\)&gt;
+
+### 공지-유진 
+
+더이상 추가하기 귀찮으니 docs/my.sql, docs/dummy.sql 파일 참고해서 알아서 각자 db에 추가하고 깃북에도 그에 맞게 수정해주면 좋겠음. 
+
+
 

@@ -6,6 +6,7 @@
 
 * [최종 목표](development-goal/undefined.md)
 * [계획](development-goal/undefined-1.md)
+* [해야할 일](development-goal/undefined-2.md)
 
 ## RULES
 
