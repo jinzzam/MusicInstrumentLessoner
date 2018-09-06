@@ -4,13 +4,12 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import hack.the.wap.musicinstrumentlessoner.R;
-import hack.the.wap.musicinstrumentlessoner.model.dto.NotificationDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiNotificationDto;
 
 /*
 참고 사이트 : https://medium.com/@douglas.iacovelli/the-beauty-of-custom-views-and-how-to-do-it-79c7d78e2088
@@ -75,7 +74,7 @@ public class MiNotificationLayout extends LinearLayout {
         typedArray.recycle();
     }
 
-    public void setCustomAttr(NotificationDto dto) {
+    public void setCustomAttr(MiNotificationDto dto) {
         tvMiNotificationLayName.setText(getResources().getText(R.string.app_name_kor));
         tvMiNotificationLayDate.setText(dto.getDate());
         tvMiNotificationLayMain.setText(dto.getMain());

@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
-import hack.the.wap.musicinstrumentlessoner.model.dto.TeacherDto;
-import hack.the.wap.musicinstrumentlessoner.model.dto.UserGroupDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiTeacherDto;
 
 /*
 참고 사이트 : https://medium.com/@douglas.iacovelli/the-beauty-of-custom-views-and-how-to-do-it-79c7d78e2088
@@ -82,7 +82,7 @@ public class GroupLayout extends LinearLayout {
         tvGroupLayMusicTitle.setText(musicTitle);
     }
 
-    public void setCustomAttr(UserGroupDto dto) {
+    public void setCustomAttr(MiGroupDto dto) {
         ivGroupLayEduImage.setImageResource(DebugImageMatch.getImageFromName(dto.getName()));
         tvGroupLayName.setText(dto.getName());
         tvGroupLayMain.setText(""
@@ -90,7 +90,7 @@ public class GroupLayout extends LinearLayout {
                 + getResources().getText(R.string.groupLaySeperator)
                 + getResources().getText(R.string.groupLayUserNum) + dto.getUsers().size() + getResources().getText(R.string.groupLayPunit));
         int templateCount = 0;
-        for (TeacherDto atom : dto.getTeachers().values()) {
+        for (MiTeacherDto atom : dto.getTeachers().values()) {
             templateCount += atom.getTemplates().size();
         }
         tvGroupLayMusicTitle.setText("" + getResources().getText(R.string.groupLayUsageTempates)

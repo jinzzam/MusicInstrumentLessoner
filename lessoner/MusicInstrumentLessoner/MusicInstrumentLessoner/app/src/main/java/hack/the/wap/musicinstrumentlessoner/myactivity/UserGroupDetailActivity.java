@@ -10,18 +10,16 @@ import android.widget.TextView;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
-import hack.the.wap.musicinstrumentlessoner.model.dto.TeacherDto;
-import hack.the.wap.musicinstrumentlessoner.model.dto.TemplateDto;
-import hack.the.wap.musicinstrumentlessoner.model.dto.UserDto;
-import hack.the.wap.musicinstrumentlessoner.model.dto.UserGroupDto;
-import hack.the.wap.musicinstrumentlessoner.mylayout.ImageLayout;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiUserDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiTeacherDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
 import hack.the.wap.musicinstrumentlessoner.mylayout.TeacherImageLayout;
 import hack.the.wap.musicinstrumentlessoner.mylayout.UserImageLayout;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class UserGroupDetailActivity extends AppCompatActivity {
     private static Session session;
-    private UserGroupDto mainUserGroup;
+    private MiGroupDto mainUserGroup;
     private ImageView ivActUserGroupDetailLeftArrow;
     private ImageView ivActUserGroupDetailMusicPlace;
     private TextView tvActUserGroupDetailName;
@@ -40,7 +38,7 @@ public class UserGroupDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_group_detail);
         Intent intent = getIntent();
-        mainUserGroup = (UserGroupDto) intent.getSerializableExtra("data");
+        mainUserGroup = (MiGroupDto) intent.getSerializableExtra("data");
         Log.e("SAFE", "onCreate >>> " + mainUserGroup);
         initView();
         viewSetListener();
@@ -55,10 +53,10 @@ public class UserGroupDetailActivity extends AppCompatActivity {
         tvActUserGroupDetailSub = findViewById(R.id.tvActUserGroupDetailSub);
         llActUserGroupDetailTeacher = findViewById(R.id.llActUserGroupDetailTeacher);
         llActUserGroupDetailUser = findViewById(R.id.llActUserGroupDetailUser);
-        for (TeacherDto dto : mainUserGroup.getTeachers().values()) {
+        for (MiTeacherDto dto : mainUserGroup.getTeachers().values()) {
             llActUserGroupDetailTeacher.addView(new TeacherImageLayout(this, dto));
         }
-        for (UserDto dto : mainUserGroup.getUsers().values()) {
+        for (MiUserDto dto : mainUserGroup.getUsers().values()) {
             llActUserGroupDetailUser.addView(new UserImageLayout(this, dto));
         }
     }

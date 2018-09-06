@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 
 import hack.the.wap.musicinstrumentlessoner.R;
-import hack.the.wap.musicinstrumentlessoner.model.dto.NotificationDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiNotificationDto;
 import hack.the.wap.musicinstrumentlessoner.mylayout.MiNotificationLayout;
 import hack.the.wap.musicinstrumentlessoner.mylayout.NotificationLayout;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
@@ -32,7 +32,7 @@ public class NotificationFragment extends Fragment {
     private static EditText etMySearchLaySearchText;
     private static LinearLayout llFragNotification;
     private static Session session;
-    private static ArrayList<NotificationDto> notifications;
+    private static ArrayList<MiNotificationDto> notifications;
 
     private OnFragmentInteractionListener mListener;
 
@@ -71,7 +71,7 @@ public class NotificationFragment extends Fragment {
         llFragNotification = notificationFragmentView.findViewById(R.id.llFragNotification);
         notifications = session.getNotifications();
 
-        for (NotificationDto dto : notifications) {
+        for (MiNotificationDto dto : notifications) {
             if (dto.isTrueUser()) {
                 NotificationLayout atom = new NotificationLayout(getContext());
                 atom.setCustomAttr(dto);

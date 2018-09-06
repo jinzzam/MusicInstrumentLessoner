@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import java.util.HashMap;
 
 import hack.the.wap.musicinstrumentlessoner.R;
-import hack.the.wap.musicinstrumentlessoner.model.dto.UserGroupDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
 import hack.the.wap.musicinstrumentlessoner.mylayout.StoreLayout;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
@@ -28,7 +28,7 @@ public class StoreFragment extends Fragment {
     private static View storeFragmentView;
     private static LinearLayout llFragStore;
     private static Session session;
-    private static HashMap<String, UserGroupDto> userGroups;
+    private static HashMap<String, MiGroupDto> userGroups;
 
     private OnFragmentInteractionListener mListener;
 
@@ -65,7 +65,7 @@ public class StoreFragment extends Fragment {
         storeFragmentView = inflater.inflate(R.layout.fragment_store, container, false);
         llFragStore = storeFragmentView.findViewById(R.id.llFragStore);
         userGroups = session.getUserGroups();
-        for (UserGroupDto dto : userGroups.values()) {
+        for (MiGroupDto dto : userGroups.values()) {
             if(!dto.isMine()){
                 StoreLayout atom = new StoreLayout(getContext());
                 atom.setCustomAttr(dto);

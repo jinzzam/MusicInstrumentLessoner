@@ -7,13 +7,13 @@ import android.widget.TextView;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
-import hack.the.wap.musicinstrumentlessoner.model.dto.UserDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiUserDto;
 
 public class UserImageLayout extends ImageLayout {
-    private UserDto mainUser;
+    private MiUserDto mainUser;
     private TextView tvMyImageName;
     private TextView tvMyImageEmail;
-    public UserImageLayout(Context context, UserDto dto) {
+    public UserImageLayout(Context context, MiUserDto dto) {
         super(context);
         mainUser = dto;
         tvMyImageName = findViewById(R.id.tvMyImageName);

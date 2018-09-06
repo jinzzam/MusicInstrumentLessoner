@@ -11,13 +11,12 @@ import java.util.TreeMap;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
-import hack.the.wap.musicinstrumentlessoner.model.dto.TemplateDto;
-import hack.the.wap.musicinstrumentlessoner.model.dto.TemplatePracticeDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.mylayout.GuideExplainLayout;
 
 public class PracticeListenActivity extends AppCompatActivity {
     private TemplatePracticeDto mainTemplatePractice;
-    private TemplateDto mainTemplate;
+    private MusicTemplateDto mainTemplate;
     private ImageView ivPracticeListenLayLeftArrow;
     private ImageView ivPracticeListenLayTeacher;
     private ImageView ivPracticeListenLayMusician;
@@ -35,7 +34,7 @@ public class PracticeListenActivity extends AppCompatActivity {
         initView();
         Intent intent = getIntent();
         mainTemplatePractice = (TemplatePracticeDto) intent.getSerializableExtra("data");
-        mainTemplate = (TemplateDto) intent.getSerializableExtra("main");
+        mainTemplate = (MusicTemplateDto) intent.getSerializableExtra("main");
         viewSetValue();
         viewSetListener();
     }

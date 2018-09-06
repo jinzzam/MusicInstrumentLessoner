@@ -28,9 +28,9 @@ import java.util.HashMap;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugMode;
-import hack.the.wap.musicinstrumentlessoner.model.dto.NotificationDto;
-import hack.the.wap.musicinstrumentlessoner.model.dto.TemplateDto;
-import hack.the.wap.musicinstrumentlessoner.model.dto.UserGroupDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiNotificationDto;
 import hack.the.wap.musicinstrumentlessoner.myfragment.GroupFragment;
 import hack.the.wap.musicinstrumentlessoner.myfragment.NotificationFragment;
 import hack.the.wap.musicinstrumentlessoner.myfragment.StoreFragment;
@@ -90,19 +90,6 @@ public class MainActivity extends AppCompatActivity
 
         MyNavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        new Thread(() -> {
-            while (ivUserMain == null) {
-                ivUserMain = findViewById(R.id.mainUser);
-                Log.e("TAG", "onCreate in Thread >>> " + ivUserMain);
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        }).start();
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
@@ -230,16 +217,16 @@ public class MainActivity extends AppCompatActivity
         if (DebugMode.DEBUG_MOD) {
             Log.e("DEBUG", "DEBUG_SESSION_DATA list ▼ ");
             Log.e("DEBUG", "DEBUG_SESSION_DATA >>> user : " + session.getMainUser());
-            HashMap<String, TemplateDto> templates = session.getTemplates();
-            ArrayList<NotificationDto> notifications = session.getNotifications();
-            HashMap<String, UserGroupDto> userGroups = session.getUserGroups();
-            for (TemplateDto dto : templates.values()) {
+            HashMap<String, MusicTemplateDto> templates = session.getTemplates();
+            ArrayList<MiNotificationDto> notifications = session.getNotifications();
+            HashMap<String, MiGroupDto> userGroups = session.getUserGroups();
+            for (MusicTemplateDto dto : templates.values()) {
                 Log.e("DEBUG", "DEBUG_SESSION_DATA >>> template : " + dto);
             }
-            for (NotificationDto dto : notifications) {
+            for (MiNotificationDto dto : notifications) {
                 Log.e("DEBUG", "DEBUG_SESSION_DATA >>> notification : " + dto);
             }
-            for (UserGroupDto dto : userGroups.values()) {
+            for (MiGroupDto dto : userGroups.values()) {
                 Log.e("DEBUG", "DEBUG_SESSION_DATA >>> userGroups : " + dto);
             }
         }

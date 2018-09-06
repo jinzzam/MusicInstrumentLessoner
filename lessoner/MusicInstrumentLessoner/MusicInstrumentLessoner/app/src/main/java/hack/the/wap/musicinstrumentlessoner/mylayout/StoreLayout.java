@@ -1,17 +1,15 @@
 package hack.the.wap.musicinstrumentlessoner.mylayout;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
-import hack.the.wap.musicinstrumentlessoner.model.dto.UserGroupDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
 
 /*
 참고 사이트 : https://medium.com/@douglas.iacovelli/the-beauty-of-custom-views-and-how-to-do-it-79c7d78e2088
@@ -62,7 +60,7 @@ public class StoreLayout extends LinearLayout {
     private void getAttrs(AttributeSet attributeSet, int defStyle) {
     }
 
-    public void setCustomAttr(UserGroupDto dto) {
+    public void setCustomAttr(MiGroupDto dto) {
         ivStoreLayGroupImage.setImageResource(DebugImageMatch.getImageFromName(dto.getName()));
         tvStoreLayGroupTitle.setText(dto.getName());
         tvStoreLayMain.setText(dto.getMain());
