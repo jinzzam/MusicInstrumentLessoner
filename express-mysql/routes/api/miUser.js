@@ -90,7 +90,6 @@ router.get('/join', function (req,res,next){
                 rides_longitude: row.rides_longitude
             });
         });
-
         console.log(result);
     });
 });

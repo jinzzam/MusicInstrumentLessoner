@@ -108,13 +108,36 @@ public class LoginActivity extends AppCompatActivity {
                 Log.e("TAG", "initVolleySet >>>> : " + error);
             }
         });
-        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+
+        final JsonArrayRequest jsonPostArrayRequest = new JsonArrayRequest(Request.Method.POST, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    user = response.getJSONObject(0);
+                    userName = user.get("username").toString();
+                    userEmail = user.get("email").toString();
+                    userPassword = user.get("password").toString();
+                    userDto = new UserDto(userName, userEmail, userPassword);
+//                    session.setMainUser(userDto);
+                    Log.e("TAG", "initVolleySet >>>> : userPassword : " + userPassword);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("TAG", "initVolleySet >>>> : " + error);
+            }
+        });
+
+        jsonGetArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
                 0,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         ));
-        jsonArrayRequest.setTag(TAG);
-        queue.add(jsonArrayRequest);
+        jsonGetArrayRequest.setTag(TAG);
+        queue.add(jsonGetArrayRequest);
         Log.e("TAG", "initVolleySet >>>> : ");
     }
 
@@ -179,21 +202,21 @@ public class LoginActivity extends AppCompatActivity {
             String name3 = getResources().getString(R.string.debug_segyong_name);
             String email3 = getResources().getString(R.string.debug_segyong_email);
             MiUserDto segyong = new MiUserDto(name3, email3, password);
-            
+
             /*
                 Dummy User4 : gain
              */
             String name4 = getResources().getString(R.string.debug_gain_name);
             String email4 = getResources().getString(R.string.debug_gain_email);
             MiUserDto gain = new MiUserDto(name4, email4, password);
-            
+
             /*
                 Dummy User5 : gain
              */
             String name5 = getResources().getString(R.string.debug_hyoju_name);
             String email5 = getResources().getString(R.string.debug_hyoju_email);
             MiUserDto hyoju = new MiUserDto(name5, email5, password);
-            
+
             /*
                 Dummy User6 : gain
              */
@@ -272,7 +295,7 @@ public class LoginActivity extends AppCompatActivity {
             String name18 = getResources().getString(R.string.debug_jeny_name);
             String email18 = getResources().getString(R.string.debug_jeny_email);
             MiTeacherDto jeny = new MiTeacherDto(name18, email18, password);
-            
+
 
             /*
                 Dummy Template1 : Moonlight3rd
@@ -312,7 +335,7 @@ public class LoginActivity extends AppCompatActivity {
             guide2.addData(getResources().getString(R.string.debug_haydn_exp_data_time5), getResources().getString(R.string.debug_haydn_exp_data_main5));
             MusicTemplateDto surpriseSymphony = new MusicTemplateDto(owner2, musicTitle2, musician2, tMain2, tSub2, guide2);
             ((MiTeacherDto) owner2).addTemplate(surpriseSymphony);
-            
+
             /*
                 Dummy Template3 : CzernyNo95
              */
@@ -323,7 +346,7 @@ public class LoginActivity extends AppCompatActivity {
             String tSub3 = getResources().getString(R.string.debug_czerny_sub);
             MusicTemplateDto czernyNo95 = new MusicTemplateDto(owner3, musicTitle3, musician3, tMain3, tSub3);
             ((MiTeacherDto) owner3).addTemplate(czernyNo95);
-            
+
             /*
                 Dummy Template4 : Canon
              */
@@ -334,7 +357,7 @@ public class LoginActivity extends AppCompatActivity {
             String tSub4 = getResources().getString(R.string.debug_pachelbel_sub);
             MusicTemplateDto canon = new MusicTemplateDto(owner4, musicTitle4, musician4, tMain4, tSub4, 20);
             ((MiTeacherDto) owner4).addTemplate(canon);
-            
+
             /*
                 Dummy Template5 : Canon_rock
              */
@@ -345,7 +368,7 @@ public class LoginActivity extends AppCompatActivity {
             String tSub5 = getResources().getString(R.string.debug_canon_rock_sub);
             MusicTemplateDto canonRock = new MusicTemplateDto(owner5, musicTitle5, musician5, tMain5, tSub5, 20);
             ((MiTeacherDto) owner5).addTemplate(canonRock);
-            
+
             /*
                 Dummy Template6 : Taryeong
              */
@@ -356,7 +379,7 @@ public class LoginActivity extends AppCompatActivity {
             String tSub6 = getResources().getString(R.string.debug_taryeong_sub);
             MusicTemplateDto folkSong = new MusicTemplateDto(owner6, musicTitle6, musician6, tMain6, tSub6, 20);
             ((MiTeacherDto) owner6).addTemplate(folkSong);
-            
+
             /*
                 Dummy Template7 : Metallica
              */
@@ -367,7 +390,7 @@ public class LoginActivity extends AppCompatActivity {
             String tSub7 = getResources().getString(R.string.debug_taryeong_sub);
             MusicTemplateDto enterTheSandman = new MusicTemplateDto(owner7, musicTitle7, musician7, tMain7, tSub7, 20);
             ((MiTeacherDto) owner7).addTemplate(enterTheSandman);
-            
+
              /*
                 Dummy Template8 : YoonSuckJoon
              */
@@ -378,7 +401,7 @@ public class LoginActivity extends AppCompatActivity {
             String tSub8 = getResources().getString(R.string.debug_airplane_sub);
             MusicTemplateDto airplain = new MusicTemplateDto(owner8, musicTitle8, musician8, tMain8, tSub8, 20);
             ((MiTeacherDto) owner8).addTemplate(airplain);
-            
+
              /*
                 Dummy Template9 : Chopin
              */
@@ -389,7 +412,7 @@ public class LoginActivity extends AppCompatActivity {
             String tSub9 = getResources().getString(R.string.debug_fantasia_sub);
             MusicTemplateDto chopin = new MusicTemplateDto(owner9, musicTitle9, musician9, tMain9, tSub9, 20);
             ((MiTeacherDto) owner9).addTemplate(chopin);
-            
+
              /*
                 Dummy Template10 : Celine dion
              */
@@ -400,7 +423,7 @@ public class LoginActivity extends AppCompatActivity {
             String tSub10 = getResources().getString(R.string.debug_mhwgo_sub);
             MusicTemplateDto celineDion = new MusicTemplateDto(owner10, musicTitle10, musician10, tMain10, tSub10, 20);
             ((MiTeacherDto) owner10).addTemplate(celineDion);
-            
+
             /*
                 Dummy Template11 : Mozart
              */
@@ -411,7 +434,7 @@ public class LoginActivity extends AppCompatActivity {
             String tSub11 = getResources().getString(R.string.debug_turkie_sub);
             MusicTemplateDto mozart = new MusicTemplateDto(owner11, musicTitle11, musician11, tMain11, tSub11, 21);
             ((MiTeacherDto) owner11).addTemplate(mozart);
-            
+
              /*
                 Dummy Template12 : Vivaldi
              */
@@ -422,7 +445,7 @@ public class LoginActivity extends AppCompatActivity {
             String tSub12 = getResources().getString(R.string.debug_vivaldi_sub);
             MusicTemplateDto vivaldi = new MusicTemplateDto(owner12, musicTitle12, musician12, tMain12, tSub12, 22);
             ((MiTeacherDto) owner12).addTemplate(vivaldi);
-            
+
              /*
                 Dummy Template13 : RealSanae
              */
@@ -433,7 +456,7 @@ public class LoginActivity extends AppCompatActivity {
             String tSub13 = getResources().getString(R.string.debug_realsanae_sub);
             MusicTemplateDto realSanae = new MusicTemplateDto(owner13, musicTitle13, musician13, tMain13, tSub13, 10);
             ((MiTeacherDto) owner13).addTemplate(realSanae);
-            
+
              /*
                 Dummy Template14 : Wap
              */
@@ -453,7 +476,7 @@ public class LoginActivity extends AppCompatActivity {
             String nMain1 = getResources().getString(R.string.teacher_upload_music);
             String nDate1 = getResources().getString(R.string.debug_aoa_choa_date1);
             MiNotificationDto not1 = new MiNotificationDto(trueUser1, template1, nMain1, nDate1);
-            
+
             /*
                 Dummy Notification2 : not2
             */
@@ -462,7 +485,7 @@ public class LoginActivity extends AppCompatActivity {
             String nMain2 = getResources().getString(R.string.debug_mi_main);
             String nDate2 = getResources().getString(R.string.debug_mi_date1);
             MiNotificationDto not2 = new MiNotificationDto(trueUser2, template2, nMain2, nDate2);
-            
+
             /*
                 Dummy Notification3 : not3
             */
@@ -525,7 +548,7 @@ public class LoginActivity extends AppCompatActivity {
             with.addGenre(getResources().getString(R.string.jazz_band));
             with.addGenre(getResources().getString(R.string.pipe_music));
             with.setMine(true);
-            
+
              /*
                 Dummy Group4 : pmc
              */
@@ -544,7 +567,7 @@ public class LoginActivity extends AppCompatActivity {
             pmc.addGenre(getResources().getString(R.string.jazz_band));
             pmc.addGenre(getResources().getString(R.string.pipe_music));
             pmc.setMine(true);
-            
+
             /*
                 Dummy Group5 : brain
              */
@@ -561,8 +584,8 @@ public class LoginActivity extends AppCompatActivity {
             brain.addInstrument(getResources().getString(R.string.saxophone));
             brain.addGenre(getResources().getString(R.string.pipe_music));
             brain.setMine(true);
-            
-            
+
+
             /*
                 Insert Template data
              */
