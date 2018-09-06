@@ -38,3 +38,14 @@ this.insert =(email, password, username, callback)=>{
     });
 };
 
+this.join =(callback)=>{
+    var sql = 'select mi_user.email, mi_user.username, music_template.music_title FROM mi_user LEFT JOIN music_template ON mi_user.email = music_template.owner = ?';
+    connection.query(sql, (err, result)=>{
+        if(!err){
+            callback(rows);
+        } else {
+            
+        }
+    })
+};
+

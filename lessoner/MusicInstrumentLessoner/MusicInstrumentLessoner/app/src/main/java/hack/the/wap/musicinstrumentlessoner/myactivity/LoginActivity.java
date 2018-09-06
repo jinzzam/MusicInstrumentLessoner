@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
         String url = "http://192.168.1.37:3000/api/miUser/";
         url += etEmail.getText().toString();
         Log.e("TAG", url);
-        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+        final JsonArrayRequest jsonGetArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try {
@@ -116,13 +116,36 @@ public class LoginActivity extends AppCompatActivity {
                 Log.e("TAG", "initVolleySet >>>> : " + error);
             }
         });
-        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+
+        final JsonArrayRequest jsonPostArrayRequest = new JsonArrayRequest(Request.Method.POST, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    user = response.getJSONObject(0);
+                    userName = user.get("username").toString();
+                    userEmail = user.get("email").toString();
+                    userPassword = user.get("password").toString();
+                    userDto = new UserDto(userName, userEmail, userPassword);
+//                    session.setMainUser(userDto);
+                    Log.e("TAG", "initVolleySet >>>> : userPassword : " + userPassword);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("TAG", "initVolleySet >>>> : " + error);
+            }
+        });
+
+        jsonGetArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
                 0,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         ));
-        jsonArrayRequest.setTag(TAG);
-        queue.add(jsonArrayRequest);
+        jsonGetArrayRequest.setTag(TAG);
+        queue.add(jsonGetArrayRequest);
         Log.e("TAG", "initVolleySet >>>> : ");
     }
 

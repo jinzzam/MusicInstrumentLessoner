@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var async = require('async');
-var miGroup = require('../../model/dao/miGroupDao');
+var miTeacher = require('../../model/dao/miTeacherDao');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
     var data;
     const task1 = function (callback) {
-        miGroup.selectAll(function (rows) {
+        miTeacher.selectAll(function (rows) {
             data = rows;
             callback(null);
         });
@@ -28,7 +28,7 @@ router.get('/:groupname', function (req, res, next) {
     var groupName = req.params['groupname'];
     var data;
     const task1 = function (callback) {
-        miGroup.selectOne(groupName, function (rows) {
+        miTeacher.selectOne(groupName, function (rows) {
             data = rows;
             callback(null);
         });
@@ -45,14 +45,11 @@ router.get('/:groupname', function (req, res, next) {
     async.series(tasks);
 });
 
-router.get('/:name/:place/:info/:instruments/:genre', function (req, res, next) {
-    var groupName = req.params['name'];
-    var groupPlace = req.params['place'];
-    var groupInfo = req.params['info'];
-    var instruments = req.params['instruments'];
-    var groupGenre = req.params['genre'];
+router.get('/:groupname/:temail', function (req, res, next) {
+    var groupName = req.params['groupname'];
+    var tEmail = req.params['temail'];
     const task1 = function (callback) {
-        miGroup.insert(groupName, groupPlace, groupInfo, instruments, groupGenre, function (rows) {
+        miTeacher.insert(groupName, tEmail, function (rows) {
             callback(null);
         });
         res.send('Hello World');
