@@ -58,6 +58,7 @@ create table music_template_wrong(
   wrong_time_start time,
   wrong_time_end time,
   constraint pk_musicteplatewrong primary key (inner_filename, wrong_time_start, wrong_time_end)
+  constraint fk_musictemplatewrong_mifile_innerfilename foreign key (inner_filename) references mi_file (inner_filename) on delete cascade
 );
 
 create table mi_file(
@@ -79,10 +80,12 @@ create table mi_teacher(
   teacher_email varchar(30),
   group_name varchar(50),
   constraint fk_miteacher_miuser_teacheremail foreign key (teacher_email) references mi_user (email) on delete cascade
+  constraint fk_miteacher_migroup_groupname foreign key (group_name) references mi_group (group_name) on delete cascade
 );
 
 create table mi_student(
   student_email varchar(30),
   group_name varchar(50),
   constraint fk_mistudent_miuser_studentemail foreign key (student_email) references mi_user (email) on delete cascade
+  constraint fk_mistudent_migroup_groupname foreign key (group_name) references mi_group (group_name) on delete cascade
 );
