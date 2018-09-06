@@ -9,6 +9,7 @@ create table music_template(
   owner varchar(30) not null,
   music_title varchar(30) not null,
   musician varchar(30),
+  guide varchar(255),
   constraint fk_musictemplate_miuser_email foreign key (owner) references mi_user (email) on delete cascade
 );
 

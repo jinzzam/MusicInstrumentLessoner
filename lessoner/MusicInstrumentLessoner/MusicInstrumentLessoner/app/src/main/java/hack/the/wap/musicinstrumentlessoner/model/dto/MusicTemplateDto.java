@@ -7,6 +7,7 @@ public class MusicTemplateDto implements Serializable {
     private String owner;
     private String musicTitle;
     private String musician;
+    private String guide;
 
     /**
      * create MusicTemplateDto
@@ -15,13 +16,15 @@ public class MusicTemplateDto implements Serializable {
      * @param owner
      * @param musicTitle
      * @param musician
+     * @param guide
      */
 
-    public MusicTemplateDto(int musicTemplateId, String owner, String musicTitle, String musician) {
+    public MusicTemplateDto(int musicTemplateId, String owner, String musicTitle, String musician, String guide) {
         this.musicTemplateId = musicTemplateId;
         this.owner = owner;
         this.musicTitle = musicTitle;
         this.musician = musician;
+        this.guide = guide;
     }
 
     public int getMusicTemplateId() {
@@ -56,6 +59,14 @@ public class MusicTemplateDto implements Serializable {
         this.musician = musician;
     }
 
+    public String getGuide() {
+        return guide;
+    }
+
+    public void setGuide(String guide) {
+        this.guide = guide;
+    }
+
     @Override
     public String toString() {
         return "MusicTemplateDto{" +
@@ -63,6 +74,7 @@ public class MusicTemplateDto implements Serializable {
                 ", owner='" + owner + '\'' +
                 ", musicTitle='" + musicTitle + '\'' +
                 ", musician='" + musician + '\'' +
+                ", guide='" + guide + '\'' +
                 '}';
     }
 }
