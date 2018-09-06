@@ -14,7 +14,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -39,14 +38,13 @@ public class LoginActivity extends AppCompatActivity {
     private static EditText etEmail;
     private static EditText etPassword;
     private static Session session = Session.getInstance();
-    private static String url = "http://192.168.43.36:3000/api/miUser/";
+    private static String getUserUrl = "http://192.168.43.36:3000/api/miUser/";
     private static JSONObject user;
     private static String userName;
     private static String userEmail;
     private static String userPassword;
     private static MiUserDto userDto;
     private RequestQueue queue;
-    private StringRequest stringRequest;
 
     {
         instance = this;
@@ -58,7 +56,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         queue = Volley.newRequestQueue(this);
         initView();
-        //initListener();
         loginButtonEvent();
     }
 
@@ -68,19 +65,29 @@ public class LoginActivity extends AppCompatActivity {
         ivLogin = findViewById(R.id.ivLogin);
     }
 
-    private void initListener() {
-        ivLogin.setOnClickListener((v) -> {
-            Log.e("TAG", "initListener >>>> : ");
+    private void loginButtonEvent() {
+        ivLogin.setOnClickListener(v -> {
+            getUserUrl += etEmail.getText().toString();
+            String inputPassword = etPassword.getText().toString();
             initVolleySet();
-            Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
-            startActivity(intent);
-            finish();
+            Log.e("DEBUG", "loginButtonEvent >>>> : " + inputPassword);
+            String name = loginProcess(inputPassword);
+            if (name != null) {
+                Toast.makeText(this.getApplicationContext(), "환영합니다.", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
+                intent.putExtra("actLoginName", userName);
+                intent.putExtra("actLoginEmail", userEmail);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(this.getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
+            }
         });
     }
 
     private void initVolleySet() {
-        Log.e("TAG", url);
-        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+        Log.e("TAG", getUserUrl);
+        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getUserUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try {
@@ -89,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                     userEmail = user.get("email").toString();
                     userPassword = user.get("password").toString();
                     userDto = new MiUserDto(userName, userEmail, userPassword);
-//                    session.setMainUser(userDto);
+                    session.setMainUser(userDto);
                     Log.e("TAG", "initVolleySet >>>> : userPassword : " + userPassword);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -111,25 +118,6 @@ public class LoginActivity extends AppCompatActivity {
         Log.e("TAG", "initVolleySet >>>> : ");
     }
 
-    private void loginButtonEvent() {
-        ivLogin.setOnClickListener(v -> {
-            url += etEmail.getText().toString();
-            String inputPassword = etPassword.getText().toString();
-            initVolleySet();
-            Log.e("DEBUG", "loginButtonEvent >>>> : " + inputPassword);
-            String name = loginProcess(inputPassword);
-            if (name != null) {
-                Toast.makeText(this.getApplicationContext(), "환영합니다.", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
-                intent.putExtra("actLoginName", userName);
-                intent.putExtra("actLoginEmail", userEmail);
-                startActivity(intent);
-                finish();
-            } else {
-                Toast.makeText(this.getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
 
     /**
      * @param password
