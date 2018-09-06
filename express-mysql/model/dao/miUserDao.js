@@ -44,7 +44,7 @@ this.join =(callback)=>{
         if(!err){
             callback(rows);
         } else {
-            
+
         }
     })
 };
