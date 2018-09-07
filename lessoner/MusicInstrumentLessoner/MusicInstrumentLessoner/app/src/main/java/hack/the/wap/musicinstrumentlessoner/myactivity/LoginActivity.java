@@ -109,35 +109,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        final JsonArrayRequest jsonPostArrayRequest = new JsonArrayRequest(Request.Method.POST, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                try {
-                    user = response.getJSONObject(0);
-                    userName = user.get("username").toString();
-                    userEmail = user.get("email").toString();
-                    userPassword = user.get("password").toString();
-                    userDto = new UserDto(userName, userEmail, userPassword);
-//                    session.setMainUser(userDto);
-                    Log.e("TAG", "initVolleySet >>>> : userPassword : " + userPassword);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("TAG", "initVolleySet >>>> : " + error);
-            }
-        });
-
-        jsonGetArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
                 0,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         ));
-        jsonGetArrayRequest.setTag(TAG);
-        queue.add(jsonGetArrayRequest);
+        jsonArrayRequest.setTag(TAG);
+        queue.add(jsonArrayRequest);
         Log.e("TAG", "initVolleySet >>>> : ");
     }
 
