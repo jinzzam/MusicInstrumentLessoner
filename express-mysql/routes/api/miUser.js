@@ -51,7 +51,7 @@ router.get('/:email/:password/:username', function (req, res, next) {
     var userUsername = req.params['username'];
     const task1 = function (callback) {
         miUser.insert(userEmail, userPassword, userUsername, function (rows) {
-                callback(null);
+            callback(null);
         });
         res.send('Hello World');
     };
@@ -59,9 +59,9 @@ router.get('/:email/:password/:username', function (req, res, next) {
     async.series(tasks);
 });
 
-router.get('/join', function (req,res,next){
+router.get('/join', function (req, res, next) {
     miUser.query({
-        sql : "SELECT \
+        sql: "SELECT \
               mi_user.email, \
               mi_user.username, \
               music_template.music_title, \
@@ -70,14 +70,14 @@ router.get('/join', function (req,res,next){
               LEFT JOIN music_template ON mi_user.email = music_template.owner \
               ",
         nestTables: '_',
-        values : [id]
+        values: [id]
     }, function (err, rows) {
         var result = [], index = {};
 
         if (err) throw err;
 
         rows.forEach(function (row) {
-            if ( !(row.users_id in index) ) {
+            if (!(row.users_id in index)) {
                 index[row.users_id] = {
                     users_id: row.users_id,
                     users_firstname: row.users_firstname,
