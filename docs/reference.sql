@@ -37,7 +37,19 @@ SELECT column_name(s)
 FROM table1
 RIGHT JOIN table2 ON table1.column_name = table2.column_name;
 
-select music_template_id, owner, music_title, musician, guide from mi_user right join music_template on mi_user.email = music_template.owner where mi_user.email='namolppam@pocket.mon';
+select music_template_id,
+owner, music_title, musician, guide
+from mi_user right join music_template
+on mi_user.email = music_template.owner
+where mi_user.email='namolppam@pocket.mon';
+
+# id 가 두 테이블의 유일한 공통 열 이름인 경우
+select column_name(s)
+from 테이블1 natural join 테이블2
+
+select music_template_id, play_time, comment
+from music_template natural join music_template_guide
+where music_template_guide.music_template_id = 1;
 
 # full outer join
 SELECT column_name(s)
