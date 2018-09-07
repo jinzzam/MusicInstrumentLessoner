@@ -30,10 +30,14 @@ SELECT column_name(s)
 FROM table1
 LEFT JOIN table2 ON table1.column_name = table2.column_name;
 
+select email, username from mi_user left join music_template on mi_user.email = music_template.owner;
+
 # right join
 SELECT column_name(s)
 FROM table1
 RIGHT JOIN table2 ON table1.column_name = table2.column_name;
+
+select music_template_id, owner, music_title, musician, guide from mi_user right join music_template on mi_user.email = music_template.owner where mi_user.email='namolppam@pocket.mon';
 
 # full outer join
 SELECT column_name(s)
