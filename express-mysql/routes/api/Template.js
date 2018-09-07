@@ -28,7 +28,28 @@ router.get('/:id', function (req, res, next) {
     var templateId = req.params['id'];
     var data;
     const task1 = function (callback) {
-        miTemplate.selectOne(templateId, function (rows) {
+        miTemplate.selectOneById(templateId, function (rows) {
+            data = rows;
+            callback(null);
+        });
+    };
+    const task2 = function (callback) {
+        console.log(data);
+        callback(null);
+    };
+    const task3 = function (callback) {
+        res.send(data);
+        callback(null);
+    };
+    const tasks = [task1, task2, task3];
+    async.series(tasks);
+});
+
+router.get('/:email', function (req, res, next) {
+    var ownerEmail = req.params['email'];
+    var data;
+    const task1 = function (callback) {
+        miTemplate.selectOneByEmail(ownerEmail, function (rows) {
             data = rows;
             callback(null);
         });
