@@ -46,3 +46,12 @@ this.insert = (owner, title, musician, callback) => {
         }
     });
 };
+
+this.joinGuide = (musicTemplateId, callback) => {
+    var sql = 'select music_template_id, play_time, comment from music_template natural join music_template_guide where music_template_guide.music_template_id = ?';
+    connection.query(sql, [musicTemplateId], function (err, rows, fields) {
+        if (!err) {
+            callback(rows);
+        }
+    });
+};
