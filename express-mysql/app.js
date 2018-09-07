@@ -31,16 +31,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/api/miUser', userApiRouter);
-app.use('/api/Template',tempRouter);
-app.use('/api/TempGuide', tempGuideRouter);
-app.use('/api/TempPractice', tempPracticeRouter);
-app.use('/api/miNotification', notiRouter);
-app.use('/api/TempWrong', tempWrongRouter);
-app.use('/api/miFile', fileRouter);
-app.use('/api/miGroup', groupRouter);
-app.use('/api/miTeacher', teacherRouter);
-app.use('/api/miStudent', studentRouter);
+app.use('/api/user', userApiRouter);
+app.use('/api/template',tempRouter);
+app.use('/api/template-guide', tempGuideRouter);
+app.use('/api/template-practice', tempPracticeRouter);
+app.use('/api/notification', notiRouter);
+app.use('/api/template-wrong', tempWrongRouter);
+app.use('/api/file', fileRouter);
+app.use('/api/group', groupRouter);
+app.use('/api/group-teacher', teacherRouter);
+app.use('/api/group-student', studentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
