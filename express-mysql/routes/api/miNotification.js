@@ -60,4 +60,25 @@ router.get('/:notiid/:tempid/:type/:comment', function (req, res, next) {
     async.series(tasks);
 });
 
+router.get('/:musicTemplateId/template-info', function (req, res, next) {
+    var musicTemplateId = req.params['musicTemplateId'];
+    var data;
+    const task1 = function (callback) {
+        miNoti.joinTemplate(musicTemplateId, function (rows) {
+            data = rows;
+            callback(null);
+        });
+    };
+    const task2 = function (callback) {
+        console.log(data);
+        callback(null);
+    };
+    const task3 = function (callback) {
+        res.send(data);
+        callback(null);
+    };
+    const tasks = [task1, task2, task3];
+    async.series(tasks);
+});
+
 module.exports = router;
