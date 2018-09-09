@@ -45,6 +45,27 @@ router.get('/:id', function (req, res, next) {
     async.series(tasks);
 });
 
+router.get('/:innerFilename/file', function (req, res, next) {
+    var innerFilename = req.params['innerFilename'];
+    var data;
+    const task1 = function (callback) {
+        miTempPractice.joinFile(innerFilename, function (rows) {
+            data = rows;
+            callback(null);
+        });
+    };
+    const task2 = function (callback) {
+        console.log(data);
+        callback(null);
+    };
+    const task3 = function (callback) {
+        res.send(data);
+        callback(null);
+    };
+    const tasks = [task1, task2, task3];
+    async.series(tasks);
+});
+
 router.get('/:email/:filename/:tempid', function (req, res, next) {
     var studentEmail = req.params['email'];
     var innerFilename = req.params['filename'];
