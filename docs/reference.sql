@@ -63,6 +63,10 @@ select music_template_id, owner, music_title, musician
 from music_template natural join mi_notification
 where music_template.music_template_id = 1;
 
+select owner, inner_filename, outter_filename
+from music_template_practice natural join mi_file
+where music_template_practice.inner_filename = 'namolnamolsong.mp3';
+
 # full outer join
 SELECT column_name(s)
 FROM table1
