@@ -67,3 +67,16 @@ this.joinAssignment = (musicTemplateId, callback) => {
         }
     });
 };
+
+this.joinPractice = (musicTemplateId, callback) => {
+    var sql = 'select music_template_practice_id,\n' +
+        'music_template_id, student_email, inner_filename,\n' +
+        'is_done, complete_percent\n' +
+        'from music_template natural join music_template_practice\n' +
+        'where music_template.music_template_id = ?';
+    connection.query(sql, [musicTemplateId], function (err, rows, fields) {
+        if (!err) {
+            callback(rows);
+        }
+    });
+};
