@@ -76,6 +76,31 @@ select inner_filename, wrong_time_start, wrong_time_end
 from music_template_wrong natural join mi_file
 where mi_file.inner_filename = 'namolnamolsong.mp3';
 
+# 테이블 여러개 조인
+select mi_group.group_name,
+mi_student.student_email, mi_user.username,
+mi_teacher.teacher_email, mi_user.username
+from mi_group natural join mi_student
+where mi_group.group_name = '학생의 그룹',
+from mi_group natural join mi_teacher
+where mi_group.group_name = '선생님의 그룹',
+from mi_student natural join mi_uer
+where mi_user.email = '학생이메일',
+from mi_teacher natural join mi_user
+where mi_user.email = '선생님이메일';
+
+select mi_group.group_name,
+mi_student.student_email, mi_user.username,
+mi_teacher.teacher_email, mi_user.username
+from mi_group natural join mi_student
+where mi_group.group_name = '피아노리브레 강남센터',
+from mi_group natural join mi_teacher
+where mi_group.group_name = '피아노리브레 강남센터',
+from mi_student natural join mi_uer
+where mi_user.email = 'jinzzam@namol.ppam',
+from mi_teacher natural join mi_user
+where mi_user.email = 'namolppam@pocket.mon';
+
 # full outer join
 SELECT column_name(s)
 FROM table1
