@@ -52,6 +52,7 @@ create table music_template_assignment(
   done_count int not null,
   success_percent int not null,
   constraint fk_musictemplateassignment_musictemplate_musictamplateid foreign key (music_template_id) references music_template (music_template_id) on delete cascade
+  constraint fk_musictemplateassignment_mifile_innerfilename foreign key (inner_filename) references mi_file (inner_filename) on delete cascade
 );
 
 create table music_template_wrong(
