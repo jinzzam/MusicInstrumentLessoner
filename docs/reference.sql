@@ -59,6 +59,12 @@ to_do_count, done_count, success_percent
 from music_template natural join music_template_assignment
 where music_template.music_template_id = 1;
 
+select music_template_practice_id,
+music_template_id, student_email, inner_filename,
+is_done, complete_percent
+from music_template natural join music_template_practice
+where music_template.music_template_id = 1;
+
 # full outer join
 SELECT column_name(s)
 FROM table1
