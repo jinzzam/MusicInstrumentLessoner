@@ -45,6 +45,48 @@ router.get('/:filename', function (req, res, next) {
     async.series(tasks);
 });
 
+router.get('/:ownerEmail/owner', function (req, res, next) {
+    var ownerEmail = req.params['ownerEmail'];
+    var data;
+    const task1 = function (callback) {
+        miFile.joinUser(ownerEmail, function (rows) {
+            data = rows;
+            callback(null);
+        });
+    };
+    const task2 = function (callback) {
+        console.log(data);
+        callback(null);
+    };
+    const task3 = function (callback) {
+        res.send(data);
+        callback(null);
+    };
+    const tasks = [task1, task2, task3];
+    async.series(tasks);
+});
+
+router.get('/:filename/wrong', function (req, res, next) {
+    var filename = req.params['filename'];
+    var data;
+    const task1 = function (callback) {
+        miFile.joinWrong(filename, function (rows) {
+            data = rows;
+            callback(null);
+        });
+    };
+    const task2 = function (callback) {
+        console.log(data);
+        callback(null);
+    };
+    const task3 = function (callback) {
+        res.send(data);
+        callback(null);
+    };
+    const tasks = [task1, task2, task3];
+    async.series(tasks);
+});
+
 router.get('/:email/:filename', function (req, res, next) {
     var userEmail = req.params['email'];
     var innerFileName = req.params['filename'];

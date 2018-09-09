@@ -67,6 +67,15 @@ select owner, inner_filename, outter_filename
 from music_template_practice natural join mi_file
 where music_template_practice.inner_filename = 'namolnamolsong.mp3';
 
+select mi_file.owner, mi_user.username,
+mi_file.inner_filename, mi_file.outter_filename
+from mi_user natural join mi_file
+where mi_user.email = 'namolppam@pocket.mon';
+
+select inner_filename, wrong_time_start, wrong_time_end
+from music_template_wrong natural join mi_file
+where mi_file.inner_filename = 'namolnamolsong.mp3';
+
 # full outer join
 SELECT column_name(s)
 FROM table1
