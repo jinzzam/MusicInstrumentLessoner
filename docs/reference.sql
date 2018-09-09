@@ -17,7 +17,7 @@ constraint fk_miteacher_migroup_groupname foreign key (group_name) references mi
 alter table mi_student add
 constraint fk_mistudent_migroup_groupname foreign key (group_name) references mi_group (group_name) on delete cascade;
 
-alter table music_template_assignment add 
+alter table music_template_assignment add
 constraint fk_musictemplateassignment_mifile_innerfilename foreign key (inner_filename) references mi_file (inner_filename) on delete cascade;
 
 # 외래키 확인
@@ -54,7 +54,10 @@ select music_template_id, play_time, comment
 from music_template natural join music_template_guide
 where music_template_guide.music_template_id = 1;
 
-select inner_filename,
+select inner_filename, music_template_id,
+to_do_count, done_count, success_percent
+from music_template natural join music_template_assignment
+where music_template.music_template_id = 1;
 
 # full outer join
 SELECT column_name(s)
