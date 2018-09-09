@@ -80,11 +80,32 @@ router.get('/:owner/:title/:musician', function (req, res, next) {
     async.series(tasks);
 });
 
-router.get('/:musicTemplateId/join-guide', function (req, res, next) {
+router.get('/:musicTemplateId/guide', function (req, res, next) {
     var musicTemplateId = req.params['musicTemplateId'];
     var data;
     const task1 = function (callback) {
         miTemplate.joinGuide(musicTemplateId, function (rows) {
+            data = rows;
+            callback(null);
+        });
+    };
+    const task2 = function (callback) {
+        console.log(data);
+        callback(null);
+    };
+    const task3 = function (callback) {
+        res.send(data);
+        callback(null);
+    };
+    const tasks = [task1, task2, task3];
+    async.series(tasks);
+});
+
+router.get('/:musicTemplateId/assignment', function (req, res, next) {
+    var musicTemplateId = req.params['musicTemplateId'];
+    var data;
+    const task1 = function (callback) {
+        miTemplate.joinAssignment(musicTemplateId, function (rows) {
             data = rows;
             callback(null);
         });
