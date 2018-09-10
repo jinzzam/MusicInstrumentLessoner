@@ -72,7 +72,7 @@ public class NotificationFragment extends Fragment {
         notifications = session.getNotifications();
 
         for (MiNotificationDto dto : notifications) {
-            if (dto.isTrueUser()) {
+            if (true) {
                 NotificationLayout atom = new NotificationLayout(getContext());
                 atom.setCustomAttr(dto);
                 llFragNotification.addView(atom);

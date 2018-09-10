@@ -27,6 +27,7 @@ import cafe.adriel.androidaudiorecorder.model.AudioSource;
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
 import hack.the.wap.musicinstrumentlessoner.mylayout.TemplateNegativePracticeLayout;
 import hack.the.wap.musicinstrumentlessoner.mylayout.TemplatePositivePracticeLayout;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
@@ -34,7 +35,7 @@ import hack.the.wap.musicinstrumentlessoner.session.Session;
 public class TemplateDetailActivity extends AppCompatActivity {
     private static Session session;
     private TemplateDetailActivity instance;
-    private ArrayList<TemplatePracticeDto> templatePractices;
+    private ArrayList<MusicTemplatePracticeDto> templatePractices;
     private MusicTemplateDto mainTemplate;
     private ImageView ivTemplateDetailLayLeftArrow;
     private ImageView ivTemplateDetailLayTeacher;
@@ -87,16 +88,16 @@ public class TemplateDetailActivity extends AppCompatActivity {
     }
 
     private void viewSet() {
-        ivTemplateDetailLayTeacher.setImageResource(DebugImageMatch.getImageFromName(mainTemplate.getOwner().getName()));
+        ivTemplateDetailLayTeacher.setImageResource(DebugImageMatch.getImageFromName(mainTemplate.getOwner()));
         ivTemplateDetailLayMusician.setImageResource(DebugImageMatch.getImageFromName(mainTemplate.getMusician()));
         tvTemplateDetailLayName.setText(mainTemplate.getMusicTitle());
         tvTemplateDetailLayMusicianName.setText(mainTemplate.getMusician());
         tvTemplateDetailLayTeacherNameSlot.setText(getResources().getString(R.string.tempalte_detail_act_teacher_pre)
-                + mainTemplate.getOwner().getName());
+                + mainTemplate.getOwner());
 
-        templatePractices = mainTemplate.getTemplatePractices();
-        for (TemplatePracticeDto dto : templatePractices) {
-            if (dto.getFileName() != null) {
+        templatePractices = session.getTemplatePractices();
+        for (MusicTemplatePracticeDto dto : templatePractices) {
+            if (dto.getInnerFilename() != null) {
                 TemplatePositivePracticeLayout atom = new TemplatePositivePracticeLayout(this);
                 atom.setCustomAttr(dto);
                 atom.getIvTemplatePositivePracticeLayListen().setOnClickListener(v -> {
@@ -117,10 +118,10 @@ public class TemplateDetailActivity extends AppCompatActivity {
                 atom.setCustomAttr(dto);
                 atom.setOnClickListener(v -> {
                     rootDir = mkdir(dto);
-                    dirForUpload = "/" + mainTemplate.getMusicTitle() + "/" + dto.getPracticeId();
+                    dirForUpload = "/" + mainTemplate.getMusicTitle() + "/" + dto.getMusicTemplatePracticeId();
                     filePath = rootDir + getResources().getString(R.string.fileDefaultName);
                     int requestCode = 0;
-                    curPractice = dto.getPracticeId();
+                    curPractice = dto.getMusicTemplatePracticeId();
                     curFile = filePath;
                     AndroidAudioRecorder.with(this)
                             // Required
@@ -171,8 +172,8 @@ public class TemplateDetailActivity extends AppCompatActivity {
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(this.getApplicationContext(), "녹음을 성공했습니다.", Toast.LENGTH_LONG).show();
-                TemplatePracticeDto dto = new TemplatePracticeDto(curPractice, curFile);
-                mainTemplate.getTemplatePractices().set(curPractice - 1, dto);
+                MusicTemplatePracticeDto dto = new MusicTemplatePracticeDto(curPractice, curFile);
+                session.getTemplatePractices().set(curPractice - 1, dto);
                 AndroidAudioConverter.with(this)
                         .setFile(new File(filePath))
                         .setFormat(AudioFormat.MP3)
@@ -195,7 +196,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
                         })
                         .convert();
 
-                session.getTemplates().get(mainTemplate.getMusicTitle()).getTemplatePractices().set(curPractice - 1, dto);
+                session.getTemplates().get(session.getTemplatePractices()).getMusicTemplateId().set(curPractice - 1, dto);
                 session.showAllSession();
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(this.getApplicationContext(), "녹음을 취소했습니다.", Toast.LENGTH_LONG).show();
@@ -204,16 +205,16 @@ public class TemplateDetailActivity extends AppCompatActivity {
         }
     }
 
-    private String mkdir(TemplatePracticeDto dto) {
+    private String mkdir(MusicTemplatePracticeDto dto) {
         File dir = new File(getResources().getString(R.string.fileDefaultDir) + mainTemplate.getMusicTitle());
         if (!dir.isDirectory()) {
             dir.mkdir();
         }
-        dir = new File(getResources().getString(R.string.fileDefaultDir) + mainTemplate.getMusicTitle() + "/" + dto.getPracticeId());
+        dir = new File(getResources().getString(R.string.fileDefaultDir) + mainTemplate.getMusicTitle() + "/" + dto.getMusicTemplatePracticeId());
         if (!dir.isDirectory()) {
             dir.mkdir();
         }
-        return getResources().getString(R.string.fileDefaultDir) + mainTemplate.getMusicTitle() + "/" + dto.getPracticeId();
+        return getResources().getString(R.string.fileDefaultDir) + mainTemplate.getMusicTitle() + "/" + dto.getMusicTemplatePracticeId();
     }
 
     public void uploadFileToServer() {

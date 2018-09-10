@@ -11,6 +11,7 @@ import java.util.Random;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugMode;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
 
 /*
 참고 사이트 : https://medium.com/@douglas.iacovelli/the-beauty-of-custom-views-and-how-to-do-it-79c7d78e2088
@@ -53,11 +54,11 @@ public class TemplatePositivePracticeLayout extends LinearLayout {
         ivTemplatePositivePracticeLayView=findViewById(R.id.ivTemplatePositivePracticeLayView);
     }
 
-    public void setCustomAttr(TemplatePracticeDto dto) {
-        tvTemplatePositivePracticeLayCount.setText(getResources().getText(R.string.LayTemplatePracticeMusicNum) + (dto.getPracticeId() + ""));
+    public void setCustomAttr(MusicTemplatePracticeDto dto) {
+        tvTemplatePositivePracticeLayCount.setText(getResources().getText(R.string.LayTemplatePracticeMusicNum) + (dto.getMusicTemplatePracticeId() + ""));
         if (DebugMode.DEBUG_MOD) {
             tvTemplatePositiveLayPercent.setText(""+getResources().getText(R.string.LayTemplatePracticeSuccessPercent)
-                    + dto.getPercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd));
+                    + dto.getCompletePercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd));
         }
     }
 
