@@ -20,6 +20,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -54,6 +55,9 @@ public class LoginActivity extends AppCompatActivity {
     private static String getTemplatePracticeUrl;
     private static String getGroupUrl;
 
+    HashMap<String, MusicTemplateDto> templates = new HashMap<>();
+    ArrayList<MiNotificationDto> notificationDtoArrayList = new ArrayList<>();
+
 
     {
         instance = this;
@@ -80,7 +84,6 @@ public class LoginActivity extends AppCompatActivity {
             String inputPassword = etPassword.getText().toString();
 
             userVolleySet();
-            notificationVolleySet();
             fileVolleySet();
             templateVolleySet();
             groupVolleySet();
@@ -119,16 +122,18 @@ public class LoginActivity extends AppCompatActivity {
                         String musician = template.get("musician").toString();
                         String guide = template.get("guide").toString();
                         MusicTemplateDto musicTemplateDto = new MusicTemplateDto(musicTemplateId, owner, musicTitle, musician, guide);
-                        HashMap<String, MusicTemplateDto> templates = new HashMap<>();
                         template.put(musicTitle, musicTemplateDto);
-                        session.setTemplates(templates);
+
                         getTemplateGuideUrl = getTemplateUrl + musicTemplateId + "/guide/";
                         getTemplateAssignmentUrl = getTemplateUrl + musicTemplateId + "/assignment/";
                         getTemplatePracticeUrl = getTemplateUrl + musicTemplateId + "/practice/";
+
+                        notificationVolleySet(musicTemplateId);
                         templateGuideVolleySet(getTemplateGuideUrl);
                         templateAssignmentVolleySet(getTemplateAssignmentUrl);
                         templatePracticeVolleySet(getTemplatePracticeUrl);
                     }
+                    session.setTemplates(templates);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -160,7 +165,40 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void notificationVolleySet() {
+    private void notificationVolleySet(int musicTemplateId) {
+        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getNotificationUrl, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject notification = response.getJSONObject(i);
+                        int miNotificationId = (int) notification.get("mi_notification_id");
+                        int musicTemplateId = (int) notification.get("music_template_id");
+                        Timestamp registDateTime = (Timestamp) notification.get("regist_data_time");
+                        String type = notification.get("type").toString();
+                        String comment = notification.get("comment").toString();
+                        MiNotificationDto notificationDto = new MiNotificationDto(miNotificationId, musicTemplateId, registDateTime, type, comment);
+                        notificationDtoArrayList.add(i, notificationDto);
+                    }
+                    session.setNotifications(notificationDtoArrayList);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+        jsonArrayRequest.setTag(TAG);
+        queue.add(jsonArrayRequest);
+        Log.e(TAG, "notificationVolleySet >>>> : ");
     }
 
     private void userVolleySet() {
