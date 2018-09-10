@@ -77,6 +77,8 @@ from music_template_wrong natural join mi_file
 where mi_file.inner_filename = 'namolnamolsong.mp3';
 
 # 테이블 여러개 조인
+# select * from (a left join b on a.사원코드=b.사원코드) left join c on a.부품코드=c.부품코드
+
 select mi_group.group_name,
 mi_student.student_email, mi_user.username,
 mi_teacher.teacher_email, mi_user.username
@@ -92,14 +94,23 @@ where mi_user.email = '선생님이메일';
 select mi_group.group_name,
 mi_student.student_email, mi_user.username,
 mi_teacher.teacher_email, mi_user.username
-from mi_group natural join mi_student
-where mi_group.group_name = '피아노리브레 강남센터',
-from mi_group natural join mi_teacher
-where mi_group.group_name = '피아노리브레 강남센터',
-from mi_student natural join mi_uer
-where mi_user.email = 'jinzzam@namol.ppam',
-from mi_teacher natural join mi_user
-where mi_user.email = 'namolppam@pocket.mon';
+from mi_group, mi_student, mi_teacher, mi_user
+where mi_group.group_name = mi_student.group_name
+and mi_group.group_name = mi_teacher.group_name
+and mi_student.student_email = mi_user.email
+and mi_teacher.teacher_email = mi_user.email
+where mi_group.group_name = '피아노리브레 강남센터';
+
+SELECT column_name(s)
+FROM table1
+RIGHT JOIN table2 ON table1.column_name = table2.column_name;
+
+select mi_group.group_name,
+mi_teacher.teacher_email, mi_user.username,
+mi_student.student_email, mi_user.username
+from (mi_teacher right join mi_user on mi_teacher.teacher_email = mi_user.email),
+(mi_student right join mi_user on mi_student.student_email = mi_user.email),
+right join mi_group on mi_group.group_name = mi_teacher.group_name, mi_group.group_name = mi_student.group_name;
 
 # full outer join
 SELECT column_name(s)
