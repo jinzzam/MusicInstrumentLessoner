@@ -37,3 +37,16 @@ this.insert =(groupname, place, info, instruments, genre, callback)=>{
         }
     });
 };
+
+this.join = (callback) => {
+    var sql =
+        'select mi_user.email, mi_user.username, mi_group.*, mi_teacher.teacher_email from ((mi_user join mi_student on mi_user.email = mi_student.student_email) join mi_group on mi_student.group_name= mi_group.group_name) join mi_teacher on mi_group.group_name = mi_teacher.group_name';
+    connection.query(sql,(err,rows,fields)=>{
+        if(!err){
+            callback(rows);
+        } else {
+            console.log('user post');
+            console.log(err);
+        }
+    });
+};
