@@ -41,10 +41,10 @@ import hack.the.wap.musicinstrumentlessoner.session.Session;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LOGIN_ACT";
     private static LoginActivity instance;
+    private static Session session = Session.getInstance();
     private static ImageView ivLogin;
     private static EditText etEmail;
     private static EditText etPassword;
-    private static Session session = Session.getInstance();
     private static JSONObject user;
     private static String userName;
     private static String userEmail;
@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     private static MiUserDto userDto;
     private RequestQueue queue;
 
-    private static String getUserUrl = "http://192.168.43.36:3000/api/miUser/";
+    private static String getUserUrl = "http://192.168.43.36:3000/api/user/";
     private static String getNotificationUrl = "http://192.168.43.36:3000/api/notification/";
     private static String getFileUrl = "http://192.168.43.36:3000/api/file/";
     private static String getTemplateUrl = "http://192.168.43.36:3000/api/template/";
