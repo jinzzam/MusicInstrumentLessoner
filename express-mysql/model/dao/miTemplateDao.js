@@ -48,7 +48,10 @@ this.insert = (owner, title, musician, callback) => {
 };
 
 this.joinGuide = (musicTemplateId, callback) => {
-    var sql = 'select music_template_id, play_time, comment from music_template natural join music_template_guide where music_template_guide.music_template_id = ?';
+    var sql = "select music_template_guide.music_template_id, music_template.music_title,\n" +
+        "music_template_guide.play_time, music_template_guide.comment\n" +
+        "from music_template natural join music_template_guide\n" +
+        "where music_template_guide.music_template_id = ?";
     connection.query(sql, [musicTemplateId], function (err, rows, fields) {
         if (!err) {
             callback(rows);

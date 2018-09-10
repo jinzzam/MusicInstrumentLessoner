@@ -50,7 +50,8 @@ where mi_user.email='namolppam@pocket.mon';
 select column_name(s)
 from 테이블1 natural join 테이블2
 
-select music_template_id, play_time, comment
+select music_template_guide.music_template_id, music_template.music_title,
+music_template_guide.play_time, music_template_guide.comment
 from music_template natural join music_template_guide
 where music_template_guide.music_template_id = 1;
 
