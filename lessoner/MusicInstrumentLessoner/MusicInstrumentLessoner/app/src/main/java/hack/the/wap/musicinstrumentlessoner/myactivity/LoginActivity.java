@@ -26,6 +26,7 @@ import java.util.HashMap;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugMode;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiFileDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiNotificationDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiTeacherDto;
@@ -49,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private static String getUserUrl = "http://192.168.43.36:3000/api/miUser/";
     private static String getNotificationUrl = "http://192.168.43.36:3000/api/notification/";
+    private static String getFileUrl = "http://192.168.43.36:3000/api/file/";
     private static String getTemplateUrl = "http://192.168.43.36:3000/api/template/";
     private static String getTemplateGuideUrl;
     private static String getTemplateAssignmentUrl;
@@ -56,8 +58,8 @@ public class LoginActivity extends AppCompatActivity {
     private static String getGroupUrl;
 
     HashMap<String, MusicTemplateDto> templates = new HashMap<>();
-    ArrayList<MiNotificationDto> notificationDtoArrayList = new ArrayList<>();
-
+    ArrayList<MiNotificationDto> notifications = new ArrayList<>();
+    HashMap<String, MiFileDto> files = new HashMap<>();
 
     {
         instance = this;
@@ -107,6 +109,37 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void fileVolleySet() {
+        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getFileUrl, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject file = response.getJSONObject(i);
+                        String owner = file.get("owner").toString();
+                        String innerFilename = file.get("inner_filename").toString();
+                        String outterFilename = file.get("outter_filename").toString();
+                        MiFileDto miFileDto = new MiFileDto(owner, innerFilename, outterFilename);
+                        files.put(innerFilename, miFileDto);
+                    }
+                    session.setFiles(files);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+        jsonArrayRequest.setTag(TAG);
+        queue.add(jsonArrayRequest);
+        Log.e(TAG, "fileVolleySet >>>> : ");
     }
 
     private void templateVolleySet() {
@@ -178,9 +211,9 @@ public class LoginActivity extends AppCompatActivity {
                         String type = notification.get("type").toString();
                         String comment = notification.get("comment").toString();
                         MiNotificationDto notificationDto = new MiNotificationDto(miNotificationId, musicTemplateId, registDateTime, type, comment);
-                        notificationDtoArrayList.add(i, notificationDto);
+                        notifications.add(i, notificationDto);
                     }
-                    session.setNotifications(notificationDtoArrayList);
+                    session.setNotifications(notifications);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
