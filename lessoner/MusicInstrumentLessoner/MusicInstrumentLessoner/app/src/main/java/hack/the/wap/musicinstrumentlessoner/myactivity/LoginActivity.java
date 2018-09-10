@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
     private static String getTemplateGuideUrl;
     private static String getTemplateAssignmentUrl;
     private static String getTemplatePracticeUrl;
-    private static String getGroupUrl = "http://192.168.43.36:3000/api/group";
+    private static String getGroupUrl = "http://192.168.43.36:3000/api/group/";
 
     HashMap<String, MusicTemplateDto> templates = new HashMap<>();
     ArrayList<MiNotificationDto> notifications = new ArrayList<>();
