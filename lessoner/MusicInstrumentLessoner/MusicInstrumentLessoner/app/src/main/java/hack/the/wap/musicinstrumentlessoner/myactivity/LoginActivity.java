@@ -17,6 +17,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -32,19 +33,27 @@ import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final String TAG = "MAIN";
+    private static final String TAG = "LOGIN_ACT";
     private static LoginActivity instance;
     private static ImageView ivLogin;
     private static EditText etEmail;
     private static EditText etPassword;
     private static Session session = Session.getInstance();
-    private static String getUserUrl = "http://192.168.43.36:3000/api/miUser/";
     private static JSONObject user;
     private static String userName;
     private static String userEmail;
     private static String userPassword;
     private static MiUserDto userDto;
     private RequestQueue queue;
+
+    private static String getUserUrl = "http://192.168.43.36:3000/api/miUser/";
+    private static String getNotificationUrl = "http://192.168.43.36:3000/api/notification/";
+    private static String getTemplateUrl = "http://192.168.43.36:3000/api/template/";
+    private static String getTemplateGuideUrl;
+    private static String getTemplateAssignmentUrl;
+    private static String getTemplatePracticeUrl;
+    private static String getGroupUrl;
+
 
     {
         instance = this;
@@ -69,8 +78,14 @@ public class LoginActivity extends AppCompatActivity {
         ivLogin.setOnClickListener(v -> {
             getUserUrl += etEmail.getText().toString();
             String inputPassword = etPassword.getText().toString();
-            initVolleySet();
-            Log.e("DEBUG", "loginButtonEvent >>>> : " + inputPassword);
+
+            userVolleySet();
+            notificationVolleySet();
+            fileVolleySet();
+            templateVolleySet();
+            groupVolleySet();
+
+            Log.e(TAG, "loginButtonEvent >>>> : " + inputPassword);
             String name = loginProcess(inputPassword);
             if (name != null) {
                 Toast.makeText(this.getApplicationContext(), "환영합니다.", Toast.LENGTH_LONG).show();
@@ -85,27 +100,43 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void initVolleySet() {
-        Log.e("TAG", getUserUrl);
-        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getUserUrl, null, new Response.Listener<JSONArray>() {
+    private void groupVolleySet() {
+    }
+
+    private void fileVolleySet() {
+    }
+
+    private void templateVolleySet() {
+        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getTemplateUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try {
-                    user = response.getJSONObject(0);
-                    userName = user.get("username").toString();
-                    userEmail = user.get("email").toString();
-                    userPassword = user.get("password").toString();
-                    userDto = new MiUserDto(userName, userEmail, userPassword);
-                    session.setMainUser(userDto);
-                    Log.e("TAG", "initVolleySet >>>> : userPassword : " + userPassword);
-                } catch (Exception e) {
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject template = response.getJSONObject(i);
+                        int musicTemplateId = (int) template.get("music_template_id");
+                        String owner = template.get("owner").toString();
+                        String musicTitle = template.get("music_title").toString();
+                        String musician = template.get("musician").toString();
+                        String guide = template.get("guide").toString();
+                        MusicTemplateDto musicTemplateDto = new MusicTemplateDto(musicTemplateId, owner, musicTitle, musician, guide);
+                        HashMap<String, MusicTemplateDto> templates = new HashMap<>();
+                        template.put(musicTitle, musicTemplateDto);
+                        session.setTemplates(templates);
+                        getTemplateGuideUrl = getTemplateUrl + musicTemplateId + "/guide/";
+                        getTemplateAssignmentUrl = getTemplateUrl + musicTemplateId + "/assignment/";
+                        getTemplatePracticeUrl = getTemplateUrl + musicTemplateId + "/practice/";
+                        templateGuideVolleySet(getTemplateGuideUrl);
+                        templateAssignmentVolleySet(getTemplateAssignmentUrl);
+                        templatePracticeVolleySet(getTemplatePracticeUrl);
+                    }
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("TAG", "initVolleySet >>>> : " + error);
+
             }
         });
 
@@ -116,7 +147,54 @@ public class LoginActivity extends AppCompatActivity {
         ));
         jsonArrayRequest.setTag(TAG);
         queue.add(jsonArrayRequest);
-        Log.e("TAG", "initVolleySet >>>> : ");
+        Log.e(TAG, "templateVolleySet >>>> : ");
+    }
+
+    private void templatePracticeVolleySet(String getTemplatePracticeUrl) {
+    }
+
+    private void templateAssignmentVolleySet(String getTemplateAssignmentUrl) {
+    }
+
+    private void templateGuideVolleySet(String getTemplateGuideUrl) {
+
+    }
+
+    private void notificationVolleySet() {
+    }
+
+    private void userVolleySet() {
+        Log.e(TAG, getUserUrl);
+        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getUserUrl, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    user = response.getJSONObject(0);
+                    userName = user.get("username").toString();
+                    userEmail = user.get("email").toString();
+                    userPassword = user.get("password").toString();
+                    userDto = new MiUserDto(userName, userEmail, userPassword);
+                    session.setMainUser(userDto);
+                    Log.e("TAG", "userVolleySet >>>> : userPassword : " + userPassword);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("TAG", "userVolleySet >>>> : " + error);
+            }
+        });
+
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+        jsonArrayRequest.setTag(TAG);
+        queue.add(jsonArrayRequest);
+        Log.e(TAG, "userVolleySet >>>> : ");
     }
 
 
