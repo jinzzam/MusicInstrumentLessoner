@@ -246,7 +246,7 @@ public class MainActivity extends AppCompatActivity
         int readpermissioncheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
         int recordpermissioncheck = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO);
 
-        if(readpermissioncheck==PackageManager.PERMISSION_DENIED && recordpermissioncheck ==PackageManager.PERMISSION_DENIED){
+        if (readpermissioncheck == PackageManager.PERMISSION_DENIED && recordpermissioncheck == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}, 1);
         }
     }
