@@ -13,6 +13,8 @@ import com.android.volley.toolbox.Volley;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugMode;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiUserDto;
+import hack.the.wap.musicinstrumentlessoner.myservice.LoginService;
 import hack.the.wap.musicinstrumentlessoner.myservice.VolleyService;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
@@ -21,9 +23,12 @@ public class LoginActivity extends AppCompatActivity {
     private static LoginActivity instance;
     private static Session session = Session.getInstance();
     private static VolleyService volley;
+    private static LoginService loginService;
     private static ImageView ivLogin;
     private static EditText etEmail;
     private static EditText etPassword;
+
+    private static MiUserDto userDto;
 
     {
         instance = this;
@@ -36,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         volley = VolleyService.getInstance(this);
         initView();
-        loginButtonEvent();
+        loginProcess();
     }
 
     private void initView() {
@@ -45,10 +50,38 @@ public class LoginActivity extends AppCompatActivity {
         ivLogin = findViewById(R.id.ivLogin);
     }
 
+    public void loginProcess() {
+        ivLogin.setOnClickListener(v -> {
+            String inputEmail = etEmail.getText().toString();
+            String inputPassword = etPassword.getText().toString();
+            userDto = volley.userVolleySet(inputEmail);
+            session.setMainUser(userDto);
+            //로그인 서비스에서 이메일 존재여부 체크
+            if(loginService.checkEmail(inputEmail)){
+                //로그인 서비스에서 패스워드 체크
+                if(loginService.checkPassword(inputPassword)) {
+                    //메인 액티비티로 이동
+                }else{
+                    //토스트 띄우고 로그인 액티비티 그대로
+                }
+            }else{
+                //이메일이 존재하지 않는다면
+                //토스트 띄우고 로그인 액티비티 그대로
+            }
+
+
+
+        });
+
+
+        loginButtonEvent();
+    }
+
+
     private void loginButtonEvent() {
         ivLogin.setOnClickListener(v -> {
             getUserUrl += etEmail.getText().toString();
-            String inputPassword = etPassword.getText().toString();
+
 
             volley.userVolleySet();
             volley.fileVolleySet();
@@ -70,18 +103,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * @param password
-     * @return If you success login then return is name. Otherwise, it is null.
-     */
-    public String loginProcess(String password) {
-        if (password.equals(userPassword)) {
-            setSession();
-            return userName;
-        }
-        return null;
-
-    }
 
     public static LoginActivity getInstance() {
         return instance;

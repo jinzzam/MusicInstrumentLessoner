@@ -1,7 +1,6 @@
 package hack.the.wap.musicinstrumentlessoner.myservice;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -65,9 +64,9 @@ public class VolleyService {
         return instance;
     }
 
-    public MiUserDto userVolleySet() {
+    public MiUserDto userVolleySet(String inputEmail) {
         Log.e(TAG, getUserUrl);
-        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getUserUrl, null, new Response.Listener<JSONArray>() {
+        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getUserUrl + inputEmail, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try {
