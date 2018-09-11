@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GroupFragment.OnFragmentInteractionListener,
         NotificationFragment.OnFragmentInteractionListener, TemplateFragment.OnFragmentInteractionListener, StoreFragment.OnFragmentInteractionListener {
     private static MainActivity instance;
-    private static ImageView ivUserMain;
     private static NotificationFragment notificationFragment;
     private static TemplateFragment templateFragment;
     private static GroupFragment groupFragment;
