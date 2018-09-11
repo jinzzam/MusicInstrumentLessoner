@@ -61,16 +61,25 @@ router.get('/:name/:place/:info/:instruments/:genre', function (req, res, next) 
     async.series(tasks);
 });
 
-router.get('/joinjoin', function(req, res, next){
+router.get('/:useremail/join', function(req, res, next){
+    var userEmail = req.params['useremail'];
+    var data;
     const task1 = function (callback) {
-        miGroup.join(function (rows) {
+        miGroup.join(userEmail, function (rows) {
+            data = rows;
             callback(null);
         });
-        res.send('Hello World');
     };
-    const tasks = [task1];
+    const task2 = function (callback) {
+        console.log(data);
+        callback(null);
+    };
+    const task3 = function (callback) {
+        res.send(data);
+        callback(null);
+    };
+    const tasks = [task1, task2, task3];
     async.series(tasks);
 });
-
 
 module.exports = router;

@@ -2,7 +2,7 @@ var mysql = require('mysql');
 
 var connection = mysql.createConnection({
     user : 'root',
-    password : '123',
+    password : '',
     database : 'midb'
 });
 
@@ -38,15 +38,12 @@ this.insert =(groupname, place, info, instruments, genre, callback)=>{
     });
 };
 
-this.join = (callback) => {
+this.join = (useremail, callback) => {
     var sql =
-        'select mi_user.email, mi_user.username, mi_group.*, mi_teacher.teacher_email from ((mi_user join mi_student on mi_user.email = mi_student.student_email) join mi_group on mi_student.group_name= mi_group.group_name) join mi_teacher on mi_group.group_name = mi_teacher.group_name';
-    connection.query(sql,(err,rows,fields)=>{
+        'select mi_user.email, mi_user.username, mi_group.*, mi_teacher.teacher_email from ((mi_user join mi_student on mi_user.email = ?) join mi_group on mi_student.student_email = mi_user.email and mi_student.group_name= mi_group.group_name) join mi_teacher on mi_group.group_name = mi_teacher.group_name';
+    connection.query(sql, [useremail], (err,rows,fields)=>{
         if(!err){
             callback(rows);
-        } else {
-            console.log('user post');
-            console.log(err);
         }
     });
 };
