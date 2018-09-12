@@ -57,18 +57,17 @@ public class LoginActivity extends AppCompatActivity {
             userDto = volley.userVolleySet(inputEmail);
             session.setMainUser(userDto);
             //로그인 서비스에서 이메일 존재여부 체크
-            if(loginService.checkEmail(inputEmail)){
+            if (loginService.checkEmail(inputEmail)) {
                 //로그인 서비스에서 패스워드 체크
-                if(loginService.checkPassword(inputPassword)) {
+                if (loginService.checkPassword(inputPassword)) {
                     //메인 액티비티로 이동
-                }else{
+                } else {
                     //토스트 띄우고 로그인 액티비티 그대로
                 }
-            }else{
+            } else {
                 //이메일이 존재하지 않는다면
                 //토스트 띄우고 로그인 액티비티 그대로
             }
-
 
 
         });
