@@ -143,4 +143,29 @@ router.get('/:musicTemplateId/practice', function (req, res, next) {
     async.series(tasks);
 });
 
+router.get('/:guideupdate/:musicTemplateId/update', function (req, res, next){
+    var guideUpdate = req.params['guideupdate'];
+    var musicTemplateId = req.params['musicTemplateId'];
+    const task1 = function (callback) {
+        miTemplate.Gupdate(guideUpdate, musicTemplateId, function (rows){
+            callback(null);
+        });
+        res.send('Hello World');
+    };
+    const tasks = [task1];
+    async.series(tasks);
+});
+
+router.get('/:musicTemplateId/delete', function (req, res, next){
+    var musicTemplateId = req.params['musicTemplateId'];
+    const task1 = function (callback) {
+        miTemplate.tempDelete(musicTemplateId, function (rows) {
+            callback(null);
+        });
+        res.send('Hello World');
+    };
+    const tasks = [task1];
+    async.series(tasks);
+});
+
 module.exports = router;

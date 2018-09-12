@@ -83,3 +83,21 @@ this.joinPractice = (musicTemplateId, callback) => {
         }
     });
 };
+
+this.Gupdate = (guideupdate, musicTemplateId, callback) => {
+    var sql = 'update music_template set guide =? where music_template_id = ?';
+    connection.connect(sql, [guideupdate, musicTemplateId], function (err, rows, fields){
+        if(!err){
+            callback(rows);
+        }
+    });
+};
+
+this.tempDelete = (musicTemplateId, callback) => {
+    var sql = 'delete from music_template where music_template_id = ?';
+    connection.query(sql, [musicTemplateId], function (err, rows, fields){
+        if(!err){
+            callback(rows);
+        }
+    });
+};
