@@ -119,4 +119,16 @@ router.get('/:updatePass/:email/passupdate', function (req, res, next){
     async.series(tasks);
 });
 
+router.get('/:email/delete', function (req,res,next){
+    var email = req.params['email'];
+    const task1 = function (callback) {
+        miUser.delete(email, function (rows){
+            callback(null);
+        });
+        res.send('Hello World');
+    };
+    const tasks = [task1];
+    async.series(tasks);
+});
+
 module.exports = router;
