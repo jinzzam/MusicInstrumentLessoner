@@ -295,10 +295,11 @@ public class VolleyService {
                         JSONObject notification = response.getJSONObject(i);
                         int miNotificationId = (int) notification.get("mi_notification_id");
                         int musicTemplateId = (int) notification.get("music_template_id");
+                        String email = notification.get("email").toString();
                         Timestamp registDateTime = (Timestamp) notification.get("regist_data_time");
                         String type = notification.get("type").toString();
                         String comment = notification.get("comment").toString();
-                        MiNotificationDto notificationDto = new MiNotificationDto(miNotificationId, musicTemplateId, registDateTime, type, comment);
+                        MiNotificationDto notificationDto = new MiNotificationDto(miNotificationId, musicTemplateId, email, registDateTime, type, comment);
                         notifications.add(i, notificationDto);
                     }
                 } catch (JSONException e) {
