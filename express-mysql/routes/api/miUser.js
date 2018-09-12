@@ -66,7 +66,7 @@ router.get('/:email/join', function (req, res, next) {
     async.series(tasks);
 });
 
-router.get('/:email/:password/:username', function (req, res, next) {
+router.get('/:email/:password/:username/insert', function (req, res, next) {
     var userEmail = req.params['email'];
     var userPassword = req.params['password'];
     var userUsername = req.params['username'];
@@ -80,5 +80,43 @@ router.get('/:email/:password/:username', function (req, res, next) {
     async.series(tasks);
 });
 
+router.get('/:updateEmail/:email/emailupdate', function (req, res, next){
+    var updateEmail = req.params['updateEmail'];
+    var email = req.params['email'];
+    const task1 = function (callback) {
+        miUser.Eupdate(updateEmail, email, function (rows){
+            callback(null);
+        });
+        res.send('Hello World');
+    };
+    const tasks = [task1];
+    async.series(tasks);
+});
+
+router.get('/:updateName/:email/nameupdate', function (req, res, next){
+    var updateName = req.params['updateName'];
+    var email = req.params['email'];
+    const task1 = function (callback) {
+        miUser.Nupdate(updateName, email, function (rows){
+            callback(null);
+        });
+        res.send('Hello World');
+    };
+    const tasks = [task1];
+    async.series(tasks);
+});
+
+router.get('/:updatePass/:email/passupdate', function (req, res, next){
+    var updatePass = req.params['updatePass'];
+    var email = req.params['email'];
+    const task1 = function (callback) {
+        miUser.Pupdate(updatePass, email, function (rows){
+            callback(null);
+        });
+        res.send('Hello World');
+    };
+    const tasks = [task1];
+    async.series(tasks);
+});
 
 module.exports = router;

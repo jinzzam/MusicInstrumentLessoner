@@ -47,3 +47,36 @@ this.join = (email, callback) => {
     });
 };
 
+this.Eupdate = (updateEmail, email, callback) => {
+            var sql = 'update mi_user set email = ? where email = ?';
+            connection.query(sql,[updateEmail,email], function(err,rows,fields){
+                callback(rows);
+        });
+    };
+
+this.Nupdate = (updateName, email, callback) => {
+    var sql = 'update mi_user set username = ? where email = ?';
+    connection.query(sql,[updateName,email], function(err,rows,fields){
+        if(!err) {
+            callback(rows);
+        }
+    });
+};
+
+this.Pupdate = (updatePass, email, callback) => {
+    var sql = 'update mi_user set password = ? where email = ?';
+    connection.query(sql,[updatePass, email], function(err,rows,fields){
+        if(!err) {
+            callback(rows);
+        }
+    });
+};
+
+this.delete = (email, callback) => {
+    var sql = 'delete from mi_user where email = ?';
+    connection.connect(sql, [email], function(err, rows, fields){
+        if(!err){
+            callback(rows);
+        }
+    });
+};
