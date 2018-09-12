@@ -1,6 +1,5 @@
 package hack.the.wap.musicinstrumentlessoner.myservice;
 
-import hack.the.wap.musicinstrumentlessoner.model.dto.MiUserDto;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class LoginService {
