@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LOGIN_ACT";
     private static LoginActivity instance;
     private static Session session = Session.getInstance();
-    private static VolleyService volley;
+    private static VolleyService volleyService;
     private static LoginService loginService;
     private static ImageView ivLogin;
     private static EditText etEmail;
@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         RequestQueue queue = Volley.newRequestQueue(this);
-        volley = VolleyService.getInstance(this);
+        volleyService = VolleyService.getInstance(this);
         initView();
         loginProcess();
     }
@@ -54,51 +54,40 @@ public class LoginActivity extends AppCompatActivity {
         ivLogin.setOnClickListener(v -> {
             String inputEmail = etEmail.getText().toString();
             String inputPassword = etPassword.getText().toString();
-            userDto = volley.userVolleySet(inputEmail);
+            userDto = volleyService.userVolleySet(inputEmail);
             session.setMainUser(userDto);
             //로그인 서비스에서 이메일 존재여부 체크
             if (loginService.checkEmail(inputEmail)) {
                 //로그인 서비스에서 패스워드 체크
                 if (loginService.checkPassword(inputPassword)) {
                     //메인 액티비티로 이동
+                    Toast.makeText(this.getApplicationContext(), "환영합니다, " + session.getMainUser().getName() + "님.", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
+                    intent.putExtra("actLoginName", userName);
+                    intent.putExtra("actLoginEmail", userEmail);
+                    startActivity(intent);
+                    finish();
                 } else {
                     //토스트 띄우고 로그인 액티비티 그대로
+                    Toast.makeText(this.getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
                 }
             } else {
                 //이메일이 존재하지 않는다면
                 //토스트 띄우고 로그인 액티비티 그대로
+                Toast.makeText(this.getApplicationContext(), "이메일이 존재하지 않습니다.", Toast.LENGTH_LONG).show();
             }
-
-
         });
 
 
-        loginButtonEvent();
     }
-
 
     private void loginButtonEvent() {
         ivLogin.setOnClickListener(v -> {
             getUserUrl += etEmail.getText().toString();
-
-
-            volley.userVolleySet();
-            volley.fileVolleySet();
-            volley.templateVolleySet();
-            volley.groupVolleySet();
-
-            Log.e(TAG, "loginButtonEvent >>>> : " + inputPassword);
-            String name = loginProcess(inputPassword);
-            if (name != null) {
-                Toast.makeText(this.getApplicationContext(), "환영합니다.", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
-                intent.putExtra("actLoginName", userName);
-                intent.putExtra("actLoginEmail", userEmail);
-                startActivity(intent);
-                finish();
-            } else {
-                Toast.makeText(this.getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
-            }
+            volleyService.userVolleySet();
+            volleyService.fileVolleySet();
+            volleyService.templateVolleySet();
+            volleyService.groupVolleySet();
         });
     }
 
