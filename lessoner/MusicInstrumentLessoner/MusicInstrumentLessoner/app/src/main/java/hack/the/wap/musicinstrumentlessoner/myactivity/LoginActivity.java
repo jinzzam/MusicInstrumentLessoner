@@ -38,7 +38,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        RequestQueue queue = Volley.newRequestQueue(this);
         volleyService = VolleyService.getInstance(this);
         initView();
         loginProcess();
@@ -61,10 +60,11 @@ public class LoginActivity extends AppCompatActivity {
                 //로그인 서비스에서 패스워드 체크
                 if (loginService.checkPassword(inputPassword)) {
                     //메인 액티비티로 이동
+                    getDataAll();
                     Toast.makeText(this.getApplicationContext(), "환영합니다, " + session.getMainUser().getName() + "님.", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
-                    intent.putExtra("actLoginName", userName);
-                    intent.putExtra("actLoginEmail", userEmail);
+                    intent.putExtra("loginActName", session.getMainUser().getName());
+                    intent.putExtra("loginActEmail", session.getMainUser().getEmail());
                     startActivity(intent);
                     finish();
                 } else {
@@ -77,20 +77,13 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(this.getApplicationContext(), "이메일이 존재하지 않습니다.", Toast.LENGTH_LONG).show();
             }
         });
-
-
     }
 
-    private void loginButtonEvent() {
-        ivLogin.setOnClickListener(v -> {
-            getUserUrl += etEmail.getText().toString();
-            volleyService.userVolleySet();
-            volleyService.fileVolleySet();
-            volleyService.templateVolleySet();
-            volleyService.groupVolleySet();
-        });
+    private void getDataAll() {
+        volleyService.fileVolleySet();
+        volleyService.templateVolleySet();
+        volleyService.groupVolleySet();
     }
-
 
     public static LoginActivity getInstance() {
         return instance;
@@ -103,10 +96,8 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-
     private void DEBUG_SET_SESSION() {
         if (DebugMode.DEBUG_MOD) {
-
         }
     }
 }
