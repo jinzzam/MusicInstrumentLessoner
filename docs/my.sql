@@ -37,12 +37,14 @@ create table music_template_practice(
 );
 
 create table mi_notification(
-  mi_notification_id int primary key,
-  music_template_id int,
+  mi_notification_id int primary key auto_increment,
+  music_template_id int not null,
+  email varchar(30) not null,
   regist_date_time timestamp,
   type varchar(30) not null,
   comment text(255) not null,
-  constraint fk_minotification_musictemplate_musictemplateid foreign key (mi_notification_id) references music_template (music_template_id) on delete cascade
+  constraint fk_minotification_musictemplate_musictemplateid foreign key (mi_notification_id) references music_template (music_template_id) on delete cascade,
+  constraint fk_minotification_miuser_email foreign key (email) references mi_user (email) on delete cascade
 );
 
 create table music_template_assignment(
