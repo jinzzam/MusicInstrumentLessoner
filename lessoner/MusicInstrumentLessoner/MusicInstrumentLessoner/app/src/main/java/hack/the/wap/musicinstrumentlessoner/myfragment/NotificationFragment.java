@@ -16,6 +16,7 @@ import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiNotificationDto;
 import hack.the.wap.musicinstrumentlessoner.mylayout.MiNotificationLayout;
 import hack.the.wap.musicinstrumentlessoner.mylayout.NotificationLayout;
+import hack.the.wap.musicinstrumentlessoner.myservice.NotificationService;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 
@@ -33,6 +34,7 @@ public class NotificationFragment extends Fragment {
     private static LinearLayout llFragNotification;
     private static Session session;
     private static ArrayList<MiNotificationDto> notifications;
+    private static NotificationService notificationService = new NotificationService();
 
     private OnFragmentInteractionListener mListener;
 
@@ -72,14 +74,16 @@ public class NotificationFragment extends Fragment {
         notifications = session.getNotifications();
 
         for (MiNotificationDto dto : notifications) {
-            if (true) {
-                NotificationLayout atom = new NotificationLayout(getContext());
-                atom.setCustomAttr(dto);
-                llFragNotification.addView(atom);
-            } else {
-                MiNotificationLayout atom = new MiNotificationLayout(getContext());
-                atom.setCustomAttr(dto);
-                llFragNotification.addView(atom);
+            if (notificationService.isMine(dto)) {
+                if (true) {
+                    NotificationLayout atom = new NotificationLayout(getContext());
+                    atom.setCustomAttr(dto);
+                    llFragNotification.addView(atom);
+                } else {
+                    MiNotificationLayout atom = new MiNotificationLayout(getContext());
+                    atom.setCustomAttr(dto);
+                    llFragNotification.addView(atom);
+                }
             }
         }
         return notificationFragmentView;
