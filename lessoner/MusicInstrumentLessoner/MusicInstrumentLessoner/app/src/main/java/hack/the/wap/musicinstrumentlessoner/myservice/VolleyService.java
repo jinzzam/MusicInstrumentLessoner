@@ -325,6 +325,41 @@ public class VolleyService {
 
 
     public HashMap groupVolleySet() {
+        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getGroupUrl, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject group = response.getJSONObject(i);
+                        String groupName = group.get("group_name").toString();
+                        String place = group.get("place").toString();
+                        String info = group.get("instruments").toString();
+                        String instruments = group.get("instruments").toString();
+                        String genre = group.get("genre").toString();
+                        MiGroupDto groupDto = new MiGroupDto(groupName, place, info, instruments, genre);
+                        groups.put(groupName, groupDto);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+        jsonArrayRequest.setTag(TAG);
+        queue.add(jsonArrayRequest);
+        Log.e(TAG, "groupVolleySet >>>> : ");
+
         return groups;
     }
 }
