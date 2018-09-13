@@ -34,7 +34,7 @@ public class NotificationFragment extends Fragment {
     private static LinearLayout llFragNotification;
     private static Session session;
     private static ArrayList<MiNotificationDto> notifications;
-    private static NotificationService notificationService = new NotificationService();
+    private static NotificationService notificationService = NotificationService.getInstance();
 
     private OnFragmentInteractionListener mListener;
 
