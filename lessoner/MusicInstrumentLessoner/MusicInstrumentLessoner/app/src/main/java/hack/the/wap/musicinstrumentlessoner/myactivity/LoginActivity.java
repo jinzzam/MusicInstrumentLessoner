@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     private static LoginActivity instance;
     private static Session session = Session.getInstance();
     private static VolleyService volleyService;
-    private static LoginService loginService;
+    private static LoginService loginService = LoginService.getInstance();
     private static ImageView ivLogin;
     private static EditText etEmail;
     private static EditText etPassword;
