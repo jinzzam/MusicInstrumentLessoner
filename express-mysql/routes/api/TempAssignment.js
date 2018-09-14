@@ -24,8 +24,8 @@ router.get('/', function (req, res, next) {
     async.series(tasks);
 });
 
-router.get('/:filename', function (req, res, next) {
-    var fileName = req.params['filename'];
+router.get('/:studentEmail', function (req, res, next) {
+    var fileName = req.params['studentEmail'];
     var data;
     const task1 = function (callback) {
         miTempAssignment.selectOne(fileName, function (rows) {
