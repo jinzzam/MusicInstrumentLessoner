@@ -10,13 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiUserDto;
 import hack.the.wap.musicinstrumentlessoner.myactivity.MainActivity;
 import hack.the.wap.musicinstrumentlessoner.myactivity.UserGroupDetailActivity;
 import hack.the.wap.musicinstrumentlessoner.mylayout.GroupLayout;
+import hack.the.wap.musicinstrumentlessoner.myservice.GroupService;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 
@@ -32,6 +35,7 @@ public class GroupFragment extends Fragment {
     private static View groupFragmentView;
     private static LinearLayout llFragGroup;
     private static Session session;
+    private static GroupService groupService = GroupService.getInstance();
     private static HashMap<String, MiGroupDto> userGroups;
 
     private OnFragmentInteractionListener mListener;
@@ -70,7 +74,7 @@ public class GroupFragment extends Fragment {
         llFragGroup = groupFragmentView.findViewById(R.id.llFragGroup);
         userGroups = session.getUserGroups();
         for (MiGroupDto dto : userGroups.values()) {
-            if(dto.isMine()){
+            if (groupService.isMyGroup(dto)) {
                 GroupLayout atom = new GroupLayout(getContext());
                 atom.setCustomAttr(dto);
                 atom.setOnClickListener(v -> {
