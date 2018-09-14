@@ -9,14 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.HashMap;
 
 import hack.the.wap.musicinstrumentlessoner.R;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateAssignmentDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.myactivity.MainActivity;
 import hack.the.wap.musicinstrumentlessoner.myactivity.TemplateDetailActivity;
 import hack.the.wap.musicinstrumentlessoner.mylayout.TemplateLayout;
+import hack.the.wap.musicinstrumentlessoner.myservice.TemplateService;
+import hack.the.wap.musicinstrumentlessoner.myservice.VolleyService;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 /**
@@ -31,6 +35,8 @@ public class TemplateFragment extends Fragment {
     private static View templateFragmentView;
     private static LinearLayout llFragTemplate;
     private static Session session;
+    private static TemplateService templateService = TemplateService.getInstance();
+    private static HashMap<String, MusicTemplateAssignmentDto> assignments;
     private static HashMap<String, MusicTemplateDto> templates;
 
     private OnFragmentInteractionListener mListener;
@@ -67,16 +73,26 @@ public class TemplateFragment extends Fragment {
                              Bundle savedInstanceState) {
         templateFragmentView = inflater.inflate(R.layout.fragment_template, container, false);
         llFragTemplate = templateFragmentView.findViewById(R.id.llFragTemplate);
+
+        assignments = session.getTemplateAssignments();
         templates = session.getTemplates();
-        for (MusicTemplateDto dto : templates.values()) {
-            TemplateLayout atom = new TemplateLayout(getContext());
-            atom.setCustomAttr(dto);
-            atom.setOnClickListener(v -> {
-                Intent intent = new Intent(MainActivity.getInstance(), TemplateDetailActivity.class);
-                intent.putExtra("data", dto);
-                startActivity(intent);
-            });
-            llFragTemplate.addView(atom);
+        for (MusicTemplateAssignmentDto assignmentDto : assignments.values()) {
+            // 로그인한 본인 이메일 가져와서 동일한 이메일 가진 데이터 받아옴
+            if (templateService.isMyAssignment(assignmentDto)) {
+                MusicTemplateDto templateInfo = templateService.getMyAssignmentTemplate(assignmentDto);
+                if (templateInfo != null) {
+                    TemplateLayout atom = new TemplateLayout(getContext());
+                    atom.setCustomAttr(templateService.getTemplateLayoutInfo(templateInfo, assignmentDto));
+                    atom.setOnClickListener(v -> {
+                        Intent intent = new Intent(MainActivity.getInstance(), TemplateDetailActivity.class);
+                        intent.putExtra("data", templateInfo);
+                        startActivity(intent);
+                    });
+                    llFragTemplate.addView(atom);
+                } else {
+                    Toast.makeText(this.getContext(), "현재 과제가 없습니다.", Toast.LENGTH_LONG).show();
+                }
+            }
         }
         return templateFragmentView;
     }

@@ -8,8 +8,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.HashMap;
+
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateAssignmentDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 
 /*
@@ -50,7 +53,7 @@ public class TemplateLayout extends LinearLayout {
         ivTemplateLayUserImage = findViewById(R.id.ivTemplateUserImage);
         tvTemplateLayMusicTitle = findViewById(R.id.tvTemplateLayMusicTitle);
         tvTemplateLayMain = findViewById(R.id.tvTemplateLayMain);
-        tvTemplateLaySub= findViewById(R.id.tvTemplateLaySub);
+        tvTemplateLaySub = findViewById(R.id.tvTemplateLaySub);
         ivTemplateLayTeacherImage = findViewById(R.id.ivTemplateLayTeacherImage);
     }
 
@@ -69,7 +72,7 @@ public class TemplateLayout extends LinearLayout {
         String templateLayMusicTitle = typedArray.getString(R.styleable.TemplateLayout_template_lay_music_title);
         String templateLayMain = typedArray.getString(R.styleable.TemplateLayout_template_lay_main);
         String templateLaySub = typedArray.getString(R.styleable.TemplateLayout_template_lay_sub);
-        int templateLayTeacherImage = typedArray.getResourceId(R.styleable.TemplateLayout_template_lay_teacher_image,R.drawable.choa_round);
+        int templateLayTeacherImage = typedArray.getResourceId(R.styleable.TemplateLayout_template_lay_teacher_image, R.drawable.choa_round);
         ivTemplateLayUserImage.setImageResource(templateLayUserImage);
         tvTemplateLayMusicTitle.setText(templateLayMusicTitle);
         tvTemplateLayMain.setText(templateLayMain);
@@ -78,11 +81,11 @@ public class TemplateLayout extends LinearLayout {
         typedArray.recycle();
     }
 
-    public void setCustomAttr(MusicTemplateDto dto){
-        ivTemplateLayUserImage.setImageResource(DebugImageMatch.getImageFromName(dto.getMusician()));
-        tvTemplateLayMusicTitle.setText(dto.getMusicTitle());
-        tvTemplateLayMain.setText(dto.getMain());
-        tvTemplateLaySub.setText(dto.getSub());
-        ivTemplateLayTeacherImage.setImageResource(DebugImageMatch.getImageFromName(dto.getOwner().getName()));
+    public void setCustomAttr(HashMap<String, String> layoutInfo) {
+        ivTemplateLayUserImage.setImageResource(DebugImageMatch.getImageFromName(layoutInfo.get("musician")));
+        tvTemplateLayMusicTitle.setText(layoutInfo.get("musicTitle"));
+        tvTemplateLayMain.setText(layoutInfo.get("toDoCount"));
+        tvTemplateLaySub.setText(layoutInfo.get("successPercent"));
+        ivTemplateLayTeacherImage.setImageResource(DebugImageMatch.getImageFromName(layoutInfo.get("teacher")));
     }
 }
