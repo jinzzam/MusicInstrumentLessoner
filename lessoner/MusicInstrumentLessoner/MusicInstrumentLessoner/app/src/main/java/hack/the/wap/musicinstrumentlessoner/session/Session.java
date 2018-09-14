@@ -19,6 +19,7 @@ import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
 public class Session {
     private static Session instance;
     private MiUserDto mainUser;
+    private HashMap<String, MiUserDto> users;
     private ArrayList<MiNotificationDto> notifications;
     private HashMap<String, MiFileDto> files;
     private HashMap<String, MusicTemplateDto> templates;
@@ -48,8 +49,9 @@ public class Session {
 
     }
 
-    public Session(MiUserDto mainUser, ArrayList<MiNotificationDto> notifications, HashMap<String, MiFileDto> files, HashMap<String, MusicTemplateDto> templates, HashMap<String, MusicTemplateGuideDto> templateGuides, HashMap<String, MusicTemplateAssignmentDto> templateAssignments, ArrayList<MusicTemplatePracticeDto> templatePractices, HashMap<String, MiGroupDto> userGroups, HashMap<String, MiTeacherDto> groupTeachers, HashMap<String, MiStudentDto> groupStudents) {
+    public Session(MiUserDto mainUser, HashMap<String, MiUserDto> users, ArrayList<MiNotificationDto> notifications, HashMap<String, MiFileDto> files, HashMap<String, MusicTemplateDto> templates, HashMap<String, MusicTemplateGuideDto> templateGuides, HashMap<String, MusicTemplateAssignmentDto> templateAssignments, ArrayList<MusicTemplatePracticeDto> templatePractices, HashMap<String, MiGroupDto> userGroups, HashMap<String, MiTeacherDto> groupTeachers, HashMap<String, MiStudentDto> groupStudents) {
         this.mainUser = mainUser;
+        this.users = users;
         this.notifications = notifications;
         this.files = files;
         this.templates = templates;
@@ -71,6 +73,14 @@ public class Session {
 
     public void setMainUser(MiUserDto mainUser) {
         this.mainUser = mainUser;
+    }
+
+    public HashMap<String, MiUserDto> getUsers() {
+        return users;
+    }
+
+    public void setUsers(HashMap<String, MiUserDto> users) {
+        this.users = users;
     }
 
     public ArrayList<MiNotificationDto> getNotifications() {
@@ -149,6 +159,7 @@ public class Session {
     public String toString() {
         return "Session{" +
                 "mainUser=" + mainUser +
+                ", users=" + users +
                 ", notifications=" + notifications +
                 ", files=" + files +
                 ", templates=" + templates +

@@ -37,6 +37,7 @@ public class VolleyService {
     RequestQueue queue;
 
     MiUserDto userDto;
+    HashMap<String, MiUserDto> users = new HashMap<>();
     HashMap<String, MusicTemplateDto> templates = new HashMap<>();
     ArrayList<MiNotificationDto> notifications = new ArrayList<>();
     HashMap<String, MiFileDto> files = new HashMap<>();
@@ -66,7 +67,7 @@ public class VolleyService {
         return instance;
     }
 
-    public MiUserDto userVolleySet(String inputEmail) {
+    public MiUserDto mainUserVolleySet(String inputEmail) {
         Log.e(TAG, getUserUrl);
         final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getUserUrl + inputEmail, null, new Response.Listener<JSONArray>() {
             @Override
@@ -78,7 +79,7 @@ public class VolleyService {
                     String userPassword = user.get("password").toString();
                     userDto = new MiUserDto(userName, userEmail, userPassword);
 
-                    Log.e("TAG", "userVolleySet >>>> : userPassword : " + userPassword);
+                    Log.e("TAG", "mainUserVolleySet >>>> : userPassword : " + userPassword);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -86,7 +87,42 @@ public class VolleyService {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("TAG", "userVolleySet >>>> : " + error);
+                Log.e("TAG", "mainUserVolleySet >>>> : " + error);
+            }
+        });
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+        jsonArrayRequest.setTag(TAG);
+        queue.add(jsonArrayRequest);
+        Log.e(TAG, "mainUserVolleySet >>>> : ");
+        return userDto;
+    }
+
+    public HashMap<String, MiUserDto> userVolleySet() {
+        Log.e(TAG, getUserUrl);
+        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getUserUrl, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject user = response.getJSONObject(0);
+                        String userName = user.get("username").toString();
+                        String userEmail = user.get("email").toString();
+                        String userPassword = user.get("password").toString();
+                        userDto = new MiUserDto(userName, userEmail, userPassword);
+                        users.put(userEmail, userDto);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("TAG", "mainUserVolleySet >>>> : " + error);
             }
         });
         jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
@@ -97,8 +133,9 @@ public class VolleyService {
         jsonArrayRequest.setTag(TAG);
         queue.add(jsonArrayRequest);
         Log.e(TAG, "userVolleySet >>>> : ");
-        return userDto;
+        return users;
     }
+
 
     public HashMap<String, MiFileDto> fileVolleySet() {
         final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getFileUrl, null, new Response.Listener<JSONArray>() {

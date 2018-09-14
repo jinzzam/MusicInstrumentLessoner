@@ -3,7 +3,6 @@ package hack.the.wap.musicinstrumentlessoner.myactivity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -50,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         ivLogin.setOnClickListener(v -> {
             String inputEmail = etEmail.getText().toString();
             String inputPassword = etPassword.getText().toString();
-            userDto = volleyService.userVolleySet(inputEmail);
+            userDto = volleyService.mainUserVolleySet(inputEmail);
             session.setMainUser(userDto);
             //로그인 서비스에서 이메일 존재여부 체크
             if (loginService.checkEmail(inputEmail)) {
@@ -77,9 +76,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void getDataAll() {
-        if(!volleyService.notificationVolleySet().isEmpty()){
+        volleyService.userVolleySet();
+
+        if (!volleyService.notificationVolleySet().isEmpty()) {
             session.setNotifications(volleyService.notificationVolleySet());
-        }else{
+        } else {
             Toast.makeText(this.getApplicationContext(), "알림 메세지들을 불러오지 못했습니다.", Toast.LENGTH_LONG).show();
         }
 
