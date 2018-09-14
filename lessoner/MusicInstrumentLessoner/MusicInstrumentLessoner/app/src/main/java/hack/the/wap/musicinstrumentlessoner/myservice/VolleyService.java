@@ -28,9 +28,11 @@ import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateAssignmentDto
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateGuideDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
+import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class VolleyService {
     private static VolleyService instance;
+    private static Session session = Session.getInstance();
     private static final String TAG = "VOLLEY_SERVICE";
     RequestQueue queue;
 
@@ -151,10 +153,9 @@ public class VolleyService {
                         getTemplateAssignmentUrl = getTemplateUrl + musicTemplateId + "/assignment/";
                         getTemplatePracticeUrl = getTemplateUrl + musicTemplateId + "/practice/";
 
-                        notificationVolleySet(musicTemplateId);
-                        templateGuideVolleySet(getTemplateGuideUrl);
-                        templateAssignmentVolleySet(getTemplateAssignmentUrl);
-                        templatePracticeVolleySet(getTemplatePracticeUrl);
+                        session.setTemplateGuides(templateGuideVolleySet(getTemplateGuideUrl));
+                        session.setTemplateAssignments(templateAssignmentVolleySet(getTemplateAssignmentUrl));
+                        session.setTemplatePractices(templatePracticeVolleySet(getTemplatePracticeUrl));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -224,10 +225,11 @@ public class VolleyService {
                         JSONObject assignment = response.getJSONObject(i);
                         String innerFilename = assignment.get("inner_filename").toString();
                         int musicTemplateId = (int) assignment.get("music_template_id");
+                        String studentEamil = assignment.get("student_email").toString();
                         int toDoCount = (int) assignment.get("to_do_count");
                         int doneCount = (int) assignment.get("done_count");
                         int successPercent = (int) assignment.get("success_percent");
-                        MusicTemplateAssignmentDto musicTemplateAssignmentDto = new MusicTemplateAssignmentDto(innerFilename, musicTemplateId, toDoCount, doneCount, successPercent);
+                        MusicTemplateAssignmentDto musicTemplateAssignmentDto = new MusicTemplateAssignmentDto(innerFilename, musicTemplateId, studentEamil, toDoCount, doneCount, successPercent);
                         assignments.put(innerFilename, musicTemplateAssignmentDto);
                     }
                 } catch (JSONException e) {
@@ -286,7 +288,7 @@ public class VolleyService {
         return guides;
     }
 
-    public ArrayList<MiNotificationDto> notificationVolleySet(int musicTemplateId) {
+    public ArrayList<MiNotificationDto> notificationVolleySet() {
         final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getNotificationUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
