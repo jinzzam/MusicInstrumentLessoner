@@ -11,7 +11,10 @@ import android.widget.TextView;
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
 import hack.the.wap.musicinstrumentlessoner.myfragment.CustomWaveformFragment;
+import hack.the.wap.musicinstrumentlessoner.myservice.TemplateService;
+import hack.the.wap.musicinstrumentlessoner.myservice.UserInfoService;
 import hack.the.wap.musicinstrumentlessoner.session.PresentFile;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
@@ -26,11 +29,13 @@ public class PracticeDetailActivity extends AppCompatActivity {
     private ImageView ivPracticeDetailLayTeacher;
     private ImageView ivPracticeDetailLayMusician;
 
-    private TemplatePracticeDto mainTemplatePractice;
+    private static UserInfoService userInfoService;
+    private MusicTemplatePracticeDto mainTemplatePractice;
     private MusicTemplateDto mainTemplate;
 
     {
         session = Session.getInstance();
+        userInfoService = UserInfoService.getInstance();
     }
 
     @Override
@@ -39,7 +44,7 @@ public class PracticeDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_practice_detail);
         Intent intent = getIntent();
         customWaveformFragment = new CustomWaveformFragment();
-        mainTemplatePractice = (TemplatePracticeDto) intent.getSerializableExtra("data");
+        mainTemplatePractice = (MusicTemplatePracticeDto) intent.getSerializableExtra("data");
         mainTemplate = (MusicTemplateDto) intent.getSerializableExtra("main");
         Log.e("SAFE", "onCreate >>> " + mainTemplate);
         Log.e("SAFE", "onCreate >>> " + mainTemplatePractice);
@@ -70,12 +75,12 @@ public class PracticeDetailActivity extends AppCompatActivity {
     }
 
     private void viewSetValue() {
-        ivPracticeDetailLayTeacher.setImageResource(DebugImageMatch.getImageFromName(mainTemplate.getOwner().getName()));
+        ivPracticeDetailLayTeacher.setImageResource(DebugImageMatch.getImageFromName(userInfoService.getUserName(mainTemplate.getOwner())));
         ivPracticeDetailLayMusician.setImageResource(DebugImageMatch.getImageFromName(mainTemplate.getMusician()));
         tvPracticeDetailLayName.setText("" + mainTemplate.getMusicTitle());
-        tvPracticeDetailLayCount.setText("" + getResources().getText(R.string.LayTemplatePracticeMusicNum) + mainTemplatePractice.getPracticeId());
-        tvPracticeDetailLayPercent.setText("" + getResources().getText(R.string.LayTemplatePracticeSuccessPercent) + mainTemplatePractice.getPercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd));
-        tvPracticeDetailLayFileName.setText("" + getResources().getText(R.string.LayTemplatePracticeFilePath) + mainTemplatePractice.getFileName());
-        PresentFile.fileName = mainTemplatePractice.getFileName();
+        tvPracticeDetailLayCount.setText("" + getResources().getText(R.string.LayTemplatePracticeMusicNum) + mainTemplatePractice.getMusicTemplatePracticeId());
+        tvPracticeDetailLayPercent.setText("" + getResources().getText(R.string.LayTemplatePracticeSuccessPercent) + mainTemplatePractice.getCompletePercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd));
+        tvPracticeDetailLayFileName.setText("" + getResources().getText(R.string.LayTemplatePracticeFilePath) + mainTemplatePractice.getInnerFilename());
+        PresentFile.fileName = mainTemplatePractice.getInnerFilename();
     }
 }
