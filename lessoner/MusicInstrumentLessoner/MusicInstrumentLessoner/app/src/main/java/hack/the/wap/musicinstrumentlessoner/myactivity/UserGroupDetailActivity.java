@@ -53,10 +53,10 @@ public class UserGroupDetailActivity extends AppCompatActivity {
         tvActUserGroupDetailSub = findViewById(R.id.tvActUserGroupDetailSub);
         llActUserGroupDetailTeacher = findViewById(R.id.llActUserGroupDetailTeacher);
         llActUserGroupDetailUser = findViewById(R.id.llActUserGroupDetailUser);
-        for (MiTeacherDto dto : mainUserGroup.getTeachers().values()) {
+        for (MiTeacherDto dto : session.getGroupTeachers().values()) {
             llActUserGroupDetailTeacher.addView(new TeacherImageLayout(this, dto));
         }
-        for (MiUserDto dto : mainUserGroup.getUsers().values()) {
+        for (MiUserDto dto : session.getGroupStudents().values()) {
             llActUserGroupDetailUser.addView(new UserImageLayout(this, dto));
         }
     }
@@ -68,15 +68,15 @@ public class UserGroupDetailActivity extends AppCompatActivity {
     }
 
     private void viewSetValue() {
-        ivActUserGroupDetailMusicPlace.setImageResource(DebugImageMatch.getImageFromName(mainUserGroup.getName()));
-        tvActUserGroupDetailName.setText(mainUserGroup.getName());
-        if (mainUserGroup.getMain() != null) {
-            tvActUserGroupDetailMain.setText(mainUserGroup.getMain());
+        ivActUserGroupDetailMusicPlace.setImageResource(DebugImageMatch.getImageFromName(mainUserGroup.getGroupName()));
+        tvActUserGroupDetailName.setText(mainUserGroup.getGroupName());
+        if (mainUserGroup.getGroupName() != null) {
+            tvActUserGroupDetailMain.setText(mainUserGroup.getGroupName());
         } else {
             tvActUserGroupDetailMain.setText(getResources().getString(R.string.userGroupEmptyDefault));
         }
-        if (mainUserGroup.getSub() != null) {
-            tvActUserGroupDetailSub.setText(mainUserGroup.getSub());
+        if (mainUserGroup.getInfo() != null) {
+            tvActUserGroupDetailSub.setText(mainUserGroup.getInfo());
         } else {
             tvActUserGroupDetailSub.setText(getResources().getString(R.string.userGroupEmptyDefault));
         }
