@@ -3,6 +3,7 @@ package hack.the.wap.musicinstrumentlessoner.model.dto;
 public class MusicTemplateAssignmentDto {
     private String innerFilename;
     private int musicTemplateId;
+    private String studentEmail;
     private int toDoCount;
     private int doneCount;
     private int successPercent;
@@ -12,14 +13,16 @@ public class MusicTemplateAssignmentDto {
      *
      * @param innerFilename
      * @param musicTemplateId
+     * @param studentEmail
      * @param toDoCount
      * @param doneCount
      * @param successPercent
      */
 
-    public MusicTemplateAssignmentDto(String innerFilename, int musicTemplateId, int toDoCount, int doneCount, int successPercent) {
+    public MusicTemplateAssignmentDto(String innerFilename, int musicTemplateId, String studentEmail, int toDoCount, int doneCount, int successPercent) {
         this.innerFilename = innerFilename;
         this.musicTemplateId = musicTemplateId;
+        this.studentEmail = studentEmail;
         this.toDoCount = toDoCount;
         this.doneCount = doneCount;
         this.successPercent = successPercent;
@@ -39,6 +42,14 @@ public class MusicTemplateAssignmentDto {
 
     public void setMusicTemplateId(int musicTemplateId) {
         this.musicTemplateId = musicTemplateId;
+    }
+
+    public String getStudentEmail() {
+        return studentEmail;
+    }
+
+    public void setStudentEmail(String studentEmail) {
+        this.studentEmail = studentEmail;
     }
 
     public int getToDoCount() {
@@ -70,6 +81,7 @@ public class MusicTemplateAssignmentDto {
         return "MusicTemplateAssignmentDto{" +
                 "innerFilename='" + innerFilename + '\'' +
                 ", musicTemplateId=" + musicTemplateId +
+                ", studentEmail='" + studentEmail + '\'' +
                 ", toDoCount=" + toDoCount +
                 ", doneCount=" + doneCount +
                 ", successPercent=" + successPercent +
