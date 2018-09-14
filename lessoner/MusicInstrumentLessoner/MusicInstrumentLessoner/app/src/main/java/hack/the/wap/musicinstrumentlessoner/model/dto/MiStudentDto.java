@@ -1,6 +1,6 @@
 package hack.the.wap.musicinstrumentlessoner.model.dto;
 
-public class MiStudentDto {
+public class MiStudentDto extends MiUserDto {
     private String studentEmail;
     private String groupName;
 

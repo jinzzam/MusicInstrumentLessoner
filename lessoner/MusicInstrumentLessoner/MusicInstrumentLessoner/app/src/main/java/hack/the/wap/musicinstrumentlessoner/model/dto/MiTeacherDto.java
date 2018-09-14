@@ -1,6 +1,6 @@
 package hack.the.wap.musicinstrumentlessoner.model.dto;
 
-public class MiTeacherDto {
+public class MiTeacherDto extends MiUserDto {
     private String teacherEmail; //user table 에 의해 fk
     private String groupName; //join 할 때 쓰이는 거
 

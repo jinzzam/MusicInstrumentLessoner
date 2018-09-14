@@ -21,6 +21,9 @@ public class MiUserDto implements Serializable {
         this.name = name;
     }
 
+    public MiUserDto() {
+    }
+
     public String getEmail() {
         return email;
     }
