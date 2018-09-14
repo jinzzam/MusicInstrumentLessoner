@@ -61,20 +61,22 @@ public class StoreLayout extends LinearLayout {
     }
 
     public void setCustomAttr(MiGroupDto dto) {
-        ivStoreLayGroupImage.setImageResource(DebugImageMatch.getImageFromName(dto.getName()));
-        tvStoreLayGroupTitle.setText(dto.getName());
-        tvStoreLayMain.setText(dto.getMain());
+        ivStoreLayGroupImage.setImageResource(DebugImageMatch.getImageFromName(dto.getGroupName()));
+        tvStoreLayGroupTitle.setText(dto.getGroupName());
+        tvStoreLayMain.setText(dto.getInfo());
         String instrument = getResources().getString(R.string.storeLayInstrument);
-        for (String atom : dto.getInstrument().values()) {
-            instrument = instrument + atom + getResources().getString(R.string.storeLayComma);
-        }
-        instrument = instrument.substring(0, instrument.length() - getResources().getString(R.string.storeLayComma).length());
+//        for (String atom : dto.getInstruments()) {
+//            instrument = instrument + atom + getResources().getString(R.string.storeLayComma);
+//        }
+//        instrument = instrument.substring(0, instrument.length() - getResources().getString(R.string.storeLayComma).length());
+        instrument += dto.getInstruments();
         tvStoreLayInstrument.setText(instrument);
         String genre = getResources().getString(R.string.storeLayGenre);
-        for (String atom : dto.getGenre().values()) {
-            genre = genre + atom + getResources().getString(R.string.storeLayComma);
-        }
-        genre = genre.substring(0, genre.length() - getResources().getString(R.string.storeLayComma).length());
+//        for (String atom : dto.getGenres()) {
+//            genre = genre + atom + getResources().getString(R.string.storeLayComma);
+//        }
+//        genre = genre.substring(0, genre.length() - getResources().getString(R.string.storeLayComma).length());
+        genre += dto.getGenres();
         tvStoreLayGenre.setText(genre);
     }
 }

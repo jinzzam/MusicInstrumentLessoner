@@ -66,11 +66,9 @@ public class StoreFragment extends Fragment {
         llFragStore = storeFragmentView.findViewById(R.id.llFragStore);
         userGroups = session.getUserGroups();
         for (MiGroupDto dto : userGroups.values()) {
-            if(!dto.isMine()){
-                StoreLayout atom = new StoreLayout(getContext());
-                atom.setCustomAttr(dto);
-                llFragStore.addView(atom);
-            }
+            StoreLayout atom = new StoreLayout(getContext());
+            atom.setCustomAttr(dto);
+            llFragStore.addView(atom);
         }
         return storeFragmentView;
     }
