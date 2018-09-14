@@ -50,11 +50,13 @@ create table mi_notification(
 create table music_template_assignment(
   inner_filename varchar(255) primary key,
   music_template_id int,
+  student_email varchar(30) not null,
   to_do_count int not null,
   done_count int not null,
   success_percent int not null,
-  constraint fk_musictemplateassignment_musictemplate_musictamplateid foreign key (music_template_id) references music_template (music_template_id) on delete cascade
-  constraint fk_musictemplateassignment_mifile_innerfilename foreign key (inner_filename) references mi_file (inner_filename) on delete cascade
+  constraint fk_musictemplateassignment_musictemplate_musictamplateid foreign key (music_template_id) references music_template (music_template_id) on delete cascade,
+  constraint fk_musictemplateassignment_mifile_innerfilename foreign key (inner_filename) references mi_file (inner_filename) on delete cascade,
+  constraint fk_misictemplateassignment_mistudent_studentemail foreign key (student_email) references mi_student (student_email) on delete cascade
 );
 
 create table music_template_wrong(
