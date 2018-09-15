@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void getDataAll() {
-        volleyService.userVolleySet();
+        //volleyService.userVolleySet();
 
         if (!volleyService.notificationVolleySet().isEmpty()) {
             session.setNotifications(volleyService.notificationVolleySet());
@@ -84,16 +84,22 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this.getApplicationContext(), "알림 메세지들을 불러오지 못했습니다.", Toast.LENGTH_LONG).show();
         }
 
-        if (!volleyService.fileVolleySet().isEmpty()) {
-            session.setFiles(volleyService.fileVolleySet());
-        } else {
-            Toast.makeText(this.getApplicationContext(), "음악 파일들을 불러오지 못했습니다.", Toast.LENGTH_LONG).show();
-        }
+//        if (!volleyService.fileVolleySet().isEmpty()) {
+//            session.setFiles(volleyService.fileVolleySet());
+//        } else {
+//            Toast.makeText(this.getApplicationContext(), "음악 파일들을 불러오지 못했습니다.", Toast.LENGTH_LONG).show();
+//        }
 
-        if (!volleyService.templateVolleySet().isEmpty()) {
-            session.setTemplates(volleyService.templateVolleySet());
-        } else {
-            Toast.makeText(this.getApplicationContext(), "템플릿들을 불러오지 못했습니다.", Toast.LENGTH_LONG).show();
+//        if (!volleyService.templateVolleySet().isEmpty()) {
+//            session.setTemplates(volleyService.templateVolleySet());
+//        } else {
+//            Toast.makeText(this.getApplicationContext(), "템플릿들을 불러오지 못했습니다.", Toast.LENGTH_LONG).show();
+//        }
+
+        if (!volleyService.templateAssignmentVolleySet().isEmpty()) {
+            session.setTemplateAssignments(volleyService.templateAssignmentVolleySet());
+        }else{
+            Toast.makeText(this.getApplicationContext(), "내 템플릿 과제들을 불러오지 못했습니다.", Toast.LENGTH_LONG).show();
         }
 
         if (!volleyService.groupVolleySet().isEmpty()) {

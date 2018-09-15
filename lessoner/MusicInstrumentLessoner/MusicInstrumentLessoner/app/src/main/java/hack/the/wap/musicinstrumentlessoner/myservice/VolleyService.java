@@ -326,7 +326,7 @@ public class VolleyService {
     }
 
     public ArrayList<MiNotificationDto> notificationVolleySet() {
-        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getNotificationUrl, null, new Response.Listener<JSONArray>() {
+        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getNotificationUrl + session.getMainUser().getEmail(), null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try {
