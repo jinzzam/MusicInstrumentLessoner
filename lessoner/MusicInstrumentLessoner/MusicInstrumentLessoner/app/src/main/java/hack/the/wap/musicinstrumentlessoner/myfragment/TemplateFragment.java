@@ -35,7 +35,7 @@ public class TemplateFragment extends Fragment {
     private static View templateFragmentView;
     private static LinearLayout llFragTemplate;
     private static Session session;
-    private static TemplateService templateService = TemplateService.getInstance();
+    private TemplateService templateService = TemplateService.getInstance(this.getContext());
     private static HashMap<String, MusicTemplateAssignmentDto> assignments;
     private static HashMap<String, MusicTemplateDto> templates;
 
