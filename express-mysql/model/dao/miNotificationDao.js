@@ -17,9 +17,9 @@ this.selectAll = (callback) => {
     });
 };
 
-this.selectOne = (id, callback) => {
-    var sql = 'select * from mi_notification where mi_notification_id =?';
-    connection.query(sql, [id], function (err, rows, fields) {
+this.selectOne = (studentEmail, callback) => {
+    var sql = 'select * from mi_notification where student_email =?';
+    connection.query(sql, [studentEmail], function (err, rows, fields) {
         if (!err) {
             callback(rows);
         }

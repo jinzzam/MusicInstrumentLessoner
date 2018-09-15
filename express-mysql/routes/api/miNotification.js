@@ -24,8 +24,8 @@ router.get('/', function (req, res, next) {
     async.series(tasks);
 });
 
-router.get('/:id', function (req, res, next) {
-    var templateId = req.params['id'];
+router.get('/:studentEmail', function (req, res, next) {
+    var templateId = req.params['studentEmail'];
     var data;
     const task1 = function (callback) {
         miNoti.selectOne(templateId, function (rows) {
