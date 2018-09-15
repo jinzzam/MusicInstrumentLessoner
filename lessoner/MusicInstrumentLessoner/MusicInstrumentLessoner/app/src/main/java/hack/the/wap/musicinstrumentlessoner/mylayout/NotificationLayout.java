@@ -11,6 +11,7 @@ import android.widget.TextView;
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiNotificationDto;
+import hack.the.wap.musicinstrumentlessoner.myservice.TemplateService;
 
 /*
 참고 사이트 : https://medium.com/@douglas.iacovelli/the-beauty-of-custom-views-and-how-to-do-it-79c7d78e2088
@@ -18,6 +19,8 @@ import hack.the.wap.musicinstrumentlessoner.model.dto.MiNotificationDto;
  */
 
 public class NotificationLayout extends LinearLayout {
+    private TemplateService templateService;
+
     private ImageView ivNotificationLayUserImage;
     private TextView tvNotificationLayName;
     private TextView tvNotificationLayDate;
@@ -25,6 +28,7 @@ public class NotificationLayout extends LinearLayout {
     private TextView tvNotificationLayMusicTitle;
 
     {
+        templateService = TemplateService.getInstance(this.getContext());
         initView();
     }
 
@@ -87,10 +91,10 @@ public class NotificationLayout extends LinearLayout {
     }
 
     public void setCustomAttr(MiNotificationDto dto){
-        ivNotificationLayUserImage.setImageResource(DebugImageMatch.getImageFromName(dto.getTemplate().getOwner().getName()));
+        ivNotificationLayUserImage.setImageResource(DebugImageMatch.getImageFromName(dto.getOwner().getName()));
         tvNotificationLayName.setText(dto.getTemplate().getOwner().getName());
-        tvNotificationLayDate.setText(dto.getDate());
-        tvNotificationLayMain.setText(dto.getMain());
-        tvNotificationLayMusicTitle.setText(dto.getTemplate().getMusicTitle());
+        tvNotificationLayDate.setText(dto.getRegistDateTime().toString());
+        tvNotificationLayMain.setText(dto.getComment());
+        tvNotificationLayMusicTitle.setText(templateService.getTemplateNameById(dto.getMusicTemplateId()));
     }
 }

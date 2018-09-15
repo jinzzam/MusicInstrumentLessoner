@@ -1,5 +1,20 @@
 package hack.the.wap.musicinstrumentlessoner.myservice;
 
+import android.content.Context;
+import android.util.Log;
+
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateAssignmentDto;
@@ -7,16 +22,22 @@ import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class TemplateService {
+    private static final String TAG = "TEMPLATE_SERVICE";
     private static TemplateService instance;
     private static Session session = Session.getInstance();
+    RequestQueue queue;
 
-    private void TemplateService() {
+    private String getTemplateNameById = "http://192.168.43.36:3000/api/template/";
 
+    private String musicTitle;
+
+    private void TemplateService(Context context) {
+        queue = Volley.newRequestQueue(context);
     }
 
-    public static TemplateService getInstance() {
+    public static TemplateService getInstance(Context context) {
         if (instance == null) {
-            instance = new TemplateService();
+            instance = new TemplateService(context);
         }
         return instance;
     }
@@ -47,4 +68,33 @@ public class TemplateService {
         return templateLayoutInfo;
     }
 
+    public String getTemplateNameById(int id) {
+        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getTemplateNameById + id, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    JSONObject template = response.getJSONObject(0);
+                    musicTitle = template.get("music_title").toString();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+        jsonArrayRequest.setTag(TAG);
+        queue.add(jsonArrayRequest);
+        Log.e(TAG, "getTemplateNameById >>>> : ");
+
+        return musicTitle;
+    }
 }
