@@ -371,7 +371,7 @@ public class VolleyService {
     }
 
 
-    public HashMap groupVolleySet() {
+    public void groupVolleySet() {
         final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getGroupUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -385,6 +385,7 @@ public class VolleyService {
                         String genre = group.get("genre").toString();
                         MiGroupDto groupDto = new MiGroupDto(groupName, place, info, instruments, genre);
                         groups.put(groupName, groupDto);
+                        session.setUserGroups(groups);
                     }
 
                 } catch (JSONException e) {
@@ -406,7 +407,5 @@ public class VolleyService {
         jsonArrayRequest.setTag(TAG);
         queue.add(jsonArrayRequest);
         Log.e(TAG, "groupVolleySet >>>> : ");
-
-        return groups;
     }
 }

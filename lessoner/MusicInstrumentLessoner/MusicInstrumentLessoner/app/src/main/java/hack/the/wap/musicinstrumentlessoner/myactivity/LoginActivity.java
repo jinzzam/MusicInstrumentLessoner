@@ -98,11 +98,7 @@ public class LoginActivity extends AppCompatActivity {
 
         volleyService.templateAssignmentVolleySet();
 
-        if (!volleyService.groupVolleySet().isEmpty()) {
-            session.setUserGroups(volleyService.groupVolleySet());
-        } else {
-            Toast.makeText(this.getApplicationContext(), "그룹을 불러오지 못했습니다.", Toast.LENGTH_LONG).show();
-        }
+        volleyService.groupVolleySet();
     }
 
     public static LoginActivity getInstance() {
