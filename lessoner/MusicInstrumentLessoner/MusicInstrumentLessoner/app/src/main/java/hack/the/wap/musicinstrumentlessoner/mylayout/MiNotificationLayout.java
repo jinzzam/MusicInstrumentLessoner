@@ -46,7 +46,7 @@ public class MiNotificationLayout extends LinearLayout {
     }
 
     private void initView() {
-        inflate(getContext(), R.layout.mi_notification_layout, this);
+        inflate(getContext(), R.layout.layout_mi_notification, this);
         ivMiNotificationLayUserImage = findViewById(R.id.ivMiNotificationUserImage);
         tvMiNotificationLayName = findViewById(R.id.tvMiNotificationLayName);
         tvMiNotificationLayDate = findViewById(R.id.tvMiNotificationLayDate);
