@@ -46,7 +46,7 @@ public class StoreLayout extends LinearLayout {
     }
 
     private void initView() {
-        inflate(getContext(), R.layout.store_layout, this);
+        inflate(getContext(), R.layout.layout_store, this);
         ivStoreLayGroupImage = findViewById(R.id.ivStoreGroupImage);
         tvStoreLayGroupTitle = findViewById(R.id.tvStoreLayGroupTitle);
         tvStoreLayMain = findViewById(R.id.tvStoreLayMain);

@@ -12,8 +12,6 @@ import java.util.HashMap;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
-import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateAssignmentDto;
-import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 
 /*
 참고 사이트 : https://medium.com/@douglas.iacovelli/the-beauty-of-custom-views-and-how-to-do-it-79c7d78e2088
@@ -49,7 +47,7 @@ public class TemplateLayout extends LinearLayout {
     }
 
     private void initView() {
-        inflate(getContext(), R.layout.template_layout, this);
+        inflate(getContext(), R.layout.layout_template, this);
         ivTemplateLayUserImage = findViewById(R.id.ivTemplateUserImage);
         tvTemplateLayMusicTitle = findViewById(R.id.tvTemplateLayMusicTitle);
         tvTemplateLayMain = findViewById(R.id.tvTemplateLayMain);

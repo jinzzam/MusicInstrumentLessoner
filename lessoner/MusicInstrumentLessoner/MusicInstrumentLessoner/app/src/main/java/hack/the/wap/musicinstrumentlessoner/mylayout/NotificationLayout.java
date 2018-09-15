@@ -50,7 +50,7 @@ public class NotificationLayout extends LinearLayout {
     }
 
     private void initView() {
-        inflate(getContext(), R.layout.notification_layout, this);
+        inflate(getContext(), R.layout.layout_notification, this);
         ivNotificationLayUserImage = findViewById(R.id.ivNotificationUserImage);
         tvNotificationLayName = findViewById(R.id.tvNotificationLayName);
         tvNotificationLayDate = findViewById(R.id.tvNotificationLayDate);

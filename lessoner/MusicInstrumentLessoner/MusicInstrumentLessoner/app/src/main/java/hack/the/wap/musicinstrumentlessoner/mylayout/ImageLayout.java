@@ -36,7 +36,7 @@ public class ImageLayout extends LinearLayout {
     }
 
     private void initView() {
-        inflate(getContext(), R.layout.image_layout, this);
+        inflate(getContext(), R.layout.layout_user_image, this);
         ivMyImage = findViewById(R.id.ivMyImage);
     }
 }

@@ -46,7 +46,7 @@ public class GroupLayout extends LinearLayout {
     }
 
     private void initView() {
-        inflate(getContext(), R.layout.group_layout, this);
+        inflate(getContext(), R.layout.layout_group, this);
         ivGroupLayEduImage = findViewById(R.id.ivGroupEduImage);
         tvGroupLayName = findViewById(R.id.tvGroupLayName);
         tvGroupLayMain = findViewById(R.id.tvGroupLayMain);
