@@ -27,7 +27,7 @@ insert into mi_notification values(0, 1, 'namolppam@pocket.mon', NULL, 'template
 insert into mi_notification values(2, 2, NULL, 'template', '선생님이 과제를 등록하였습니다.');
 
 # music_template_assignment
-insert into music_template_assignment values('namolnamolsong.mp3', 1, 'namolppam@pocket.mon', 10, 0, 0);
+insert into music_template_assignment values('namolnamolsong.mp3', 1, 10, 0, 0, 'jinzzam@namol.ppam');
 
 # music_template_wrong
 insert into music_template_wrong values('namolnamolsong.mp3', '00:00:30', '00:01:01');

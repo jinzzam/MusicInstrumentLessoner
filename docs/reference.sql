@@ -1,6 +1,11 @@
 # 테이블 컬럼 정보 보기
 # show full columns from 테이블이름;
 
+# 테이블 컬럼 추가
+# alter table 테이블명 add 컬럼명 타입 옵션;
+
+alter table music_template_assignment add student_email varchar(30) not null;
+
 # 테이블에 저장된 데이터 보기
 # select * from 테이블이름;
 
@@ -10,6 +15,9 @@
 # 외래키 추가
 alter table 추가할테이블이름 add
 constraint 제약조건명 foreign key (컬럼명) references 부모테이블명 (PK컬럼명) on delete cascade;
+
+alter table music_template_assignment add
+constraint fk_musictemplateassignment_mistudent_studentemail foreign key (student_email) references mi_student (student_email) on delete cascade;
 
 alter table mi_teacher add
 constraint fk_miteacher_migroup_groupname foreign key (group_name) references mi_group (group_name) on delete cascade;
@@ -49,6 +57,8 @@ where mi_user.email='namolppam@pocket.mon';
 # id 가 두 테이블의 유일한 공통 열 이름인 경우
 select column_name(s)
 from 테이블1 natural join 테이블2
+
+select
 
 select music_template_guide.music_template_id, music_template.music_title,
 music_template_guide.play_time, music_template_guide.comment
