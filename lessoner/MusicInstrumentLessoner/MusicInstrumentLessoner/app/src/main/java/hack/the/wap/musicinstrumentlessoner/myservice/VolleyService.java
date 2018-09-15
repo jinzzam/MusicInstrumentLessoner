@@ -253,8 +253,8 @@ public class VolleyService {
         return practices;
     }
 
-    public HashMap<String, MusicTemplateAssignmentDto> templateAssignmentVolleySet(String getTemplateAssignmentUrl) {
-        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getTemplateAssignmentUrl, null, new Response.Listener<JSONArray>() {
+    public void templateAssignmentVolleySet() {
+        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getTemplateAssignmentUrl + session.getMainUser().getEmail(), null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try {
@@ -262,12 +262,21 @@ public class VolleyService {
                         JSONObject assignment = response.getJSONObject(i);
                         String innerFilename = assignment.get("inner_filename").toString();
                         int musicTemplateId = (int) assignment.get("music_template_id");
-                        String studentEamil = assignment.get("student_email").toString();
+                        String studentEmail = assignment.get("student_email").toString();
                         int toDoCount = (int) assignment.get("to_do_count");
                         int doneCount = (int) assignment.get("done_count");
                         int successPercent = (int) assignment.get("success_percent");
-                        MusicTemplateAssignmentDto musicTemplateAssignmentDto = new MusicTemplateAssignmentDto(innerFilename, musicTemplateId, studentEamil, toDoCount, doneCount, successPercent);
+                        MusicTemplateAssignmentDto musicTemplateAssignmentDto = new MusicTemplateAssignmentDto(innerFilename, musicTemplateId, studentEmail, toDoCount, doneCount, successPercent);
                         assignments.put(innerFilename, musicTemplateAssignmentDto);
+                        session.setTemplateAssignments(assignments);
+
+                        String owner = assignment.get("owner").toString();
+                        String musicTitle = assignment.get("music_title").toString();
+                        String musician = assignment.get("musician").toString();
+                        String guide = assignment.get("guide").toString();
+                        MusicTemplateDto musicTemplateDto = new MusicTemplateDto(musicTemplateId, owner, musicTitle, musician, guide);
+                        templates.put(musicTitle, musicTemplateDto);
+                        session.setTemplates(templates);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -287,7 +296,6 @@ public class VolleyService {
         jsonArrayRequest.setTag(TAG);
         queue.add(jsonArrayRequest);
         Log.e(TAG, "templateAssignmentVolleySet >>>> : ");
-        return assignments;
     }
 
     public HashMap<String, MusicTemplateGuideDto> templateGuideVolleySet(String getTemplateGuideUrl) {
