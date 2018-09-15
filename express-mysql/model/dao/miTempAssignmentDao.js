@@ -18,7 +18,8 @@ this.selectAll = (callback) => {
 };
 
 this.selectOne = (studentEmail, callback) => {
-    var sql = 'select * from music_template_assignment where student_email =?';
+    var sql = 'select * from music_template_assignment natural join music_template\n' +
+        'where music_template_assignment.student_email = ?';
     connection.query(sql, [studentEmail], function (err, rows, fields) {
         if (!err) {
             callback(rows);
