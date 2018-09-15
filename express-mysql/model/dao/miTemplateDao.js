@@ -63,7 +63,7 @@ this.joinAssignment = (musicTemplateId, callback) => {
     var sql = 'select inner_filename, music_template_id,\n' +
         'to_do_count, done_count, success_percent \n' +
         'from music_template natural join music_template_assignment\n' +
-        'where music_template.music_template_id = ?'
+        'where music_template.music_template_id = ?';
     connection.query(sql, [musicTemplateId], function (err, rows, fields) {
         if (!err) {
             callback(rows);
