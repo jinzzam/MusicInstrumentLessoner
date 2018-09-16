@@ -12,7 +12,7 @@ import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.myfragment.CustomWaveformFragment;
-import hack.the.wap.musicinstrumentlessoner.myservice.UserInfoService;
+import hack.the.wap.musicinstrumentlessoner.myservice.UserService;
 import hack.the.wap.musicinstrumentlessoner.session.PresentFile;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
@@ -27,12 +27,12 @@ public class TeacherPracticeDetailActivity extends AppCompatActivity {
     private TextView tvTeacherPracticeDetailLayTeacherName;
     private TextView tvTeacherPracticeDetailLayFileName;
 
-    private static UserInfoService userInfoService;
+    private static UserService userService;
     private MusicTemplateDto mainTemplate;
 
     {
         session = Session.getInstance();
-        userInfoService = UserInfoService.getInstance();
+        userService = UserService.getInstance();
     }
 
     @Override
@@ -68,10 +68,10 @@ public class TeacherPracticeDetailActivity extends AppCompatActivity {
     }
 
     private void viewSetValue() {
-        ivTeacherPracticeDetailLayTeacher.setImageResource(DebugImageMatch.getImageFromName(userInfoService.getUserName(mainTemplate.getOwner())));
+        ivTeacherPracticeDetailLayTeacher.setImageResource(DebugImageMatch.getImageFromName(userService.getUserName(mainTemplate.getOwner())));
         ivTeacherPracticeDetailLayMusician.setImageResource(DebugImageMatch.getImageFromName(mainTemplate.getMusician()));
         tvTeacherPracticeDetailLayName.setText("" + mainTemplate.getMusicTitle());
-        tvTeacherPracticeDetailLayTeacherName.setText(getResources().getText(R.string.template_teacher_practice_act_pre) + userInfoService.getUserName(mainTemplate.getOwner()));
+        tvTeacherPracticeDetailLayTeacherName.setText(getResources().getText(R.string.template_teacher_practice_act_pre) + userService.getUserName(mainTemplate.getOwner()));
         PresentFile.fileName = "" + getResources().getText(R.string.fileDefaultDir)
                 + mainTemplate.getMusicTitle() + "/"
                 + getResources().getText(R.string.fileDefaultTeacher)
