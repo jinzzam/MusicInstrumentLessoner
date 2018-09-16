@@ -21,9 +21,9 @@ public class UserService {
     private static final String TAG = "USER_SERVICE";
     RequestQueue queue;
     private static UserService instance;
-    private static Session session;
     private static String getUserUrl = "http://192.168.43.36:3000/api/user/";
     private MiUserDto userDto;
+    private String userName;
 
     private UserService(Context context) {
         queue = Volley.newRequestQueue(context);
@@ -37,17 +37,14 @@ public class UserService {
     }
 
 
-    public MiUserDto getUserName(String inputEmail) {
+    public String getUserName(String inputEmail) {
         Log.e(TAG, getUserUrl);
         final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getUserUrl + inputEmail, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try {
                     JSONObject user = response.getJSONObject(0);
-                    String userName = user.get("username").toString();
-                    String userEmail = user.get("email").toString();
-                    String userPassword = user.get("password").toString();
-                    userDto = new MiUserDto(userName, userEmail, userPassword);
+                    userName = user.get("username").toString();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -66,6 +63,6 @@ public class UserService {
         jsonArrayRequest.setTag(TAG);
         queue.add(jsonArrayRequest);
         Log.e(TAG, "mainUserVolleySet >>>> : ");
-        return userDto;
+        return userName;
     }
 }

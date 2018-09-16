@@ -91,6 +91,6 @@ public class TemplateLayout extends LinearLayout {
         tvTemplateLayMusicTitle.setText(session.getTemplates().get(dto.getMusicTemplateId()).getMusicTitle());
         tvTemplateLayMain.setText(dto.getToDoCount());
         tvTemplateLaySub.setText(dto.getSuccessPercent());
-        ivTemplateLayTeacherImage.setImageResource(DebugImageMatch.getImageFromName(userService.getUserName(session.getTemplates().get(dto.getMusicTemplateId()).getOwner()).getName()));
+        ivTemplateLayTeacherImage.setImageResource(DebugImageMatch.getImageFromName(userService.getUserName(session.getTemplates().get(dto.getMusicTemplateId()).getOwner())));
     }
 }
