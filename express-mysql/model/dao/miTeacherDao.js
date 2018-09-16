@@ -17,18 +17,18 @@ this.selectAll=(callback)=>{
     });
 };
 
-this.selectOne=(groupname, callback)=>{
+this.selectOne=(groupName, callback)=>{
     var sql = 'select * from mi_teacher where group_name=?';
-    connection.query(sql,[groupname],function (err, rows, fields) {
+    connection.query(sql,[groupName],function (err, rows, fields) {
         if(!err){
             callback(rows);
         }
     });
 };
 
-this.insert =(groupname, tEmail)=>{
+this.insert =(groupName, teacherEmail)=>{
     var sql = 'insert into mi_teacher values (?,?)';
-    connection.query(sql, [groupname, tEmail], (err,rows,fields)=>{
+    connection.query(sql, [groupName, teacherEmail], (err,rows,fields)=>{
         if(!err){
             callback(rows);
         } else{

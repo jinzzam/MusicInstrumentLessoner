@@ -24,8 +24,8 @@ router.get('/', function (req, res, next) {
     async.series(tasks);
 });
 
-router.get('/:groupname', function (req, res, next) {
-    var groupName = req.params['groupname'];
+router.get('/:groupName', function (req, res, next) {
+    var groupName = req.params['groupName'];
     var data;
     const task1 = function (callback) {
         miTeacher.selectOne(groupName, function (rows) {
@@ -45,9 +45,9 @@ router.get('/:groupname', function (req, res, next) {
     async.series(tasks);
 });
 
-router.get('/:groupname/:temail', function (req, res, next) {
-    var groupName = req.params['groupname'];
-    var tEmail = req.params['temail'];
+router.get('/:groupName/:teacherEmail', function (req, res, next) {
+    var groupName = req.params['groupName'];
+    var tEmail = req.params['teacherEmail'];
     const task1 = function (callback) {
         miTeacher.insert(groupName, tEmail, function (rows) {
             callback(null);
