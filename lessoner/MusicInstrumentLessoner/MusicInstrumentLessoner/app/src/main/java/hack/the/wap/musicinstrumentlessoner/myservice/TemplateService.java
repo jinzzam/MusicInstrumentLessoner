@@ -24,14 +24,16 @@ import hack.the.wap.musicinstrumentlessoner.session.Session;
 public class TemplateService {
     private static final String TAG = "TEMPLATE_SERVICE";
     private static TemplateService instance;
-    private static Session session = Session.getInstance();
+    private static Session session;
     RequestQueue queue;
 
-    private String getTemplateNameById = "http://192.168.43.36:3000/api/template/";
+    private String getTemplateUrl = "http://192.168.43.36:3000/api/template/";
 
     private String musicTitle;
+    private int templateCount = 0;
 
-    private void TemplateService(Context context) {
+    private TemplateService(Context context) {
+        session = Session.getInstance();
         queue = Volley.newRequestQueue(context);
     }
 
@@ -69,7 +71,7 @@ public class TemplateService {
     }
 
     public String getTemplateNameById(int id) {
-        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getTemplateNameById + id, null, new Response.Listener<JSONArray>() {
+        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getTemplateUrl + id, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try {
@@ -98,8 +100,30 @@ public class TemplateService {
         return musicTitle;
     }
 
-    public int templateCount (String email){
-        
+    public int templateCount(String email) {
+        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getTemplateUrl + email, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                for (int i = 0; i < response.length(); i++) {
+                    templateCount++;
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+        jsonArrayRequest.setTag(TAG);
+        queue.add(jsonArrayRequest);
+        Log.e(TAG, "getTemplateNameById >>>> : ");
+
+        return templateCount;
 
     }
 }

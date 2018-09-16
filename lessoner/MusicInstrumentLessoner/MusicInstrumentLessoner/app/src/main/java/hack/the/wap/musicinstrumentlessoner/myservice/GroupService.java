@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiStudentDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiTeacherDto;
+import hack.the.wap.musicinstrumentlessoner.mylayout.GroupLayout;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class GroupService {

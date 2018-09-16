@@ -32,7 +32,7 @@ import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class VolleyService {
     private static VolleyService instance;
-    private static Session session = Session.getInstance();
+    private static Session session;
     private static final String TAG = "VOLLEY_SERVICE";
     RequestQueue queue;
 
@@ -55,7 +55,10 @@ public class VolleyService {
     private static String getTemplatePracticeUrl;
     private static String getGroupUrl = "http://192.168.43.36:3000/api/group/";
 
-
+    {
+        session = Session.getInstance();
+    }
+    
     private VolleyService(Context context) {
         queue = Volley.newRequestQueue(context);
     }
@@ -190,9 +193,6 @@ public class VolleyService {
                         getTemplateAssignmentUrl = getTemplateUrl + musicTemplateId + "/assignment/";
                         getTemplatePracticeUrl = getTemplateUrl + musicTemplateId + "/practice/";
 
-                        session.setTemplateGuides(templateGuideVolleySet(getTemplateGuideUrl));
-                        session.setTemplateAssignments(templateAssignmentVolleySet(getTemplateAssignmentUrl));
-                        session.setTemplatePractices(templatePracticeVolleySet(getTemplatePracticeUrl));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
