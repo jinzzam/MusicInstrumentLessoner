@@ -98,5 +98,8 @@ public class TemplateService {
         return musicTitle;
     }
 
+    public int templateCount (String email){
+        
 
+    }
 }

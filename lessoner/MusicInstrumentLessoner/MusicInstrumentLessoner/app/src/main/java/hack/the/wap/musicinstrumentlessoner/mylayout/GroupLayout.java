@@ -1,5 +1,6 @@
 package hack.the.wap.musicinstrumentlessoner.mylayout;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiTeacherDto;
+import hack.the.wap.musicinstrumentlessoner.myservice.GroupService;
 
 /*
 참고 사이트 : https://medium.com/@douglas.iacovelli/the-beauty-of-custom-views-and-how-to-do-it-79c7d78e2088
@@ -19,12 +21,14 @@ import hack.the.wap.musicinstrumentlessoner.model.dto.MiTeacherDto;
  */
 
 public class GroupLayout extends LinearLayout {
+    private static GroupService groupService;
     private ImageView ivGroupLayEduImage;
     private TextView tvGroupLayName;
     private TextView tvGroupLayMain;
     private TextView tvGroupLayMusicTitle;
 
     {
+        groupService = GroupService.getInstance(this.getContext());
         initView();
     }
 
@@ -82,18 +86,17 @@ public class GroupLayout extends LinearLayout {
         tvGroupLayMusicTitle.setText(musicTitle);
     }
 
+    @SuppressLint("SetTextI18n")
     public void setCustomAttr(MiGroupDto dto) {
-        ivGroupLayEduImage.setImageResource(DebugImageMatch.getImageFromName(dto.getName()));
-        tvGroupLayName.setText(dto.getName());
+        ivGroupLayEduImage.setImageResource(DebugImageMatch.getImageFromName(dto.getGroupName()));
+        tvGroupLayName.setText(dto.getGroupName());
         tvGroupLayMain.setText(""
-                + getResources().getText(R.string.groupLayTeacherNum) + dto.getTeachers().size() + getResources().getText(R.string.groupLayPunit)
+                + getResources().getText(R.string.groupLayTeacherNum) + groupService.teacherCount(dto.getGroupName()) + getResources().getText(R.string.groupLayPunit)
                 + getResources().getText(R.string.groupLaySeperator)
-                + getResources().getText(R.string.groupLayUserNum) + dto.getUsers().size() + getResources().getText(R.string.groupLayPunit));
+                + getResources().getText(R.string.groupLayUserNum) + groupService.studentCount(dto.getGroupName()) + getResources().getText(R.string.groupLayPunit));
         int templateCount = 0;
-        for (MiTeacherDto atom : dto.getTeachers().values()) {
-            templateCount += atom.getTemplates().size();
-        }
+
         tvGroupLayMusicTitle.setText("" + getResources().getText(R.string.groupLayUsageTempates)
-                + templateCount + getResources().getText(R.string.groupLayCunit));
+                + groupService.teacherTemplateCount(dto.getGroupName()) + getResources().getText(R.string.groupLayCunit));
     }
 }
