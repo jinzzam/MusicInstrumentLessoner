@@ -24,8 +24,8 @@ router.get('/', function (req, res, next) {
     async.series(tasks);
 });
 
-router.get('/:groupname', function (req, res, next) {
-    var groupName = req.params['groupname'];
+router.get('/:groupName', function (req, res, next) {
+    var groupName = req.params['groupName'];
     var data;
     const task1 = function (callback) {
         miStudent.selectOne(groupName, function (rows) {

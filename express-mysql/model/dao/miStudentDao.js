@@ -17,9 +17,9 @@ this.selectAll=(callback)=>{
     });
 };
 
-this.selectOne=(groupname, callback)=>{
+this.selectOne=(groupName, callback)=>{
     var sql = 'select * from mi_student where group_name=?';
-    connection.query(sql,[groupname],function (err, rows, fields) {
+    connection.query(sql,[groupName],function (err, rows, fields) {
         if(!err){
             callback(rows);
         }
