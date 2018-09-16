@@ -1,4 +1,4 @@
-package hack.the.wap.musicinstrumentlessoner.myservice;
+package hack.the.wap.musicinstrumentlessoner.model.myservice;
 
 
 import android.content.Context;
@@ -15,12 +15,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiStudentDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiTeacherDto;
-import hack.the.wap.musicinstrumentlessoner.mylayout.GroupLayout;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class GroupService {

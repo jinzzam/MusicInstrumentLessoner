@@ -10,8 +10,8 @@ import android.widget.Toast;
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugMode;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiUserDto;
-import hack.the.wap.musicinstrumentlessoner.myservice.LoginService;
-import hack.the.wap.musicinstrumentlessoner.myservice.VolleyService;
+import hack.the.wap.musicinstrumentlessoner.model.myservice.LoginService;
+import hack.the.wap.musicinstrumentlessoner.model.myservice.VolleyService;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class LoginActivity extends AppCompatActivity {

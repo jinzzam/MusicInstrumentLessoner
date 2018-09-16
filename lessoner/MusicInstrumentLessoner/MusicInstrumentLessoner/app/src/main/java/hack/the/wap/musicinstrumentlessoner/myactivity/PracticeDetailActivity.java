@@ -13,7 +13,7 @@ import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
 import hack.the.wap.musicinstrumentlessoner.myfragment.CustomWaveformFragment;
-import hack.the.wap.musicinstrumentlessoner.myservice.UserService;
+import hack.the.wap.musicinstrumentlessoner.model.myservice.UserService;
 import hack.the.wap.musicinstrumentlessoner.session.PresentFile;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 

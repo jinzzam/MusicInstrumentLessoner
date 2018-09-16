@@ -16,7 +16,7 @@ import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiNotificationDto;
 import hack.the.wap.musicinstrumentlessoner.mylayout.MiNotificationLayout;
 import hack.the.wap.musicinstrumentlessoner.mylayout.NotificationLayout;
-import hack.the.wap.musicinstrumentlessoner.myservice.NotificationService;
+import hack.the.wap.musicinstrumentlessoner.model.myservice.NotificationService;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 

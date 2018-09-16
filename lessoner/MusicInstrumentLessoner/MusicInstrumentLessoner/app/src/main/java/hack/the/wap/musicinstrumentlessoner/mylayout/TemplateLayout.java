@@ -8,12 +8,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.HashMap;
-
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateAssignmentDto;
-import hack.the.wap.musicinstrumentlessoner.myservice.UserService;
+import hack.the.wap.musicinstrumentlessoner.model.myservice.UserService;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 /*

@@ -1,4 +1,4 @@
-package hack.the.wap.musicinstrumentlessoner.myservice;
+package hack.the.wap.musicinstrumentlessoner.model.myservice;
 
 import android.content.Context;
 import android.util.Log;

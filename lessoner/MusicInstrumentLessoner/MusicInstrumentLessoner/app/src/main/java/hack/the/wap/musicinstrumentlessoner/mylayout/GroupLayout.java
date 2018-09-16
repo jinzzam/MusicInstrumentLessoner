@@ -12,8 +12,7 @@ import android.widget.TextView;
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
-import hack.the.wap.musicinstrumentlessoner.model.dto.MiTeacherDto;
-import hack.the.wap.musicinstrumentlessoner.myservice.GroupService;
+import hack.the.wap.musicinstrumentlessoner.model.myservice.GroupService;
 
 /*
 참고 사이트 : https://medium.com/@douglas.iacovelli/the-beauty-of-custom-views-and-how-to-do-it-79c7d78e2088

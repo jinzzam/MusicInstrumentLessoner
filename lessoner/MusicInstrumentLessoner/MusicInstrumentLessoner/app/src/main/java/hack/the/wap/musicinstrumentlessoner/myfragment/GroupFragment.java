@@ -10,16 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
-import hack.the.wap.musicinstrumentlessoner.model.dto.MiUserDto;
 import hack.the.wap.musicinstrumentlessoner.myactivity.MainActivity;
 import hack.the.wap.musicinstrumentlessoner.myactivity.UserGroupDetailActivity;
 import hack.the.wap.musicinstrumentlessoner.mylayout.GroupLayout;
-import hack.the.wap.musicinstrumentlessoner.myservice.GroupService;
+import hack.the.wap.musicinstrumentlessoner.model.myservice.GroupService;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 

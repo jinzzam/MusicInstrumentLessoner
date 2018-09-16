@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import java.util.HashMap;
 
@@ -19,8 +18,7 @@ import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.myactivity.MainActivity;
 import hack.the.wap.musicinstrumentlessoner.myactivity.TemplateDetailActivity;
 import hack.the.wap.musicinstrumentlessoner.mylayout.TemplateLayout;
-import hack.the.wap.musicinstrumentlessoner.myservice.TemplateService;
-import hack.the.wap.musicinstrumentlessoner.myservice.VolleyService;
+import hack.the.wap.musicinstrumentlessoner.model.myservice.TemplateService;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 /**

@@ -1,4 +1,4 @@
-package hack.the.wap.musicinstrumentlessoner.myservice;
+package hack.the.wap.musicinstrumentlessoner.model.myservice;
 
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiNotificationDto;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
