@@ -13,8 +13,7 @@ import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
 import hack.the.wap.musicinstrumentlessoner.myfragment.CustomWaveformFragment;
-import hack.the.wap.musicinstrumentlessoner.myservice.TemplateService;
-import hack.the.wap.musicinstrumentlessoner.myservice.UserInfoService;
+import hack.the.wap.musicinstrumentlessoner.myservice.UserService;
 import hack.the.wap.musicinstrumentlessoner.session.PresentFile;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
@@ -29,13 +28,13 @@ public class PracticeDetailActivity extends AppCompatActivity {
     private ImageView ivPracticeDetailLayTeacher;
     private ImageView ivPracticeDetailLayMusician;
 
-    private static UserInfoService userInfoService;
+    private static UserService userService;
     private MusicTemplatePracticeDto mainTemplatePractice;
     private MusicTemplateDto mainTemplate;
 
     {
         session = Session.getInstance();
-        userInfoService = UserInfoService.getInstance();
+        userService = UserService.getInstance();
     }
 
     @Override
@@ -75,7 +74,7 @@ public class PracticeDetailActivity extends AppCompatActivity {
     }
 
     private void viewSetValue() {
-        ivPracticeDetailLayTeacher.setImageResource(DebugImageMatch.getImageFromName(userInfoService.getUserName(mainTemplate.getOwner())));
+        ivPracticeDetailLayTeacher.setImageResource(DebugImageMatch.getImageFromName(userService.getUserName(mainTemplate.getOwner())));
         ivPracticeDetailLayMusician.setImageResource(DebugImageMatch.getImageFromName(mainTemplate.getMusician()));
         tvPracticeDetailLayName.setText("" + mainTemplate.getMusicTitle());
         tvPracticeDetailLayCount.setText("" + getResources().getText(R.string.LayTemplatePracticeMusicNum) + mainTemplatePractice.getMusicTemplatePracticeId());

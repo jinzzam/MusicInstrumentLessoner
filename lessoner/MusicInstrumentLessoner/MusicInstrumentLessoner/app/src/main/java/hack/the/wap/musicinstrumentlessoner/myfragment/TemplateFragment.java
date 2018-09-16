@@ -77,22 +77,14 @@ public class TemplateFragment extends Fragment {
         assignments = session.getTemplateAssignments();
         templates = session.getTemplates();
         for (MusicTemplateAssignmentDto assignmentDto : assignments.values()) {
-            // 로그인한 본인 이메일 가져와서 동일한 이메일 가진 데이터 받아옴
-            if (templateService.isMyAssignment(assignmentDto)) {
-                MusicTemplateDto templateInfo = templateService.getMyAssignmentTemplate(assignmentDto);
-                if (templateInfo != null) {
-                    TemplateLayout atom = new TemplateLayout(getContext());
-                    atom.setCustomAttr(templateService.getTemplateLayoutInfo(templateInfo, assignmentDto));
-                    atom.setOnClickListener(v -> {
-                        Intent intent = new Intent(MainActivity.getInstance(), TemplateDetailActivity.class);
-                        intent.putExtra("data", templateInfo);
-                        startActivity(intent);
-                    });
-                    llFragTemplate.addView(atom);
-                } else {
-                    Toast.makeText(this.getContext(), "현재 과제가 없습니다.", Toast.LENGTH_LONG).show();
-                }
-            }
+            TemplateLayout atom = new TemplateLayout(getContext());
+            atom.setCustomAttr(assignmentDto);
+            atom.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.getInstance(), TemplateDetailActivity.class);
+                intent.putExtra("data", assignments);
+                startActivity(intent);
+            });
+            llFragTemplate.addView(atom);
         }
         return templateFragmentView;
     }

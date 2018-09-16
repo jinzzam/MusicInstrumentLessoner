@@ -12,6 +12,9 @@ import java.util.HashMap;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateAssignmentDto;
+import hack.the.wap.musicinstrumentlessoner.myservice.UserService;
+import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 /*
 참고 사이트 : https://medium.com/@douglas.iacovelli/the-beauty-of-custom-views-and-how-to-do-it-79c7d78e2088
@@ -19,6 +22,9 @@ import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
  */
 
 public class TemplateLayout extends LinearLayout {
+    private static Session session;
+    private UserService userService = UserService.getInstance(this.getContext());
+
     private ImageView ivTemplateLayUserImage;
     private TextView tvTemplateLayMusicTitle;
     private TextView tvTemplateLayMain;
@@ -26,6 +32,7 @@ public class TemplateLayout extends LinearLayout {
     private ImageView ivTemplateLayTeacherImage;
 
     {
+        session = Session.getInstance();
         initView();
     }
 
@@ -79,11 +86,11 @@ public class TemplateLayout extends LinearLayout {
         typedArray.recycle();
     }
 
-    public void setCustomAttr(HashMap<String, String> layoutInfo) {
-        ivTemplateLayUserImage.setImageResource(DebugImageMatch.getImageFromName(layoutInfo.get("musician")));
-        tvTemplateLayMusicTitle.setText(layoutInfo.get("musicTitle"));
-        tvTemplateLayMain.setText(layoutInfo.get("toDoCount"));
-        tvTemplateLaySub.setText(layoutInfo.get("successPercent"));
-        ivTemplateLayTeacherImage.setImageResource(DebugImageMatch.getImageFromName(layoutInfo.get("teacher")));
+    public void setCustomAttr(MusicTemplateAssignmentDto dto) {
+        ivTemplateLayUserImage.setImageResource(DebugImageMatch.getImageFromName(session.getTemplates().get(dto.getMusicTemplateId()).getMusician()));
+        tvTemplateLayMusicTitle.setText(session.getTemplates().get(dto.getMusicTemplateId()).getMusicTitle());
+        tvTemplateLayMain.setText(dto.getToDoCount());
+        tvTemplateLaySub.setText(dto.getSuccessPercent());
+        ivTemplateLayTeacherImage.setImageResource(DebugImageMatch.getImageFromName(userService.getUserName(session.getTemplates().get(dto.getMusicTemplateId()).getOwner()).getName()));
     }
 }
