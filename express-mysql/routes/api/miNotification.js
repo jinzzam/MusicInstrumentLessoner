@@ -81,4 +81,18 @@ router.get('/:musicTemplateId/template-info', function (req, res, next) {
     async.series(tasks);
 });
 
+router.get('/:notiid/delete', function(req, res, next){
+    var notiId = req.params['notiid'];
+    const task1 = function (callback) {
+        miNoti.delete(notiId, function (rows) {
+            data = rows;
+            console.log(data);
+            callback(null);
+        });
+    };
+    res.send('Hello World');
+    const tasks = [task1];
+    async.series(tasks);
+});
+
 module.exports = router;

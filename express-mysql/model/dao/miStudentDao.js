@@ -37,3 +37,15 @@ this.insert =(groupname, sEmail, callback)=>{
         }
     });
 };
+
+this.delete =( sEmail, callback)=>{
+    var sql = 'delete from mi_student where student_email = ?';
+    connection.query(sql, [sEmail], (err,rows,fields)=>{
+        if(!err){
+            callback(rows);
+        } else{
+            console.log('user post');
+            console.log(err);
+        }
+    });
+};

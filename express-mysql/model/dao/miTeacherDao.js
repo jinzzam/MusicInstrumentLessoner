@@ -37,3 +37,14 @@ this.insert =(groupName, teacherEmail)=>{
         }
     });
 };
+
+ this.delete= (temail, callback) => {
+     var sql = 'delete from mi_teacher where teacher_email = ?';
+     connection.query(sql, [temail], (err, rows, fields)=>{
+         if(!err){
+             callback(rows);
+         } else {
+             console.log('err');
+         }
+     });
+ };

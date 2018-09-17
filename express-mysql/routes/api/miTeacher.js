@@ -45,7 +45,7 @@ router.get('/:groupName', function (req, res, next) {
     async.series(tasks);
 });
 
-router.get('/:groupName/:teacherEmail', function (req, res, next) {
+router.get('/:groupName/:teacherEmail/insert', function (req, res, next) {
     var groupName = req.params['groupName'];
     var tEmail = req.params['teacherEmail'];
     const task1 = function (callback) {
@@ -55,6 +55,18 @@ router.get('/:groupName/:teacherEmail', function (req, res, next) {
         res.send('Hello World');
     };
     const tasks = [task1];
+    async.series(tasks);
+});
+
+router.get('/:temail/delete', function (req, res, next) {
+    var tEmail = req.params['temail'];
+    const task1= function(callback) {
+        miTeacher.delete(tEmail, function (rows){
+            callback(null);
+        });
+        res.send('Done');
+    };
+    const tasks = [ task1];
     async.series(tasks);
 });
 

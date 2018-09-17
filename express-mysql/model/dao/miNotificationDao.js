@@ -49,3 +49,12 @@ this.joinTemplate = (musicTemplateId, callback) => {
         }
     });
 };
+
+this.delete = (notiid, callback) => {
+    var sql = 'delete from mi_notification where mi_notification_id = ?';
+    connection.query(sql, [notiid], function(err, rows, fields){
+        if(!err){
+            callback(null);
+        }
+    })
+};

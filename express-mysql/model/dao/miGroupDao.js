@@ -47,3 +47,12 @@ this.join = (useremail, callback) => {
         }
     });
 };
+
+this.delete = (groupname, callback) => {
+    var sql = 'delete from mi_group where group_name = ?';
+    connection.connect(sql, [groupname], function(err, rows, fields){
+        if(!err){
+            callback(rows);
+        }
+    });
+};
