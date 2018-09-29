@@ -27,10 +27,22 @@ this.selectOne = (studentEmail, callback) => {
     });
 };
 
-this.insert = (filename, tempid, callback) => {
-    var sql = 'insert into music_template_assignment values (?,?)';
-    connection.query(sql, [filename, tempid], function (err, rows, fields) {
+this.insert = (innerFilename, tempId,studentEmail, todo, done, sPercent, callback) => {
+    var sql = 'insert into music_template_assignment values (?,?,?,?,?,?)';
+    connection.query(sql, [innerFilename, tempId,studentEmail, todo, done, sPercent], function (err, rows, fields) {
         if (!err) {
+            callback(rows);
+        } else {
+            console.log('user post');
+            console.log(err);
+        }
+    });
+};
+
+this.count = (tempid, sEmail, callback)=>{
+    var sql = 'update music_template_assignment set done_count = done_count + 1 where music_template_id=? and student_email=?';
+    connection.query(sql, [tempid, sEmail], function(err, rows, fields){
+        if(!err){
             callback(rows);
         } else {
             console.log('user post');
