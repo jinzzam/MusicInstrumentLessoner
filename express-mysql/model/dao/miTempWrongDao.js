@@ -26,9 +26,9 @@ this.selectOne=(filename, time, callback)=>{
     });
 };
 
-this.insert =(filename, time, callback)=>{
-    var sql = 'insert into music_template_wrong values (?,?)';
-    connection.query(sql, [filename, time], (err,rows,fields)=>{
+this.insert =(filename, startTime, endTime, callback)=>{
+    var sql = 'insert into music_template_wrong values (?,?,?)';
+    connection.query(sql, [filename, startTime, endTime], (err,rows,fields)=>{
         if(!err){
             callback(rows);
         } else{

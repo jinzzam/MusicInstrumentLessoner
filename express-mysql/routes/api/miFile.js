@@ -108,7 +108,7 @@ router.get('/:email/:filename/delete', function (req, res, next){
         miFile.delete(ownerEmail, innerFileName, function(rows){
             callback(null);
         });
-        res.send('Hello World');
+        res.send('Delete');
     };
     const tasks = [task1];
     async.series(tasks);
