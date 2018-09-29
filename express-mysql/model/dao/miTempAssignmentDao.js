@@ -39,9 +39,9 @@ this.insert = (innerFilename, tempId,studentEmail, todo, done, sPercent, callbac
     });
 };
 
-this.count = (tempid, sEmail, callback)=>{
-    var sql = 'update music_template_assignment set done_count = done_count + 1 where music_template_id=? and student_email=?';
-    connection.query(sql, [tempid, sEmail], function(err, rows, fields){
+this.count = (filename,tempid, sEmail, callback)=>{
+    var sql = 'update music_template_assignment set done_count = done_count + 1 where inner_filename =? and music_template_id=? and student_email=?';
+    connection.query(sql, [filename, tempid, sEmail], function(err, rows, fields){
         if(!err){
             callback(rows);
         } else {
