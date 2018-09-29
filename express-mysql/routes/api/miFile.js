@@ -100,4 +100,17 @@ router.get('/:email/:filename', function (req, res, next) {
     async.series(tasks);
 });
 
+router.get('/:email/:filename/delete', function (req, res, next){
+    var ownerEmail = req.params['email'];
+    var innerFileName = req.params['filename'];
+    const task1=function(callback){
+        miFile.delete(ownerEmail, innerFileName, function(rows){
+            callback(null);
+        });
+        res.send('Hello World');
+    };
+    const tasks = [task1];
+    async.series(tasks);
+});
+
 module.exports = router;

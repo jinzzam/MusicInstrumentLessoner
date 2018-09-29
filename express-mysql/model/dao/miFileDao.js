@@ -60,3 +60,12 @@ this.joinWrong = (filename, callback) => {
         }
     });
 };
+
+this.delete = (ownerEmail, filename, callback) => {
+    var sql = 'delete from mi_file where owner = ? and inner_filename = ?';
+    connection.query(sql, [ownerEmail, filename], function (err, rows, fields){
+        if(!err){
+            callback(rows);
+        }
+    });
+};
