@@ -82,4 +82,16 @@ router.get('/:tempid/:email/:filename/:isdone/:complete/insert', function (req, 
     async.series(tasks);
 });
 
+router.get('/:practiceId/isDone', function(req, res, next){
+    var pId = req.params['practiceId'];
+    const task1= function(callback){
+        miTempPractice.isDone(pId, function(rows){
+            callback(null);
+        });
+        res.send('is Done !');
+    };
+    const tasks = [task1];
+    async.series(tasks);
+});
+
 module.exports = router;

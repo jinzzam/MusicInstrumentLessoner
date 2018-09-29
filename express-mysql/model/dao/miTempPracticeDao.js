@@ -48,3 +48,13 @@ this.joinFile = (innerFilename, callback) => {
         }
     });
 };
+
+this.isDone = (practiceId, callback)=> {
+    var sql = 'update music_template_practice set is_done = 1 where music_template_practice_id =?';
+    connection.query(sql, [practiceId], function (err, rows, fields) {
+        if (!err) {
+            callback(rows);
+        }
+    });
+};
+
