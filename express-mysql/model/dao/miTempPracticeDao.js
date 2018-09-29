@@ -58,3 +58,11 @@ this.isDone = (practiceId, callback)=> {
     });
 };
 
+this.Complete = (percent, practiceId, callback)=> {
+    var sql = 'update music_template_practice set complete_percent = ? where music_template_practice_id =?';
+    connection.query(sql, [percent, practiceId], function (err, rows, fields) {
+        if (!err) {
+            callback(rows);
+        }
+    });
+};

@@ -94,4 +94,17 @@ router.get('/:practiceId/isDone', function(req, res, next){
     async.series(tasks);
 });
 
+router.get('/:percent/:practiceId/complete', function(req, res, next){
+    var cPer = req.params['percent'];
+    var pId = req.params['practiceId'];
+    const task1= function(callback){
+        miTempPractice.Complete(cPer, pId, function(rows){
+            callback(null);
+        });
+        res.send('Complete Percent Change');
+    };
+    const tasks = [task1];
+    async.series(tasks);
+});
+
 module.exports = router;
