@@ -26,9 +26,9 @@ this.selectOne = (filename, callback) => {
     });
 };
 
-this.insert = (email, filename, callback) => {
+this.insert = (email, innerfile, outerfile, callback) => {
     var sql = 'insert into mi_file values (?,?)';
-    connection.query(sql, [email, filename], (err, rows, fields) => {
+    connection.query(sql, [email, innerfile, outerfile], (err, rows, fields) => {
         if (!err) {
             callback(rows);
         } else {

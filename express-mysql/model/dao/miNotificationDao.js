@@ -26,10 +26,10 @@ this.selectOne = (studentEmail, callback) => {
     });
 };
 
-this.insert = (notiid, tempid, type, comment, callback) => {
+this.insert = (notiid, tempid,email, type, comment, callback) => {
     var sql = 'insert into mi_notification ' +
         '(mi_notification_id, music_template_id, type, comment) values (?,?,?,?)';
-    connection.query(sql, [notiid, tempid, type, comment], function (err, rows, fields) {
+    connection.query(sql, [notiid, tempid, email, type, comment], function (err, rows, fields) {
         if (!err) {
             callback(rows);
         } else {
@@ -56,5 +56,5 @@ this.delete = (notiid, callback) => {
         if(!err){
             callback(null);
         }
-    })
+    });
 };
