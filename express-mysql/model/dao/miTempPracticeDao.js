@@ -26,9 +26,9 @@ this.selectOne = (id, callback) => {
     });
 };
 
-this.insert = (email, filename, tempid, callback) => {
-    var sql = 'insert into music_template_guide (student_email, inner_filename, music_template_id) values (?,?,?)';
-    connection.query(sql, [email, filename, tempid], function (err, rows, fields) {
+this.insert = (tempId, sEmail,innerFile,is_done, completePercent, callback) => {
+    var sql = 'insert into music_template_practice (music_template_id, student_email, inner_filename, is_done, complete_percent) values (?,?,?,?,?)';
+    connection.query(sql, [tempId, sEmail,innerFile,is_done, completePercent], function (err, rows, fields) {
         if (!err) {
             callback(rows);
         } else {

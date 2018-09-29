@@ -86,4 +86,4 @@ router.get('/:filename/delete', function(req, res, next){
     async.series(tasks);
 });
 
-module.exports = router;s
+module.exports = router;
