@@ -26,9 +26,9 @@ this.selectOne=(groupName, callback)=>{
     });
 };
 
-this.insert =(groupname, sEmail, callback)=>{
+this.insert =(sEmail, groupName, callback)=>{
     var sql = 'insert into mi_student values (?,?)';
-    connection.query(sql, [groupname, sEmail], (err,rows,fields)=>{
+    connection.query(sql, [sEmail, groupName], (err,rows,fields)=>{
         if(!err){
             callback(rows);
         } else{
