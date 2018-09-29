@@ -44,22 +44,6 @@ public class TemplateService {
         return instance;
     }
 
-    public boolean isMyAssignment(MusicTemplateAssignmentDto assignmentDto) {
-        if (assignmentDto.getStudentEmail().equals(session.getMainUser().getEmail())) {
-            return true;
-        }
-        return false;
-    }
-
-    public MusicTemplateDto getMyAssignmentTemplate(MusicTemplateAssignmentDto assignmentDto) {
-        for (MusicTemplateDto templateDto : session.getTemplates().values()) {
-            if (templateDto.getMusicTemplateId() == assignmentDto.getMusicTemplateId()) {
-                return templateDto;
-            }
-        }
-        return null;
-    }
-
     public HashMap<String, String> getTemplateLayoutInfo(MusicTemplateDto templateDto, MusicTemplateAssignmentDto assignmentDto) {
         HashMap<String, String> templateLayoutInfo = new HashMap<>();
         templateLayoutInfo.put("musician", templateDto.getMusician());
@@ -124,6 +108,5 @@ public class TemplateService {
         Log.e(TAG, "getTemplateNameById >>>> : ");
 
         return templateCount;
-
     }
 }

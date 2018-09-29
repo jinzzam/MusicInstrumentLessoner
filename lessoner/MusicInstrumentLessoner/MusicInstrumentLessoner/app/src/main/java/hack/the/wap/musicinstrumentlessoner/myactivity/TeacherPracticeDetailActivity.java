@@ -32,7 +32,7 @@ public class TeacherPracticeDetailActivity extends AppCompatActivity {
 
     {
         session = Session.getInstance();
-        userService = UserService.getInstance();
+        userService = UserService.getInstance(this);
     }
 
     @Override

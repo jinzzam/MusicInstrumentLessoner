@@ -33,7 +33,7 @@ public class GroupFragment extends Fragment {
     private static View groupFragmentView;
     private static LinearLayout llFragGroup;
     private static Session session;
-    private static GroupService groupService = GroupService.getInstance();
+    private GroupService groupService = GroupService.getInstance(this.getContext());
     private static HashMap<String, MiGroupDto> userGroups;
 
     private OnFragmentInteractionListener mListener;

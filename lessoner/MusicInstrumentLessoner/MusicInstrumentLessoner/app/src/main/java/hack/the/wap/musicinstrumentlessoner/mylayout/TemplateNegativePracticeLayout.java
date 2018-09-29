@@ -7,6 +7,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import hack.the.wap.musicinstrumentlessoner.R;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
 
 /*
 참고 사이트 : https://medium.com/@douglas.iacovelli/the-beauty-of-custom-views-and-how-to-do-it-79c7d78e2088
@@ -41,7 +43,7 @@ public class TemplateNegativePracticeLayout extends LinearLayout {
         tvTemplateNegativePracticeLayCount = findViewById(R.id.tvTemplateNegativePracticeLayCount);
     }
 
-    public void setCustomAttr(TemplatePracticeDto dto) {
-        tvTemplateNegativePracticeLayCount.setText(getResources().getText(R.string.LayTemplatePracticeMusicNum) + (dto.getPracticeId() + ""));
+    public void setCustomAttr(MusicTemplatePracticeDto dto) {
+        tvTemplateNegativePracticeLayCount.setText(getResources().getText(R.string.LayTemplatePracticeMusicNum) + (dto.getMusicTemplateId() + ""));
     }
 }

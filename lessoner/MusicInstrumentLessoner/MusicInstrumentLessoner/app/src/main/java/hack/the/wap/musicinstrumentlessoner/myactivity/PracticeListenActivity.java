@@ -12,10 +12,13 @@ import java.util.TreeMap;
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
+import hack.the.wap.musicinstrumentlessoner.model.myservice.UserService;
 import hack.the.wap.musicinstrumentlessoner.mylayout.GuideExplainLayout;
 
 public class PracticeListenActivity extends AppCompatActivity {
-    private TemplatePracticeDto mainTemplatePractice;
+    private static UserService userService;
+    private MusicTemplatePracticeDto mainTemplatePractice;
     private MusicTemplateDto mainTemplate;
     private ImageView ivPracticeListenLayLeftArrow;
     private ImageView ivPracticeListenLayTeacher;
@@ -26,6 +29,9 @@ public class PracticeListenActivity extends AppCompatActivity {
     private TextView tvPracticeListenLayFileName;
     private LinearLayout llPracticeListenLayComment;
 
+    {
+        userService = UserService.getInstance(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +39,7 @@ public class PracticeListenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_practice_listen);
         initView();
         Intent intent = getIntent();
-        mainTemplatePractice = (TemplatePracticeDto) intent.getSerializableExtra("data");
+        mainTemplatePractice = (MusicTemplatePracticeDto) intent.getSerializableExtra("data");
         mainTemplate = (MusicTemplateDto) intent.getSerializableExtra("main");
         viewSetValue();
         viewSetListener();
@@ -57,16 +63,16 @@ public class PracticeListenActivity extends AppCompatActivity {
     }
 
     private void viewSetValue() {
-        ivPracticeListenLayTeacher.setImageResource(DebugImageMatch.getImageFromName(mainTemplate.getOwner().getName()));
+        ivPracticeListenLayTeacher.setImageResource(DebugImageMatch.getImageFromName(userService.getUserName(mainTemplate.getOwner())));
         ivPracticeListenLayMusician.setImageResource(DebugImageMatch.getImageFromName(mainTemplate.getMusician()));
-        tvPracticeListenLayName.setText("" + mainTemplate.getMusicTitle());
-        tvPracticeListenLayCount.setText("" + getResources().getText(R.string.LayTemplatePracticeMusicNum) + mainTemplatePractice.getPracticeId());
-        tvPracticeListenLayPercent.setText("" + getResources().getText(R.string.LayTemplatePracticeSuccessPercent) + mainTemplatePractice.getPercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd));
-        tvPracticeListenLayFileName.setText("" + getResources().getText(R.string.LayTemplatePracticeFilePath) + mainTemplatePractice.getFileName());
-        TreeMap<String, String> tm = new TreeMap<>(mainTemplatePractice.getData());
-        if (!mainTemplatePractice.getData().isEmpty()) {
+        tvPracticeListenLayName.setText(mainTemplate.getMusicTitle());
+        tvPracticeListenLayCount.setText("" + getResources().getText(R.string.LayTemplatePracticeMusicNum) + mainTemplatePractice.getMusicTemplatePracticeId());
+        tvPracticeListenLayPercent.setText("" + getResources().getText(R.string.LayTemplatePracticeSuccessPercent) + mainTemplatePractice.getCompletePercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd));
+        tvPracticeListenLayFileName.setText(getResources().getText(R.string.LayTemplatePracticeFilePath) + mainTemplatePractice.getInnerFilename());
+        TreeMap<String, String> tm = new TreeMap<>();
+        if (true) {
             for (String key : tm.keySet()) {
-                GuideExplainLayout atom = new GuideExplainLayout(this, key, mainTemplatePractice.getData().get(key));
+                GuideExplainLayout atom = new GuideExplainLayout(this, key, mainTemplate.getGuide());
                 llPracticeListenLayComment.addView(atom);
             }
         }

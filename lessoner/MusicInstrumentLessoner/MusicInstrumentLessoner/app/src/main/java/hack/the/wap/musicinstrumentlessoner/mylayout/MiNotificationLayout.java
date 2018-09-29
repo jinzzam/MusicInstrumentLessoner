@@ -76,8 +76,8 @@ public class MiNotificationLayout extends LinearLayout {
 
     public void setCustomAttr(MiNotificationDto dto) {
         tvMiNotificationLayName.setText(getResources().getText(R.string.app_name_kor));
-        tvMiNotificationLayDate.setText(dto.getDate());
-        tvMiNotificationLayMain.setText(dto.getMain());
-        tvMiNotificationLayMusicTitle.setText(dto.getTemplate().getMusicTitle());
+        tvMiNotificationLayDate.setText(dto.getRegistDateTime().toString());
+        tvMiNotificationLayMain.setText(dto.getComment());
+        tvMiNotificationLayMusicTitle.setText(dto.getMusicTemplateId());
     }
 }

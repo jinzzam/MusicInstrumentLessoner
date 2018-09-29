@@ -13,12 +13,14 @@ import java.util.TreeMap;
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
+import hack.the.wap.musicinstrumentlessoner.model.myservice.UserService;
 import hack.the.wap.musicinstrumentlessoner.mylayout.GuideExplainLayout;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class GuideActivity extends AppCompatActivity {
     private static GuideActivity instance;
     private static Session session;
+    private static UserService userService;
     private MusicTemplateDto mainTemplate;
     private ImageView ivGuideActLeftArrow;
     private ImageView ivGuideActTeacher;
@@ -30,6 +32,7 @@ public class GuideActivity extends AppCompatActivity {
 
     {
         session = Session.getInstance();
+        userService = UserService.getInstance(this);
     }
 
     @Override
@@ -61,20 +64,20 @@ public class GuideActivity extends AppCompatActivity {
     }
 
     private void viewSetValue() {
-        ivGuideActTeacher.setImageResource(DebugImageMatch.getImageFromName(mainTemplate.getOwner().getName()));
+        ivGuideActTeacher.setImageResource(DebugImageMatch.getImageFromName(userService.getUserName(mainTemplate.getOwner())));
         ivGuideActMusician.setImageResource(DebugImageMatch.getImageFromName(mainTemplate.getMusician()));
-        tvGuideActTeacherName.setText(mainTemplate.getOwner().getName());
+        tvGuideActTeacherName.setText(userService.getUserName(mainTemplate.getOwner()));
         tvGuideActMusicName.setText(mainTemplate.getMusicTitle());
         if (mainTemplate.getGuide() != null) {
-            if (mainTemplate.getGuide().getMain() != null) {
-                tvGuideActMusicMainExplain.setText(mainTemplate.getGuide().getMain());
+            if (mainTemplate.getGuide() != null) {
+                tvGuideActMusicMainExplain.setText(mainTemplate.getGuide());
             } else {
                 tvGuideActMusicMainExplain.setText(getResources().getText(R.string.tvActGuideNoData));
             }
-            if (!mainTemplate.getGuide().getData().isEmpty()) {
-                TreeMap<String, String> tm = new TreeMap<>(mainTemplate.getGuide().getData());
+            if (!mainTemplate.getGuide().isEmpty()) {
+                TreeMap<String, String> tm = new TreeMap<>();
                 for (String key : tm.keySet()) {
-                    GuideExplainLayout atom = new GuideExplainLayout(this, key, mainTemplate.getGuide().getData().get(key));
+                    GuideExplainLayout atom = new GuideExplainLayout(this, key, mainTemplate.getGuide());
                     llActUserGroupDetailUser.addView(atom);
                 }
             } else {
