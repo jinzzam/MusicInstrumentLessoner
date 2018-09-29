@@ -62,12 +62,10 @@ router.get('/:filename/:tempid/:semail/:todo/:success/insert', function (req, re
     async.series(tasks);
 });
 
-router.get('/:filename/:tempid/:semail/done-count', function(req, res, next){
+router.get('/:filename/done-count', function(req, res, next){
     var innerFilename = req.params['filename'];
-    var tempId = req.params['tempid'];
-    var studentEmail = req.params['semail'];
     const task1 = function (callback) {
-        miTempAssignment.count(innerFilename, tempId,studentEmail, function (rows) {
+        miTempAssignment.count(innerFilename, function (rows) {
             callback(null);
         });
         res.send('Count ++');
@@ -76,4 +74,16 @@ router.get('/:filename/:tempid/:semail/done-count', function(req, res, next){
     async.series(tasks);
 });
 
-module.exports = router;
+router.get('/:filename/delete', function(req, res, next){
+    var innerFilename = req.params['filename'];
+    const task1 = function (callback) {
+        miTempAssignment.delete(innerFilename, function (rows) {
+            callback(null);
+        });
+        res.send('Delete');
+    };
+    const tasks = [task1];
+    async.series(tasks);
+});
+
+module.exports = router;s

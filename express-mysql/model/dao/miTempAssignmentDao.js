@@ -39,9 +39,21 @@ this.insert = (innerFilename, tempId,studentEmail, todo, done, sPercent, callbac
     });
 };
 
-this.count = (filename,tempid, sEmail, callback)=>{
-    var sql = 'update music_template_assignment set done_count = done_count + 1 where inner_filename =? and music_template_id=? and student_email=?';
-    connection.query(sql, [filename, tempid, sEmail], function(err, rows, fields){
+this.count = (filename,callback)=>{
+    var sql = 'update music_template_assignment set done_count = done_count + 1 where inner_filename =?';
+    connection.query(sql, [filename], function(err, rows, fields){
+        if(!err){
+            callback(rows);
+        } else {
+            console.log('user post');
+            console.log(err);
+        }
+    });
+};
+
+this.delete = (filename, callback)=>{
+    var sql = 'delete from music_template_assignment where inner_filename = ?';
+    connection.query(sql, [filename], function(err, rows, fields){
         if(!err){
             callback(rows);
         } else {
