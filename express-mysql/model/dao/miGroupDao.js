@@ -2,7 +2,7 @@ var mysql = require('mysql');
 
 var connection = mysql.createConnection({
     user : 'root',
-    password : '123',
+    password : '',
     database : 'midb'
 });
 
@@ -50,7 +50,43 @@ this.join = (useremail, callback) => {
 
 this.delete = (groupname, callback) => {
     var sql = 'delete from mi_group where group_name = ?';
-    connection.connect(sql, [groupname], function(err, rows, fields){
+    connection.query(sql, [groupname], function(err, rows, fields){
+        if(!err){
+            callback(rows);
+        }
+    });
+};
+
+this.infoupdate = (str, groupName, callback)=>{
+    var sql = 'update mi_group set info = ? where group_name = ?';
+    connection.query(sql, [str, groupName], function(err, rows, fields){
+        if(!err){
+            callback(rows);
+        }
+    });
+};
+
+this.placeupdate = (str, groupName, callback)=>{
+    var sql = 'update mi_group set place = ? where group_name = ?';
+    connection.query(sql, [str, groupName], function(err, rows, fields){
+        if(!err){
+            callback(rows);
+        }
+    });
+};
+
+this.insupdate = (str, groupName, callback)=>{
+    var sql = 'update mi_group set instruments = ? where group_name = ?';
+    connection.query(sql, [str, groupName], function(err, rows, fields){
+        if(!err){
+            callback(rows);
+        }
+    });
+};
+
+this.genreupdate = (str, groupName, callback)=>{
+    var sql = 'update mi_group set genre = ? where group_name = ?';
+    connection.query(sql, [str, groupName], function(err, rows, fields){
         if(!err){
             callback(rows);
         }

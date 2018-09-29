@@ -82,4 +82,53 @@ router.get('/:useremail/join', function(req, res, next){
     async.series(tasks);
 });
 
+router.get('/:type/:str/:groupName/update', function (req, res, next){
+    var type= req.params['type'];
+    var str = req.params['str'];
+    var groupName = req.params['groupName'];
+    switch(type){
+        case'info':
+            const task1 = function (callback) {
+            miGroup.infoupdate(str, groupName, function (rows) {
+                callback(null);
+            });
+            res.send('info update');
+        };
+            const tasks1 = [task1];
+            async.series(tasks1);
+            break;
+        case'place':
+            const task2 = function (callback) {
+                miGroup.placeupdate(str, groupName, function (rows) {
+                    callback(null);
+                });
+                res.send('place update');
+            };
+            const tasks2 = [task2];
+            async.series(tasks2);
+            break;
+        case'ins':
+            const task3 = function (callback) {
+                miGroup.insupdate(str, groupName, function (rows) {
+                    callback(null);
+                });
+                res.send('instruments update');
+            };
+            const tasks3 = [task3];
+            async.series(tasks3);
+            break;
+        case'genre':
+            const task4 = function (callback) {
+                miGroup.genreupdate(str, groupName, function (rows) {
+                    callback(null);
+                });
+                res.send('genre update');
+            };
+            const tasks4 = [task4];
+            async.series(tasks4);
+            break;
+    }
+
+});
+
 module.exports = router;
