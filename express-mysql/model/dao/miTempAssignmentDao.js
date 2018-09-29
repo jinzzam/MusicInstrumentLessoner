@@ -62,3 +62,15 @@ this.delete = (filename, callback)=>{
         }
     });
 };
+
+this.complete = (percent, filename, callback)=>{
+    var sql = 'update music_template_assignment set success_percent=? where inner_filename =?';
+    connection.query(sql, [percent, filename], function(err, rows, fields){
+        if(!err){
+            callback(rows);
+        } else {
+            console.log('user post');
+            console.log(err);
+        }
+    });
+};

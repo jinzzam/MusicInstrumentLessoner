@@ -86,4 +86,17 @@ router.get('/:filename/delete', function(req, res, next){
     async.series(tasks);
 });
 
+router.get('/:percent/:filename/complete', function(req, res, next){
+    var cPer = req.params['percent'];
+    var innerFilename = req.params['filename'];
+    const task1 = function (callback) {
+        miTempAssignment.complete(cPer, innerFilename, function (rows) {
+            callback(null);
+        });
+        res.send('Complete');
+    };
+    const tasks = [task1];
+    async.series(tasks);
+});
+
 module.exports = router;
