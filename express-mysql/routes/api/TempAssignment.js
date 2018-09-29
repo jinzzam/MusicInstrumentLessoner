@@ -45,14 +45,55 @@ router.get('/:studentEmail', function (req, res, next) {
     async.series(tasks);
 });
 
-router.get('/:filename/:tempid', function (req, res, next) {
+router.get('/:filename/:tempid/:semail/:todo/:success/insert', function (req, res, next) {
     var innerFilename = req.params['filename'];
     var tempId = req.params['tempid'];
+    var studentEmail = req.params['semail'];
+    var todo = req.params['todo'];
+    var done = 0;
+    var sPercent = req.params['success'];
     const task1 = function (callback) {
-        miTempAssignment.insert(innerFilename, tempId, function (rows) {
+        miTempAssignment.insert(innerFilename, tempId,studentEmail, todo, done, sPercent, function (rows) {
             callback(null);
         });
-        res.send('Hello World');
+        res.send('Insert');
+    };
+    const tasks = [task1];
+    async.series(tasks);
+});
+
+router.get('/:filename/done-count', function(req, res, next){
+    var innerFilename = req.params['filename'];
+    const task1 = function (callback) {
+        miTempAssignment.count(innerFilename, function (rows) {
+            callback(null);
+        });
+        res.send('Count ++');
+    };
+    const tasks = [task1];
+    async.series(tasks);
+});
+
+router.get('/:filename/delete', function(req, res, next){
+    var innerFilename = req.params['filename'];
+    const task1 = function (callback) {
+        miTempAssignment.delete(innerFilename, function (rows) {
+            callback(null);
+        });
+        res.send('Delete');
+    };
+    const tasks = [task1];
+    async.series(tasks);
+});
+
+router.get('/:percent/:filename/complete', function(req, res, next){
+    var cPer = req.params['percent'];
+    var innerFilename = req.params['filename'];
+    const task1 = function (callback) {
+        miTempAssignment.complete(cPer, innerFilename, function (rows) {
+            callback(null);
+        });
+        res.send('Complete');
     };
     const tasks = [task1];
     async.series(tasks);

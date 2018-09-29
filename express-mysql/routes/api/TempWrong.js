@@ -46,14 +46,15 @@ router.get('/find/:filename/:time', function (req, res, next) {
     async.series(tasks);
 });
 
-router.get('/:filename/:time', function (req, res, next) {
+router.get('/:filename/:startTime/:endTime', function (req, res, next) {
     var fileName = req.params['filename'];
-    var playTime = req.params['time'];
+    var startTime = req.params['startTime'];
+    var endTime = req.params['endTime'];
     const task1 = function (callback) {
-        miTempWrong.insert(fileName, playTime, function (rows) {
+        miTempWrong.insert(fileName, startTime, endTime, function (rows) {
             callback(null);
         });
-        res.send('Hello World');
+        res.send('Insert');
     };
     const tasks = [task1];
     async.series(tasks);

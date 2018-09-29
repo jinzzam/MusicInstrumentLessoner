@@ -87,14 +87,28 @@ router.get('/:filename/wrong', function (req, res, next) {
     async.series(tasks);
 });
 
-router.get('/:email/:filename', function (req, res, next) {
+router.get('/:email/:inner/:outer/insert', function (req, res, next) {
     var userEmail = req.params['email'];
-    var innerFileName = req.params['filename'];
+    var innerFileName = req.params['inner'];
+    var outerFileName = req.params['outer'];
     const task1 = function (callback) {
-        miFile.insert(userEmail, innerFileName, function (rows) {
+        miFile.insert(userEmail, innerFileName, outerFileName, function (rows) {
             callback(null);
         });
-        res.send('Hello World');
+        res.send('Insert');
+    };
+    const tasks = [task1];
+    async.series(tasks);
+});
+
+router.get('/:email/:filename/delete', function (req, res, next){
+    var ownerEmail = req.params['email'];
+    var innerFileName = req.params['filename'];
+    const task1=function(callback){
+        miFile.delete(ownerEmail, innerFileName, function(rows){
+            callback(null);
+        });
+        res.send('Delete');
     };
     const tasks = [task1];
     async.series(tasks);

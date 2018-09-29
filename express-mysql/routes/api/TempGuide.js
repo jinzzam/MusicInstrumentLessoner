@@ -45,7 +45,7 @@ router.get('/:id', function (req, res, next) {
     async.series(tasks);
 });
 
-router.get('/:id/:time/:comment', function (req, res, next) {
+router.get('/:id/:time/:comment/insert', function (req, res, next) {
     var guideId = req.params['id'];
     var playTime = req.params['time'];
     var guideComment = req.params['comment'];
@@ -53,9 +53,34 @@ router.get('/:id/:time/:comment', function (req, res, next) {
         miTempGuide.insert(guideId, playTime, guideComment, function (rows) {
             callback(null);
         });
-        res.send('Hello World');
+        res.send('Insert');
     };
     const tasks = [task1];
+    async.series(tasks);
+});
+
+router.get('/:id/delete', function(req,res,next){
+    var guideId = req.params['id'];
+    const task1= function(callback){
+        miTempGuide.delete(guideId,function(rows){
+            callback(null);
+        });
+        res.send('Delete');
+    };
+    const tasks= [task1];
+    async.series(tasks);
+});
+
+router.get('/:id/:comment/update', function(req, res, next){
+    var guideId = req.params['id'];
+    var guideComment = req.params['comment'];
+    const task1= function(callback){
+        miTempGuide.update(guideComment,guideId, function(rows){
+            callback(null);
+        });
+        res.send('Update');
+    };
+    const tasks= [task1];
     async.series(tasks);
 });
 

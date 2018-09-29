@@ -26,9 +26,9 @@ this.selectOne = (id, callback) => {
     });
 };
 
-this.insert = (email, filename, tempid, callback) => {
-    var sql = 'insert into music_template_guide (student_email, inner_filename, music_template_id) values (?,?,?)';
-    connection.query(sql, [email, filename, tempid], function (err, rows, fields) {
+this.insert = (tempId, sEmail,innerFile,is_done, completePercent, callback) => {
+    var sql = 'insert into music_template_practice (music_template_id, student_email, inner_filename, is_done, complete_percent) values (?,?,?,?,?)';
+    connection.query(sql, [tempId, sEmail,innerFile,is_done, completePercent], function (err, rows, fields) {
         if (!err) {
             callback(rows);
         } else {
@@ -43,6 +43,24 @@ this.joinFile = (innerFilename, callback) => {
         'from music_template_practice natural join mi_file\n' +
         'where music_template_practice.inner_filename = ?';
     connection.query(sql, [innerFilename], function (err, rows, fields) {
+        if (!err) {
+            callback(rows);
+        }
+    });
+};
+
+this.isDone = (practiceId, callback)=> {
+    var sql = 'update music_template_practice set is_done = 1 where music_template_practice_id =?';
+    connection.query(sql, [practiceId], function (err, rows, fields) {
+        if (!err) {
+            callback(rows);
+        }
+    });
+};
+
+this.Complete = (percent, practiceId, callback)=> {
+    var sql = 'update music_template_practice set complete_percent = ? where music_template_practice_id =?';
+    connection.query(sql, [percent, practiceId], function (err, rows, fields) {
         if (!err) {
             callback(rows);
         }

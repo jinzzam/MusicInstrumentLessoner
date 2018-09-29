@@ -17,19 +17,19 @@ this.selectAll = (callback) => {
     });
 };
 
-this.selectOne = (studentEmail, callback) => {
-    var sql = 'select * from mi_notification where student_email =?';
-    connection.query(sql, [studentEmail], function (err, rows, fields) {
+this.selectOne = (notiId, callback) => {
+    var sql = 'select * from mi_notification where mi_notification_id =?';
+    connection.query(sql, [notiId], function (err, rows, fields) {
         if (!err) {
             callback(rows);
         }
     });
 };
 
-this.insert = (notiid, tempid, type, comment, callback) => {
+this.insert = (tempid, type, comment, callback) => {
     var sql = 'insert into mi_notification ' +
-        '(mi_notification_id, music_template_id, type, comment) values (?,?,?,?)';
-    connection.query(sql, [notiid, tempid, type, comment], function (err, rows, fields) {
+        '(music_template_id, type, comment) values (?,?,?)';
+    connection.query(sql, [tempid, type, comment], function (err, rows, fields) {
         if (!err) {
             callback(rows);
         } else {
@@ -56,5 +56,5 @@ this.delete = (notiid, callback) => {
         if(!err){
             callback(null);
         }
-    })
+    });
 };

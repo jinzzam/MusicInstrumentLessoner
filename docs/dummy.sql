@@ -22,12 +22,10 @@ insert into music_template_guide values(2, '00:04:01', '깨끗하게 밝게 자�
 insert into music_template_practice values(1, 1, 'namolppam@pocket.mon', 'namolnamolsong.mp3', false, 0);
 
 # mi_notification
-insert into mi_notification values(0, 1, 'namolppam@pocket.mon', NULL, 'template', '선생님이 템플릿을 등록하였습니다.');
-insert into mi_notification values(0, 1, 'namolppam@pocket.mon', NULL, 'template', '선생님이 과제를 등록하였습니다.');
-insert into mi_notification values(2, 2, NULL, 'template', '선생님이 과제를 등록하였습니다.');
+insert into mi_notification values(0, 1, NULL, 'template', '선생님이 과제를 등록하였습니다.');
 
 # music_template_assignment
-insert into music_template_assignment values('namolnamolsong.mp3', 1, 10, 0, 0, 'jinzzam@namol.ppam');
+insert into music_template_assignment values('namolnamolsong.mp3', 1, 'jinzzam@namol.ppam',10, 0, 0);
 
 # music_template_wrong
 insert into music_template_wrong values('namolnamolsong.mp3', '00:00:30', '00:01:01');

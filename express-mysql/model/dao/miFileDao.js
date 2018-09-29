@@ -26,9 +26,9 @@ this.selectOne = (filename, callback) => {
     });
 };
 
-this.insert = (email, filename, callback) => {
+this.insert = (email, innerfile, outerfile, callback) => {
     var sql = 'insert into mi_file values (?,?)';
-    connection.query(sql, [email, filename], (err, rows, fields) => {
+    connection.query(sql, [email, innerfile, outerfile], (err, rows, fields) => {
         if (!err) {
             callback(rows);
         } else {
@@ -56,6 +56,15 @@ this.joinWrong = (filename, callback) => {
         'where mi_file.inner_filename = ?';
     connection.query(sql, [filename], function (err, rows, fields) {
         if (!err) {
+            callback(rows);
+        }
+    });
+};
+
+this.delete = (ownerEmail, filename, callback) => {
+    var sql = 'delete from mi_file where owner = ? and inner_filename = ?';
+    connection.query(sql, [ownerEmail, filename], function (err, rows, fields){
+        if(!err){
             callback(rows);
         }
     });

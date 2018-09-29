@@ -45,14 +45,14 @@ router.get('/:groupName', function (req, res, next) {
     async.series(tasks);
 });
 
-router.get('/:groupname/:semail/insert', function (req, res, next) {
-    var groupName = req.params['groupname'];
-    var sEmail = req.params['semail'];
+router.get('/:sEmail/:groupName/insert', function (req, res, next) {
+    var sEmail = req.params['sEmail'];
+    var groupName = req.params['groupName'];
     const task1 = function (callback) {
-        miStudent.insert(groupName, sEmail, function (rows) {
+        miStudent.insert(sEmail,groupName, function (rows) {
             callback(null);
         });
-        res.send('Hello World');
+        res.send('Insert');
     };
     const tasks = [task1];
     async.series(tasks);

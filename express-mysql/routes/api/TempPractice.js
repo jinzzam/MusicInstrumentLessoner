@@ -66,15 +66,42 @@ router.get('/:innerFilename/file', function (req, res, next) {
     async.series(tasks);
 });
 
-router.get('/:email/:filename/:tempid', function (req, res, next) {
-    var studentEmail = req.params['email'];
-    var innerFilename = req.params['filename'];
+router.get('/:tempid/:email/:filename/:isdone/:complete/insert', function (req, res, next) {
     var tempId = req.params['tempid'];
+    var  sEmail = req.params['email'];
+    var innerFile = req.params['filename'];
+    var is_done = req.params['isdone'];
+    var completePercent = req.params['complete'];
     const task1 = function (callback) {
-        miTempPractice.insert(studentEmail, innerFilename, tempId, function (rows) {
+        miTempPractice.insert(tempId, sEmail,innerFile,is_done, completePercent, function (rows) {
             callback(null);
         });
-        res.send('Hello World');
+        res.send('Insert');
+    };
+    const tasks = [task1];
+    async.series(tasks);
+});
+
+router.get('/:practiceId/isDone', function(req, res, next){
+    var pId = req.params['practiceId'];
+    const task1= function(callback){
+        miTempPractice.isDone(pId, function(rows){
+            callback(null);
+        });
+        res.send('is Done !');
+    };
+    const tasks = [task1];
+    async.series(tasks);
+});
+
+router.get('/:percent/:practiceId/complete', function(req, res, next){
+    var cPer = req.params['percent'];
+    var pId = req.params['practiceId'];
+    const task1= function(callback){
+        miTempPractice.Complete(cPer, pId, function(rows){
+            callback(null);
+        });
+        res.send('Complete Percent Change');
     };
     const tasks = [task1];
     async.series(tasks);

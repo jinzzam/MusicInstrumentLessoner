@@ -37,3 +37,24 @@ this.insert =(id,playTime, comment, callback)=>{
         }
     });
 };
+
+this.delete = (id, callback)=>{
+    var sql = 'delete from music_template_guide where music_template_id = ?';
+    connection.query(sql, [id], function(err, rows, fields){
+        if(!err){
+            callback(rows);
+        } else{
+            console.log('user post');
+            console.log(err);
+        }
+    });
+};
+
+this.update = (comment, id, callback) => {
+    var sql = 'update music_template_guide set comment = ? where music_template_id = ?';
+    connection.query(sql, [comment, id], function(err,rows,fields){
+        if(!err) {
+            callback(rows);
+        }
+    });
+};

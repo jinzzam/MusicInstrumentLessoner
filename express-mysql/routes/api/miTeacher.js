@@ -45,11 +45,11 @@ router.get('/:groupName', function (req, res, next) {
     async.series(tasks);
 });
 
-router.get('/:groupName/:teacherEmail/insert', function (req, res, next) {
-    var groupName = req.params['groupName'];
+router.get('/:teacherEmail/:groupName/insert', function (req, res, next) {
     var tEmail = req.params['teacherEmail'];
+    var groupName = req.params['groupName'];
     const task1 = function (callback) {
-        miTeacher.insert(groupName, tEmail, function (rows) {
+        miTeacher.insert(tEmail, groupName, function (rows) {
             callback(null);
         });
         res.send('Hello World');
