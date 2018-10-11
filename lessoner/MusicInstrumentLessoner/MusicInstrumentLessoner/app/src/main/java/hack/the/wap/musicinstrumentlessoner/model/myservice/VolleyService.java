@@ -20,6 +20,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiFileDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiNotificationDto;
@@ -31,6 +32,7 @@ import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class VolleyService {
+    Context micontext;
     private static VolleyService instance;
     private static Session session;
     private static final String TAG = "VOLLEY_SERVICE";
@@ -46,14 +48,15 @@ public class VolleyService {
     HashMap<String, MusicTemplateGuideDto> guides = new HashMap<>();
     HashMap<String, MiGroupDto> groups = new HashMap<>();
 
-    private static String getUserUrl = "http://192.168.43.36:3000/api/user/";
-    private static String getNotificationUrl = "http://192.168.43.36:3000/api/notification/";
-    private static String getFileUrl = "http://192.168.43.36:3000/api/file/";
-    private static String getTemplateUrl = "http://192.168.43.36:3000/api/template/";
-    private static String getTemplateGuideUrl;
-    private static String getTemplateAssignmentUrl;
-    private static String getTemplatePracticeUrl;
-    private static String getGroupUrl = "http://192.168.43.36:3000/api/group/";
+    private String url = micontext.getResources().getString(R.string.url);
+    private String getUserUrl = url + "user/";
+    private String getNotificationUrl = url + "notification/";
+    private String getFileUrl = url + "file/";
+    private String getTemplateUrl = url + "template/";
+    private String getTemplateGuideUrl;
+    private String getTemplateAssignmentUrl;
+    private String getTemplatePracticeUrl;
+    private String getGroupUrl = url + "group/";
 
     {
         session = Session.getInstance();

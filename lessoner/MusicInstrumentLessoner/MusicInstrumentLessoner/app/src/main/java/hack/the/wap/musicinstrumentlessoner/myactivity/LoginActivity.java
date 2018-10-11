@@ -89,7 +89,6 @@ public class LoginActivity extends AppCompatActivity {
 //        } else {
 //            Toast.makeText(this.getApplicationContext(), "음악 파일들을 불러오지 못했습니다.", Toast.LENGTH_LONG).show();
 //        }
-
 //        if (!volleyService.templateVolleySet().isEmpty()) {
 //            session.setTemplates(volleyService.templateVolleySet());
 //        } else {
