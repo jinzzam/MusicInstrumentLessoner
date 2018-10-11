@@ -1,9 +1,12 @@
 var mysql = require('mysql');
+var db_config = require('../.dbconfig');
+
 
 var connection = mysql.createConnection({
-    user: 'root',
-    password: '',
-    database: 'midb'
+    host: db_config.host,
+    user: db_config.user,
+    password: db_config.password,
+    database: db_config.database
 });
 
 connection.connect();
@@ -48,16 +51,16 @@ this.join = (email, callback) => {
 };
 
 this.Eupdate = (updateEmail, email, callback) => {
-            var sql = 'update mi_user set email = ? where email = ?';
-            connection.query(sql,[updateEmail,email], function(err,rows,fields){
-                callback(rows);
-        });
-    };
+    var sql = 'update mi_user set email = ? where email = ?';
+    connection.query(sql, [updateEmail, email], function (err, rows, fields) {
+        callback(rows);
+    });
+};
 
 this.Nupdate = (updateName, email, callback) => {
     var sql = 'update mi_user set username = ? where email = ?';
-    connection.query(sql,[updateName,email], function(err,rows,fields){
-        if(!err) {
+    connection.query(sql, [updateName, email], function (err, rows, fields) {
+        if (!err) {
             callback(rows);
         }
     });
@@ -65,8 +68,8 @@ this.Nupdate = (updateName, email, callback) => {
 
 this.Pupdate = (updatePass, email, callback) => {
     var sql = 'update mi_user set password = ? where email = ?';
-    connection.query(sql,[updatePass, email], function(err,rows,fields){
-        if(!err) {
+    connection.query(sql, [updatePass, email], function (err, rows, fields) {
+        if (!err) {
             callback(rows);
         }
     });
@@ -74,8 +77,8 @@ this.Pupdate = (updatePass, email, callback) => {
 
 this.delete = (email, callback) => {
     var sql = 'delete from mi_user where email = ?';
-    connection.connect(sql, [email], function(err, rows, fields){
-        if(!err){
+    connection.connect(sql, [email], function (err, rows, fields) {
+        if (!err) {
             callback(rows);
         }
     });

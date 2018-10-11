@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Initial page](README.md)
+* [K-Hackathon Project Summary](README.md)
 
 ## DEVELOPMENT GOAL
 
