@@ -32,6 +32,7 @@ import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class VolleyService {
+    Context micontext;
     private static VolleyService instance;
     private static Session session;
     private static final String TAG = "VOLLEY_SERVICE";
@@ -47,19 +48,21 @@ public class VolleyService {
     HashMap<String, MusicTemplateGuideDto> guides = new HashMap<>();
     HashMap<String, MiGroupDto> groups = new HashMap<>();
 
-    private static String getUserUrl;
-    private static String getNotificationUrl = String.valueOf(R.string.getNotification);
-    private static String getFileUrl = String.valueOf(R.string.getFile);
-    private static String getTemplateUrl = String.valueOf(R.string.getTemplate);
-    private static String getTemplateGuideUrl;
-    private static String getTemplateAssignmentUrl;
-    private static String getTemplatePracticeUrl;
-    private static String getGroupUrl = String.valueOf(R.string.getGroup);
+
+    private String url = micontext.getResources().getString(R.string.url);
+    private String getUserUrl = url + "user/";
+    private String getNotificationUrl = url + "notification/";
+    private String getFileUrl = url + "file/";
+    private String getTemplateUrl = url + "template/";
+    private String getTemplateGuideUrl;
+    private String getTemplateAssignmentUrl;
+    private String getTemplatePracticeUrl;
+    private String getGroupUrl = url + "group/";
 
     {
         session = Session.getInstance();
     }
-    
+
     private VolleyService(Context context) {
         queue = Volley.newRequestQueue(context);
         getUserUrl = context.getString(R.string.getUser);
@@ -73,11 +76,11 @@ public class VolleyService {
     }
 
     public MiUserDto mainUserVolleySet(String inputEmail) {
-        Log.e(TAG, getUserUrl+inputEmail );
+        Log.e(TAG, getUserUrl + inputEmail);
         final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getUserUrl + inputEmail, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                Log.e(TAG, "onResponse: "+"here" );
+                Log.e(TAG, "onResponse: " + "here");
                 try {
                     JSONObject user = response.getJSONObject(0);
                     String userName = user.get("username").toString();
@@ -93,7 +96,7 @@ public class VolleyService {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "onResponse: "+"this is error" );
+                Log.e(TAG, "onResponse: " + "this is error");
                 Log.e("TAG", "mainUserVolleySet >>>> : " + error);
             }
         });
@@ -103,7 +106,7 @@ public class VolleyService {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         ));
         jsonArrayRequest.setTag(TAG);
-        new Thread(()->{
+        new Thread(() -> {
             queue.add(jsonArrayRequest);
         }).start();
         Log.e(TAG, "mainUserVolleySet >>>> : ");
@@ -122,7 +125,7 @@ public class VolleyService {
                         String userEmail = user.get("email").toString();
                         String userPassword = user.get("password").toString();
                         userDto = new MiUserDto(userName, userEmail, userPassword);
-                        Log.e(TAG, "good"+users );
+                        Log.e(TAG, "good" + users);
                         users.put(userEmail, userDto);
                     }
                 } catch (Exception e) {
@@ -142,7 +145,7 @@ public class VolleyService {
         ));
         jsonArrayRequest.setTag(TAG);
         queue.add(jsonArrayRequest);
-        Log.e(TAG, "userVolleySet: "+users );
+        Log.e(TAG, "userVolleySet: " + users);
         Log.e(TAG, "userVolleySet >>>> : ");
         return users;
     }
