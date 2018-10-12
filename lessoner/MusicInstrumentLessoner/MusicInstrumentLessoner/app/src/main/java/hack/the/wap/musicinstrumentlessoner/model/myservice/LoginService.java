@@ -1,6 +1,8 @@
 package hack.the.wap.musicinstrumentlessoner.model.myservice;
 
 
+import android.util.Log;
+
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class LoginService {

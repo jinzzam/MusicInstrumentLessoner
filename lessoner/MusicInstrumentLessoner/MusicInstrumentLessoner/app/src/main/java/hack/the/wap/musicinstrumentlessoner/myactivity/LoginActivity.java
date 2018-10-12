@@ -1,8 +1,11 @@
 package hack.the.wap.musicinstrumentlessoner.myactivity;
 
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -27,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private static MiUserDto userDto;
 
     {
+//        volleyService = VolleyService.getInstance(this);
         instance = this;
     }
 

@@ -1,2 +1,4 @@
 express-mysql/.idea/workspace.xml
 express-mysql/model/.dbconfig.json
+node_modules
+express-mysql/package-lock.json
