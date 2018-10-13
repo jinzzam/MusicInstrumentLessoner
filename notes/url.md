@@ -28,3 +28,4 @@ db정보 git에서 숨기기
 
 {% embed url="https://kukaro.gitbooks.io/tiraumisu/content/erd.html" %}
 
+{% embed url="http://mainia.tistory.com/5090" %}
