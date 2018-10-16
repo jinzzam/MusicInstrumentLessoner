@@ -17,7 +17,7 @@ router.get('/', function (req, res, next) {
         callback(null);
     };
     const task3 = function (callback) {
-        res.send(data);
+        res.json(data);
         callback(null);
     };
     const tasks = [task1, task2, task3];
@@ -38,7 +38,7 @@ router.get('/:email', function (req, res, next) {
         callback(null);
     };
     const task3 = function (callback) {
-        res.send(data);
+        res.json(data);
         callback(null);
     };
     const tasks = [task1, task2, task3];
