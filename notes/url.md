@@ -29,3 +29,9 @@ db정보 git에서 숨기기
 {% embed url="https://kukaro.gitbooks.io/tiraumisu/content/erd.html" %}
 
 {% embed url="http://mainia.tistory.com/5090" %}
+
+How does OkHttp get Json string?
+{% embed url="https://stackoverflow.com/questions/28221555/how-does-okhttp-get-json-string"%}
+
+Error:CLEARTEXT communication not permitted by network security policy
+{% embed url="http://www.douevencode.com/articles/2018-07/cleartext-communication-not-permitted/"%}
