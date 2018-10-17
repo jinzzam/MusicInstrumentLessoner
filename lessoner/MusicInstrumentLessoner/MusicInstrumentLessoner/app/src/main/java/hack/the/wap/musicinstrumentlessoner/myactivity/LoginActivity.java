@@ -35,6 +35,10 @@ public class LoginActivity extends AppCompatActivity {
         loginService = LoginService.getInstance();
     }
 
+    public static LoginActivity getInstance() {
+        return instance;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                     userDto = new MiUserDto();
                     userDto = loginService.getUserDto();
                     session.setMainUser(userDto);
+                    Log.e(TAG, "loginProcess: 로그인 성공!" );
                     Toast.makeText(this.getApplicationContext(), "환영합니다, " + session.getMainUser().getName() + "님.", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
                     intent.putExtra("loginActName", session.getMainUser().getName());
@@ -82,10 +87,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void getDataAll() {
 
-    }
-
-    public static LoginActivity getInstance() {
-        return instance;
     }
 
     public void setSession() {
