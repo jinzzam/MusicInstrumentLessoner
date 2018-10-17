@@ -56,14 +56,14 @@ public class LoginService {
                     JsonParser jsonParser = new JsonParser();
                     JsonArray jsonArray = (JsonArray) jsonParser.parse(result);
 
-                    userEmail = jsonArray.get(0).getAsJsonObject().get("email").toString();
-                    userPassword = jsonArray.get(0).getAsJsonObject().get("password").toString();
-                    userName = jsonArray.get(0).getAsJsonObject().get("username").toString();
+                    userEmail = jsonArray.get(0).getAsJsonObject().get("email").toString().replace("\"", "");
+                    userPassword = jsonArray.get(0).getAsJsonObject().get("password").toString().replace("\"", "");
+                    userName = jsonArray.get(0).getAsJsonObject().get("username").toString().replace("\"", "");
 
                     Log.e(TAG, "run: " + result.toString());
                     Log.e(TAG, "run: " + jsonArray.get(0).getAsJsonObject().get("email"));
                     Log.e(TAG, "run: " + userEmail);
-                    Log.e(TAG, "run: " + inputEmail );
+                    Log.e(TAG, "run: " + inputEmail);
 
                 } catch (IOException e) {
                     e.printStackTrace();
