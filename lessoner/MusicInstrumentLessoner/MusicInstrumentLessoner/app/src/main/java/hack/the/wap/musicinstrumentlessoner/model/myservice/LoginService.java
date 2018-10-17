@@ -1,7 +1,6 @@
 package hack.the.wap.musicinstrumentlessoner.model.myservice;
 
 
-import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.JsonArray;
@@ -10,14 +9,12 @@ import com.google.gson.JsonParser;
 import java.io.IOException;
 
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiUserDto;
-import hack.the.wap.musicinstrumentlessoner.session.Session;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 public class LoginService {
     private static final String TAG = "LOGIN_SERVICE";
-    private static Session session = Session.getInstance();
     private static LoginService instance;
 
     private String userEmail;

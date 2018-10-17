@@ -1,7 +1,5 @@
 package hack.the.wap.musicinstrumentlessoner.myactivity;
 
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +12,6 @@ import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugMode;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiUserDto;
 import hack.the.wap.musicinstrumentlessoner.model.myservice.LoginService;
-import hack.the.wap.musicinstrumentlessoner.model.myservice.VolleyService;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class LoginActivity extends AppCompatActivity {
@@ -66,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                     userDto = new MiUserDto();
                     userDto = loginService.getUserDto();
                     session.setMainUser(userDto);
-                    Log.e(TAG, "loginProcess: 로그인 성공!" );
+                    Log.e(TAG, "loginProcess: 로그인 성공!");
                     Toast.makeText(this.getApplicationContext(), "환영합니다, " + session.getMainUser().getName() + "님.", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
                     intent.putExtra("loginActName", session.getMainUser().getName());
