@@ -33,11 +33,15 @@ public class TemplateFragment extends Fragment {
     private static View templateFragmentView;
     private static LinearLayout llFragTemplate;
     private static Session session;
-    private TemplateService templateService = TemplateService.getInstance(this.getContext());
+    private TemplateService templateService;
     private static HashMap<String, MusicTemplateAssignmentDto> assignments;
     private static HashMap<String, MusicTemplateDto> templates;
 
     private OnFragmentInteractionListener mListener;
+
+    {
+        templateService = TemplateService.getInstance();
+    }
 
     public TemplateFragment() {
         session = Session.getInstance();

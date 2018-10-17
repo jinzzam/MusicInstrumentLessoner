@@ -73,13 +73,8 @@ public class MainActivity extends AppCompatActivity
         checkPermission();
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         MyActionBarDrawerToggle toggle = new MyActionBarDrawerToggle(
@@ -182,7 +177,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void DEBUG_ON_SET_USER_NAME_AND_EMAIL(String s1, String s2) {
+    private void (String s1, String s2) {
         if (DebugMode.DEBUG_MOD) {
             Log.e("DEBUG", "DEBUG_ON_SET_USER_NAME_AND_EMAIL >>> " + s1 + ":" + s2);
         }
@@ -242,10 +237,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void checkPermission() {
-        int readpermissioncheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
-        int recordpermissioncheck = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO);
+        int readPermissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        int recordPermissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO);
 
-        if (readpermissioncheck == PackageManager.PERMISSION_DENIED && recordpermissioncheck == PackageManager.PERMISSION_DENIED) {
+        if (readPermissionCheck == PackageManager.PERMISSION_DENIED && recordPermissionCheck == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}, 1);
         }
     }

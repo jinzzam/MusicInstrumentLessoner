@@ -32,14 +32,17 @@ public class TemplateService {
     private String musicTitle;
     private int templateCount = 0;
 
-    private TemplateService(Context context) {
+    {
         session = Session.getInstance();
-        queue = Volley.newRequestQueue(context);
     }
 
-    public static TemplateService getInstance(Context context) {
+    private TemplateService() {
+        session = Session.getInstance();
+    }
+
+    public static TemplateService getInstance() {
         if (instance == null) {
-            instance = new TemplateService(context);
+            instance = new TemplateService();
         }
         return instance;
     }
