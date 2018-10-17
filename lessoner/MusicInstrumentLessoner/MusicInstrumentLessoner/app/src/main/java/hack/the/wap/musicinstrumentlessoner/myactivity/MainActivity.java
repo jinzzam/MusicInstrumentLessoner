@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void (String s1, String s2) {
+    private void DEBUG_ON_SET_USER_NAME_AND_EMAIL(String s1, String s2) {
         if (DebugMode.DEBUG_MOD) {
             Log.e("DEBUG", "DEBUG_ON_SET_USER_NAME_AND_EMAIL >>> " + s1 + ":" + s2);
         }
