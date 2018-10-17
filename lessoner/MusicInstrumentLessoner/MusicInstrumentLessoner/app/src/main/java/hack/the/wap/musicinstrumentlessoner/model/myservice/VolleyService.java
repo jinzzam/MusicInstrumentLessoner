@@ -65,7 +65,7 @@ public class VolleyService {
 
     private VolleyService(Context context) {
         queue = Volley.newRequestQueue(context);
-        getUserUrl = context.getString(R.string.getUser);
+        getUserUrl = context.getString(R.string.getUserUrl);
     }
 
     public static VolleyService getInstance(Context context) {

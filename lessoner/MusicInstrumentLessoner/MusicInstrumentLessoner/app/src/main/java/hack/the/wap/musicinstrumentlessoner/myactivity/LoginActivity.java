@@ -20,9 +20,9 @@ import hack.the.wap.musicinstrumentlessoner.session.Session;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LOGIN_ACT";
     private static LoginActivity instance;
-    private static Session session = Session.getInstance();
-    private static VolleyService volleyService;
-    private static LoginService loginService = LoginService.getInstance();
+    private static Session session;
+    private LoginService loginService;
+
     private static ImageView ivLogin;
     private static EditText etEmail;
     private static EditText etPassword;
@@ -30,15 +30,15 @@ public class LoginActivity extends AppCompatActivity {
     private static MiUserDto userDto;
 
     {
-//        volleyService = VolleyService.getInstance(this);
         instance = this;
+        session = Session.getInstance();
+        loginService = LoginService.getInstance();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        volleyService = VolleyService.getInstance(this);
         initView();
         loginProcess();
     }
@@ -53,8 +53,6 @@ public class LoginActivity extends AppCompatActivity {
         ivLogin.setOnClickListener(v -> {
             String inputEmail = etEmail.getText().toString();
             String inputPassword = etPassword.getText().toString();
-            userDto = volleyService.mainUserVolleySet(inputEmail);
-            session.setMainUser(userDto);
             //로그인 서비스에서 이메일 존재여부 체크
             if (loginService.checkEmail(inputEmail)) {
                 //로그인 서비스에서 패스워드 체크
@@ -80,28 +78,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void getDataAll() {
-        //volleyService.userVolleySet();
 
-        if (!volleyService.notificationVolleySet().isEmpty()) {
-            session.setNotifications(volleyService.notificationVolleySet());
-        } else {
-            Toast.makeText(this.getApplicationContext(), "알림 메세지들을 불러오지 못했습니다.", Toast.LENGTH_LONG).show();
-        }
-
-//        if (!volleyService.fileVolleySet().isEmpty()) {
-//            session.setFiles(volleyService.fileVolleySet());
-//        } else {
-//            Toast.makeText(this.getApplicationContext(), "음악 파일들을 불러오지 못했습니다.", Toast.LENGTH_LONG).show();
-//        }
-//        if (!volleyService.templateVolleySet().isEmpty()) {
-//            session.setTemplates(volleyService.templateVolleySet());
-//        } else {
-//            Toast.makeText(this.getApplicationContext(), "템플릿들을 불러오지 못했습니다.", Toast.LENGTH_LONG).show();
-//        }
-
-        volleyService.templateAssignmentVolleySet();
-
-        volleyService.groupVolleySet();
     }
 
     public static LoginActivity getInstance() {

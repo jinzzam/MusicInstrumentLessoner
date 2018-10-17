@@ -6,13 +6,13 @@
 
     <!--search_layout string-->
     <string name="search_lay_placeholder">Search messages</string>
-    <string name="getUser">http://172.30.44.16:3000/api/user/</string>
-    <string name="getTemplate">http://172.30.44.16:3000/api/template/</string>
-    <string name="getNotification">http://172.30.44.16:3000/api/notification/</string>
-    <string name="getFile">http://172.30.44.16:3000/api/file/</string>
-    <string name="getGroup">http://172.30.44.16:3000/api/group/</string>
+    <string name="getUserUrl">http://192.168.0.3:3000/api/user/</string>
+    <string name="getTemplateUrl">http://192.168.0.3:3000/api/template/</string>
+    <string name="getNotificationUrl">http://192.168.0.3:3000/api/notification/</string>
+    <string name="getFileUrl">http://192.168.0.3:3000/api/file/</string>
+    <string name="getGroupUrl">http://192.168.0.3:3000/api/group/</string>
 
     <!--url-->
-    <string name="url">http://192.168.35.192:3000/api/</string>
+    <string name="url">http://192.168.0.3:3000/api/</string>
 
 </resources>
