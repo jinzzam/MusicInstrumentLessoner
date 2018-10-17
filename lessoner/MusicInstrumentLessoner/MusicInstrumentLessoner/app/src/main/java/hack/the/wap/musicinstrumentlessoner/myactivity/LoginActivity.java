@@ -58,7 +58,10 @@ public class LoginActivity extends AppCompatActivity {
                 //로그인 서비스에서 패스워드 체크
                 if (loginService.checkPassword(inputPassword)) {
                     //메인 액티비티로 이동
-                    getDataAll();   //로그인 성공과 동시에 모든 파일 불러와 세션에 저장
+//                    getDataAll();   //로그인 성공과 동시에 모든 파일 불러와 세션에 저장
+                    userDto = new MiUserDto();
+                    userDto = loginService.getUserDto();
+                    session.setMainUser(userDto);
                     Toast.makeText(this.getApplicationContext(), "환영합니다, " + session.getMainUser().getName() + "님.", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
                     intent.putExtra("loginActName", session.getMainUser().getName());

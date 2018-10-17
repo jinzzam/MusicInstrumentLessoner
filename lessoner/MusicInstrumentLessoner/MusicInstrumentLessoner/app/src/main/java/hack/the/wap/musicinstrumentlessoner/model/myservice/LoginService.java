@@ -9,6 +9,7 @@ import com.google.gson.JsonParser;
 
 import java.io.IOException;
 
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiUserDto;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -20,6 +21,8 @@ public class LoginService {
     private static LoginService instance;
 
     private String userEmail;
+    private String userPassword;
+    private String userName;
 
     private LoginService() {
 
@@ -54,9 +57,13 @@ public class LoginService {
                     JsonArray jsonArray = (JsonArray) jsonParser.parse(result);
 
                     userEmail = jsonArray.get(0).getAsJsonObject().get("email").toString();
+                    userPassword = jsonArray.get(0).getAsJsonObject().get("password").toString();
+                    userName = jsonArray.get(0).getAsJsonObject().get("username").toString();
+
                     Log.e(TAG, "run: " + result.toString());
                     Log.e(TAG, "run: " + jsonArray.get(0).getAsJsonObject().get("email"));
                     Log.e(TAG, "run: " + userEmail);
+                    Log.e(TAG, "run: " + inputEmail );
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -70,9 +77,14 @@ public class LoginService {
     }
 
     public boolean checkPassword(String inputPassword) {
-        if (session.getMainUser().getPassword().equals(inputPassword)) {
+        if (inputPassword.equals(userPassword)) {
             return true;
         }
         return false;
+    }
+
+    public MiUserDto getUserDto() {
+        MiUserDto userDto = new MiUserDto(userEmail, userPassword, userName);
+        return userDto;
     }
 }
