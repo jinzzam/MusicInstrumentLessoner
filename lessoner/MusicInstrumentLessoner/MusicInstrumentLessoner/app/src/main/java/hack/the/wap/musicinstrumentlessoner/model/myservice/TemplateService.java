@@ -47,6 +47,7 @@ public class TemplateService {
     {
         session = Session.getInstance();
         templateDtoHashMap = new HashMap<>();
+        templateDto = new MusicTemplateDto();
     }
 
     private TemplateService() {
@@ -73,8 +74,6 @@ public class TemplateService {
     public void getTemplates() {
         new Thread() {
             public void run() {
-                String getTemplateUrl = "http://192.168.43.36:3000/api/template/";
-
                 try {
                     OkHttpClient client = new OkHttpClient();
 
@@ -112,33 +111,11 @@ public class TemplateService {
     }
 
     public String getTemplateNameById(int id) {
-        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getTemplateUrl + id, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                try {
-                    JSONObject template = response.getJSONObject(0);
-                    musicTitle = template.get("music_title").toString();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
-                0,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-        ));
-        jsonArrayRequest.setTag(TAG);
-        queue.add(jsonArrayRequest);
-        Log.e(TAG, "getTemplateNameById >>>> : ");
-
-        return musicTitle;
+        for (MusicTemplateDto dto : session.getTemplates().values()) {
+            if (dto.getMusicTemplateId() == id)
+                return dto.getMusicTitle();
+        }
+        return null;
     }
 
     public int templateCount(String email) {

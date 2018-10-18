@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,22 +30,26 @@ import hack.the.wap.musicinstrumentlessoner.session.Session;
  * create an instance of this fragment.
  */
 public class NotificationFragment extends Fragment {
+    private static final String TAG = "NOTIFICATION_FRAGMENT";
     private static View notificationFragmentView;
     private static EditText etMySearchLaySearchText;
     private static LinearLayout llFragNotification;
     private static Session session;
-    private static ArrayList<MiNotificationDto> notifications;
-    private static NotificationService notificationService;
+    private MiNotificationDto notificationDto;
+    private ArrayList<MiNotificationDto> notifications;
+    private NotificationService notificationService;
 
     private OnFragmentInteractionListener mListener;
 
     {
-        session = Session.getInstance();
-        notificationService = NotificationService.getInstance();
+
     }
 
     public NotificationFragment() {
         session = Session.getInstance();
+        notificationService = NotificationService.getInstance();
+        notificationDto = new MiNotificationDto();
+        notifications = new ArrayList<>();
     }
 
     /**
@@ -75,22 +80,20 @@ public class NotificationFragment extends Fragment {
         notificationFragmentView = inflater.inflate(R.layout.fragment_notification, container, false);
         llFragNotification = notificationFragmentView.findViewById(R.id.llFragNotification);
 
-        notifications = notificationService.getNotifications();
-        session.setNotifications(notifications);
-
-        for (MiNotificationDto dto : notifications) {
+        Log.e(TAG, "onCreateView: 세션에 저장된 알림들 : " + session.getNotifications());
+        for (MiNotificationDto dto : session.getNotifications()) {
+            Log.e(TAG, "onCreateView: " + dto.toString());
             if (notificationService.isMine(dto)) {
-                if (true) {
-                    NotificationLayout atom = new NotificationLayout(getContext());
-                    atom.setCustomAttr(dto);
-                    llFragNotification.addView(atom);
-                } else {
-                    MiNotificationLayout atom = new MiNotificationLayout(getContext());
-                    atom.setCustomAttr(dto);
-                    llFragNotification.addView(atom);
-                }
+                NotificationLayout atom = new NotificationLayout(getContext());
+                atom.setCustomAttr(dto);
+                llFragNotification.addView(atom);
+            } else {
+                MiNotificationLayout atom = new MiNotificationLayout(getContext());
+                atom.setCustomAttr(dto);
+                llFragNotification.addView(atom);
             }
         }
+
         return notificationFragmentView;
     }
 
@@ -131,6 +134,7 @@ public class NotificationFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+
     }
 
     public void removeAllNotification() {

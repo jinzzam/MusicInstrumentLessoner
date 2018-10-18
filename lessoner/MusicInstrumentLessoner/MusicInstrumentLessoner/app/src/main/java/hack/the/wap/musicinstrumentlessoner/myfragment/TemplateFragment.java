@@ -78,9 +78,6 @@ public class TemplateFragment extends Fragment {
         templateFragmentView = inflater.inflate(R.layout.fragment_template, container, false);
         llFragTemplate = templateFragmentView.findViewById(R.id.llFragTemplate);
 
-        //템플릿은 해쉬맵으로 세션에 저장된다.
-        templateService.getTemplates();
-
         assignments = session.getTemplateAssignments();
         templates = session.getTemplates();
         for (MusicTemplateAssignmentDto assignmentDto : assignments.values()) {

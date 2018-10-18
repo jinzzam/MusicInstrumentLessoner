@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiNotificationDto;
 import hack.the.wap.musicinstrumentlessoner.model.myservice.TemplateService;
+import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 /*
 참고 사이트 : https://medium.com/@douglas.iacovelli/the-beauty-of-custom-views-and-how-to-do-it-79c7d78e2088
@@ -19,7 +21,9 @@ import hack.the.wap.musicinstrumentlessoner.model.myservice.TemplateService;
  */
 
 public class NotificationLayout extends LinearLayout {
-    private TemplateService templateService;
+    private static final String TAG = "NOTIFICATION_LAYOUT";
+    private Session session;
+    private TemplateService templateService = TemplateService.getInstance();
 
     private ImageView ivNotificationLayUserImage;
     private TextView tvNotificationLayName;
@@ -28,7 +32,7 @@ public class NotificationLayout extends LinearLayout {
     private TextView tvNotificationLayMusicTitle;
 
     {
-        templateService = TemplateService.getInstance();
+        session = Session.getInstance();
         initView();
     }
 
@@ -83,17 +87,18 @@ public class NotificationLayout extends LinearLayout {
         typedArray.recycle();
     }
 
-    public void setCustomAttr(String name,String date,String main,String musicTitle){
+    public void setCustomAttr(String name, String date, String main, String musicTitle) {
         tvNotificationLayName.setText(name);
         tvNotificationLayDate.setText(date);
         tvNotificationLayMain.setText(main);
         tvNotificationLayMusicTitle.setText(musicTitle);
     }
 
-    public void setCustomAttr(MiNotificationDto dto){
+    public void setCustomAttr(MiNotificationDto dto) {
+        Log.e(TAG, "setCustomAttr: " + dto.toString());
         ivNotificationLayUserImage.setImageResource(DebugImageMatch.getImageFromName(dto.getEmail()));
-        tvNotificationLayName.setText(dto.getMusicTemplateId());
-        tvNotificationLayDate.setText(dto.getRegistDateTime().toString());
+        tvNotificationLayName.setText(dto.getEmail());
+        tvNotificationLayDate.setText(dto.getRegistDateTime());
         tvNotificationLayMain.setText(dto.getComment());
         tvNotificationLayMusicTitle.setText(templateService.getTemplateNameById(dto.getMusicTemplateId()));
     }

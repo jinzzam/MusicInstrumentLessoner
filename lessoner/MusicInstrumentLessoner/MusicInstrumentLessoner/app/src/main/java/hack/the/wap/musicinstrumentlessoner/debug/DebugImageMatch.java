@@ -7,9 +7,9 @@ import hack.the.wap.musicinstrumentlessoner.R;
 public class DebugImageMatch extends AppCompatActivity{
     public static DebugImageMatch instance;
 
-    private DebugImageMatch() {
-
-    }
+//    private DebugImageMatch() {
+//
+//    }
 
     public static int getImageFromName(String stringName) {
         switch (stringName) {
@@ -23,7 +23,7 @@ public class DebugImageMatch extends AppCompatActivity{
                 return R.drawable.beethoven_round;
             case "Segyong":
                 return R.drawable.segyong_round;
-            case "Gain":
+            case "namolppam@pocket.mon":
                 return R.drawable.gain_round;
             case "Hyoju":
                 return R.drawable.hyoju_round;

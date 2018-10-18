@@ -21,6 +21,10 @@ public class MiNotificationDto {
      * @param comment
      */
 
+    public MiNotificationDto() {
+
+    }
+
     public MiNotificationDto(int miNotificationId, int musicTemplateId, String email, String registDateTime, String type, String comment) {
         this.miNotificationId = miNotificationId;
         this.musicTemplateId = musicTemplateId;

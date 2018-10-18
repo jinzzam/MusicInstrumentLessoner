@@ -14,11 +14,13 @@ import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.session.IpAddress;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class NotificationService {
     private static final String TAG = "NOTIFICATION_SERVICE";
     private IpAddress ipAddress = new IpAddress();
-    private static Session session = Session.getInstance();
+    private static Session session;
     private static NotificationService instance;
 
     private String getTemplateUrl;
@@ -31,13 +33,10 @@ public class NotificationService {
     private MiNotificationDto notificationDto;
     private ArrayList<MiNotificationDto> notificationDtos;
 
-    {
+    private NotificationService() {
+        session = Session.getInstance();
         getTemplateUrl = "http://" + ipAddress.getIp() + ":3000/api/notification/";
         notificationDtos = new ArrayList<>();
-    }
-
-    private NotificationService() {
-
     }
 
     public static NotificationService getInstance() {
@@ -47,18 +46,18 @@ public class NotificationService {
         return instance;
     }
 
-    public ArrayList<MiNotificationDto> getNotifications() {
+    public void getNotifications() {
         new Thread() {
             public void run() {
                 try {
                     OkHttpClient client = new OkHttpClient();
 
-                    okhttp3.Request request = new okhttp3.Request.Builder()
+                    Request request = new Request.Builder()
                             .addHeader("Authorization", "TEST AUTH")
                             .url(getTemplateUrl)
                             .build();
 
-                    okhttp3.Response response = client.newCall(request)
+                    Response response = client.newCall(request)
                             .execute();
 
                     String result = response.body().string();
@@ -76,18 +75,20 @@ public class NotificationService {
 
                         notificationDto = new MiNotificationDto(notificationId, musicTemplateId, email, registDateTime, type, comment);
                         notificationDtos.add(i, notificationDto);
-                        Log.e(TAG, "run: " + notificationDto.toString());
+                        Log.e(TAG, "run: dto에 저장된 알림들 : " + notificationDto.toString());
                     }
+                    session.setNotifications(notificationDtos);
+                    Log.e(TAG, "run: 세션에 저장된 알림들 : " + session.getNotifications());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }.start();
-        return notificationDtos;
     }
 
     public boolean isMine(MiNotificationDto dto) {
         if (dto.getEmail().equals(session.getMainUser().getEmail())) {
+            Log.e(TAG, "isMine: 알림 내껀지 확인했습니다.");
             return true;
         }
         return false;

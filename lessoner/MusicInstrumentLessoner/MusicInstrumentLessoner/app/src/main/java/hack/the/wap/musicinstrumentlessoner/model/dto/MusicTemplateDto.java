@@ -9,6 +9,11 @@ public class MusicTemplateDto implements Serializable {
     private String musician;
     private String guide;
 
+
+    public MusicTemplateDto() {
+
+    }
+
     /**
      * create MusicTemplateDto
      *
