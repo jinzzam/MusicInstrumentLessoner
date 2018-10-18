@@ -11,14 +11,22 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.util.HashMap;
+
+import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiStudentDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiTeacherDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
+import okhttp3.OkHttpClient;
 
 public class GroupService {
     private static final String TAG = "GROUP_SERVICE";
@@ -26,24 +34,76 @@ public class GroupService {
     private static GroupService instance;
     private static Session session;
     private static TemplateService templateService;
+
+    private static String getGroupUrl = "http://192.168.43.36:3000/api/group/";
     private static String getGroupStudentUrl = "http://192.168.43.36:3000/api/group-student/";
     private static String getGroupTeacherUrl = "http://192.168.43.36:3000/api/group-teacher/";
-    private MiTeacherDto teacherDto;
+    private String groupName;
+    private String place;
+    private String info;
+    private String instruments;
+    private String genre;
+    private MiGroupDto groupDto;
+    private HashMap<String, MiGroupDto> groupDtoHashMap;
+
     int studentCount = 0;
     int teacherCount = 0;
     int teacherTemplateCount = 0;
 
-    private GroupService(Context context) {
-        session = Session.getInstance();
-        templateService = TemplateService.getInstance();
-        queue = Volley.newRequestQueue(context);
+    {
+        groupDtoHashMap = new HashMap<>();
     }
 
-    public static GroupService getInstance(Context context) {
+    private GroupService() {
+        session = Session.getInstance();
+        templateService = TemplateService.getInstance();
+    }
+
+    public static GroupService getInstance() {
         if (instance == null) {
-            instance = new GroupService(context);
+            instance = new GroupService();
         }
         return instance;
+    }
+
+    public void getGroup() {
+        new Thread() {
+            public void run() {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+
+                    okhttp3.Request request = new okhttp3.Request.Builder()
+                            .addHeader("Authorization", "TEST AUTH")
+                            .url(getGroupUrl)
+                            .build();
+
+                    okhttp3.Response response = client.newCall(request)
+                            .execute();
+
+                    String result = response.body().string();
+
+                    JsonParser jsonParser = new JsonParser();
+                    JsonArray jsonArray = (JsonArray) jsonParser.parse(result);
+
+                    for (int i = 0; i < jsonArray.size(); i++) {
+                        groupName = jsonArray.get(i).getAsJsonObject().get("group_name").toString().replace("\"", "");
+                        place = jsonArray.get(i).getAsJsonObject().get("place").toString().replace("\"", "");
+                        info = jsonArray.get(i).getAsJsonObject().get("info").toString().replace("\"", "");
+                        instruments = jsonArray.get(i).getAsJsonObject().get("instruments").toString().replace("\"", "");
+                        genre = jsonArray.get(i).getAsJsonObject().get("genre").toString().replace("\"", "");
+                        groupDto = new MiGroupDto(groupName, place, info, instruments, genre);
+                        groupDtoHashMap.put(groupDto.getGroupName(), groupDto);
+                        Log.e(TAG, "run: " + groupDto.toString());
+                    }
+                    session.setUserGroups(groupDtoHashMap);
+                    Log.e(TAG, "run: " + session.getUserGroups().toString());
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+
     }
 
     public boolean isMyGroup(MiGroupDto dto) {

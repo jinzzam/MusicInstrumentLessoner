@@ -33,10 +33,15 @@ public class GroupFragment extends Fragment {
     private static View groupFragmentView;
     private static LinearLayout llFragGroup;
     private static Session session;
-    private GroupService groupService = GroupService.getInstance(this.getContext());
+    private GroupService groupService;
+    private OnFragmentInteractionListener mListener;
+
     private static HashMap<String, MiGroupDto> userGroups;
 
-    private OnFragmentInteractionListener mListener;
+
+    {
+        groupService = GroupService.getInstance();
+    }
 
     public GroupFragment() {
         session = Session.getInstance();
@@ -70,6 +75,7 @@ public class GroupFragment extends Fragment {
                              Bundle savedInstanceState) {
         groupFragmentView = inflater.inflate(R.layout.fragment_group, container, false);
         llFragGroup = groupFragmentView.findViewById(R.id.llFragGroup);
+        groupService.getGroup();
         userGroups = session.getUserGroups();
         for (MiGroupDto dto : userGroups.values()) {
             if (groupService.isMyGroup(dto)) {
