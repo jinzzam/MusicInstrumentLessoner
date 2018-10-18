@@ -22,17 +22,18 @@ import java.util.HashMap;
 
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateAssignmentDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
+import hack.the.wap.musicinstrumentlessoner.session.IpAddress;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 import okhttp3.OkHttpClient;
 
 public class TemplateService {
     private static final String TAG = "TEMPLATE_SERVICE";
+    private IpAddress ipAddress = new IpAddress();
     private static TemplateService instance;
     private static Session session;
     RequestQueue queue;
 
-
-    private String getTemplateUrl = "http://192.168.43.36:3000/api/template/";
+    private String getTemplateUrl = "http://" + ipAddress.getIp() + ":3000/api/template/";
     private int musicTemplateId;
     private String owner;
     private String musicTitle;

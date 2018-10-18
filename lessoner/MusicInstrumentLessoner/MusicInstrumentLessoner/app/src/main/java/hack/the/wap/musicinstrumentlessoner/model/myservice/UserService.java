@@ -15,22 +15,28 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiUserDto;
+import hack.the.wap.musicinstrumentlessoner.session.IpAddress;
 
 public class UserService {
     private static final String TAG = "USER_SERVICE";
+    private IpAddress ipAddress = new IpAddress();
     RequestQueue queue;
     private static UserService instance;
-    private static String getUserUrl = "http://192.168.43.36:3000/api/user/";
+    private static String getUserUrl;
     private MiUserDto userDto;
     private String userName;
 
-    private UserService(Context context) {
-        queue = Volley.newRequestQueue(context);
+    {
+        getUserUrl = "http://" + ipAddress.getIp() + ":3000/api/user";
     }
 
-    public static UserService getInstance(Context context) {
+    private UserService() {
+
+    }
+
+    public static UserService getInstance() {
         if (instance == null) {
-            instance = new UserService(context);
+            instance = new UserService();
         }
         return instance;
     }

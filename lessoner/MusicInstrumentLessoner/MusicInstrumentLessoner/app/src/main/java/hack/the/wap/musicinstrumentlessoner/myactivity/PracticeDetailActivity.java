@@ -34,7 +34,7 @@ public class PracticeDetailActivity extends AppCompatActivity {
 
     {
         session = Session.getInstance();
-        userService = UserService.getInstance(this);
+        userService = UserService.getInstance();
     }
 
     @Override

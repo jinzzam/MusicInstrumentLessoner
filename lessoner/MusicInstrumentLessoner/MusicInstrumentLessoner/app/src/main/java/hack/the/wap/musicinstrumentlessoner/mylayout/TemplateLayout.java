@@ -21,7 +21,7 @@ import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class TemplateLayout extends LinearLayout {
     private static Session session;
-    private UserService userService = UserService.getInstance(this.getContext());
+    private UserService userService = UserService.getInstance();
 
     private ImageView ivTemplateLayUserImage;
     private TextView tvTemplateLayMusicTitle;

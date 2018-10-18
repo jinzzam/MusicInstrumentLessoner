@@ -30,7 +30,7 @@ public class PracticeListenActivity extends AppCompatActivity {
     private LinearLayout llPracticeListenLayComment;
 
     {
-        userService = UserService.getInstance(this);
+        userService = UserService.getInstance();
     }
 
     @Override

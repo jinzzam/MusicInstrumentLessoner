@@ -27,7 +27,7 @@ public class GroupLayout extends LinearLayout {
     private TextView tvGroupLayMusicTitle;
 
     {
-        groupService = GroupService.getInstance(this.getContext());
+        groupService = GroupService.getInstance();
         initView();
     }
 

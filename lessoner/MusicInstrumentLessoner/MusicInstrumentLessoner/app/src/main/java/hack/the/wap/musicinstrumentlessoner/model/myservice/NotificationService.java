@@ -11,14 +11,17 @@ import java.util.ArrayList;
 
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiNotificationDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
+import hack.the.wap.musicinstrumentlessoner.session.IpAddress;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 import okhttp3.OkHttpClient;
 
 public class NotificationService {
     private static final String TAG = "NOTIFICATION_SERVICE";
+    private IpAddress ipAddress = new IpAddress();
     private static Session session = Session.getInstance();
     private static NotificationService instance;
 
+    private String getTemplateUrl;
     private int notificationId;
     private int musicTemplateId;
     private Timestamp registDateTime;
@@ -29,6 +32,7 @@ public class NotificationService {
     private ArrayList<MiNotificationDto> notificationDtos;
 
     {
+        getTemplateUrl = "http://" + ipAddress.getIp() + ":3000/api/notification/";
         notificationDtos = new ArrayList<>();
     }
 
@@ -46,8 +50,6 @@ public class NotificationService {
     public ArrayList<MiNotificationDto> getNotifications() {
         new Thread() {
             public void run() {
-                String getTemplateUrl = "http://192.168.43.36:3000/api/notification/";
-
                 try {
                     OkHttpClient client = new OkHttpClient();
 

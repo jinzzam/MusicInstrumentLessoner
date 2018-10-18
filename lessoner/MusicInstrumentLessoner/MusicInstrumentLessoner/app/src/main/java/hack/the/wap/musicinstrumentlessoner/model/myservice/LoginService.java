@@ -9,17 +9,24 @@ import com.google.gson.JsonParser;
 import java.io.IOException;
 
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiUserDto;
+import hack.the.wap.musicinstrumentlessoner.session.IpAddress;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 public class LoginService {
     private static final String TAG = "LOGIN_SERVICE";
+    private IpAddress ipAddress = new IpAddress();
     private static LoginService instance;
 
+    private String getUserUrl;
     private String userEmail;
     private String userPassword;
     private String userName;
+
+    {
+        getUserUrl = "http://" + ipAddress.getIp() + ":3000/api/user/";
+    }
 
     private LoginService() {
 
@@ -35,8 +42,7 @@ public class LoginService {
     public boolean checkEmail(String inputEmail) {
         new Thread() {
             public void run() {
-                String getUserUrl = "http://192.168.43.36:3000/api/user/" + inputEmail;
-
+                getUserUrl += inputEmail;
                 try {
                     OkHttpClient client = new OkHttpClient();
 

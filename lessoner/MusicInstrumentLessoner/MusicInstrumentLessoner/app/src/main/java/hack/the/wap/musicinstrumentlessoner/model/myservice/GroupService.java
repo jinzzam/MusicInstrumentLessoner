@@ -25,19 +25,21 @@ import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiStudentDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiTeacherDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
+import hack.the.wap.musicinstrumentlessoner.session.IpAddress;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 import okhttp3.OkHttpClient;
 
 public class GroupService {
     private static final String TAG = "GROUP_SERVICE";
+    private IpAddress ipAddress = new IpAddress();
     RequestQueue queue;
     private static GroupService instance;
     private static Session session;
     private static TemplateService templateService;
 
-    private static String getGroupUrl = "http://192.168.43.36:3000/api/group/";
-    private static String getGroupStudentUrl = "http://192.168.43.36:3000/api/group-student/";
-    private static String getGroupTeacherUrl = "http://192.168.43.36:3000/api/group-teacher/";
+    private final String getGroupUrl;
+    private final String getGroupStudentUrl;
+    private final String getGroupTeacherUrl;
     private String groupName;
     private String place;
     private String info;
@@ -51,6 +53,9 @@ public class GroupService {
     int teacherTemplateCount = 0;
 
     {
+        getGroupUrl = "http://" + ipAddress.getIp() + ":3000/api/group/";
+        getGroupStudentUrl = "http://" + ipAddress.getIp() + ":3000/api/group-student/";
+        getGroupTeacherUrl = "http://" + ipAddress.getIp() + ":3000/api/group-teacher/";
         groupDtoHashMap = new HashMap<>();
     }
 
