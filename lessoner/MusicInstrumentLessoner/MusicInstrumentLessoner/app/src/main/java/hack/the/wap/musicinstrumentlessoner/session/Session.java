@@ -27,8 +27,8 @@ public class Session {
     private HashMap<String, MusicTemplateAssignmentDto> templateAssignments;
     private ArrayList<MusicTemplatePracticeDto> templatePractices;
     private HashMap<String, MiGroupDto> userGroups;
-    private HashMap<String, MiTeacherDto> groupTeachers;
-    private HashMap<String, MiStudentDto> groupStudents;
+    private ArrayList<MiTeacherDto> groupTeachers;
+    private ArrayList<MiStudentDto> groupStudents;
 
     private Session() {
     }
@@ -49,7 +49,7 @@ public class Session {
 
     }
 
-    public Session(MiUserDto mainUser, HashMap<String, MiUserDto> users, ArrayList<MiNotificationDto> notifications, HashMap<String, MiFileDto> files, HashMap<String, MusicTemplateDto> templates, HashMap<String, MusicTemplateGuideDto> templateGuides, HashMap<String, MusicTemplateAssignmentDto> templateAssignments, ArrayList<MusicTemplatePracticeDto> templatePractices, HashMap<String, MiGroupDto> userGroups, HashMap<String, MiTeacherDto> groupTeachers, HashMap<String, MiStudentDto> groupStudents) {
+    public Session(MiUserDto mainUser, HashMap<String, MiUserDto> users, ArrayList<MiNotificationDto> notifications, HashMap<String, MiFileDto> files, HashMap<String, MusicTemplateDto> templates, HashMap<String, MusicTemplateGuideDto> templateGuides, HashMap<String, MusicTemplateAssignmentDto> templateAssignments, ArrayList<MusicTemplatePracticeDto> templatePractices, HashMap<String, MiGroupDto> userGroups, ArrayList<MiTeacherDto> groupTeachers, ArrayList<MiStudentDto> groupStudents) {
         this.mainUser = mainUser;
         this.users = users;
         this.notifications = notifications;
@@ -139,19 +139,19 @@ public class Session {
         this.userGroups = userGroups;
     }
 
-    public HashMap<String, MiTeacherDto> getGroupTeachers() {
+    public ArrayList<MiTeacherDto> getGroupTeachers() {
         return groupTeachers;
     }
 
-    public void setGroupTeachers(HashMap<String, MiTeacherDto> groupTeachers) {
+    public void setGroupTeachers(ArrayList<MiTeacherDto> groupTeachers) {
         this.groupTeachers = groupTeachers;
     }
 
-    public HashMap<String, MiStudentDto> getGroupStudents() {
+    public ArrayList<MiStudentDto> getGroupStudents() {
         return groupStudents;
     }
 
-    public void setGroupStudents(HashMap<String, MiStudentDto> groupStudents) {
+    public void setGroupStudents(ArrayList<MiStudentDto> groupStudents) {
         this.groupStudents = groupStudents;
     }
 

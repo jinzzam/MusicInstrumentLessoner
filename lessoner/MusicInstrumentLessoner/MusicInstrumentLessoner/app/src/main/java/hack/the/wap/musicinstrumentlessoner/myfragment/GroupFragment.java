@@ -75,20 +75,20 @@ public class GroupFragment extends Fragment {
                              Bundle savedInstanceState) {
         groupFragmentView = inflater.inflate(R.layout.fragment_group, container, false);
         llFragGroup = groupFragmentView.findViewById(R.id.llFragGroup);
-        groupService.getGroup();
+
         userGroups = session.getUserGroups();
         for (MiGroupDto dto : userGroups.values()) {
-            if (groupService.isMyGroup(dto)) {
-                GroupLayout atom = new GroupLayout(getContext());
-                atom.setCustomAttr(dto);
-                atom.setOnClickListener(v -> {
-                    Intent intent = new Intent(MainActivity.getInstance(), UserGroupDetailActivity.class);
-                    intent.putExtra("data", dto);
-                    startActivity(intent);
-                });
-                llFragGroup.addView(atom);
-            }
+//            if (groupService.isMyGroup(dto)) {
+            GroupLayout atom = new GroupLayout(getContext());
+            atom.setCustomAttr(dto);
+            atom.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.getInstance(), UserGroupDetailActivity.class);
+                intent.putExtra("data", dto);
+                startActivity(intent);
+            });
+            llFragGroup.addView(atom);
         }
+//        }
         return groupFragmentView;
     }
 

@@ -1,26 +1,16 @@
 package hack.the.wap.musicinstrumentlessoner.model.myservice;
 
 
-import android.content.Context;
 import android.util.Log;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
-import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiStudentDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiTeacherDto;
@@ -40,28 +30,33 @@ public class GroupService {
     private final String getGroupUrl;
     private final String getGroupStudentUrl;
     private final String getGroupTeacherUrl;
+
     private String groupName;
     private String place;
     private String info;
     private String instruments;
     private String genre;
+    private String studentEmail;
+    private String teacherEmail;
+
     private MiGroupDto groupDto;
     private HashMap<String, MiGroupDto> groupDtoHashMap;
+    private MiStudentDto studentDto;
+    private ArrayList<MiStudentDto> studentDtoArrayList;
+    private MiTeacherDto teacherDto;
+    private ArrayList<MiTeacherDto> teacherDtoArrayList;
 
-    int studentCount = 0;
-    int teacherCount = 0;
     int teacherTemplateCount = 0;
-
-    {
-        getGroupUrl = "http://" + ipAddress.getIp() + ":3000/api/group/";
-        getGroupStudentUrl = "http://" + ipAddress.getIp() + ":3000/api/group-student/";
-        getGroupTeacherUrl = "http://" + ipAddress.getIp() + ":3000/api/group-teacher/";
-        groupDtoHashMap = new HashMap<>();
-    }
 
     private GroupService() {
         session = Session.getInstance();
         templateService = TemplateService.getInstance();
+        getGroupUrl = "http://" + ipAddress.getIp() + ":3000/api/group/";
+        getGroupStudentUrl = "http://" + ipAddress.getIp() + ":3000/api/group-student/";
+        getGroupTeacherUrl = "http://" + ipAddress.getIp() + ":3000/api/group-teacher/";
+        groupDtoHashMap = new HashMap<>();
+        studentDtoArrayList = new ArrayList<>();
+        teacherDtoArrayList = new ArrayList<>();
     }
 
     public static GroupService getInstance() {
@@ -111,105 +106,124 @@ public class GroupService {
 
     }
 
-    public boolean isMyGroup(MiGroupDto dto) {
-        for (MiTeacherDto teacherDto : session.getGroupTeachers().values()) {
-            if (dto.getGroupName().equals(teacherDto.getGroupName()) && teacherDto.getTeacherEmail().equals(session.getMainUser().getEmail())) {
-                return true;
-            }
-        }
-        for (MiStudentDto studentDto : session.getGroupStudents().values()) {
-            if (dto.getGroupName().equals(studentDto.getGroupName()) && studentDto.getStudentEmail().equals(session.getMainUser().getEmail())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public int studentCount(String groupName) {
-        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getGroupStudentUrl + groupName, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
+    public void getGroupStudents() {
+        new Thread() {
+            public void run() {
                 try {
-                    for (int i = 0; i < response.length(); i++) {
-                        studentCount++;
+                    OkHttpClient client = new OkHttpClient();
+
+                    okhttp3.Request request = new okhttp3.Request.Builder()
+                            .addHeader("Authorization", "TEST AUTH")
+                            .url(getGroupStudentUrl)
+                            .build();
+
+                    okhttp3.Response response = client.newCall(request)
+                            .execute();
+
+                    String result = response.body().string();
+
+                    JsonParser jsonParser = new JsonParser();
+                    JsonArray jsonArray = (JsonArray) jsonParser.parse(result);
+
+                    for (int i = 0; i < jsonArray.size(); i++) {
+                        studentEmail = jsonArray.get(i).getAsJsonObject().get("student_email").toString().replace("\"", "");
+                        groupName = jsonArray.get(i).getAsJsonObject().get("group_name").toString().replace("\"", "");
+                        studentDto = new MiStudentDto(studentEmail, groupName);
+                        studentDtoArrayList.add(i, studentDto);
+                        Log.e(TAG, "run: " + studentDtoArrayList.toString());
                     }
-                } catch (Exception e) {
+                    session.setGroupStudents(studentDtoArrayList);
+                    Log.e(TAG, "run: " + session.getGroupStudents().toString());
+
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("TAG", "studentCount >>>> : " + error);
+        }.start();
+
+    }
+
+    public void getGroupTeachers() {
+        new Thread() {
+            public void run() {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+
+                    okhttp3.Request request = new okhttp3.Request.Builder()
+                            .addHeader("Authorization", "TEST AUTH")
+                            .url(getGroupTeacherUrl)
+                            .build();
+
+                    okhttp3.Response response = client.newCall(request)
+                            .execute();
+
+                    String result = response.body().string();
+
+                    JsonParser jsonParser = new JsonParser();
+                    JsonArray jsonArray = (JsonArray) jsonParser.parse(result);
+
+                    for (int i = 0; i < jsonArray.size(); i++) {
+                        teacherEmail = jsonArray.get(i).getAsJsonObject().get("teacher_email").toString().replace("\"", "");
+                        groupName = jsonArray.get(i).getAsJsonObject().get("group_name").toString().replace("\"", "");
+                        teacherDto = new MiTeacherDto(teacherEmail, groupName);
+                        teacherDtoArrayList.add(i, teacherDto);
+                        Log.e(TAG, "run: " + teacherDtoArrayList.toString());
+                    }
+                    session.setGroupTeachers(teacherDtoArrayList);
+                    Log.e(TAG, "run: " + session.getGroupTeachers().toString());
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-        });
-        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
-                0,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-        ));
-        jsonArrayRequest.setTag(TAG);
-        queue.add(jsonArrayRequest);
-        Log.e(TAG, "studentCount >>>> : ");
-        return studentCount;
+        }.start();
+
+    }
+
+//    public boolean isMyGroup(MiGroupDto dto) {
+//        for (MiTeacherDto teacherDto : session.getGroupTeachers().values()) {
+//            if (dto.getGroupName().equals(teacherDto.getGroupName()) && teacherDto.getTeacherEmail().equals(session.getMainUser().getEmail())) {
+//                return true;
+//            }
+//        }
+//        for (MiStudentDto studentDto : session.getGroupStudents().values()) {
+//            if (dto.getGroupName().equals(studentDto.getGroupName()) && studentDto.getStudentEmail().equals(session.getMainUser().getEmail())) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+
+    public int studentCount(String groupName) {
+        int count = 0;
+        for (MiStudentDto dto : session.getGroupStudents()) {
+            if (dto.getGroupName().equals(groupName)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public int teacherCount(String groupName) {
-        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getGroupTeacherUrl + groupName, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                try {
-                    for (int i = 0; i < response.length(); i++) {
-                        teacherCount++;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        int count = 0;
+        for (MiTeacherDto dto : session.getGroupTeachers()) {
+            if (dto.getGroupName().equals(groupName)) {
+                count++;
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("TAG", "teacherCount >>>> : " + error);
-            }
-        });
-        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
-                0,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-        ));
-        jsonArrayRequest.setTag(TAG);
-        queue.add(jsonArrayRequest);
-        Log.e(TAG, "teacherCount >>>> : ");
-        return studentCount;
+        }
+        return count;
     }
 
     public int teacherTemplateCount(String groupName) {
-        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getGroupTeacherUrl + groupName, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                try {
-                    for (int i = 0; i < response.length(); i++) {
-                        JSONObject teacher = response.getJSONObject(i);
-                        teacherTemplateCount = templateService.templateCount(teacher.get("teacher_email").toString());
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
+        int count = 0;
+        for (MiTeacherDto dto : session.getGroupTeachers()) {
+            for (MusicTemplateDto template : session.getTemplates().values()) {
+                if (dto.getTeacherEmail().equals(template.getOwner())) {
+                    count++;
                 }
+
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("TAG", "teacherCount >>>> : " + error);
-            }
-        });
-        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
-                0,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-        ));
-        jsonArrayRequest.setTag(TAG);
-        queue.add(jsonArrayRequest);
-        Log.e(TAG, "teacherCount >>>> : ");
-        return teacherTemplateCount;
+        }
+        return count;
     }
 }

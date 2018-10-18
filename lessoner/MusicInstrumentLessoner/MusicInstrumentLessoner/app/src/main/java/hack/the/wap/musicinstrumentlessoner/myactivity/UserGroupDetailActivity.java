@@ -53,10 +53,10 @@ public class UserGroupDetailActivity extends AppCompatActivity {
         tvActUserGroupDetailSub = findViewById(R.id.tvActUserGroupDetailSub);
         llActUserGroupDetailTeacher = findViewById(R.id.llActUserGroupDetailTeacher);
         llActUserGroupDetailUser = findViewById(R.id.llActUserGroupDetailUser);
-        for (MiTeacherDto dto : session.getGroupTeachers().values()) {
+        for (MiTeacherDto dto : session.getGroupTeachers()) {
             llActUserGroupDetailTeacher.addView(new TeacherImageLayout(this, dto));
         }
-        for (MiUserDto dto : session.getGroupStudents().values()) {
+        for (MiUserDto dto : session.getGroupStudents()) {
             llActUserGroupDetailUser.addView(new UserImageLayout(this, dto));
         }
     }
