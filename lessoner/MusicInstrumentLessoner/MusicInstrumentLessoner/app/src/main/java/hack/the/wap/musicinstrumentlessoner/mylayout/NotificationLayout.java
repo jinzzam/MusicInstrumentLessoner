@@ -100,6 +100,6 @@ public class NotificationLayout extends LinearLayout {
         tvNotificationLayName.setText(dto.getEmail());
         tvNotificationLayDate.setText(dto.getRegistDateTime());
         tvNotificationLayMain.setText(dto.getComment());
-        tvNotificationLayMusicTitle.setText(templateService.getTemplateNameById(dto.getMusicTemplateId()));
+        tvNotificationLayMusicTitle.setText(templateService.getTemplateTitleById(dto.getMusicTemplateId()));
     }
 }

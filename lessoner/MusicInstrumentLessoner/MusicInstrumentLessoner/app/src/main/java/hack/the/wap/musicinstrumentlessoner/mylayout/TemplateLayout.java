@@ -11,6 +11,7 @@ import android.widget.TextView;
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateAssignmentDto;
+import hack.the.wap.musicinstrumentlessoner.model.myservice.TemplateService;
 import hack.the.wap.musicinstrumentlessoner.model.myservice.UserService;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
@@ -22,6 +23,7 @@ import hack.the.wap.musicinstrumentlessoner.session.Session;
 public class TemplateLayout extends LinearLayout {
     private static Session session;
     private UserService userService = UserService.getInstance();
+    private TemplateService templateService = TemplateService.getInstance();
 
     private ImageView ivTemplateLayUserImage;
     private TextView tvTemplateLayMusicTitle;
@@ -85,10 +87,10 @@ public class TemplateLayout extends LinearLayout {
     }
 
     public void setCustomAttr(MusicTemplateAssignmentDto dto) {
-        ivTemplateLayUserImage.setImageResource(DebugImageMatch.getImageFromName(session.getTemplates().get(dto.getMusicTemplateId()).getMusician()));
-        tvTemplateLayMusicTitle.setText(session.getTemplates().get(dto.getMusicTemplateId()).getMusicTitle());
-        tvTemplateLayMain.setText(dto.getToDoCount());
-        tvTemplateLaySub.setText(dto.getSuccessPercent());
-        ivTemplateLayTeacherImage.setImageResource(DebugImageMatch.getImageFromName(userService.getUserName(session.getTemplates().get(dto.getMusicTemplateId()).getOwner())));
+        ivTemplateLayUserImage.setImageResource(DebugImageMatch.getImageFromName(session.getTemplates().get(templateService.getTemplateTitleById(dto.getMusicTemplateId())).getMusician()));
+        tvTemplateLayMusicTitle.setText(session.getTemplates().get(templateService.getTemplateTitleById(dto.getMusicTemplateId())).getMusicTitle());
+        tvTemplateLayMain.setText(dto.getToDoCount() + "");
+        tvTemplateLaySub.setText(dto.getSuccessPercent() + "");
+        ivTemplateLayTeacherImage.setImageResource(DebugImageMatch.getImageFromName(session.getTemplates().get(templateService.getTemplateTitleById(dto.getMusicTemplateId())).getOwner()));
     }
 }

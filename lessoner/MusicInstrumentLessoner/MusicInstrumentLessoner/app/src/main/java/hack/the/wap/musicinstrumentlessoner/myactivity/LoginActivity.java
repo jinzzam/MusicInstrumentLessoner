@@ -70,13 +70,13 @@ public class LoginActivity extends AppCompatActivity {
                     Log.e(TAG, "loginProcess: 이메일 존재여부 체크했습니다.");
                     if (loginService.checkPassword(inputPassword)) {
                         Log.e(TAG, "loginProcess: 이메일이 존재합니다.");
-                        Log.e(TAG, "loginProcess: 패스워드 체크합니다.");
                         //메인 액티비티로 이동
                         userDto = loginService.getUserDto();
                         session.setMainUser(userDto);
-                        Log.e(TAG, "loginProcess: 로그인 성공!");
+                        Log.e(TAG, "loginProcess: 로그인 성공! 현재 메인 유저 정보 : " + session.getMainUser());
                         notificationService.getNotifications();
                         templateService.getTemplates();
+                        templateService.getAssignments();
                         Toast.makeText(LoginActivity.this.getApplicationContext(), "환영합니다, " + session.getMainUser().getName() + "님.", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
                         intent.putExtra("loginActName", session.getMainUser().getName());

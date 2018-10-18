@@ -36,6 +36,7 @@ public class NotificationService {
     private NotificationService() {
         session = Session.getInstance();
         getTemplateUrl = "http://" + ipAddress.getIp() + ":3000/api/notification/";
+        notificationDto = new MiNotificationDto();
         notificationDtos = new ArrayList<>();
     }
 

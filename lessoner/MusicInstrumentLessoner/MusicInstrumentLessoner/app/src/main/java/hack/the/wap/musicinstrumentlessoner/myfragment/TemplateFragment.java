@@ -30,6 +30,7 @@ import hack.the.wap.musicinstrumentlessoner.session.Session;
  * create an instance of this fragment.
  */
 public class TemplateFragment extends Fragment {
+    private static final String TAG = "TEMPLATE_FRAGMENT";
     private static View templateFragmentView;
     private static LinearLayout llFragTemplate;
     private static Session session;
@@ -39,14 +40,11 @@ public class TemplateFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    {
+    public TemplateFragment() {
+        session = Session.getInstance();
         templateService = TemplateService.getInstance();
         assignments = new HashMap<>();
         templates = new HashMap<>();
-    }
-
-    public TemplateFragment() {
-        session = Session.getInstance();
     }
 
     /**

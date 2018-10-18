@@ -8,6 +8,10 @@ public class MusicTemplateAssignmentDto {
     private int doneCount;
     private int successPercent;
 
+    public MusicTemplateAssignmentDto() {
+
+    }
+
     /**
      * create MusicTemplateAssignmentDto
      *

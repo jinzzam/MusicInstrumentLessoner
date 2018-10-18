@@ -41,11 +41,8 @@ public class NotificationFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    {
-
-    }
-
     public NotificationFragment() {
+        Log.e(TAG, "NotificationFragment: 생성자입니다." );
         session = Session.getInstance();
         notificationService = NotificationService.getInstance();
         notificationDto = new MiNotificationDto();
