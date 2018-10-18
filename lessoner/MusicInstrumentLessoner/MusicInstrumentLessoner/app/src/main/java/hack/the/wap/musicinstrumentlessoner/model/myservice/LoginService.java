@@ -35,7 +35,7 @@ public class LoginService {
     public boolean checkEmail(String inputEmail) {
         new Thread() {
             public void run() {
-                String getUserUrl = "http://192.168.0.3:3000/api/user/" + inputEmail;
+                String getUserUrl = "http://192.168.43.36:3000/api/user/" + inputEmail;
 
                 try {
                     OkHttpClient client = new OkHttpClient();

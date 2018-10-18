@@ -34,9 +34,14 @@ public class NotificationFragment extends Fragment {
     private static LinearLayout llFragNotification;
     private static Session session;
     private static ArrayList<MiNotificationDto> notifications;
-    private static NotificationService notificationService = NotificationService.getInstance();
+    private static NotificationService notificationService;
 
     private OnFragmentInteractionListener mListener;
+
+    {
+        session = Session.getInstance();
+        notificationService = NotificationService.getInstance();
+    }
 
     public NotificationFragment() {
         session = Session.getInstance();
@@ -61,8 +66,6 @@ public class NotificationFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
     }
 
     @Override
@@ -71,7 +74,9 @@ public class NotificationFragment extends Fragment {
 
         notificationFragmentView = inflater.inflate(R.layout.fragment_notification, container, false);
         llFragNotification = notificationFragmentView.findViewById(R.id.llFragNotification);
-        notifications = session.getNotifications();
+
+        notifications = notificationService.getNotifications();
+        session.setNotifications(notifications);
 
         for (MiNotificationDto dto : notifications) {
             if (notificationService.isMine(dto)) {

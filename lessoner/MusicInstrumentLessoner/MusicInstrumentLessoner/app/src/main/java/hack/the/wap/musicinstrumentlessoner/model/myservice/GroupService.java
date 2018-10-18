@@ -35,7 +35,7 @@ public class GroupService {
 
     private GroupService(Context context) {
         session = Session.getInstance();
-        templateService = TemplateService.getInstance(context);
+        templateService = TemplateService.getInstance();
         queue = Volley.newRequestQueue(context);
     }
 

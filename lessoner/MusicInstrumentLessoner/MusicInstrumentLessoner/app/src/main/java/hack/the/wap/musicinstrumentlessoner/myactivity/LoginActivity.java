@@ -59,7 +59,6 @@ public class LoginActivity extends AppCompatActivity {
                 //로그인 서비스에서 패스워드 체크
                 if (loginService.checkPassword(inputPassword)) {
                     //메인 액티비티로 이동
-//                    getDataAll();   //로그인 성공과 동시에 모든 파일 불러와 세션에 저장
                     userDto = new MiUserDto();
                     userDto = loginService.getUserDto();
                     session.setMainUser(userDto);
@@ -80,10 +79,6 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(this.getApplicationContext(), "이메일이 존재하지 않습니다.", Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-    private void getDataAll() {
-
     }
 
     public void setSession() {

@@ -10,16 +10,20 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateAssignmentDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
+import okhttp3.OkHttpClient;
 
 public class TemplateService {
     private static final String TAG = "TEMPLATE_SERVICE";
@@ -27,13 +31,21 @@ public class TemplateService {
     private static Session session;
     RequestQueue queue;
 
-    private String getTemplateUrl = "http://192.168.43.36:3000/api/template/";
 
+    private String getTemplateUrl = "http://192.168.43.36:3000/api/template/";
+    private int musicTemplateId;
+    private String owner;
     private String musicTitle;
+    private String musician;
+    private String guide;
+    private HashMap<String, MusicTemplateDto> templateDtoHashMap;
+    private MusicTemplateDto templateDto;
+
     private int templateCount = 0;
 
     {
         session = Session.getInstance();
+        templateDtoHashMap = new HashMap<>();
     }
 
     private TemplateService() {
@@ -55,6 +67,47 @@ public class TemplateService {
         templateLayoutInfo.put("successPercent", assignmentDto.getSuccessPercent() + "");
         templateLayoutInfo.put("teacher", templateDto.getOwner());
         return templateLayoutInfo;
+    }
+
+    public void getTemplates() {
+        new Thread() {
+            public void run() {
+                String getTemplateUrl = "http://192.168.43.36:3000/api/template/";
+
+                try {
+                    OkHttpClient client = new OkHttpClient();
+
+                    okhttp3.Request request = new okhttp3.Request.Builder()
+                            .addHeader("Authorization", "TEST AUTH")
+                            .url(getTemplateUrl)
+                            .build();
+
+                    okhttp3.Response response = client.newCall(request)
+                            .execute();
+
+                    String result = response.body().string();
+
+                    JsonParser jsonParser = new JsonParser();
+                    JsonArray jsonArray = (JsonArray) jsonParser.parse(result);
+
+                    for (int i = 0; i < jsonArray.size(); i++) {
+                        musicTemplateId = jsonArray.get(i).getAsJsonObject().get("music_template_id").getAsInt();
+                        owner = jsonArray.get(i).getAsJsonObject().get("owner").toString().replace("\"", "");
+                        musicTitle = jsonArray.get(i).getAsJsonObject().get("music_title").toString().replace("\"", "");
+                        musician = jsonArray.get(i).getAsJsonObject().get("musician").toString().replace("\"", "");
+                        guide = jsonArray.get(i).getAsJsonObject().get("guide").toString().replace("\"", "");
+                        templateDto = new MusicTemplateDto(musicTemplateId, owner, musicTitle, musician, guide);
+                        templateDtoHashMap.put(templateDto.getMusicTitle(), templateDto);
+                        Log.e(TAG, "run: " + musician);
+                    }
+                    session.setTemplates(templateDtoHashMap);
+                    Log.e(TAG, "run: " + session.getTemplates().toString());
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
     }
 
     public String getTemplateNameById(int id) {

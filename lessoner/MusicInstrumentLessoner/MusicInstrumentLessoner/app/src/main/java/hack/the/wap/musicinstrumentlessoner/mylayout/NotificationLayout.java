@@ -28,7 +28,7 @@ public class NotificationLayout extends LinearLayout {
     private TextView tvNotificationLayMusicTitle;
 
     {
-        templateService = TemplateService.getInstance(this.getContext());
+        templateService = TemplateService.getInstance();
         initView();
     }
 
