@@ -41,6 +41,8 @@ public class TemplateFragment extends Fragment {
 
     {
         templateService = TemplateService.getInstance();
+        assignments = new HashMap<>();
+        templates = new HashMap<>();
     }
 
     public TemplateFragment() {

@@ -6,7 +6,7 @@ public class MiNotificationDto {
     private int miNotificationId;
     private int musicTemplateId;
     private String email;
-    private Timestamp registDateTime;
+    private String registDateTime;
     private String type;
     private String comment;
 
@@ -21,7 +21,7 @@ public class MiNotificationDto {
      * @param comment
      */
 
-    public MiNotificationDto(int miNotificationId, int musicTemplateId, String email, Timestamp registDateTime, String type, String comment) {
+    public MiNotificationDto(int miNotificationId, int musicTemplateId, String email, String registDateTime, String type, String comment) {
         this.miNotificationId = miNotificationId;
         this.musicTemplateId = musicTemplateId;
         this.email = email;
@@ -54,11 +54,11 @@ public class MiNotificationDto {
         this.email = email;
     }
 
-    public Timestamp getRegistDateTime() {
+    public String getRegistDateTime() {
         return registDateTime;
     }
 
-    public void setRegistDateTime(Timestamp registDateTime) {
+    public void setRegistDateTime(String registDateTime) {
         this.registDateTime = registDateTime;
     }
 

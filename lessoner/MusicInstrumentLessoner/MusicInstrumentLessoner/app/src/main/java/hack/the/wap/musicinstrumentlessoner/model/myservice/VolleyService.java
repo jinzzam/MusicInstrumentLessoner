@@ -354,7 +354,7 @@ public class VolleyService {
                         int miNotificationId = (int) notification.get("mi_notification_id");
                         int musicTemplateId = (int) notification.get("music_template_id");
                         String email = notification.get("email").toString();
-                        Timestamp registDateTime = (Timestamp) notification.get("regist_data_time");
+                        String registDateTime = notification.get("regist_data_time").toString();
                         String type = notification.get("type").toString();
                         String comment = notification.get("comment").toString();
                         MiNotificationDto notificationDto = new MiNotificationDto(miNotificationId, musicTemplateId, email, registDateTime, type, comment);

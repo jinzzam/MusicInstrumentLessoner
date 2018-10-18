@@ -24,7 +24,7 @@ public class NotificationService {
     private String getTemplateUrl;
     private int notificationId;
     private int musicTemplateId;
-    private Timestamp registDateTime;
+    private String registDateTime;
     private String type;
     private String comment;
     private String email;
@@ -67,9 +67,9 @@ public class NotificationService {
                     JsonArray jsonArray = (JsonArray) jsonParser.parse(result);
 
                     for (int i = 0; i < jsonArray.size(); i++) {
-                        notificationId = jsonArray.get(i).getAsJsonObject().get("notification_id").getAsInt();
+                        notificationId = jsonArray.get(i).getAsJsonObject().get("mi_notification_id").getAsInt();
                         musicTemplateId = jsonArray.get(i).getAsJsonObject().get("music_template_id").getAsInt();
-                        registDateTime = Timestamp.valueOf(jsonArray.get(i).getAsJsonObject().get("regist_date_time").toString().replace("\"", ""));
+                        registDateTime = jsonArray.get(i).getAsJsonObject().get("regist_date_time").toString().replace("\"", "");
                         type = jsonArray.get(i).getAsJsonObject().get("type").toString().replace("\"", "");
                         comment = jsonArray.get(i).getAsJsonObject().get("comment").toString().replace("\"", "");
                         email = jsonArray.get(i).getAsJsonObject().get("email").toString().replace("\"", "");

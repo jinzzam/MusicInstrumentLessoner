@@ -42,13 +42,17 @@ public class LoginService {
     public boolean checkEmail(String inputEmail) {
         new Thread() {
             public void run() {
-                getUserUrl += inputEmail;
+                try {
+                    sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 try {
                     OkHttpClient client = new OkHttpClient();
 
                     Request request = new Request.Builder()
                             .addHeader("Authorization", "TEST AUTH")
-                            .url(getUserUrl)
+                            .url(getUserUrl + inputEmail)
                             .build();
 
                     Response response = client.newCall(request)
@@ -63,10 +67,9 @@ public class LoginService {
                     userPassword = jsonArray.get(0).getAsJsonObject().get("password").toString().replace("\"", "");
                     userName = jsonArray.get(0).getAsJsonObject().get("username").toString().replace("\"", "");
 
-                    Log.e(TAG, "run: " + result.toString());
-                    Log.e(TAG, "run: " + jsonArray.get(0).getAsJsonObject().get("email"));
-                    Log.e(TAG, "run: " + userEmail);
-                    Log.e(TAG, "run: " + inputEmail);
+                    Log.e(TAG, "run: jsonArray 결과값 : " + result.toString());
+                    Log.e(TAG, "run: 필드에 저장된 이메일 : " + userEmail);
+                    Log.e(TAG, "run: inputEmail : " + inputEmail);
 
                 } catch (IOException e) {
                     e.printStackTrace();
