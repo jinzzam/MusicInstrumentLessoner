@@ -19,11 +19,11 @@ insert into music_template_guide values(1, '00:03:49', '나몰나몰나몰나모
 insert into music_template_guide values(2, '00:04:01', '깨끗하게 밝게 자신있게');
 
 # music_template_practice
-insert into music_template_practice values(1, 1, 'namolppam@pocket.mon', 'namolnamolsong.mp3', true, 89);
-insert into music_template_practice values(2, 1, 'namolppam@pocket.mon', 'namolnamolsong.mp3', false, 0);
-insert into music_template_practice values(3, 1, 'namolppam@pocket.mon', 'namolnamolsong.mp3', false, 0);
-insert into music_template_practice values(4, 1, 'namolppam@pocket.mon', 'namolnamolsong.mp3', false, 0);
-insert into music_template_practice values(5, 1, 'namolppam@pocket.mon', 'namolnamolsong.mp3', false, 0);
+insert into music_template_practice values(1, 1, 'namolppam@pocket.mon', 'namolnamolsong.mp3', 1, 89);
+insert into music_template_practice values(2, 1, 'namolppam@pocket.mon', 'namolnamolsong.mp3', 0, 0);
+insert into music_template_practice values(3, 1, 'namolppam@pocket.mon', 'namolnamolsong.mp3', 0, 0);
+insert into music_template_practice values(4, 1, 'namolppam@pocket.mon', 'namolnamolsong.mp3', 0, 0);
+insert into music_template_practice values(5, 1, 'namolppam@pocket.mon', 'namolnamolsong.mp3', 0, 0);
 
 # mi_notification
 insert into mi_notification values(0, 1, NULL, 'template', '선생님이 과제를 등록하였습니다.');

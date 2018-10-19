@@ -113,7 +113,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
 
         templatePractices = session.getTemplatePractices();
         for (MusicTemplatePracticeDto dto : templatePractices.values()) {
-            if (dto.isDone()) {
+            if (dto.isDone() == 1) {
                 TemplatePositivePracticeLayout atom = new TemplatePositivePracticeLayout(this);
                 atom.setCustomAttr(dto);
                 atom.getIvTemplatePositivePracticeLayListen().setOnClickListener(v -> {
@@ -188,7 +188,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(this.getApplicationContext(), "녹음을 성공했습니다.", Toast.LENGTH_LONG).show();
-                MusicTemplatePracticeDto dto = new MusicTemplatePracticeDto(curPractice, 1, session.getMainUser().getEmail(), curFile, true, 88);
+                MusicTemplatePracticeDto dto = new MusicTemplatePracticeDto(curPractice, 1, session.getMainUser().getEmail(), curFile, 1, 88);
                 session.getTemplatePractices().put(dto.getMusicTemplateId(), dto);
                 AndroidAudioConverter.with(this)
                         .setFile(new File(filePath))

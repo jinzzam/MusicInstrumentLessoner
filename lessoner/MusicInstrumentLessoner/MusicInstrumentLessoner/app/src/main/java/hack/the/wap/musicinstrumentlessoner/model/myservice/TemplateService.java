@@ -39,7 +39,7 @@ public class TemplateService {
     private String studentEmail;
 
     private int musicTemplatePracticeId;
-    private boolean isDone;
+    private int isDone;
     private int completePercent;
 
     private HashMap<String, MusicTemplateDto> templateDtoHashMap;
@@ -179,10 +179,10 @@ public class TemplateService {
                         musicTemplateId = jsonArray.get(i).getAsJsonObject().get("music_template_id").getAsInt();
                         studentEmail = jsonArray.get(i).getAsJsonObject().get("student_email").toString().replace("\"", "");
                         innerFileName = jsonArray.get(i).getAsJsonObject().get("inner_filename").toString().replace("\"", "");
-                        isDone = jsonArray.get(i).getAsJsonObject().get("is_done").getAsBoolean();
+                        isDone = jsonArray.get(i).getAsJsonObject().get("is_done").getAsInt();
                         completePercent = jsonArray.get(i).getAsJsonObject().get("complete_percent").getAsInt();
                         practiceDto = new MusicTemplatePracticeDto(musicTemplatePracticeId, musicTemplateId, studentEmail, innerFileName, isDone, completePercent);
-                        practiceDtoHashMap.put(musicTemplateId, practiceDto);
+                        practiceDtoHashMap.put(musicTemplateId * 10 + musicTemplatePracticeId, practiceDto);
                         Log.e(TAG, "run: 연습 해쉬맵 : " + practiceDtoHashMap);
                     }
                     session.setTemplatePractices(practiceDtoHashMap);

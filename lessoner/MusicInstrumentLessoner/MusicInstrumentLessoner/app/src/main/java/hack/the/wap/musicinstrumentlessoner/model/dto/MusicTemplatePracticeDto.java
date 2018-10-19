@@ -5,7 +5,7 @@ public class MusicTemplatePracticeDto {
     private int musicTemplateId;
     private String studentEmail;
     private String innerFilename;
-    private boolean isDone;
+    private int isDone;
     private int completePercent;
 
     public MusicTemplatePracticeDto() {
@@ -23,7 +23,7 @@ public class MusicTemplatePracticeDto {
      * @param completePercent
      */
 
-    public MusicTemplatePracticeDto(int musicTemplatePracticeId, int musicTemplateId, String studentEmail, String innerFilename, boolean isDone, int completePercent) {
+    public MusicTemplatePracticeDto(int musicTemplatePracticeId, int musicTemplateId, String studentEmail, String innerFilename, int isDone, int completePercent) {
         this.musicTemplatePracticeId = musicTemplatePracticeId;
         this.musicTemplateId = musicTemplateId;
         this.studentEmail = studentEmail;
@@ -64,11 +64,11 @@ public class MusicTemplatePracticeDto {
         this.innerFilename = innerFilename;
     }
 
-    public boolean isDone() {
+    public int isDone() {
         return isDone;
     }
 
-    public void setDone(boolean done) {
+    public void setDone(int done) {
         isDone = done;
     }
 
