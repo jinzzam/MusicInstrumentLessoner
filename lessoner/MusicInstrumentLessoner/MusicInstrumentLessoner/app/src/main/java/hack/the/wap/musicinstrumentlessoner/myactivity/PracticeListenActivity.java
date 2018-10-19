@@ -7,19 +7,24 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateGuideDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
 import hack.the.wap.musicinstrumentlessoner.model.myservice.UserService;
 import hack.the.wap.musicinstrumentlessoner.mylayout.GuideExplainLayout;
+import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class PracticeListenActivity extends AppCompatActivity {
+    private Session session;
     private static UserService userService;
     private MusicTemplatePracticeDto mainTemplatePractice;
     private MusicTemplateDto mainTemplate;
+    private ArrayList<MusicTemplateGuideDto> guides;
     private ImageView ivPracticeListenLayLeftArrow;
     private ImageView ivPracticeListenLayTeacher;
     private ImageView ivPracticeListenLayMusician;
@@ -30,7 +35,9 @@ public class PracticeListenActivity extends AppCompatActivity {
     private LinearLayout llPracticeListenLayComment;
 
     {
+        session = Session.getInstance();
         userService = UserService.getInstance();
+        guides = new ArrayList<>();
     }
 
     @Override
@@ -41,6 +48,7 @@ public class PracticeListenActivity extends AppCompatActivity {
         Intent intent = getIntent();
         mainTemplatePractice = (MusicTemplatePracticeDto) intent.getSerializableExtra("data");
         mainTemplate = (MusicTemplateDto) intent.getSerializableExtra("main");
+        guides = session.getTemplateGuides();
         viewSetValue();
         viewSetListener();
     }
@@ -69,13 +77,19 @@ public class PracticeListenActivity extends AppCompatActivity {
         tvPracticeListenLayCount.setText("" + getResources().getText(R.string.LayTemplatePracticeMusicNum) + mainTemplatePractice.getMusicTemplatePracticeId());
         tvPracticeListenLayPercent.setText("" + getResources().getText(R.string.LayTemplatePracticeSuccessPercent) + mainTemplatePractice.getCompletePercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd));
         tvPracticeListenLayFileName.setText(getResources().getText(R.string.LayTemplatePracticeFilePath) + mainTemplatePractice.getInnerFilename());
-        TreeMap<String, String> tm = new TreeMap<>();
-        if (true) {
-            for (String key : tm.keySet()) {
-                GuideExplainLayout atom = new GuideExplainLayout(this, key, mainTemplate.getGuide());
+        for (MusicTemplateGuideDto dto : guides) {
+            if (dto.getMusicTemplateId() == mainTemplate.getMusicTemplateId()) {
+                GuideExplainLayout atom = new GuideExplainLayout(this, dto);
                 llPracticeListenLayComment.addView(atom);
             }
         }
+//        TreeMap<String, String> tm = new TreeMap<>();
+//        if (true) {
+//            for (String key : tm.keySet()) {
+//                GuideExplainLayout atom = new GuideExplainLayout(this, key, mainTemplate.getGuide());
+//                llPracticeListenLayComment.addView(atom);
+//            }
+//        }
     }
 
 }

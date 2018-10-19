@@ -23,7 +23,7 @@ public class Session {
     private ArrayList<MiNotificationDto> notifications;
     private HashMap<String, MiFileDto> files;
     private HashMap<String, MusicTemplateDto> templates;
-    private HashMap<String, MusicTemplateGuideDto> templateGuides;
+    private ArrayList<MusicTemplateGuideDto> templateGuides;
     private HashMap<String, MusicTemplateAssignmentDto> templateAssignments;
     private HashMap<Integer, MusicTemplatePracticeDto> templatePractices;
     private HashMap<String, MiGroupDto> userGroups;
@@ -49,7 +49,7 @@ public class Session {
 
     }
 
-    public Session(MiUserDto mainUser, HashMap<String, MiUserDto> users, ArrayList<MiNotificationDto> notifications, HashMap<String, MiFileDto> files, HashMap<String, MusicTemplateDto> templates, HashMap<String, MusicTemplateGuideDto> templateGuides, HashMap<String, MusicTemplateAssignmentDto> templateAssignments, HashMap<Integer, MusicTemplatePracticeDto> templatePractices, HashMap<String, MiGroupDto> userGroups, ArrayList<MiTeacherDto> groupTeachers, ArrayList<MiStudentDto> groupStudents) {
+    public Session(MiUserDto mainUser, HashMap<String, MiUserDto> users, ArrayList<MiNotificationDto> notifications, HashMap<String, MiFileDto> files, HashMap<String, MusicTemplateDto> templates, ArrayList<MusicTemplateGuideDto> templateGuides, HashMap<String, MusicTemplateAssignmentDto> templateAssignments, HashMap<Integer, MusicTemplatePracticeDto> templatePractices, HashMap<String, MiGroupDto> userGroups, ArrayList<MiTeacherDto> groupTeachers, ArrayList<MiStudentDto> groupStudents) {
         this.mainUser = mainUser;
         this.users = users;
         this.notifications = notifications;
@@ -107,11 +107,11 @@ public class Session {
         this.templates = templates;
     }
 
-    public HashMap<String, MusicTemplateGuideDto> getTemplateGuides() {
+    public ArrayList<MusicTemplateGuideDto> getTemplateGuides() {
         return templateGuides;
     }
 
-    public void setTemplateGuides(HashMap<String, MusicTemplateGuideDto> templateGuides) {
+    public void setTemplateGuides(ArrayList<MusicTemplateGuideDto> templateGuides) {
         this.templateGuides = templateGuides;
     }
 

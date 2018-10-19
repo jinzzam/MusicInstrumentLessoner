@@ -56,6 +56,9 @@ public class TemplatePositivePracticeLayout extends LinearLayout {
 
     public void setCustomAttr(MusicTemplatePracticeDto dto) {
         tvTemplatePositivePracticeLayCount.setText(getResources().getText(R.string.LayTemplatePracticeMusicNum) + (dto.getMusicTemplatePracticeId() + ""));
+        tvTemplatePositiveLayPercent.setText(""+getResources().getText(R.string.LayTemplatePracticeSuccessPercent)
+                + dto.getCompletePercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd));
+
         if (DebugMode.DEBUG_MOD) {
             tvTemplatePositiveLayPercent.setText(""+getResources().getText(R.string.LayTemplatePracticeSuccessPercent)
                     + dto.getCompletePercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd));

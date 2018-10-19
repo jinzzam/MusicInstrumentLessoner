@@ -111,6 +111,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
         tvTemplateDetailLayTeacherNameSlot.setText(getResources().getString(R.string.tempalte_detail_act_teacher_pre)
                 + userService.getUserName(mainTemplate.getOwner()));
 
+        templateService.getGuides();
         templatePractices = session.getTemplatePractices();
         for (MusicTemplatePracticeDto dto : templatePractices.values()) {
             if (dto.isDone() == 1) {

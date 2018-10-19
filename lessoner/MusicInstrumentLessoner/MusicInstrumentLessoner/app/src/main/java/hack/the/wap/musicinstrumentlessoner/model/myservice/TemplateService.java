@@ -11,6 +11,7 @@ import java.util.HashMap;
 
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateAssignmentDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateGuideDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
 import hack.the.wap.musicinstrumentlessoner.session.IpAddress;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
@@ -25,6 +26,7 @@ public class TemplateService {
     private String getTemplateUrl = "http://" + ipAddress.getIp() + ":3000/api/template/";
     private String getAssignmentUrl = "http://" + ipAddress.getIp() + ":3000/api/template-assignment/";
     private String getPracticeUrl = "http://" + ipAddress.getIp() + ":3000/api/template-practice/";
+    private String getGuideUrl = "http://" + ipAddress.getIp() + ":3000/api/template-guide/";
 
     private int musicTemplateId;
     private String owner;
@@ -42,12 +44,17 @@ public class TemplateService {
     private int isDone;
     private int completePercent;
 
+    private String playTime;
+    private String comment;
+
     private HashMap<String, MusicTemplateDto> templateDtoHashMap;
     private MusicTemplateDto templateDto;
     private HashMap<String, MusicTemplateAssignmentDto> assignmentDtoHashMap;
     private MusicTemplateAssignmentDto assignmentDto;
     private HashMap<Integer, MusicTemplatePracticeDto> practiceDtoHashMap;
     private MusicTemplatePracticeDto practiceDto;
+    private MusicTemplateGuideDto guideDto;
+    private ArrayList<MusicTemplateGuideDto> guideDtoArrayList;
 
     private TemplateService() {
         session = Session.getInstance();
@@ -57,6 +64,8 @@ public class TemplateService {
         assignmentDto = new MusicTemplateAssignmentDto();
         practiceDtoHashMap = new HashMap<>();
         practiceDto = new MusicTemplatePracticeDto();
+        guideDto = new MusicTemplateGuideDto();
+        guideDtoArrayList = new ArrayList<>();
     }
 
     public static TemplateService getInstance() {
@@ -187,6 +196,43 @@ public class TemplateService {
                     }
                     session.setTemplatePractices(practiceDtoHashMap);
                     Log.e(TAG, "run: 세션에 저장된 연습 : " + session.getTemplatePractices().toString());
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+    public void getGuides(){
+        new Thread() {
+            public void run() {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+
+                    okhttp3.Request request = new okhttp3.Request.Builder()
+                            .addHeader("Authorization", "TEST AUTH")
+                            .url(getGuideUrl)
+                            .build();
+
+                    okhttp3.Response response = client.newCall(request)
+                            .execute();
+
+                    String result = response.body().string();
+
+                    JsonParser jsonParser = new JsonParser();
+                    JsonArray jsonArray = (JsonArray) jsonParser.parse(result);
+
+                    for (int i = 0; i < jsonArray.size(); i++) {
+                        musicTemplateId = jsonArray.get(i).getAsJsonObject().get("music_template_id").getAsInt();
+                        playTime = jsonArray.get(i).getAsJsonObject().get("play_time").toString().replace("\"", "");
+                        comment = jsonArray.get(i).getAsJsonObject().get("comment").toString().replace("\"", "");
+                        guideDto = new MusicTemplateGuideDto(musicTemplateId, playTime, comment);
+                        guideDtoArrayList.add(i, guideDto);
+                        Log.e(TAG, "run: 연습 해쉬맵 : " + practiceDtoHashMap);
+                    }
+                    session.setTemplateGuides(guideDtoArrayList);
+                    Log.e(TAG, "run: 세션에 저장된 연습 : " + session.getTemplateGuides().toString());
 
                 } catch (IOException e) {
                     e.printStackTrace();

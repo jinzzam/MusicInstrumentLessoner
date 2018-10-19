@@ -1,11 +1,14 @@
 package hack.the.wap.musicinstrumentlessoner.model.dto;
 
-import java.sql.Time;
 
 public class MusicTemplateGuideDto {
     private int musicTemplateId;
-    private Time playTime;
+    private String playTime;
     private String comment;
+
+    public MusicTemplateGuideDto() {
+
+    }
 
     /**
      * create MusicTemplateGuideDto
@@ -15,7 +18,7 @@ public class MusicTemplateGuideDto {
      * @param comment
      */
 
-    public MusicTemplateGuideDto(int musicTemplateId, Time playTime, String comment) {
+    public MusicTemplateGuideDto(int musicTemplateId, String playTime, String comment) {
         this.musicTemplateId = musicTemplateId;
         this.playTime = playTime;
         this.comment = comment;
@@ -29,11 +32,11 @@ public class MusicTemplateGuideDto {
         this.musicTemplateId = musicTemplateId;
     }
 
-    public Time getPlayTime() {
+    public String getPlayTime() {
         return playTime;
     }
 
-    public void setPlayTime(Time playTime) {
+    public void setPlayTime(String playTime) {
         this.playTime = playTime;
     }
 
