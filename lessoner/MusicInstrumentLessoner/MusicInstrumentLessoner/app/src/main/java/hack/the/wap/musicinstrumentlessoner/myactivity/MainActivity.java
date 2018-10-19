@@ -22,11 +22,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import hack.the.wap.musicinstrumentlessoner.R;
+import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugMode;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
@@ -48,6 +50,9 @@ public class MainActivity extends AppCompatActivity
     private static TemplateFragment templateFragment;
     private static GroupFragment groupFragment;
     private static StoreFragment storeFragment;
+    private ImageView ivMainUser;
+    private TextView tvMainUserName;
+    private TextView tvMainUserEmail;
     private static Session session;
     private TemplateService templateService;
     private static Menu menu;
@@ -87,6 +92,14 @@ public class MainActivity extends AppCompatActivity
 
         MyNavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View navHeaderView = navigationView.getHeaderView(0);
+        ivMainUser = navHeaderView.findViewById(R.id.ivMainUser);
+        tvMainUserName = navHeaderView.findViewById(R.id.tvMainUserName);
+        tvMainUserEmail = navHeaderView.findViewById(R.id.tvMainUserEmail);
+        ivMainUser.setImageResource(DebugImageMatch.getImageFromName(userName));
+        tvMainUserName.setText(userName);
+        tvMainUserEmail.setText(userEmail);
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
@@ -175,8 +188,9 @@ public class MainActivity extends AppCompatActivity
 
     private void setUserNameAndEmail() {
         Intent intent = getIntent();
-        userEmail = intent.getStringExtra("loginActName");
-        userName = intent.getStringExtra("loginActEmail");
+        userName = intent.getStringExtra("loginActName");
+        userEmail = intent.getStringExtra("loginActEmail");
+        Log.e("TAG", "setUserNameAndEmail: " + userEmail + userName );
         DEBUG_ON_SET_USER_NAME_AND_EMAIL(userName, userEmail);
 
     }

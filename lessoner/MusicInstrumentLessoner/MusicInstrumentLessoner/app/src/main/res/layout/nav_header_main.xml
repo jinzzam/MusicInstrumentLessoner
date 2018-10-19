@@ -21,7 +21,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/mainUser"
+            android:id="@+id/ivMainUser"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/nav_header_desc"
@@ -37,6 +37,7 @@
         android:weightSum="1">
 
         <TextView
+            android:id="@+id/tvMainUserName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
@@ -46,7 +47,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tvMainUserEmail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
@@ -62,7 +63,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/ivCheck"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
