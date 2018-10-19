@@ -68,6 +68,8 @@ public class TemplateFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
         }
+        templateService.getAssignments();
+        templateService.getPractices();
     }
 
     @Override

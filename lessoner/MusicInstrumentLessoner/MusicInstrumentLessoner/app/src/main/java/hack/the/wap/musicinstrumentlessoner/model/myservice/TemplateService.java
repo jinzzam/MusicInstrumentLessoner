@@ -6,10 +6,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateAssignmentDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
 import hack.the.wap.musicinstrumentlessoner.session.IpAddress;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 import okhttp3.OkHttpClient;
@@ -22,6 +24,7 @@ public class TemplateService {
 
     private String getTemplateUrl = "http://" + ipAddress.getIp() + ":3000/api/template/";
     private String getAssignmentUrl = "http://" + ipAddress.getIp() + ":3000/api/template-assignment/";
+    private String getPracticeUrl = "http://" + ipAddress.getIp() + ":3000/api/template-practice/";
 
     private int musicTemplateId;
     private String owner;
@@ -35,12 +38,16 @@ public class TemplateService {
     private int successPercent;
     private String studentEmail;
 
+    private int musicTemplatePracticeId;
+    private boolean isDone;
+    private int completePercent;
+
     private HashMap<String, MusicTemplateDto> templateDtoHashMap;
     private MusicTemplateDto templateDto;
     private HashMap<String, MusicTemplateAssignmentDto> assignmentDtoHashMap;
     private MusicTemplateAssignmentDto assignmentDto;
-
-    private int templateCount = 0;
+    private ArrayList<MusicTemplatePracticeDto> practiceDtoArrayList;
+    private MusicTemplatePracticeDto practiceDto;
 
     private TemplateService() {
         session = Session.getInstance();
@@ -48,6 +55,8 @@ public class TemplateService {
         templateDto = new MusicTemplateDto();
         assignmentDtoHashMap = new HashMap<>();
         assignmentDto = new MusicTemplateAssignmentDto();
+        practiceDtoArrayList = new ArrayList<>();
+        practiceDto = new MusicTemplatePracticeDto();
     }
 
     public static TemplateService getInstance() {
@@ -146,6 +155,46 @@ public class TemplateService {
         }.start();
     }
 
+    public void getPractices() {
+        new Thread() {
+            public void run() {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+
+                    okhttp3.Request request = new okhttp3.Request.Builder()
+                            .addHeader("Authorization", "TEST AUTH")
+                            .url(getPracticeUrl)
+                            .build();
+
+                    okhttp3.Response response = client.newCall(request)
+                            .execute();
+
+                    String result = response.body().string();
+
+                    JsonParser jsonParser = new JsonParser();
+                    JsonArray jsonArray = (JsonArray) jsonParser.parse(result);
+
+                    for (int i = 0; i < jsonArray.size(); i++) {
+                        musicTemplatePracticeId = jsonArray.get(i).getAsJsonObject().get("music_template_practice_id").getAsInt();
+                        musicTemplateId = jsonArray.get(i).getAsJsonObject().get("music_template_id").getAsInt();
+                        studentEmail = jsonArray.get(i).getAsJsonObject().get("student_email").toString().replace("\"", "");
+                        innerFileName = jsonArray.get(i).getAsJsonObject().get("inner_filename").toString().replace("\"", "");
+                        isDone = jsonArray.get(i).getAsJsonObject().get("is_done").getAsBoolean();
+                        completePercent = jsonArray.get(i).getAsJsonObject().get("complete_percent").getAsInt();
+                        practiceDto = new MusicTemplatePracticeDto(musicTemplatePracticeId, musicTemplateId, studentEmail, innerFileName, isDone, completePercent);
+                        practiceDtoArrayList.add(0+i, practiceDto);
+                        Log.e(TAG, "run: 연습 해쉬맵 : " + practiceDtoArrayList);
+                    }
+                    session.setTemplatePractices(practiceDtoArrayList);
+                    Log.e(TAG, "run: 세션에 저장된 연습 : " + session.getTemplatePractices().toString());
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
     public String getTemplateTitleById(int id) {
         for (MusicTemplateDto dto : session.getTemplates().values()) {
             if (dto.getMusicTemplateId() == id)
@@ -157,6 +206,15 @@ public class TemplateService {
     public MusicTemplateDto getTemplateDto(MusicTemplateAssignmentDto assignmentDto) {
         for (MusicTemplateDto dto : session.getTemplates().values()) {
             if (dto.getMusicTemplateId() == assignmentDto.getMusicTemplateId()) {
+                return dto;
+            }
+        }
+        return null;
+    }
+
+    public MusicTemplateDto getTemplateDto(MusicTemplatePracticeDto practiceDto) {
+        for (MusicTemplateDto dto : session.getTemplates().values()) {
+            if (dto.getMusicTemplateId() == practiceDto.getMusicTemplateId()) {
                 return dto;
             }
         }

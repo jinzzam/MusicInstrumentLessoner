@@ -31,6 +31,7 @@ import hack.the.wap.musicinstrumentlessoner.debug.DebugMode;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiNotificationDto;
+import hack.the.wap.musicinstrumentlessoner.model.myservice.TemplateService;
 import hack.the.wap.musicinstrumentlessoner.myfragment.GroupFragment;
 import hack.the.wap.musicinstrumentlessoner.myfragment.NotificationFragment;
 import hack.the.wap.musicinstrumentlessoner.myfragment.StoreFragment;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity
     private static GroupFragment groupFragment;
     private static StoreFragment storeFragment;
     private static Session session;
+    private TemplateService templateService;
     private static Menu menu;
     private String userName;
     private String userEmail;
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity
         groupFragment = new GroupFragment();
         storeFragment = new StoreFragment();
         session = Session.getInstance();
+        templateService = TemplateService.getInstance();
         DEBUG_SESSION_DATA();
     }
 

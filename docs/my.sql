@@ -25,8 +25,8 @@ create table music_template_guide(
 );
 
 create table music_template_practice(
-  music_template_practice_id int primary key auto_increment,
-  music_template_id int,
+  music_template_practice_id int,
+  music_template_id int primary key,
   student_email varchar(30),
   inner_filename varchar(255),
   is_done boolean default false,

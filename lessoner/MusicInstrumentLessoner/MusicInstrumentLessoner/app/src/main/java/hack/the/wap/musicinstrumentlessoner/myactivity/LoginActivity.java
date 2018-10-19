@@ -79,10 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.e(TAG, "loginProcess: 로그인 성공! 현재 메인 유저 정보 : " + session.getMainUser());
                         notificationService.getNotifications();
                         templateService.getTemplates();
-                        templateService.getAssignments();
                         groupService.getGroup();
-                        groupService.getGroupStudents();
-                        groupService.getGroupTeachers();
                         Toast.makeText(LoginActivity.this.getApplicationContext(), "환영합니다, " + session.getMainUser().getName() + "님.", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
                         intent.putExtra("loginActName", session.getMainUser().getName());

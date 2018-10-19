@@ -8,6 +8,10 @@ public class MusicTemplatePracticeDto {
     private boolean isDone;
     private int completePercent;
 
+    public MusicTemplatePracticeDto() {
+
+    }
+
     /**
      * create MusicTemplatePracticeDto
      *
