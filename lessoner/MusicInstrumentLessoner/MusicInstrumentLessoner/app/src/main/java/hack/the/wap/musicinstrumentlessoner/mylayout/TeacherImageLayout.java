@@ -3,22 +3,28 @@ package hack.the.wap.musicinstrumentlessoner.mylayout;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.TextView;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiTeacherDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiUserDto;
+import hack.the.wap.musicinstrumentlessoner.model.myservice.UserService;
 
 public class TeacherImageLayout extends ImageLayout {
-    private MiTeacherDto mainTeacher;
+    private UserService userService;
+    private MiTeacherDto mainTeacher = new MiTeacherDto();
     private TextView tvMyImageName;
     private TextView tvMyImageEmail;
+
     public TeacherImageLayout(Context context, MiTeacherDto dto) {
         super(context);
         mainTeacher = dto;
+        userService = UserService.getInstance();
         tvMyImageName = findViewById(R.id.tvMyImageName);
         tvMyImageEmail = findViewById(R.id.tvMyImageEmail);
-        setImage();
+        setImage(mainTeacher);
     }
 
     public TeacherImageLayout(Context context, @Nullable AttributeSet attrs) {
@@ -33,9 +39,10 @@ public class TeacherImageLayout extends ImageLayout {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
-    public void setImage(){
-        ivMyImage.setImageResource(DebugImageMatch.getImageFromName(mainTeacher.getName()));
-        tvMyImageName.setText(mainTeacher.getName());
-        tvMyImageEmail.setText(mainTeacher.getEmail());
+    public void setImage(MiTeacherDto mainTeacher) {
+        Log.e("선생이미지레이아웃", "setImage: " + mainTeacher);
+        ivMyImage.setImageResource(DebugImageMatch.getImageFromName(userService.getUserName(mainTeacher.getTeacherEmail())));
+        tvMyImageName.setText(userService.getUserName(mainTeacher.getTeacherEmail()));
+        tvMyImageEmail.setText(mainTeacher.getTeacherEmail());
     }
 }

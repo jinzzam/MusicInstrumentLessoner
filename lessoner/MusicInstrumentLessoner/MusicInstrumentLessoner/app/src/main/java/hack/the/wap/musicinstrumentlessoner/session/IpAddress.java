@@ -1,7 +1,7 @@
 package hack.the.wap.musicinstrumentlessoner.session;
 
 public class IpAddress {
-    String ip = "172.30.66.122";
+    String ip = "175.199.255.108";
 
     public String getIp() {
         return ip;

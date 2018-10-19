@@ -4,12 +4,12 @@ import android.support.v7.app.AppCompatActivity;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 
-public class DebugImageMatch extends AppCompatActivity{
+public class DebugImageMatch extends AppCompatActivity {
     public static DebugImageMatch instance;
 
-//    private DebugImageMatch() {
-//
-//    }
+    private DebugImageMatch() {
+
+    }
 
     public static int getImageFromName(String stringName) {
         switch (stringName) {
@@ -24,6 +24,8 @@ public class DebugImageMatch extends AppCompatActivity{
             case "Segyong":
                 return R.drawable.segyong_round;
             case "namolppam@pocket.mon":
+                return R.drawable.gain_round;
+            case "나몰빼미:":
                 return R.drawable.gain_round;
             case "Hyoju":
                 return R.drawable.hyoju_round;
@@ -94,5 +96,12 @@ public class DebugImageMatch extends AppCompatActivity{
             default:
                 return R.drawable.logo_user_round;
         }
+    }
+
+    public static DebugImageMatch getInstance() {
+        if (instance == null) {
+            instance = new DebugImageMatch();
+        }
+        return instance;
     }
 }

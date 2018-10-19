@@ -4,6 +4,10 @@ public class MiStudentDto extends MiUserDto {
     private String studentEmail;
     private String groupName;
 
+    public MiStudentDto() {
+
+    }
+
     /**
      * create MiStudentDto
      *

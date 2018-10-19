@@ -16,6 +16,7 @@ import hack.the.wap.musicinstrumentlessoner.model.myservice.GroupService;
 import hack.the.wap.musicinstrumentlessoner.model.myservice.LoginService;
 import hack.the.wap.musicinstrumentlessoner.model.myservice.NotificationService;
 import hack.the.wap.musicinstrumentlessoner.model.myservice.TemplateService;
+import hack.the.wap.musicinstrumentlessoner.model.myservice.UserService;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class LoginActivity extends AppCompatActivity {
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private LoginService loginService;
     private TemplateService templateService;
     private NotificationService notificationService;
+    private UserService userService;
     private GroupService groupService;
 
     private static ImageView ivLogin;
@@ -40,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         templateService = TemplateService.getInstance();
         notificationService = NotificationService.getInstance();
         groupService = GroupService.getInstance();
+        userService = UserService.getInstance();
         userDto = new MiUserDto();
     }
 
@@ -80,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                         notificationService.getNotifications();
                         templateService.getTemplates();
                         groupService.getGroup();
+                        userService.getUsers();
                         Toast.makeText(LoginActivity.this.getApplicationContext(), "환영합니다, " + session.getMainUser().getName() + "님.", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
                         intent.putExtra("loginActName", session.getMainUser().getName());

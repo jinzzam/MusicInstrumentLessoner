@@ -10,28 +10,40 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.util.HashMap;
+
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiUserDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.session.IpAddress;
+import hack.the.wap.musicinstrumentlessoner.session.Session;
+import okhttp3.OkHttpClient;
 
 public class UserService {
     private static final String TAG = "USER_SERVICE";
     private IpAddress ipAddress = new IpAddress();
-    RequestQueue queue;
+    private Session session;
     private static UserService instance;
-    private static String getUserUrl;
-    private MiUserDto userDto;
-    private String userName;
 
-    {
-        getUserUrl = "http://" + ipAddress.getIp() + ":3000/api/user";
-    }
+
+    private static String getUserUrl;
+    private String email;
+    private String password;
+    private String userName;
+    private MiUserDto userDto;
+    private HashMap<String, MiUserDto> userDtoHashMap;
 
     private UserService() {
-
+        session = Session.getInstance();
+        getUserUrl = "http://" + ipAddress.getIp() + ":3000/api/user";
+        userDto = new MiUserDto();
+        userDtoHashMap = new HashMap<>();
     }
 
     public static UserService getInstance() {
@@ -42,32 +54,50 @@ public class UserService {
     }
 
 
-    public String getUserName(String inputEmail) {
-        Log.e(TAG, getUserUrl);
-        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getUserUrl + inputEmail, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
+    public void getUsers() {
+        new Thread() {
+            public void run() {
                 try {
-                    JSONObject user = response.getJSONObject(0);
-                    userName = user.get("username").toString();
-                } catch (Exception e) {
+                    OkHttpClient client = new OkHttpClient();
+
+                    okhttp3.Request request = new okhttp3.Request.Builder()
+                            .addHeader("Authorization", "TEST AUTH")
+                            .url(getUserUrl)
+                            .build();
+
+                    okhttp3.Response response = client.newCall(request)
+                            .execute();
+
+                    String result = response.body().string();
+
+                    JsonParser jsonParser = new JsonParser();
+                    JsonArray jsonArray = (JsonArray) jsonParser.parse(result);
+
+                    for (int i = 0; i < jsonArray.size(); i++) {
+                        email = jsonArray.get(i).getAsJsonObject().get("email").toString().replace("\"", "");
+                        password = jsonArray.get(i).getAsJsonObject().get("password").toString().replace("\"", "");
+                        userName = jsonArray.get(i).getAsJsonObject().get("username").toString().replace("\"", "");
+                        userDto = new MiUserDto(email, password, userName);
+                        userDtoHashMap.put(userDto.getEmail(), userDto);
+                        Log.e(TAG, "run: 유저들 해쉬맵 : " + userDtoHashMap);
+                    }
+                    session.setUsers(userDtoHashMap);
+                    Log.e(TAG, "run: 세션에 저장된 유저들 정보 : " + session.getUsers().toString());
+
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("TAG", "getUserName >>>> : " + error);
+        }.start();
+    }
+
+    public String getUserName(String inputEmail) {
+        for (MiUserDto userDto : session.getUsers().values()) {
+            if (userDto.getEmail().equals(inputEmail)) {
+                Log.e(TAG, "getUserName: " + userDto.getName() );
+                return userDto.getName();
             }
-        });
-        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
-                0,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-        ));
-        jsonArrayRequest.setTag(TAG);
-        queue.add(jsonArrayRequest);
-        Log.e(TAG, "mainUserVolleySet >>>> : ");
-        return userName;
+        }
+        return null;
     }
 }

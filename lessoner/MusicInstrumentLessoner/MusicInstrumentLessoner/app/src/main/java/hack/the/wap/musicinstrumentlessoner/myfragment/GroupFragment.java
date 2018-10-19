@@ -38,13 +38,11 @@ public class GroupFragment extends Fragment {
 
     private static HashMap<String, MiGroupDto> userGroups;
 
-
-    {
-        groupService = GroupService.getInstance();
-    }
-
     public GroupFragment() {
         session = Session.getInstance();
+        groupService = GroupService.getInstance();
+        groupService.getGroupStudents();
+        groupService.getGroupTeachers();
     }
 
     /**
@@ -66,8 +64,6 @@ public class GroupFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        groupService.getGroupStudents();
-        groupService.getGroupTeachers();
     }
 
     @Override

@@ -7,18 +7,24 @@ import android.widget.TextView;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiStudentDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiUserDto;
+import hack.the.wap.musicinstrumentlessoner.model.myservice.UserService;
 
 public class UserImageLayout extends ImageLayout {
-    private MiUserDto mainUser;
+    private UserService userService;
+    private MiStudentDto mainUser;
     private TextView tvMyImageName;
     private TextView tvMyImageEmail;
-    public UserImageLayout(Context context, MiUserDto dto) {
+
+    public UserImageLayout(Context context, MiStudentDto dto) {
         super(context);
+        userService = UserService.getInstance();
+        mainUser = new MiStudentDto();
         mainUser = dto;
         tvMyImageName = findViewById(R.id.tvMyImageName);
         tvMyImageEmail = findViewById(R.id.tvMyImageEmail);
-        setImage();
+        setImage(mainUser);
     }
 
     public UserImageLayout(Context context, @Nullable AttributeSet attrs) {
@@ -33,9 +39,9 @@ public class UserImageLayout extends ImageLayout {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
-    public void setImage(){
-        ivMyImage.setImageResource(DebugImageMatch.getImageFromName(mainUser.getName()));
-        tvMyImageName.setText(mainUser.getName());
-        tvMyImageEmail.setText(mainUser.getEmail());
+    public void setImage(MiStudentDto mainUser) {
+        ivMyImage.setImageResource(DebugImageMatch.getImageFromName(userService.getUserName(mainUser.getStudentEmail())));
+        tvMyImageName.setText(userService.getUserName(mainUser.getStudentEmail()));
+        tvMyImageEmail.setText(mainUser.getStudentEmail());
     }
 }

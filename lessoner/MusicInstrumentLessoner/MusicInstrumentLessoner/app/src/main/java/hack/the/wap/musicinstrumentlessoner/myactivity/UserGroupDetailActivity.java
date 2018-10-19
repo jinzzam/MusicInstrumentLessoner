@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MiStudentDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiUserDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiTeacherDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
@@ -54,10 +55,12 @@ public class UserGroupDetailActivity extends AppCompatActivity {
         llActUserGroupDetailTeacher = findViewById(R.id.llActUserGroupDetailTeacher);
         llActUserGroupDetailUser = findViewById(R.id.llActUserGroupDetailUser);
         for (MiTeacherDto dto : session.getGroupTeachers()) {
-            llActUserGroupDetailTeacher.addView(new TeacherImageLayout(this, dto));
+            if (dto.getGroupName().equals(mainUserGroup.getGroupName()))
+                llActUserGroupDetailTeacher.addView(new TeacherImageLayout(this, dto));
         }
-        for (MiUserDto dto : session.getGroupStudents()) {
-            llActUserGroupDetailUser.addView(new UserImageLayout(this, dto));
+        for (MiStudentDto dto : session.getGroupStudents()) {
+            if (dto.getGroupName().equals(mainUserGroup.getGroupName()))
+                llActUserGroupDetailUser.addView(new UserImageLayout(this, dto));
         }
     }
 
