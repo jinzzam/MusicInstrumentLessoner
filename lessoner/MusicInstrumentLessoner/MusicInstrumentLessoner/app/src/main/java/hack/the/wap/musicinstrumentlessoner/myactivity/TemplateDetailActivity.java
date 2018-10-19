@@ -17,6 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import cafe.adriel.androidaudioconverter.AndroidAudioConverter;
 import cafe.adriel.androidaudioconverter.callback.IConvertCallback;
@@ -41,7 +42,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
     private TemplateDetailActivity instance;
     private TemplateService templateService;
 
-    private ArrayList<MusicTemplatePracticeDto> templatePractices;
+    private HashMap<Integer, MusicTemplatePracticeDto> templatePractices;
     private MusicTemplateAssignmentDto assignmentDto;
     private MusicTemplateDto mainTemplate;
     private ImageView ivTemplateDetailLayLeftArrow;
@@ -107,7 +108,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
                 + mainTemplate.getOwner());
 
         templatePractices = session.getTemplatePractices();
-        for (MusicTemplatePracticeDto dto : templatePractices) {
+        for (MusicTemplatePracticeDto dto : templatePractices.values()) {
             if (dto.getInnerFilename() != null) {
                 TemplatePositivePracticeLayout atom = new TemplatePositivePracticeLayout(this);
                 atom.setCustomAttr(dto);
@@ -183,8 +184,8 @@ public class TemplateDetailActivity extends AppCompatActivity {
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(this.getApplicationContext(), "녹음을 성공했습니다.", Toast.LENGTH_LONG).show();
-                MusicTemplatePracticeDto dto = new MusicTemplatePracticeDto(1, curPractice, session.getMainUser().getEmail(), curFile, true, 88);
-                session.getTemplatePractices().set(curPractice - 1, dto);
+                MusicTemplatePracticeDto dto = new MusicTemplatePracticeDto(curPractice, 1, session.getMainUser().getEmail(), curFile, true, 88);
+                session.getTemplatePractices().put(dto.getMusicTemplateId(), dto);
                 AndroidAudioConverter.with(this)
                         .setFile(new File(filePath))
                         .setFormat(AudioFormat.MP3)

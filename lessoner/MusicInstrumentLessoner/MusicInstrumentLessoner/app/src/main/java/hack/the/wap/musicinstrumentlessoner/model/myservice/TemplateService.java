@@ -46,7 +46,7 @@ public class TemplateService {
     private MusicTemplateDto templateDto;
     private HashMap<String, MusicTemplateAssignmentDto> assignmentDtoHashMap;
     private MusicTemplateAssignmentDto assignmentDto;
-    private ArrayList<MusicTemplatePracticeDto> practiceDtoArrayList;
+    private HashMap<Integer, MusicTemplatePracticeDto> practiceDtoHashMap;
     private MusicTemplatePracticeDto practiceDto;
 
     private TemplateService() {
@@ -55,7 +55,7 @@ public class TemplateService {
         templateDto = new MusicTemplateDto();
         assignmentDtoHashMap = new HashMap<>();
         assignmentDto = new MusicTemplateAssignmentDto();
-        practiceDtoArrayList = new ArrayList<>();
+        practiceDtoHashMap = new HashMap<>();
         practiceDto = new MusicTemplatePracticeDto();
     }
 
@@ -182,10 +182,10 @@ public class TemplateService {
                         isDone = jsonArray.get(i).getAsJsonObject().get("is_done").getAsBoolean();
                         completePercent = jsonArray.get(i).getAsJsonObject().get("complete_percent").getAsInt();
                         practiceDto = new MusicTemplatePracticeDto(musicTemplatePracticeId, musicTemplateId, studentEmail, innerFileName, isDone, completePercent);
-                        practiceDtoArrayList.add(0+i, practiceDto);
-                        Log.e(TAG, "run: 연습 해쉬맵 : " + practiceDtoArrayList);
+                        practiceDtoHashMap.put(musicTemplateId, practiceDto);
+                        Log.e(TAG, "run: 연습 해쉬맵 : " + practiceDtoHashMap);
                     }
-                    session.setTemplatePractices(practiceDtoArrayList);
+                    session.setTemplatePractices(practiceDtoHashMap);
                     Log.e(TAG, "run: 세션에 저장된 연습 : " + session.getTemplatePractices().toString());
 
                 } catch (IOException e) {

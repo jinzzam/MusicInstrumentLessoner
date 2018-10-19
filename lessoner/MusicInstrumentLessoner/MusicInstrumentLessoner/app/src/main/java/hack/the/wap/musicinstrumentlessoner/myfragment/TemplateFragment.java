@@ -45,6 +45,8 @@ public class TemplateFragment extends Fragment {
         templateService = TemplateService.getInstance();
         assignments = new HashMap<>();
         templates = new HashMap<>();
+        templateService.getAssignments();
+        templateService.getPractices();
     }
 
     /**
@@ -68,8 +70,6 @@ public class TemplateFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
         }
-        templateService.getAssignments();
-        templateService.getPractices();
     }
 
     @Override
