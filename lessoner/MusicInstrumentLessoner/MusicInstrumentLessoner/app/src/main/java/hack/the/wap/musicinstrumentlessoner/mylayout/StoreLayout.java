@@ -3,6 +3,7 @@ package hack.the.wap.musicinstrumentlessoner.mylayout;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,12 +18,12 @@ import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
  */
 
 public class StoreLayout extends LinearLayout {
+    private static final String TAG = "STORE_LAYOUT";
     private ImageView ivStoreLayGroupImage;
     private TextView tvStoreLayGroupTitle;
     private TextView tvStoreLayMain;
     private TextView tvStoreLayInstrument;
     private TextView tvStoreLayGenre;
-
 
     {
         initView();
@@ -57,26 +58,17 @@ public class StoreLayout extends LinearLayout {
     private void getAttrs(AttributeSet attributeSet) {
     }
 
-    private void getAttrs(AttributeSet attributeSet, int defStyle) {
-    }
-
     public void setCustomAttr(MiGroupDto dto) {
+        Log.e(TAG, "setCustomAttr: " + dto.toString() );
         ivStoreLayGroupImage.setImageResource(DebugImageMatch.getImageFromName(dto.getGroupName()));
         tvStoreLayGroupTitle.setText(dto.getGroupName());
         tvStoreLayMain.setText(dto.getInfo());
-        String instrument = getResources().getString(R.string.storeLayInstrument);
-//        for (String atom : dto.getInstruments()) {
-//            instrument = instrument + atom + getResources().getString(R.string.storeLayComma);
-//        }
-//        instrument = instrument.substring(0, instrument.length() - getResources().getString(R.string.storeLayComma).length());
-        instrument += dto.getInstruments();
+        String instrument = getResources().getString(R.string.storeLayInstrument) + dto.getInstruments();
         tvStoreLayInstrument.setText(instrument);
-        String genre = getResources().getString(R.string.storeLayGenre);
-//        for (String atom : dto.getGenres()) {
-//            genre = genre + atom + getResources().getString(R.string.storeLayComma);
-//        }
-//        genre = genre.substring(0, genre.length() - getResources().getString(R.string.storeLayComma).length());
-        genre += dto.getGenres();
+        String genre = getResources().getString(R.string.storeLayGenre) + dto.getGenres();
         tvStoreLayGenre.setText(genre);
+        Log.e(TAG, "setCustomAttr: 주요악기 :  " + instrument);
+        Log.e(TAG, "setCustomAttr: 주요장르 :  " + genre);
+
     }
 }

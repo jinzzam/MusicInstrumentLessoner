@@ -147,7 +147,6 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
             menu.clear();
             getMenuInflater().inflate(R.menu.template_menu, menu);
-
         } else if (id == R.id.nav_group) {
             FragmentManager fm = getFragmentManager();
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
@@ -160,6 +159,8 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
             fragmentTransaction.replace(R.id.flFragment, storeFragment);
             fragmentTransaction.commit();
+            menu.clear();
+            getMenuInflater().inflate(R.menu.group_menu, menu);
         } else if (id == R.id.nav_information) {
             //pass
         }

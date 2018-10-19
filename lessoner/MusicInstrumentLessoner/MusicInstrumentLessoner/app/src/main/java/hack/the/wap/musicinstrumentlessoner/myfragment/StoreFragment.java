@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,15 +26,20 @@ import hack.the.wap.musicinstrumentlessoner.session.Session;
  * create an instance of this fragment.
  */
 public class StoreFragment extends Fragment {
+    private static final String TAG = "STORE_FRAGMENT";
     private static View storeFragmentView;
     private static LinearLayout llFragStore;
     private static Session session;
+    private MiGroupDto miGroupDto;
     private static HashMap<String, MiGroupDto> userGroups;
 
     private OnFragmentInteractionListener mListener;
 
     public StoreFragment() {
+        Log.e(TAG, "StoreFragment: 생성자입니다.");
         session = Session.getInstance();
+        userGroups = new HashMap<>();
+        miGroupDto = new MiGroupDto();
     }
 
     /**
@@ -64,8 +70,7 @@ public class StoreFragment extends Fragment {
                              Bundle savedInstanceState) {
         storeFragmentView = inflater.inflate(R.layout.fragment_store, container, false);
         llFragStore = storeFragmentView.findViewById(R.id.llFragStore);
-        userGroups = session.getUserGroups();
-        for (MiGroupDto dto : userGroups.values()) {
+        for (MiGroupDto dto : session.getUserGroups().values()) {
             StoreLayout atom = new StoreLayout(getContext());
             atom.setCustomAttr(dto);
             llFragStore.addView(atom);

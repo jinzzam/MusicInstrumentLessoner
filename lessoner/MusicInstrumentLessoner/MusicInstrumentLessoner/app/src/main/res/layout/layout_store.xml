@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/a_old_l"
-            android:gravity="left"
+            android:gravity="start"
             android:text="제목"
             android:textSize="14dp"
             android:textStyle="bold" />
@@ -42,7 +42,7 @@
             android:id="@+id/tvStoreLayMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
+            android:gravity="start"
             android:paddingBottom="10dp"
             android:text="메인 설명"
             android:textColor="@color/commonDateColor"
@@ -52,14 +52,14 @@
             android:id="@+id/tvStoreLayInstrument"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
+            android:gravity="start"
             android:text="악기" />
 
         <TextView
             android:id="@+id/tvStoreLayGenre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
+            android:gravity="start"
             android:text="장르" />
 
     </LinearLayout>

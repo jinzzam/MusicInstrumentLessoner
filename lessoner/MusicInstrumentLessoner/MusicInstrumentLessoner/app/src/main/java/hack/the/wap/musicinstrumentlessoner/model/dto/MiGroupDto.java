@@ -11,6 +11,10 @@ public class MiGroupDto implements Serializable {
     private String instruments;
     private String genres;
 
+    public MiGroupDto() {
+
+    }
+
     /**
      * create MiGroupDto
      *
