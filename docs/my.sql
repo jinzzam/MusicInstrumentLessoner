@@ -26,11 +26,12 @@ create table music_template_guide(
 
 create table music_template_practice(
   music_template_practice_id int,
-  music_template_id int primary key,
+  music_template_id int,
   student_email varchar(30),
   inner_filename varchar(255),
   is_done boolean default false,
   complete_percent int not null,
+  constraint pk_musictemplatepractice_templatepracticeid_templateid primary key (music_template_practice_id, music_template_id),
   constraint fk_musictemplatepractice_miuser_email foreign key (student_email) references mi_user (email) on delete cascade,
   constraint fk_musictemplatepractice_mifile_innerfilename foreign key (inner_filename) references mi_file (inner_filename) on delete cascade,
   constraint fk_musictemplatepractice_musictemplate_musictemplateid foreign key (music_template_id) references music_template (music_template_id) on delete cascade

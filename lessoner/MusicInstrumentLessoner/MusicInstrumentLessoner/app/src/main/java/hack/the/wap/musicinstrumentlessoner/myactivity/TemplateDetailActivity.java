@@ -32,6 +32,7 @@ import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateAssignmentDto
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
 import hack.the.wap.musicinstrumentlessoner.model.myservice.TemplateService;
+import hack.the.wap.musicinstrumentlessoner.model.myservice.UserService;
 import hack.the.wap.musicinstrumentlessoner.mylayout.TemplateNegativePracticeLayout;
 import hack.the.wap.musicinstrumentlessoner.mylayout.TemplatePositivePracticeLayout;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
@@ -41,8 +42,10 @@ public class TemplateDetailActivity extends AppCompatActivity {
     private static Session session;
     private TemplateDetailActivity instance;
     private TemplateService templateService;
+    private UserService userService;
 
     private HashMap<Integer, MusicTemplatePracticeDto> templatePractices;
+    private HashMap<String, MusicTemplateAssignmentDto> templateAssignments;
     private MusicTemplateAssignmentDto assignmentDto;
     private MusicTemplateDto mainTemplate;
     private ImageView ivTemplateDetailLayLeftArrow;
@@ -68,6 +71,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
     {
         session = Session.getInstance();
         templateService = TemplateService.getInstance();
+        userService = UserService.getInstance();
         assignmentDto = new MusicTemplateAssignmentDto();
         mainTemplate = new MusicTemplateDto();
     }
@@ -105,11 +109,11 @@ public class TemplateDetailActivity extends AppCompatActivity {
         tvTemplateDetailLayName.setText(mainTemplate.getMusicTitle());
         tvTemplateDetailLayMusicianName.setText(mainTemplate.getMusician());
         tvTemplateDetailLayTeacherNameSlot.setText(getResources().getString(R.string.tempalte_detail_act_teacher_pre)
-                + mainTemplate.getOwner());
+                + userService.getUserName(mainTemplate.getOwner()));
 
         templatePractices = session.getTemplatePractices();
         for (MusicTemplatePracticeDto dto : templatePractices.values()) {
-            if (dto.getInnerFilename() != null) {
+            if (dto.isDone()) {
                 TemplatePositivePracticeLayout atom = new TemplatePositivePracticeLayout(this);
                 atom.setCustomAttr(dto);
                 atom.getIvTemplatePositivePracticeLayListen().setOnClickListener(v -> {
