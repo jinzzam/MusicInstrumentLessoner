@@ -17,6 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import cafe.adriel.androidaudioconverter.AndroidAudioConverter;
 import cafe.adriel.androidaudioconverter.callback.IConvertCallback;
@@ -27,16 +28,22 @@ import cafe.adriel.androidaudiorecorder.model.AudioSampleRate;
 import cafe.adriel.androidaudiorecorder.model.AudioSource;
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateAssignmentDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
+import hack.the.wap.musicinstrumentlessoner.model.myservice.TemplateService;
 import hack.the.wap.musicinstrumentlessoner.mylayout.TemplateNegativePracticeLayout;
 import hack.the.wap.musicinstrumentlessoner.mylayout.TemplatePositivePracticeLayout;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class TemplateDetailActivity extends AppCompatActivity {
+    private static final String TAG = "TEMPLATE_DETAIL_ACT";
     private static Session session;
     private TemplateDetailActivity instance;
+    private TemplateService templateService;
+
     private ArrayList<MusicTemplatePracticeDto> templatePractices;
+    private MusicTemplateAssignmentDto assignmentDto;
     private MusicTemplateDto mainTemplate;
     private ImageView ivTemplateDetailLayLeftArrow;
     private ImageView ivTemplateDetailLayTeacher;
@@ -60,6 +67,9 @@ public class TemplateDetailActivity extends AppCompatActivity {
 
     {
         session = Session.getInstance();
+        templateService = TemplateService.getInstance();
+        assignmentDto = new MusicTemplateAssignmentDto();
+        mainTemplate = new MusicTemplateDto();
     }
 
     @Override
@@ -69,8 +79,9 @@ public class TemplateDetailActivity extends AppCompatActivity {
         initView();
         instance = this;
         Intent intent = getIntent();
-        mainTemplate = (MusicTemplateDto) intent.getSerializableExtra("data");
-        Log.e("SAFE", "onCreate >>> " + mainTemplate);
+        assignmentDto = (MusicTemplateAssignmentDto) intent.getSerializableExtra("data");
+        mainTemplate = templateService.getTemplateDto(assignmentDto);
+        Log.e(TAG, "onCreate >>> " + assignmentDto);
         viewSet();
         viewSetListener();
     }

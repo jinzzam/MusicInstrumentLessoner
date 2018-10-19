@@ -1,6 +1,8 @@
 package hack.the.wap.musicinstrumentlessoner.model.dto;
 
-public class MusicTemplateAssignmentDto {
+import java.io.Serializable;
+
+public class MusicTemplateAssignmentDto implements Serializable {
     private String innerFilename;
     private int musicTemplateId;
     private String studentEmail;

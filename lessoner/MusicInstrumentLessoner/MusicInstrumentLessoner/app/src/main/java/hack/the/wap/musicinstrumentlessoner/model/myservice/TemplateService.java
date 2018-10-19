@@ -2,16 +2,8 @@ package hack.the.wap.musicinstrumentlessoner.model.myservice;
 
 import android.util.Log;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
-
-import org.json.JSONArray;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -27,7 +19,6 @@ public class TemplateService {
     private IpAddress ipAddress = new IpAddress();
     private static TemplateService instance;
     private static Session session;
-    RequestQueue queue;
 
     private String getTemplateUrl = "http://" + ipAddress.getIp() + ":3000/api/template/";
     private String getAssignmentUrl = "http://" + ipAddress.getIp() + ":3000/api/template-assignment/";
@@ -163,29 +154,13 @@ public class TemplateService {
         return null;
     }
 
-    public int templateCount(String email) {
-        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getTemplateUrl + email, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                for (int i = 0; i < response.length(); i++) {
-                    templateCount++;
-                }
+    public MusicTemplateDto getTemplateDto(MusicTemplateAssignmentDto assignmentDto) {
+        for (MusicTemplateDto dto : session.getTemplates().values()) {
+            if (dto.getMusicTemplateId() == assignmentDto.getMusicTemplateId()) {
+                return dto;
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
-                0,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-        ));
-        jsonArrayRequest.setTag(TAG);
-        queue.add(jsonArrayRequest);
-        Log.e(TAG, "getTemplateTitleById >>>> : ");
-
-        return templateCount;
+        }
+        return null;
     }
+
 }

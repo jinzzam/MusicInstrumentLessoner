@@ -83,7 +83,7 @@ public class TemplateFragment extends Fragment {
             atom.setCustomAttr(assignmentDto);
             atom.setOnClickListener(v -> {
                 Intent intent = new Intent(MainActivity.getInstance(), TemplateDetailActivity.class);
-                intent.putExtra("data", assignments);
+                intent.putExtra("data", assignmentDto);
                 startActivity(intent);
             });
             llFragTemplate.addView(atom);
