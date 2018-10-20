@@ -121,13 +121,13 @@ public class TemplateDetailActivity extends AppCompatActivity {
                 atom.setCustomAttr(dto);
                 atom.getIvTemplatePositivePracticeLayListen().setOnClickListener(v -> {
                     Intent posIntent = new Intent(this, PracticeDetailActivity.class);
-                    posIntent.putExtra("data", (Serializable) dto);
+                    posIntent.putExtra("data", dto);
                     posIntent.putExtra("main", mainTemplate);
                     startActivity(posIntent);
                 });
                 atom.getIvTemplatePositivePracticeLayView().setOnClickListener(v -> {
                     Intent posIntent = new Intent(this, PracticeListenActivity.class);
-                    posIntent.putExtra("data", (Serializable) dto);
+                    posIntent.putExtra("data", dto);
                     posIntent.putExtra("main", mainTemplate);
                     startActivity(posIntent);
                 });
@@ -191,16 +191,19 @@ public class TemplateDetailActivity extends AppCompatActivity {
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(this.getApplicationContext(), "녹음을 성공했습니다.", Toast.LENGTH_LONG).show();
-                MusicTemplatePracticeDto dto = new MusicTemplatePracticeDto(curPractice, 1, session.getMainUser().getEmail(), curFile, 1, 88);
-                session.getTemplatePractices().put(dto.getMusicTemplateId(), dto);
+                MusicTemplatePracticeDto dto = new MusicTemplatePracticeDto();
+                dto = session.getTemplatePractices().get(mainTemplate.getMusicTemplateId() * 10 + curPractice);
+                dto.setDone(1);
+                dto.setCompletePercent(85);
+                MusicTemplatePracticeDto finalDto = dto;
                 AndroidAudioConverter.with(this)
                         .setFile(new File(filePath))
                         .setFormat(AudioFormat.MP3)
                         .setCallback(new IConvertCallback() {
                             @Override
                             public void onSuccess(File file) {
-                                dto.setInnerFilename(file.getAbsolutePath());
-                                dto.setCompletePercent(0);
+                                finalDto.setInnerFilename(file.getAbsolutePath());
+                                finalDto.setCompletePercent(0);
                                 finish();
                                 Log.e("TAG", "onSuccess: " + file.getAbsolutePath());
 
