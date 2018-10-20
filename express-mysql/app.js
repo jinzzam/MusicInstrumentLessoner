@@ -5,8 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var userApiRouter = require('./routes/api/miUser');
 var tempRouter = require('./routes/api/Template');
 var tempAssignmentRouter = require('./routes/api/TempAssignment');
@@ -33,8 +31,6 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/api/user', userApiRouter);
 app.use('/api/template', tempRouter);
 app.use('/api/template-assignment', tempAssignmentRouter);
