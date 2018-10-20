@@ -1,7 +1,7 @@
 {
-  "host": "54.180.94.249",
+  "host": "localhost",
   "user": "root",
   "password": "123",
   "database": "midb",
-  "port" : 8000
+  "port" : ""
 }
