@@ -24,9 +24,9 @@ public class DebugImageMatch extends AppCompatActivity {
             case "Segyong":
                 return R.drawable.segyong_round;
             case "namolppam@pocket.mon":
-                return R.drawable.gain_round;
+                return R.drawable.namolppami_round;
             case "나몰빼미:":
-                return R.drawable.gain_round;
+                return R.drawable.namolppami_round;
             case "Hyoju":
                 return R.drawable.hyoju_round;
             case "Kanna":

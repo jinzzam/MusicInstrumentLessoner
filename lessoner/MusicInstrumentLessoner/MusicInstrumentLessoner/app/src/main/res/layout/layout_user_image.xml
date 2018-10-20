@@ -18,12 +18,12 @@
         <ImageView
             android:id="@+id/ivMyImage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="55dp"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:maxHeight="50dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/choa_round" />
+            app:srcCompat="@drawable/namolppami_round" />
 
     </LinearLayout>
 
@@ -40,8 +40,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="bottom|left"
-            android:textStyle="bold"
-            android:text="이름" />
+            android:text="이름"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvMyImageEmail"
@@ -49,8 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="top|left"
-            android:textColor="@color/commonDateColor"
-            android:text="이메일" />
+            android:text="이메일"
+            android:textColor="@color/commonDateColor" />
     </LinearLayout>
 
 </LinearLayout>
