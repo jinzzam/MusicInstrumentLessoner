@@ -6,7 +6,8 @@ var connection = mysql.createConnection({
     host: db_config.host,
     user: db_config.user,
     password: db_config.password,
-    database: db_config.database
+    database: db_config.database,
+    port: db_config.port
 });
 
 connection.connect();
@@ -29,9 +30,9 @@ this.selectOne = (id, callback) => {
     });
 };
 
-this.insert = (tempId, sEmail,innerFile,is_done, completePercent, callback) => {
+this.insert = (tempId, sEmail, innerFile, is_done, completePercent, callback) => {
     var sql = 'insert into music_template_practice (music_template_id, student_email, inner_filename, is_done, complete_percent) values (?,?,?,?,?)';
-    connection.query(sql, [tempId, sEmail,innerFile,is_done, completePercent], function (err, rows, fields) {
+    connection.query(sql, [tempId, sEmail, innerFile, is_done, completePercent], function (err, rows, fields) {
         if (!err) {
             callback(rows);
         } else {
@@ -52,7 +53,7 @@ this.joinFile = (innerFilename, callback) => {
     });
 };
 
-this.isDone = (practiceId, callback)=> {
+this.isDone = (practiceId, callback) => {
     var sql = 'update music_template_practice set is_done = 1 where music_template_practice_id =?';
     connection.query(sql, [practiceId], function (err, rows, fields) {
         if (!err) {
@@ -61,7 +62,7 @@ this.isDone = (practiceId, callback)=> {
     });
 };
 
-this.Complete = (percent, practiceId, callback)=> {
+this.Complete = (percent, practiceId, callback) => {
     var sql = 'update music_template_practice set complete_percent = ? where music_template_practice_id =?';
     connection.query(sql, [percent, practiceId], function (err, rows, fields) {
         if (!err) {

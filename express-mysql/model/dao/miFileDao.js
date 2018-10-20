@@ -6,7 +6,8 @@ var connection = mysql.createConnection({
     host: db_config.host,
     user: db_config.user,
     password: db_config.password,
-    database: db_config.database
+    database: db_config.database,
+    port: db_config.port
 });
 
 connection.connect();
@@ -66,8 +67,8 @@ this.joinWrong = (filename, callback) => {
 
 this.delete = (ownerEmail, filename, callback) => {
     var sql = 'delete from mi_file where owner = ? and inner_filename = ?';
-    connection.query(sql, [ownerEmail, filename], function (err, rows, fields){
-        if(!err){
+    connection.query(sql, [ownerEmail, filename], function (err, rows, fields) {
+        if (!err) {
             callback(rows);
         }
     });

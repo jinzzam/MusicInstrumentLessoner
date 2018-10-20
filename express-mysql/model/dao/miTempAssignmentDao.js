@@ -6,7 +6,8 @@ var connection = mysql.createConnection({
     host: db_config.host,
     user: db_config.user,
     password: db_config.password,
-    database: db_config.database
+    database: db_config.database,
+    port: db_config.port
 });
 connection.connect();
 
@@ -29,9 +30,9 @@ this.selectOne = (studentEmail, callback) => {
     });
 };
 
-this.insert = (innerFilename, tempId,studentEmail, todo, done, sPercent, callback) => {
+this.insert = (innerFilename, tempId, studentEmail, todo, done, sPercent, callback) => {
     var sql = 'insert into music_template_assignment values (?,?,?,?,?,?)';
-    connection.query(sql, [innerFilename, tempId,studentEmail, todo, done, sPercent], function (err, rows, fields) {
+    connection.query(sql, [innerFilename, tempId, studentEmail, todo, done, sPercent], function (err, rows, fields) {
         if (!err) {
             callback(rows);
         } else {
@@ -41,10 +42,10 @@ this.insert = (innerFilename, tempId,studentEmail, todo, done, sPercent, callbac
     });
 };
 
-this.count = (filename,callback)=>{
+this.count = (filename, callback) => {
     var sql = 'update music_template_assignment set done_count = done_count + 1 where inner_filename =?';
-    connection.query(sql, [filename], function(err, rows, fields){
-        if(!err){
+    connection.query(sql, [filename], function (err, rows, fields) {
+        if (!err) {
             callback(rows);
         } else {
             console.log('user post');
@@ -53,10 +54,10 @@ this.count = (filename,callback)=>{
     });
 };
 
-this.delete = (filename, callback)=>{
+this.delete = (filename, callback) => {
     var sql = 'delete from music_template_assignment where inner_filename = ?';
-    connection.query(sql, [filename], function(err, rows, fields){
-        if(!err){
+    connection.query(sql, [filename], function (err, rows, fields) {
+        if (!err) {
             callback(rows);
         } else {
             console.log('user post');
@@ -65,10 +66,10 @@ this.delete = (filename, callback)=>{
     });
 };
 
-this.complete = (percent, filename, callback)=>{
+this.complete = (percent, filename, callback) => {
     var sql = 'update music_template_assignment set success_percent=? where inner_filename =?';
-    connection.query(sql, [percent, filename], function(err, rows, fields){
-        if(!err){
+    connection.query(sql, [percent, filename], function (err, rows, fields) {
+        if (!err) {
             callback(rows);
         } else {
             console.log('user post');

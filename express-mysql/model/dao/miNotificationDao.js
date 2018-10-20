@@ -6,7 +6,8 @@ var connection = mysql.createConnection({
     host: db_config.host,
     user: db_config.user,
     password: db_config.password,
-    database: db_config.database
+    database: db_config.database,
+    port: db_config.port
 });
 
 connection.connect();
@@ -55,8 +56,8 @@ this.joinTemplate = (musicTemplateId, callback) => {
 
 this.delete = (notiid, callback) => {
     var sql = 'delete from mi_notification where mi_notification_id = ?';
-    connection.query(sql, [notiid], function(err, rows, fields){
-        if(!err){
+    connection.query(sql, [notiid], function (err, rows, fields) {
+        if (!err) {
             callback(null);
         }
     });

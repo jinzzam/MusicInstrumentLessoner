@@ -2,5 +2,6 @@
   "host": "54.180.94.249",
   "user": "root",
   "password": "123",
-  "database": "midb"
+  "database": "midb",
+  "port" : 8000
 }

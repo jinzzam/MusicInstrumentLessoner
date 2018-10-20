@@ -6,7 +6,8 @@ var connection = mysql.createConnection({
     host: db_config.host,
     user: db_config.user,
     password: db_config.password,
-    database: db_config.database
+    database: db_config.database,
+    port: db_config.port
 });
 
 connection.connect();
@@ -89,8 +90,8 @@ this.joinPractice = (musicTemplateId, callback) => {
 
 this.Gupdate = (guideupdate, musicTemplateId, callback) => {
     var sql = 'update music_template set guide =? where music_template_id = ?';
-    connection.connect(sql, [guideupdate, musicTemplateId], function (err, rows, fields){
-        if(!err){
+    connection.connect(sql, [guideupdate, musicTemplateId], function (err, rows, fields) {
+        if (!err) {
             callback(rows);
         }
     });
@@ -98,8 +99,8 @@ this.Gupdate = (guideupdate, musicTemplateId, callback) => {
 
 this.tempDelete = (musicTemplateId, callback) => {
     var sql = 'delete from music_template where music_template_id = ?';
-    connection.query(sql, [musicTemplateId], function (err, rows, fields){
-        if(!err){
+    connection.query(sql, [musicTemplateId], function (err, rows, fields) {
+        if (!err) {
             callback(rows);
         }
     });
