@@ -18,6 +18,7 @@ var fileRouter = require('./routes/api/miFile');
 var groupRouter = require('./routes/api/miGroup');
 var teacherRouter = require('./routes/api/miTeacher');
 var studentRouter = require('./routes/api/miStudent');
+var fileUploadRouter = require('./routes/fileUpload');
 
 var app = express();
 
@@ -45,6 +46,7 @@ app.use('/api/file', fileRouter);
 app.use('/api/group', groupRouter);
 app.use('/api/group-teacher', teacherRouter);
 app.use('/api/group-student', studentRouter);
+app.use('/fileUpload', fileUploadRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

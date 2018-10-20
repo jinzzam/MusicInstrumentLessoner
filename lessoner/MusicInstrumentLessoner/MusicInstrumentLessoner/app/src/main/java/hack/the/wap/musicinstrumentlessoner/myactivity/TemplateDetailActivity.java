@@ -35,12 +35,14 @@ import hack.the.wap.musicinstrumentlessoner.model.myservice.TemplateService;
 import hack.the.wap.musicinstrumentlessoner.model.myservice.UserService;
 import hack.the.wap.musicinstrumentlessoner.mylayout.TemplateNegativePracticeLayout;
 import hack.the.wap.musicinstrumentlessoner.mylayout.TemplatePositivePracticeLayout;
+import hack.the.wap.musicinstrumentlessoner.session.IpAddress;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class TemplateDetailActivity extends AppCompatActivity {
     private static final String TAG = "TEMPLATE_DETAIL_ACT";
     private static Session session;
     private TemplateDetailActivity instance;
+    private IpAddress ipAddress = new IpAddress();
     private TemplateService templateService;
     private UserService userService;
 
@@ -135,7 +137,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
                 atom.setCustomAttr(dto);
                 atom.setOnClickListener(v -> {
                     rootDir = mkdir(dto);
-                    dirForUpload = "/" + mainTemplate.getMusicTitle() + "/" + dto.getMusicTemplatePracticeId();
+//                    dirForUpload = "/" + mainTemplate.getMusicTitle() + "/" + dto.getMusicTemplatePracticeId();
                     filePath = rootDir + getResources().getString(R.string.fileDefaultName);
                     int requestCode = 0;
                     curPractice = dto.getMusicTemplatePracticeId();
@@ -213,7 +215,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
                         })
                         .convert();
 
-                //session.getTemplates().get(session.getTemplatePractices()).getMusicTemplateId().set(curPractice - 1, dto);
+                session.getTemplatePractices().get(dto.getMusicTemplateId() * dto.getMusicTemplatePracticeId()).setDone(1);
                 session.showAllSession();
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(this.getApplicationContext(), "녹음을 취소했습니다.", Toast.LENGTH_LONG).show();
@@ -240,7 +242,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
             final String uploadFilePath = "/mnt/sdcard/Music" + dirForUpload + "/";
 
             final String uploadFileName = "recorded_audio.mp3";
-            String uploadserverurl = "http://192.168.1.37:3000/fileUpload";
+            String uploadserverurl = "http://" + ipAddress.getIp() + ":3000/fileUpload";
             Log.d("url", uploadserverurl);
 
 

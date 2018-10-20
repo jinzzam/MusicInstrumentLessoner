@@ -204,7 +204,7 @@ public class TemplateService {
         }.start();
     }
 
-    public void getGuides(){
+    public void getGuides() {
         new Thread() {
             public void run() {
                 try {
