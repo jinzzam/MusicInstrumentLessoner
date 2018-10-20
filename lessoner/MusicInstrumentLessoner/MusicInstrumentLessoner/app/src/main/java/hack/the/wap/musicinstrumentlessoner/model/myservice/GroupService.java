@@ -3,7 +3,6 @@ package hack.the.wap.musicinstrumentlessoner.model.myservice;
 
 import android.util.Log;
 
-import com.android.volley.RequestQueue;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
@@ -22,7 +21,6 @@ import okhttp3.OkHttpClient;
 public class GroupService {
     private static final String TAG = "GROUP_SERVICE";
     private IpAddress ipAddress = new IpAddress();
-    RequestQueue queue;
     private static GroupService instance;
     private static Session session;
     private static TemplateService templateService;

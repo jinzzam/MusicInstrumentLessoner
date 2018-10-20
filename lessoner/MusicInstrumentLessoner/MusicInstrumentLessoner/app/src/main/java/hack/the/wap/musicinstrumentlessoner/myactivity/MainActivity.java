@@ -35,6 +35,7 @@ import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiNotificationDto;
 import hack.the.wap.musicinstrumentlessoner.model.myservice.TemplateService;
 import hack.the.wap.musicinstrumentlessoner.myfragment.GroupFragment;
+import hack.the.wap.musicinstrumentlessoner.myfragment.MyNoteFragment;
 import hack.the.wap.musicinstrumentlessoner.myfragment.NotificationFragment;
 import hack.the.wap.musicinstrumentlessoner.myfragment.StoreFragment;
 import hack.the.wap.musicinstrumentlessoner.myfragment.TemplateFragment;
@@ -44,12 +45,14 @@ import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GroupFragment.OnFragmentInteractionListener,
-        NotificationFragment.OnFragmentInteractionListener, TemplateFragment.OnFragmentInteractionListener, StoreFragment.OnFragmentInteractionListener {
+        NotificationFragment.OnFragmentInteractionListener, TemplateFragment.OnFragmentInteractionListener,
+        StoreFragment.OnFragmentInteractionListener, MyNoteFragment.OnFragmentInteractionListener {
     private static MainActivity instance;
     private static NotificationFragment notificationFragment;
     private static TemplateFragment templateFragment;
     private static GroupFragment groupFragment;
     private static StoreFragment storeFragment;
+    private static MyNoteFragment myNoteFragment;
     private ImageView ivMainUser;
     private TextView tvMainUserName;
     private TextView tvMainUserEmail;
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity
         templateFragment = new TemplateFragment();
         groupFragment = new GroupFragment();
         storeFragment = new StoreFragment();
+        myNoteFragment = new MyNoteFragment();
         session = Session.getInstance();
         templateService = TemplateService.getInstance();
         DEBUG_SESSION_DATA();
@@ -177,6 +181,12 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
             menu.clear();
             getMenuInflater().inflate(R.menu.group_menu, menu);
+        } else if (id == R.id.nav_my_note) {
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.flFragment, myNoteFragment);
+            fragmentTransaction.commit();
+            menu.clear();
         } else if (id == R.id.nav_information) {
             //pass
         }
@@ -190,7 +200,7 @@ public class MainActivity extends AppCompatActivity
         Intent intent = getIntent();
         userName = intent.getStringExtra("loginActName");
         userEmail = intent.getStringExtra("loginActEmail");
-        Log.e("TAG", "setUserNameAndEmail: " + userEmail + userName );
+        Log.e("TAG", "setUserNameAndEmail: " + userEmail + userName);
         DEBUG_ON_SET_USER_NAME_AND_EMAIL(userName, userEmail);
 
     }

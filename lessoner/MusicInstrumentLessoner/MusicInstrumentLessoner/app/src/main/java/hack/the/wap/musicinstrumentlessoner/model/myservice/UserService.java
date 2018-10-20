@@ -1,26 +1,15 @@
 package hack.the.wap.musicinstrumentlessoner.model.myservice;
 
-import android.content.Context;
 import android.util.Log;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
 
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiUserDto;
-import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.session.IpAddress;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 import okhttp3.OkHttpClient;
@@ -94,7 +83,7 @@ public class UserService {
     public String getUserName(String inputEmail) {
         for (MiUserDto userDto : session.getUsers().values()) {
             if (userDto.getEmail().equals(inputEmail)) {
-                Log.e(TAG, "getUserName: " + userDto.getName() );
+                Log.e(TAG, "getUserName: " + userDto.getName());
                 return userDto.getName();
             }
         }
