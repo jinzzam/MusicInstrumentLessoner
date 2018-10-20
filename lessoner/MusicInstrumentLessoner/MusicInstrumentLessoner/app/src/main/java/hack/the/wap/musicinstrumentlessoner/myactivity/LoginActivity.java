@@ -1,5 +1,6 @@
 package hack.the.wap.musicinstrumentlessoner.myactivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -64,43 +65,52 @@ public class LoginActivity extends AppCompatActivity {
         ivLogin = findViewById(R.id.ivLogin);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     public void loginProcess() {
-        ivLogin.setOnClickListener(new ImageView.OnClickListener() {
+        ivLogin.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View v) {
-                String inputEmail = etEmail.getText().toString();
-                String inputPassword = etPassword.getText().toString();
-                //로그인 서비스에서 이메일 존재여부 체크
-                if (loginService.checkEmail(inputEmail)) {
-                    //로그인 서비스에서 패스워드 체크
-                    Log.e(TAG, "loginProcess: 이메일 존재여부 체크했습니다.");
-                    if (loginService.checkPassword(inputPassword)) {
-                        Log.e(TAG, "loginProcess: 이메일이 존재합니다.");
-                        //메인 액티비티로 이동
-                        userDto = loginService.getUserDto();
-                        session.setMainUser(userDto);
-                        Log.e(TAG, "loginProcess: 로그인 성공! 현재 메인 유저 정보 : " + session.getMainUser());
-                        notificationService.getNotifications();
-                        templateService.getTemplates();
-                        groupService.getGroup();
-                        userService.getUsers();
-                        Toast.makeText(LoginActivity.this.getApplicationContext(), "환영합니다, " + session.getMainUser().getName() + "님.", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
-                        intent.putExtra("loginActName", session.getMainUser().getName());
-                        intent.putExtra("loginActEmail", session.getMainUser().getEmail());
-                        LoginActivity.this.startActivity(intent);
-                        LoginActivity.this.finish();
-                    } else {
-                        //토스트 띄우고 로그인 액티비티 그대로
-                        Log.e(TAG, "loginProcess: 패스워드가 일치하지 않습니다.");
-                        Toast.makeText(LoginActivity.this.getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
-                    }
-                } else {
-                    //이메일이 존재하지 않는다면
-                    //토스트 띄우고 로그인 액티비티 그대로
-                    Log.e(TAG, "loginProcess: 이메일이 존재하지 않습니다.");
-                    Toast.makeText(LoginActivity.this.getApplicationContext(), "이메일이 존재하지 않습니다.", Toast.LENGTH_LONG).show();
-                }
+                String inputEmail = "namolppam@pocket.mon";
+                String inputPassword = "1234";
+                String inputUserName = "나몰빼미";
+                userDto = new MiUserDto(inputEmail, inputPassword, inputUserName);
+                session.setMainUser(userDto);
+                notificationService.getNotifications();
+                templateService.getTemplates();
+                groupService.getGroup();
+                userService.getUsers();
+                Toast.makeText(LoginActivity.this.getApplicationContext(), "환영합니다, " + session.getMainUser().getName() + "님.", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
+                intent.putExtra("loginActName", session.getMainUser().getName());
+                intent.putExtra("loginActEmail", session.getMainUser().getEmail());
+                LoginActivity.this.startActivity(intent);
+                LoginActivity.this.finish();
+
+//                String inputEmail = etEmail.getText().toString();
+//                String inputPassword = etPassword.getText().toString();
+//                //로그인 서비스에서 이메일 존재여부 체크 && 로그인 서비스에서 패스워드 체크
+//                if (loginService.checkValidUser(inputEmail, inputPassword)) {
+//                    userDto = loginService.getUserDto();
+//                    session.setMainUser(userDto);
+//                    Log.e(TAG, "loginProcess: 로그인 성공! 현재 메인 유저 정보 : " + session.getMainUser());
+//                    notificationService.getNotifications();
+//                    templateService.getTemplates();
+//                    groupService.getGroup();
+//                    userService.getUsers();
+//                    Toast.makeText(LoginActivity.this.getApplicationContext(), "환영합니다, " + session.getMainUser().getName() + "님.", Toast.LENGTH_LONG).show();
+//                    Intent intent = new Intent(LoginActivity.getInstance(), MainActivity.class);
+//                    intent.putExtra("loginActName", session.getMainUser().getName());
+//                    intent.putExtra("loginActEmail", session.getMainUser().getEmail());
+//                    LoginActivity.this.startActivity(intent);
+//                    LoginActivity.this.finish();
+//                } else {
+//                    //이메일이 존재하지 않는다면
+//                    //토스트 띄우고 로그인 액티비티 그대로
+//                    Log.e(TAG, "loginProcess: 로그인실패.");
+//                    Toast.makeText(LoginActivity.this.getApplicationContext(), "로그인 실패.", Toast.LENGTH_LONG).show();
+//                }
             }
         });
     }

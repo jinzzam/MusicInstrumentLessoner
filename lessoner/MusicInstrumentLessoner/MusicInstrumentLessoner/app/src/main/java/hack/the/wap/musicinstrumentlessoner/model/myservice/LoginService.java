@@ -39,14 +39,9 @@ public class LoginService {
         return instance;
     }
 
-    public boolean checkEmail(String inputEmail) {
+    public boolean checkValidUser(String inputEmail, String inputPassword) {
         new Thread() {
             public void run() {
-                try {
-                    sleep(200);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 try {
                     OkHttpClient client = new OkHttpClient();
 
@@ -76,14 +71,7 @@ public class LoginService {
                 }
             }
         }.start();
-        if (inputEmail.equals(userEmail)) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean checkPassword(String inputPassword) {
-        if (inputPassword.equals(userPassword)) {
+        if (inputEmail.equals(userEmail) && inputPassword.equals(userPassword)) {
             return true;
         }
         return false;
