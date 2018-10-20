@@ -15,4 +15,9 @@
     <color name="positiveGreen">#5DCA57</color>
     <color name="naturalBlue">#004DB7</color>
     <color name="musicPersonalColor">#EA5855</color>
+    <color name="inputTemplate">#178BB7</color>
+    <color name="inputMusician">#C7706F</color>
+    <color name="inputImage">#F1E194</color>
+    <color name="inputMusic">#5C5F6B</color>
+    <color name="inputScore">#57C8ED</color>
 </resources>

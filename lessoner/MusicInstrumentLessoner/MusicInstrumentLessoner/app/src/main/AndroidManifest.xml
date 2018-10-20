@@ -39,5 +39,6 @@
         <activity android:name=".myactivity.UserGroupDetailActivity" />
         <activity android:name=".myactivity.GuideActivity" />
         <activity android:name=".myactivity.PracticeListenActivity" />
+        <activity android:name=".myactivity.AddTemplateActivity" />
     </application>
 </manifest>

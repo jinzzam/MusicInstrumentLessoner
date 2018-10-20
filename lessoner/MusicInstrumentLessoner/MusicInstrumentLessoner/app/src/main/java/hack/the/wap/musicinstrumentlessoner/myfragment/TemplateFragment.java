@@ -15,6 +15,7 @@ import java.util.HashMap;
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateAssignmentDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
+import hack.the.wap.musicinstrumentlessoner.myactivity.AddTemplateActivity;
 import hack.the.wap.musicinstrumentlessoner.myactivity.MainActivity;
 import hack.the.wap.musicinstrumentlessoner.myactivity.TemplateDetailActivity;
 import hack.the.wap.musicinstrumentlessoner.mylayout.TemplateLayout;
@@ -130,5 +131,11 @@ public class TemplateFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void makeTemplateItem() {
+        Intent intent = new Intent(this.getActivity(), AddTemplateActivity.class);
+        intent.putExtra("state", "launch");
+        startActivity(intent);
     }
 }

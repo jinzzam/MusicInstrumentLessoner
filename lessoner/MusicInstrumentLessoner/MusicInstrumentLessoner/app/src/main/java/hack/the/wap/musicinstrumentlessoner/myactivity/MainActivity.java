@@ -141,6 +141,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.notificationMenuRmRecentNotificationItem:
                 ((NotificationFragment) frPresent).removeRecentNotification();
                 break;
+            case R.id.templateMenuMakeTemplateItem:
+                ((TemplateFragment) frPresent).makeTemplateItem();
+                break;
             default:
         }
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="actAddTemplateTitle">템플릿 만들기</string>
+    <string name="actAddTemplateInputTemplate">템플릿 이름</string>
+    <string name="actAddTemplateInputMusician">작곡가 이름</string>
+    <string name="actAddTemplateInputImage">사진 업로드</string>
+    <string name="actAddTemplateInputMusic">연주 업로드</string>
+    <string name="actAddTemplateInputScore">악보 업로드</string>
+    <string name="actAddTemplateInputFile">add file</string>
+    <string name="actAddTemplateBtn">업로드</string>
+</resources>
