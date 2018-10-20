@@ -40,5 +40,6 @@
         <activity android:name=".myactivity.GuideActivity" />
         <activity android:name=".myactivity.PracticeListenActivity" />
         <activity android:name=".myactivity.AddTemplateActivity" />
+        <activity android:name=".myactivity.DebugActivity" />
     </application>
 </manifest>

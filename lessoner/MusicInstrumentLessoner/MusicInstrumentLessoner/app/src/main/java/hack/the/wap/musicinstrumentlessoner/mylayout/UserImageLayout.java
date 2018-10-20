@@ -1,6 +1,7 @@
 package hack.the.wap.musicinstrumentlessoner.mylayout;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiStudentDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiUserDto;
 import hack.the.wap.musicinstrumentlessoner.model.myservice.UserService;
+import hack.the.wap.musicinstrumentlessoner.myactivity.DebugActivity;
 
 public class UserImageLayout extends ImageLayout {
     private UserService userService;
@@ -25,6 +27,7 @@ public class UserImageLayout extends ImageLayout {
         tvMyImageName = findViewById(R.id.tvMyImageName);
         tvMyImageEmail = findViewById(R.id.tvMyImageEmail);
         setImage(mainUser);
+        setListener();
     }
 
     public UserImageLayout(Context context, @Nullable AttributeSet attrs) {
@@ -43,5 +46,12 @@ public class UserImageLayout extends ImageLayout {
         ivMyImage.setImageResource(DebugImageMatch.getImageFromName(userService.getUserName(mainUser.getStudentEmail())));
         tvMyImageName.setText(userService.getUserName(mainUser.getStudentEmail()));
         tvMyImageEmail.setText(mainUser.getStudentEmail());
+    }
+
+    public void setListener() {
+        setOnClickListener((v) -> {
+            Intent intent = new Intent(getContext(), DebugActivity.class);
+            getContext().startActivity(intent);
+        });
     }
 }

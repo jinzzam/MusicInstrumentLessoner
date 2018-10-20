@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="btnShowDetail">연습 진행 상황 보기</string>
+    <string name="btnShowOver">학생 연주 분석 보기</string>
+</resources>
