@@ -18,6 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 import cafe.adriel.androidaudioconverter.AndroidAudioConverter;
 import cafe.adriel.androidaudioconverter.callback.IConvertCallback;
@@ -46,7 +47,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
     private TemplateService templateService;
     private UserService userService;
 
-    private HashMap<Integer, MusicTemplatePracticeDto> templatePractices;
+    private TreeMap<Integer, MusicTemplatePracticeDto> templatePractices;
     private HashMap<String, MusicTemplateAssignmentDto> templateAssignments;
     private MusicTemplateAssignmentDto assignmentDto;
     private MusicTemplateDto mainTemplate;

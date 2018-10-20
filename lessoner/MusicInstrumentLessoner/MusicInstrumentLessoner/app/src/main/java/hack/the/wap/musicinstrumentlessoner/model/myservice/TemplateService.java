@@ -8,6 +8,7 @@ import com.google.gson.JsonParser;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateAssignmentDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
@@ -16,6 +17,8 @@ import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
 import hack.the.wap.musicinstrumentlessoner.session.IpAddress;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class TemplateService {
     private static final String TAG = "TEMPLATE_SERVICE";
@@ -51,7 +54,7 @@ public class TemplateService {
     private MusicTemplateDto templateDto;
     private HashMap<String, MusicTemplateAssignmentDto> assignmentDtoHashMap;
     private MusicTemplateAssignmentDto assignmentDto;
-    private HashMap<Integer, MusicTemplatePracticeDto> practiceDtoHashMap;
+    private TreeMap<Integer, MusicTemplatePracticeDto> practiceDtoHashMap;
     private MusicTemplatePracticeDto practiceDto;
     private MusicTemplateGuideDto guideDto;
     private ArrayList<MusicTemplateGuideDto> guideDtoArrayList;
@@ -62,7 +65,7 @@ public class TemplateService {
         templateDto = new MusicTemplateDto();
         assignmentDtoHashMap = new HashMap<>();
         assignmentDto = new MusicTemplateAssignmentDto();
-        practiceDtoHashMap = new HashMap<>();
+        practiceDtoHashMap = new TreeMap<>();
         practiceDto = new MusicTemplatePracticeDto();
         guideDto = new MusicTemplateGuideDto();
         guideDtoArrayList = new ArrayList<>();
@@ -73,16 +76,6 @@ public class TemplateService {
             instance = new TemplateService();
         }
         return instance;
-    }
-
-    public HashMap<String, String> getTemplateLayoutInfo(MusicTemplateDto templateDto, MusicTemplateAssignmentDto assignmentDto) {
-        HashMap<String, String> templateLayoutInfo = new HashMap<>();
-        templateLayoutInfo.put("musician", templateDto.getMusician());
-        templateLayoutInfo.put("musicTitle", templateDto.getMusicTitle());
-        templateLayoutInfo.put("toDoCount", assignmentDto.getToDoCount() + "");
-        templateLayoutInfo.put("successPercent", assignmentDto.getSuccessPercent() + "");
-        templateLayoutInfo.put("teacher", templateDto.getOwner());
-        return templateLayoutInfo;
     }
 
     public void getTemplates() {
@@ -170,12 +163,12 @@ public class TemplateService {
                 try {
                     OkHttpClient client = new OkHttpClient();
 
-                    okhttp3.Request request = new okhttp3.Request.Builder()
+                    Request request = new Request.Builder()
                             .addHeader("Authorization", "TEST AUTH")
                             .url(getPracticeUrl)
                             .build();
 
-                    okhttp3.Response response = client.newCall(request)
+                    Response response = client.newCall(request)
                             .execute();
 
                     String result = response.body().string();
@@ -192,10 +185,12 @@ public class TemplateService {
                         completePercent = jsonArray.get(i).getAsJsonObject().get("complete_percent").getAsInt();
                         practiceDto = new MusicTemplatePracticeDto(musicTemplatePracticeId, musicTemplateId, studentEmail, innerFileName, isDone, completePercent);
                         practiceDtoHashMap.put(musicTemplateId * 10 + musicTemplatePracticeId, practiceDto);
+                        Log.e(TAG, "run: 연습 해쉬맵 번호 : " + musicTemplateId * 10 + musicTemplatePracticeId);
+                        Log.e(TAG, "run: 현재 저장한 연습 : " + practiceDto.toString());
                         Log.e(TAG, "run: 연습 해쉬맵 : " + practiceDtoHashMap);
                     }
                     session.setTemplatePractices(practiceDtoHashMap);
-                    Log.e(TAG, "run: 세션에 저장된 연습 : " + session.getTemplatePractices().toString());
+                    Log.e(TAG, "run: 세션에 저장된 연습 hihi: " + session.getTemplatePractices().toString());
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -229,10 +224,10 @@ public class TemplateService {
                         comment = jsonArray.get(i).getAsJsonObject().get("comment").toString().replace("\"", "");
                         guideDto = new MusicTemplateGuideDto(musicTemplateId, playTime, comment);
                         guideDtoArrayList.add(i, guideDto);
-                        Log.e(TAG, "run: 연습 해쉬맵 : " + practiceDtoHashMap);
+                        Log.e(TAG, "run: 가이드 해쉬맵 : " + practiceDtoHashMap);
                     }
                     session.setTemplateGuides(guideDtoArrayList);
-                    Log.e(TAG, "run: 세션에 저장된 연습 : " + session.getTemplateGuides().toString());
+                    Log.e(TAG, "run: 세션에 저장된 가이드 : " + session.getTemplateGuides().toString());
 
                 } catch (IOException e) {
                     e.printStackTrace();
