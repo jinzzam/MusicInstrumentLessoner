@@ -13,6 +13,7 @@ import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiNotificationDto;
 import hack.the.wap.musicinstrumentlessoner.model.myservice.TemplateService;
+import hack.the.wap.musicinstrumentlessoner.model.myservice.UserService;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 
 /*
@@ -24,7 +25,7 @@ public class NotificationLayout extends LinearLayout {
     private static final String TAG = "NOTIFICATION_LAYOUT";
     private Session session;
     private TemplateService templateService = TemplateService.getInstance();
-
+    private UserService userService = UserService.getInstance();
     private ImageView ivNotificationLayUserImage;
     private TextView tvNotificationLayName;
     private TextView tvNotificationLayDate;
@@ -97,8 +98,10 @@ public class NotificationLayout extends LinearLayout {
     public void setCustomAttr(MiNotificationDto dto) {
         Log.e(TAG, "setCustomAttr: " + dto.toString());
         ivNotificationLayUserImage.setImageResource(DebugImageMatch.getImageFromName(dto.getEmail()));
-        tvNotificationLayName.setText(dto.getEmail());
-        tvNotificationLayDate.setText(dto.getRegistDateTime());
+        tvNotificationLayName.setText(userService.getUserName(dto.getEmail()));
+        String time= dto.getRegistDateTime().replace("T", " ");
+        time = time.substring(0, time.length() - 5);
+        tvNotificationLayDate.setText(time);
         tvNotificationLayMain.setText(dto.getComment());
         tvNotificationLayMusicTitle.setText(templateService.getTemplateTitleById(dto.getMusicTemplateId()));
     }
