@@ -215,7 +215,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
                         })
                         .convert();
 
-                session.getTemplatePractices().get(dto.getMusicTemplateId() * dto.getMusicTemplatePracticeId()).setDone(1);
+                session.getTemplatePractices().get(dto.getMusicTemplateId() * 10 + dto.getMusicTemplatePracticeId()).setDone(1);
                 session.showAllSession();
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(this.getApplicationContext(), "녹음을 취소했습니다.", Toast.LENGTH_LONG).show();
