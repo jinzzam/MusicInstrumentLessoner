@@ -50,19 +50,35 @@ public class TemplatePositivePracticeLayout extends LinearLayout {
         inflate(getContext(), R.layout.template_positive_practice_layout, this);
         tvTemplatePositivePracticeLayCount = findViewById(R.id.tvTemplatePositivePracticeLayCount);
         tvTemplatePositiveLayPercent = findViewById(R.id.tvTemplatePositiveLayPercent);
-        ivTemplatePositivePracticeLayListen=findViewById(R.id.ivTemplatePositivePracticeLayListen);
-        ivTemplatePositivePracticeLayView=findViewById(R.id.ivTemplatePositivePracticeLayView);
+        ivTemplatePositivePracticeLayListen = findViewById(R.id.ivTemplatePositivePracticeLayListen);
+        ivTemplatePositivePracticeLayView = findViewById(R.id.ivTemplatePositivePracticeLayView);
     }
 
     public void setCustomAttr(MusicTemplatePracticeDto dto) {
+        String comment = successComment(dto.getCompletePercent());
         tvTemplatePositivePracticeLayCount.setText(getResources().getText(R.string.LayTemplatePracticeMusicNum) + (dto.getMusicTemplatePracticeId() + ""));
-        tvTemplatePositiveLayPercent.setText(""+getResources().getText(R.string.LayTemplatePracticeSuccessPercent)
-                + dto.getCompletePercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd));
+        tvTemplatePositiveLayPercent.setText("" + getResources().getText(R.string.LayTemplatePracticeSuccessPercent)
+                + " " + dto.getCompletePercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd) + " " + comment);
 
         if (DebugMode.DEBUG_MOD) {
-            tvTemplatePositiveLayPercent.setText(""+getResources().getText(R.string.LayTemplatePracticeSuccessPercent)
-                    + dto.getCompletePercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd));
+            tvTemplatePositiveLayPercent.setText("" + getResources().getText(R.string.LayTemplatePracticeSuccessPercent)
+                    + " " + dto.getCompletePercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd));
         }
+    }
+
+    public String successComment(int Percent) {
+        if (Percent < 50) {
+            return "\n연습이 더 필요해요!";
+        } else if (50 <= Percent && Percent < 70) {
+            return "\n시작이 반이에요, 힘을내요";
+        } else if (70 <= Percent && Percent < 80) {
+            return "\n조금만 더 노력해봐요, 화이팅";
+        } else if (80 <= Percent && Percent < 95) {
+            return "\n아주 훌륭한 솜씨네요!";
+        } else if (95 <= Percent && Percent <= 100) {
+            return "\n정말 완벽해요!";
+        }
+        return null;
     }
 
     public ImageView getIvTemplatePositivePracticeLayListen() {
