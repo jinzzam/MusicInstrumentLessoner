@@ -15,6 +15,7 @@ import hack.the.wap.musicinstrumentlessoner.debug.DebugImageMatch;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateGuideDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateWrongDto;
 import hack.the.wap.musicinstrumentlessoner.model.myservice.UserService;
 import hack.the.wap.musicinstrumentlessoner.mylayout.GuideExplainLayout;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
@@ -24,7 +25,7 @@ public class PracticeListenActivity extends AppCompatActivity {
     private static UserService userService;
     private MusicTemplatePracticeDto mainTemplatePractice;
     private MusicTemplateDto mainTemplate;
-    private ArrayList<MusicTemplateGuideDto> guides;
+    private ArrayList<MusicTemplateWrongDto> wrongs;
     private ImageView ivPracticeListenLayLeftArrow;
     private ImageView ivPracticeListenLayTeacher;
     private ImageView ivPracticeListenLayMusician;
@@ -37,7 +38,7 @@ public class PracticeListenActivity extends AppCompatActivity {
     {
         session = Session.getInstance();
         userService = UserService.getInstance();
-        guides = new ArrayList<>();
+        wrongs = new ArrayList<>();
     }
 
     @Override
@@ -48,7 +49,7 @@ public class PracticeListenActivity extends AppCompatActivity {
         Intent intent = getIntent();
         mainTemplatePractice = (MusicTemplatePracticeDto) intent.getSerializableExtra("data");
         mainTemplate = (MusicTemplateDto) intent.getSerializableExtra("main");
-        guides = session.getTemplateGuides();
+        wrongs = session.getTemplateWrongs();
         viewSetValue();
         viewSetListener();
     }
@@ -77,12 +78,16 @@ public class PracticeListenActivity extends AppCompatActivity {
         tvPracticeListenLayCount.setText("" + getResources().getText(R.string.LayTemplatePracticeMusicNum) + mainTemplatePractice.getMusicTemplatePracticeId());
         tvPracticeListenLayPercent.setText("" + getResources().getText(R.string.LayTemplatePracticeSuccessPercent) + mainTemplatePractice.getCompletePercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd));
         tvPracticeListenLayFileName.setText(getResources().getText(R.string.LayTemplatePracticeFilePath) + mainTemplatePractice.getInnerFilename());
-        for (MusicTemplateGuideDto dto : guides) {
-            if (dto.getMusicTemplateId() == mainTemplate.getMusicTemplateId()) {
-                GuideExplainLayout atom = new GuideExplainLayout(this, dto);
-                llPracticeListenLayComment.addView(atom);
+        for (int i = 0; i < wrongs.size(); i++) {
+            if ((mainTemplate.getMusicTemplateId() == wrongs.get(i).getMusicTemplateId())) {
+                if ((mainTemplatePractice.getMusicTemplatePracticeId() == wrongs.get(i).getMusicTemplatePracticeId())) {
+                    GuideExplainLayout atom = new GuideExplainLayout(this, wrongs.get(i));
+                    llPracticeListenLayComment.addView(atom);
+                }
             }
+
         }
+    }
 //        TreeMap<String, String> tm = new TreeMap<>();
 //        if (true) {
 //            for (String key : tm.keySet()) {
@@ -90,6 +95,6 @@ public class PracticeListenActivity extends AppCompatActivity {
 //                llPracticeListenLayComment.addView(atom);
 //            }
 //        }
-    }
+//    }
 
 }

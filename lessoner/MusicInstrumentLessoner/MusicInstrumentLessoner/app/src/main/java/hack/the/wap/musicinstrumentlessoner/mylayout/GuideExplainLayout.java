@@ -8,11 +8,11 @@ import android.widget.TextView;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateGuideDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateWrongDto;
 
 public class GuideExplainLayout extends LinearLayout {
     private TextView tvExplainLayUnit;
     private TextView tvExplainLayMain;
-    private MusicTemplateGuideDto guideDto;
     private String unit;
     private String main;
 
@@ -20,7 +20,7 @@ public class GuideExplainLayout extends LinearLayout {
         initView();
     }
 
-    public GuideExplainLayout(Context context,String unit,String main) {
+    public GuideExplainLayout(Context context, String unit, String main) {
         super(context);
         this.unit = unit;
         this.main = main;
@@ -29,7 +29,11 @@ public class GuideExplainLayout extends LinearLayout {
 
     public GuideExplainLayout(Context context, MusicTemplateGuideDto dto) {
         super(context);
-        this.guideDto = dto;
+        initValue(dto);
+    }
+
+    public GuideExplainLayout(Context context, MusicTemplateWrongDto dto) {
+        super(context);
         initValue(dto);
     }
 
@@ -51,13 +55,22 @@ public class GuideExplainLayout extends LinearLayout {
         tvExplainLayMain = findViewById(R.id.tvExplainLayMain);
     }
 
-    private void initValue(){
+    private void initValue() {
         tvExplainLayUnit.setText(unit);
         tvExplainLayMain.setText(main);
     }
 
-    private void initValue(MusicTemplateGuideDto dto){
+    private void initValue(MusicTemplateGuideDto dto) {
         tvExplainLayUnit.setText(dto.getPlayTime());
+        tvExplainLayMain.setText(dto.getComment());
+    }
+
+    private void initValue(MusicTemplateWrongDto dto) {
+        if (dto.getWrongTimeEnd() != null) {
+            tvExplainLayUnit.setText(dto.getWrongTimeStart() + "-" + dto.getWrongTimeEnd());
+        } else {
+            tvExplainLayUnit.setText(dto.getWrongTimeStart());
+        }
         tvExplainLayMain.setText(dto.getComment());
     }
 }
