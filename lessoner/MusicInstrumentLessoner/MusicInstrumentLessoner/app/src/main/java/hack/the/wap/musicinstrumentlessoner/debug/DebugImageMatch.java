@@ -81,7 +81,7 @@ public class DebugImageMatch extends AppCompatActivity {
                 return R.drawable.schubert_round;
             case "Han in hyun":
                 return R.drawable.realsanae_round;
-            case "WAP":
+            case "WAP THE HACK":
                 return R.drawable.wap_round;
             case "피아노리브레 강남센터":
                 return R.drawable.music_place_round;
