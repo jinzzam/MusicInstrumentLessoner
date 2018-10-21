@@ -61,6 +61,8 @@ public class NotificationService {
                     Response response = client.newCall(request)
                             .execute();
 
+                    sleep(200);
+
                     String result = response.body().string();
 
                     JsonParser jsonParser = new JsonParser();
@@ -72,15 +74,14 @@ public class NotificationService {
                         registDateTime = jsonArray.get(i).getAsJsonObject().get("regist_date_time").toString().replace("\"", "");
                         type = jsonArray.get(i).getAsJsonObject().get("type").toString().replace("\"", "");
                         comment = jsonArray.get(i).getAsJsonObject().get("comment").toString().replace("\"", "");
-                        email = jsonArray.get(i).getAsJsonObject().get("email").toString().replace("\"", "");
-
-                        notificationDto = new MiNotificationDto(notificationId, musicTemplateId, email, registDateTime, type, comment);
+                        notificationDto = new MiNotificationDto(notificationId, musicTemplateId, registDateTime, type, comment);
                         notificationDtos.add(i, notificationDto);
-                        Log.e(TAG, "run: dto에 저장된 알림들 : " + notificationDto.toString());
                     }
                     session.setNotifications(notificationDtos);
                     Log.e(TAG, "run: 세션에 저장된 알림들 : " + session.getNotifications());
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -88,7 +89,7 @@ public class NotificationService {
     }
 
     public boolean isMine(MiNotificationDto dto) {
-        if (dto.getEmail().equals(session.getMainUser().getEmail())) {
+        if (dto.getType().equals("teacher")) {
             Log.e(TAG, "isMine: 알림 내껀지 확인했습니다.");
             return true;
         }

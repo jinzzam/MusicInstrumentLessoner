@@ -47,6 +47,7 @@ public class UserService {
         new Thread() {
             public void run() {
                 try {
+                    sleep(200);
                     OkHttpClient client = new OkHttpClient();
 
                     okhttp3.Request request = new okhttp3.Request.Builder()
@@ -68,12 +69,13 @@ public class UserService {
                         userName = jsonArray.get(i).getAsJsonObject().get("username").toString().replace("\"", "");
                         userDto = new MiUserDto(email, password, userName);
                         userDtoHashMap.put(userDto.getEmail(), userDto);
-                        Log.e(TAG, "run: 유저들 해쉬맵 : " + userDtoHashMap);
                     }
                     session.setUsers(userDtoHashMap);
                     Log.e(TAG, "run: 세션에 저장된 유저들 정보 : " + session.getUsers().toString());
 
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }

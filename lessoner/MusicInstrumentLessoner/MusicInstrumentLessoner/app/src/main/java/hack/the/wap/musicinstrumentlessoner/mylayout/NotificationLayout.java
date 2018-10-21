@@ -97,8 +97,8 @@ public class NotificationLayout extends LinearLayout {
 
     public void setCustomAttr(MiNotificationDto dto) {
         Log.e(TAG, "setCustomAttr: " + dto.toString());
-        ivNotificationLayUserImage.setImageResource(DebugImageMatch.getImageFromName(dto.getEmail()));
-        tvNotificationLayName.setText(userService.getUserName(dto.getEmail()));
+        ivNotificationLayUserImage.setImageResource(DebugImageMatch.getImageFromName(userService.getUserName(templateService.getTemplateById(dto.getMusicTemplateId()).getOwner())));
+        tvNotificationLayName.setText(userService.getUserName(userService.getUserName(templateService.getTemplateById(dto.getMusicTemplateId()).getOwner())));
         String time= dto.getRegistDateTime().replace("T", " ");
         time = time.substring(0, time.length() - 5);
         tvNotificationLayDate.setText(time);

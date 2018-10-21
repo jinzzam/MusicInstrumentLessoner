@@ -78,6 +78,8 @@ public class GroupService {
                     okhttp3.Response response = client.newCall(request)
                             .execute();
 
+                    sleep(200);
+
                     String result = response.body().string();
 
                     JsonParser jsonParser = new JsonParser();
@@ -91,12 +93,13 @@ public class GroupService {
                         genre = jsonArray.get(i).getAsJsonObject().get("genre").toString().replace("\"", "");
                         groupDto = new MiGroupDto(groupName, place, info, instruments, genre);
                         groupDtoHashMap.put(groupDto.getGroupName(), groupDto);
-                        Log.e(TAG, "run: " + groupDto.toString());
                     }
                     session.setUserGroups(groupDtoHashMap);
                     Log.e(TAG, "run: " + session.getUserGroups().toString());
 
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -118,6 +121,8 @@ public class GroupService {
                     okhttp3.Response response = client.newCall(request)
                             .execute();
 
+                    sleep(200);
+
                     String result = response.body().string();
 
                     JsonParser jsonParser = new JsonParser();
@@ -128,12 +133,13 @@ public class GroupService {
                         groupName = jsonArray.get(i).getAsJsonObject().get("group_name").toString().replace("\"", "");
                         studentDto = new MiStudentDto(studentEmail, groupName);
                         studentDtoArrayList.add(i, studentDto);
-                        Log.e(TAG, "run: " + studentDtoArrayList.toString());
                     }
                     session.setGroupStudents(studentDtoArrayList);
                     Log.e(TAG, "run: " + session.getGroupStudents().toString());
 
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -154,6 +160,7 @@ public class GroupService {
 
                     okhttp3.Response response = client.newCall(request)
                             .execute();
+                    sleep(200);
 
                     String result = response.body().string();
 
@@ -165,12 +172,13 @@ public class GroupService {
                         groupName = jsonArray.get(i).getAsJsonObject().get("group_name").toString().replace("\"", "");
                         teacherDto = new MiTeacherDto(teacherEmail, groupName);
                         teacherDtoArrayList.add(i, teacherDto);
-                        Log.e(TAG, "run: " + teacherDtoArrayList.toString());
                     }
                     session.setGroupTeachers(teacherDtoArrayList);
                     Log.e(TAG, "run: " + session.getGroupTeachers().toString());
 
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }

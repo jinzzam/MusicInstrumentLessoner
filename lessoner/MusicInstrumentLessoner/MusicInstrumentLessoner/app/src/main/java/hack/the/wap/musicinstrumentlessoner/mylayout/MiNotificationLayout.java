@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import hack.the.wap.musicinstrumentlessoner.R;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiNotificationDto;
+import hack.the.wap.musicinstrumentlessoner.model.myservice.TemplateService;
 
 /*
 참고 사이트 : https://medium.com/@douglas.iacovelli/the-beauty-of-custom-views-and-how-to-do-it-79c7d78e2088
@@ -17,6 +18,7 @@ import hack.the.wap.musicinstrumentlessoner.model.dto.MiNotificationDto;
  */
 
 public class MiNotificationLayout extends LinearLayout {
+    private TemplateService templateService;
     private ImageView ivMiNotificationLayUserImage;
     private TextView tvMiNotificationLayName;
     private TextView tvMiNotificationLayDate;
@@ -26,6 +28,7 @@ public class MiNotificationLayout extends LinearLayout {
 
     {
         initView();
+        templateService = TemplateService.getInstance();
     }
 
     public MiNotificationLayout(Context context) {
@@ -78,6 +81,6 @@ public class MiNotificationLayout extends LinearLayout {
         tvMiNotificationLayName.setText(getResources().getText(R.string.app_name_kor));
         tvMiNotificationLayDate.setText(dto.getRegistDateTime().toString());
         tvMiNotificationLayMain.setText(dto.getComment());
-        tvMiNotificationLayMusicTitle.setText(dto.getMusicTemplateId());
+        tvMiNotificationLayMusicTitle.setText(templateService.getTemplateTitleById(dto.getMusicTemplateId()));
     }
 }

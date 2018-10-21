@@ -82,6 +82,7 @@ public class TemplateService {
         new Thread() {
             public void run() {
                 try {
+                    sleep(200);
                     OkHttpClient client = new OkHttpClient();
 
                     okhttp3.Request request = new okhttp3.Request.Builder()
@@ -105,12 +106,13 @@ public class TemplateService {
                         guide = jsonArray.get(i).getAsJsonObject().get("guide").toString().replace("\"", "");
                         templateDto = new MusicTemplateDto(musicTemplateId, owner, musicTitle, musician, guide);
                         templateDtoHashMap.put(templateDto.getMusicTitle(), templateDto);
-                        Log.e(TAG, "run: 템플릿 해쉬맵 : " + templateDtoHashMap);
                     }
                     session.setTemplates(templateDtoHashMap);
                     Log.e(TAG, "run: 세션에 저장된 템플릿 정보 : " + session.getTemplates().toString());
 
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -121,6 +123,7 @@ public class TemplateService {
         new Thread() {
             public void run() {
                 try {
+                    sleep(200);
                     OkHttpClient client = new OkHttpClient();
 
                     okhttp3.Request request = new okhttp3.Request.Builder()
@@ -137,7 +140,7 @@ public class TemplateService {
                     JsonArray jsonArray = (JsonArray) jsonParser.parse(result);
 
                     for (int i = 0; i < jsonArray.size(); i++) {
-                        innerFileName = jsonArray.get(i).getAsJsonObject().get("music_template_id").toString().replace("\"", "");
+                        innerFileName = jsonArray.get(i).getAsJsonObject().get("inner_filename").toString().replace("\"", "");
                         musicTemplateId = jsonArray.get(i).getAsJsonObject().get("music_template_id").getAsInt();
                         toDoCount = jsonArray.get(i).getAsJsonObject().get("to_do_count").getAsInt();
                         doneCount = jsonArray.get(i).getAsJsonObject().get("done_count").getAsInt();
@@ -145,12 +148,13 @@ public class TemplateService {
                         studentEmail = jsonArray.get(i).getAsJsonObject().get("student_email").toString().replace("\"", "");
                         assignmentDto = new MusicTemplateAssignmentDto(innerFileName, musicTemplateId, studentEmail, toDoCount, doneCount, successPercent);
                         assignmentDtoHashMap.put(getTemplateTitleById(assignmentDto.getMusicTemplateId()), assignmentDto);
-                        Log.e(TAG, "run: 과제 해쉬맵 : " + assignmentDtoHashMap);
                     }
                     session.setTemplateAssignments(assignmentDtoHashMap);
                     Log.e(TAG, "run: 세션에 저장된 과제 : " + session.getTemplateAssignments().toString());
 
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -161,6 +165,7 @@ public class TemplateService {
         new Thread() {
             public void run() {
                 try {
+                    sleep(200);
                     OkHttpClient client = new OkHttpClient();
 
                     Request request = new Request.Builder()
@@ -185,14 +190,13 @@ public class TemplateService {
                         completePercent = jsonArray.get(i).getAsJsonObject().get("complete_percent").getAsInt();
                         practiceDto = new MusicTemplatePracticeDto(musicTemplatePracticeId, musicTemplateId, studentEmail, innerFileName, isDone, completePercent);
                         practiceDtoHashMap.put(musicTemplateId * 10 + musicTemplatePracticeId, practiceDto);
-                        Log.e(TAG, "run: 연습 해쉬맵 번호 : " + musicTemplateId * 10 + musicTemplatePracticeId);
-                        Log.e(TAG, "run: 현재 저장한 연습 : " + practiceDto.toString());
-                        Log.e(TAG, "run: 연습 해쉬맵 : " + practiceDtoHashMap);
                     }
                     session.setTemplatePractices(practiceDtoHashMap);
                     Log.e(TAG, "run: 세션에 저장된 연습 hihi: " + session.getTemplatePractices().toString());
 
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -203,6 +207,7 @@ public class TemplateService {
         new Thread() {
             public void run() {
                 try {
+                    sleep(200);
                     OkHttpClient client = new OkHttpClient();
 
                     okhttp3.Request request = new okhttp3.Request.Builder()
@@ -224,12 +229,13 @@ public class TemplateService {
                         comment = jsonArray.get(i).getAsJsonObject().get("comment").toString().replace("\"", "");
                         guideDto = new MusicTemplateGuideDto(musicTemplateId, playTime, comment);
                         guideDtoArrayList.add(i, guideDto);
-                        Log.e(TAG, "run: 가이드 해쉬맵 : " + practiceDtoHashMap);
                     }
                     session.setTemplateGuides(guideDtoArrayList);
                     Log.e(TAG, "run: 세션에 저장된 가이드 : " + session.getTemplateGuides().toString());
 
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -240,6 +246,14 @@ public class TemplateService {
         for (MusicTemplateDto dto : session.getTemplates().values()) {
             if (dto.getMusicTemplateId() == id)
                 return dto.getMusicTitle();
+        }
+        return null;
+    }
+
+    public MusicTemplateDto getTemplateById(int id) {
+        for (MusicTemplateDto dto : session.getTemplates().values()) {
+            if (dto.getMusicTemplateId() == id)
+                return dto;
         }
         return null;
     }

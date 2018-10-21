@@ -61,11 +61,6 @@ public class LoginService {
                     userEmail = jsonArray.get(0).getAsJsonObject().get("email").toString().replace("\"", "");
                     userPassword = jsonArray.get(0).getAsJsonObject().get("password").toString().replace("\"", "");
                     userName = jsonArray.get(0).getAsJsonObject().get("username").toString().replace("\"", "");
-
-                    Log.e(TAG, "run: jsonArray 결과값 : " + result.toString());
-                    Log.e(TAG, "run: 필드에 저장된 이메일 : " + userEmail);
-                    Log.e(TAG, "run: inputEmail : " + inputEmail);
-
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

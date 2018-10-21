@@ -1,34 +1,19 @@
 package hack.the.wap.musicinstrumentlessoner.model.dto;
 
-import java.sql.Timestamp;
-
 public class MiNotificationDto {
     private int miNotificationId;
     private int musicTemplateId;
-    private String email;
     private String registDateTime;
     private String type;
     private String comment;
-
-    /**
-     * create MiNotificationDto
-     *
-     * @param miNotificationId
-     * @param musicTemplateId
-     * @param email
-     * @param registDateTime
-     * @param type
-     * @param comment
-     */
 
     public MiNotificationDto() {
 
     }
 
-    public MiNotificationDto(int miNotificationId, int musicTemplateId, String email, String registDateTime, String type, String comment) {
+    public MiNotificationDto(int miNotificationId, int musicTemplateId, String registDateTime, String type, String comment) {
         this.miNotificationId = miNotificationId;
         this.musicTemplateId = musicTemplateId;
-        this.email = email;
         this.registDateTime = registDateTime;
         this.type = type;
         this.comment = comment;
@@ -48,14 +33,6 @@ public class MiNotificationDto {
 
     public void setMusicTemplateId(int musicTemplateId) {
         this.musicTemplateId = musicTemplateId;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getRegistDateTime() {
@@ -87,8 +64,7 @@ public class MiNotificationDto {
         return "MiNotificationDto{" +
                 "miNotificationId=" + miNotificationId +
                 ", musicTemplateId=" + musicTemplateId +
-                ", email='" + email + '\'' +
-                ", registDateTime=" + registDateTime +
+                ", registDateTime='" + registDateTime + '\'' +
                 ", type='" + type + '\'' +
                 ", comment='" + comment + '\'' +
                 '}';
