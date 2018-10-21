@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="colorMainBackGround">#2C3256</color>
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
-    <color name="iconColor">#00E5C3</color>
-    <color name="formFontColor">#457DA5</color>
-    <color name="notificationUserColor">#516573</color>
-    <color name="notificationMiColor">#3B3E60</color>
-    <color name="commonDateColor">#8C8F95</color>
+    <color name="colorPrimaryDark">#190525</color>
+    <color name="colorAccent">#E3E36A</color>
+    <color name="colorMainBackGround">#190525</color>
+    <color name="iconColor">#E3E36A</color>
+    <color name="formFontColor">#e0e0c0</color>
+    <color name="notificationUserColor">#3e365e</color>
+    <color name="notificationMiColor">#390b4c</color>
+    <color name="commonDateColor">#FFFFF7</color>
     <color name="commonMenuColor">#121422</color>
-    <color name="positiveGreen">#5DCA57</color>
+    <color name="positivePractice">#200000</color>
+    <color name="negativePractice">#e0c0c0</color>
     <color name="naturalBlue">#004DB7</color>
-    <color name="musicPersonalColor">#EA5855</color>
+    <color name="musicPersonalColor">#B0977B</color>
     <color name="inputTemplate">#178BB7</color>
     <color name="inputMusician">#C7706F</color>
     <color name="inputImage">#F1E194</color>
     <color name="inputMusic">#5C5F6B</color>
     <color name="inputScore">#57C8ED</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="floatingMesseage">#D499B9</color>
 </resources>

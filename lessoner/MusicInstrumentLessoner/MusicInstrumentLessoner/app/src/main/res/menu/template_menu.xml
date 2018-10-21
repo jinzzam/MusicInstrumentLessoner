@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/templateMenuMakeTemplateItem"
-        android:title="upload template" />
-    <item android:title="remove template" />
-    <item android:title="edit template" />
+        android:title="템플릿 업로드하기" />
+    <item android:title="템플릿 삭제하기" />
+    <item android:title="템플릿 수정하기" />
 </menu>

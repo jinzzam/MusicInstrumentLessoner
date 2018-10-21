@@ -48,7 +48,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/LayTemplatePracticeViewDetail"
-            android:textColor="@color/positiveGreen" />
+            android:textColor="@color/black" />
     </LinearLayout>
 
 </LinearLayout>

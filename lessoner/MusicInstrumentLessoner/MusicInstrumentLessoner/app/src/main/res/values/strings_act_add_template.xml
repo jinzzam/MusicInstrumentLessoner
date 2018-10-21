@@ -6,6 +6,6 @@
     <string name="actAddTemplateInputImage">사진 업로드</string>
     <string name="actAddTemplateInputMusic">연주 업로드</string>
     <string name="actAddTemplateInputScore">악보 업로드</string>
-    <string name="actAddTemplateInputFile">add file</string>
+    <string name="actAddTemplateInputFile">파일 추가</string>
     <string name="actAddTemplateBtn">업로드</string>
 </resources>

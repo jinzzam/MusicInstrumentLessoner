@@ -4,7 +4,7 @@
     <string name="LayTemplatePracticeMusicNum">No.</string>
     <string name="LayTemplatePracticeSuccessPercent">완성도 : </string>
     <string name="LayTemplatePracticeSuccessPercentEnd">%</string>
-    <string name="LayTemplatePracticeViewDetail">view detail</string>
+    <string name="LayTemplatePracticeViewDetail">녹음하기</string>
     <string name="LayTemplatePracticeAdd">add practice</string>
     <string name="LayTemplatePracticeAddState">연주하세요</string>
     <string name="LayTemplatePracticeFilePath">파일 주소 : </string>

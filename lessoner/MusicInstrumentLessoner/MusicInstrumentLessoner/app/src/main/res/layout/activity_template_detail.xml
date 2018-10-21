@@ -168,7 +168,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
-            android:background="@drawable/notification_user_rounded">
+            android:background="@drawable/notification_user_rounded"
+            android:backgroundTint="@color/colorMainBackGround">
 
             <LinearLayout
                 android:layout_width="wrap_content"
