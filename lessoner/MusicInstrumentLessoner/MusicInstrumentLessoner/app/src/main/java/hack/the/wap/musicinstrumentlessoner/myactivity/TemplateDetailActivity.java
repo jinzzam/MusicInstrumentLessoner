@@ -222,7 +222,8 @@ public class TemplateDetailActivity extends AppCompatActivity {
                         .convert();
 
                 session.getTemplatePractices().get(dto.getMusicTemplateId() * 10 + dto.getMusicTemplatePracticeId()).setDone(1);
-                session.showAllSession();
+                int doneCount = session.getTemplateAssignments().get(templateService.getTemplateTitleById(dto.getMusicTemplateId())).getDoneCount();
+                session.getTemplateAssignments().get(templateService.getTemplateTitleById(dto.getMusicTemplateId())).setDoneCount(doneCount + 1);
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(this.getApplicationContext(), "녹음을 취소했습니다.", Toast.LENGTH_LONG).show();
                 // Oops! User has canceled the recording
