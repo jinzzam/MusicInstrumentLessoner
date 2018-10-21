@@ -19,10 +19,24 @@ insert into mi_user values('nana@irin.vel', '123', '배주현');
 insert into mi_user values('jenjen@gaga.game', 'sdv', '김제니');
 
 # music_template
-insert into music_template values(NULL, 'namolppam@pocket.mon', '나몰나몰송', '나몰빼미', '나 자신이 나몰빼미가 된 것처럼 연주하세요.');
-insert into music_template values(NULL, 'yaho@man.se', '놀람 교향곡', '김태희', '안녕하세요, 김태희입니다.\n놀람교향곡은 베토벤이 작곡한 곡으로, 베토벤이 청중들의 관심을 이끌기 위해 중간중간 갑자기 크고 강하게 연주하는 부분이 많았습니다.\n저도 그 베토벤의 연주를 이어받아 강하게 연주해봤습니다.\n여러분, 연습하실 때, 주위에 졸고 있는 청중들이 있다고 생각해봐요.\n멋진 실력으로 깨워주고 싶죠?\n그 마음으로 완주까지 화이팅!');
-insert into music_template values(NULL, 'kang12@tuna.fish', '캐논 락버전', '강동원', '기존의 캐논을 락버전으로 리메이크했습니다.\n반복되는 부분이 많아 연습하기 쉬울 겁니다.\n연주는 흥겹고 신나게!');
-insert into music_template values(NULL, 'baby@boy.com', '진짜 사나이', '마동석', '사나이는 사나이답게!\n안녕하세요, 마동석쌤입니다.\n진짜 사나이 주제곡을 들고와봤습니다.\n다들 한 번 씩은 들어본 곡일텐데요, 제가 연주한 버전은 좀 더 강하고 빠른 리듬으로 연주해봤습니다.\n즐겁고 힘찬 연습 되세요!');
+insert into music_template values(NULL, 'namolppam@pocket.mon', '나몰나몰송', '나몰빼미', '나몰나몰송은 포켓몬 나몰빼미들이 자주 부르는 노래이며 포켓몬들 사이에서도 인기가 만점입니다. 포켓몬에게 관심을 받고 싶나요? 그렇다면 누구보다도 나몰빼미처럼 이 곡을 연주해보세요.');
+
+
+
+insert into music_template values(NULL, 'yaho@man.se', '놀람 교향곡', '김태희', '안녕하세요, 김태희입니다.
+  놀람교향곡은 베토벤이 작곡한 곡으로, 베토벤이 청중들의 관심을 이끌기 위해 중간중간 갑자기 크고 강하게 연주하는 부분이 많았습니다.
+  저도 그 베토벤의 연주를 이어받아 강하게 연주해봤습니다.
+  여러분, 연습하실 때, 주위에 졸고 있는 청중들이 있다고 생각해봐요.
+  멋진 실력으로 깨워주고 싶죠?
+  그 마음으로 완주까지 화이팅!');
+insert into music_template values(NULL, 'kang12@tuna.fish', '캐논 락버전', '강동원', '기존의 캐논을 락버전으로 리메이크했습니다.
+  반복되는 부분이 많아 연습하기 쉬울 겁니다.
+  연주는 흥겹고 신나게!');
+insert into music_template values(NULL, 'baby@boy.com', '진짜 사나이', '마동석', '사나이는 사나이답게!
+  안녕하세요, 마동석쌤입니다.
+  진짜 사나이 주제곡을 들고와봤습니다.
+  다들 한 번 씩은 들어본 곡일텐데요, 제가 연주한 버전은 좀 더 강하고 빠른 리듬으로 연주해봤습니다.
+  즐겁고 힘찬 연습 되세요!');
 
 # music_template_guide
 insert into music_template_guide values(1, '00:01:21', '세심하고 여린느낌으로');

@@ -4,6 +4,9 @@
 # 테이블 컬럼 추가
 # alter table 테이블명 add 컬럼명 타입 옵션;
 
+# update 로 컬럼 데이터 수정
+update music_template set guide='사나이는 사나이답게! 안녕하세요, 마동석쌤입니다. 진짜 사나이 주제곡을 들고와봤습니다. 다들 한 번 씩은 들어본 곡일텐데요, 제가 연주한 버전은 좀 더 강하고 빠른 리듬으로 연주해봤습니다. 즐겁고 힘찬 연습 되세요!' where music_template_id=4;
+
 #검색
 # select * from mi_user WHERE username like '%유%';
 
