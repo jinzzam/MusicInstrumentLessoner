@@ -90,7 +90,23 @@ public class TemplateLayout extends LinearLayout {
         ivTemplateLayUserImage.setImageResource(DebugImageMatch.getImageFromName(session.getTemplates().get(templateService.getTemplateTitleById(dto.getMusicTemplateId())).getMusician()));
         tvTemplateLayMusicTitle.setText(session.getTemplates().get(templateService.getTemplateTitleById(dto.getMusicTemplateId())).getMusicTitle());
         tvTemplateLayMain.setText("남은 반복 횟수 : " + dto.getToDoCount() + "/10");
-        tvTemplateLaySub.setText("곡 성공률 : " + dto.getSuccessPercent() + "%");
+        String comment = successComment(dto.getSuccessPercent());
+        tvTemplateLaySub.setText("성공률 : " + dto.getSuccessPercent() + "% " + comment);
         ivTemplateLayTeacherImage.setImageResource(DebugImageMatch.getImageFromName(session.getTemplates().get(templateService.getTemplateTitleById(dto.getMusicTemplateId())).getOwner()));
+    }
+
+    public String successComment(int successPercent) {
+        if (successPercent < 50) {
+            return "\n연습이 더 필요해요!";
+        } else if (50 <= successPercent && successPercent < 70) {
+            return "\n시작이 반이에요, 힘을내요";
+        } else if (70 <= successPercent && successPercent < 80) {
+            return "\n조금만 더 노력해봐요, 화이팅";
+        } else if (80 <= successPercent && successPercent < 95) {
+            return "\n아주 훌륭한 솜씨네요!";
+        } else if (95 <= successPercent && successPercent <= 100) {
+            return "\n정말 완벽해요!";
+        }
+        return null;
     }
 }
