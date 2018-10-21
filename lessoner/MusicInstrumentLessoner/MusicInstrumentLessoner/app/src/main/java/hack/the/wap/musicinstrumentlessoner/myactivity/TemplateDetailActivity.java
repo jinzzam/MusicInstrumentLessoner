@@ -88,6 +88,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         assignmentDto = (MusicTemplateAssignmentDto) intent.getSerializableExtra("data");
         mainTemplate = templateService.getTemplateDto(assignmentDto);
+        templatePractices = session.getTemplatePractices();
         Log.e(TAG, "onCreate >>> " + assignmentDto);
         viewSet();
         viewSetListener();
@@ -115,7 +116,6 @@ public class TemplateDetailActivity extends AppCompatActivity {
                 + userService.getUserName(mainTemplate.getOwner()));
 
         templateService.getGuides();
-        templatePractices = session.getTemplatePractices();
         for (MusicTemplatePracticeDto dto : templatePractices.values()) {
             if (dto.getMusicTemplateId() == mainTemplate.getMusicTemplateId()) {
                 if (dto.isDone() == 1) {

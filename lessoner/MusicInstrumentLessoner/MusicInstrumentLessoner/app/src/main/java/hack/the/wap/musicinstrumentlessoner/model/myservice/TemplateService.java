@@ -258,12 +258,12 @@ public class TemplateService {
                     sleep(200);
                     OkHttpClient client = new OkHttpClient();
 
-                    okhttp3.Request request = new okhttp3.Request.Builder()
+                    Request request = new Request.Builder()
                             .addHeader("Authorization", "TEST AUTH")
                             .url(getWrongUrl)
                             .build();
 
-                    okhttp3.Response response = client.newCall(request)
+                    Response response = client.newCall(request)
                             .execute();
 
                     String result = response.body().string();
@@ -277,11 +277,12 @@ public class TemplateService {
                         studentEmail = jsonArray.get(i).getAsJsonObject().get("student_email").toString().replace("\"", "");
                         wrongTimeStart = jsonArray.get(i).getAsJsonObject().get("wrong_time_start").toString().replace("\"", "");
                         wrongTimeEnd = jsonArray.get(i).getAsJsonObject().get("wrong_time_end").toString().replace("\"", "");
+                        comment = jsonArray.get(i).getAsJsonObject().get("comment").toString().replace("\"", "");
                         wrongDto = new MusicTemplateWrongDto(musicTemplateId, musicTemplatePracticeId, studentEmail, wrongTimeStart, wrongTimeEnd, comment);
                         wrongDtoArrayList.add(i, wrongDto);
                     }
                     session.setTemplateWrongs(wrongDtoArrayList);
-                    Log.e(TAG, "run: 세션에 저장된 가이드 : " + session.getTemplateWrongs().toString());
+                    Log.e(TAG, "run: 세션에 저장된 틀린부분 : " + session.getTemplateWrongs().toString());
 
                 } catch (IOException e) {
                     e.printStackTrace();
