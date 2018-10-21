@@ -79,7 +79,7 @@ public class PracticeDetailActivity extends AppCompatActivity {
         tvPracticeDetailLayName.setText("" + mainTemplate.getMusicTitle());
         tvPracticeDetailLayCount.setText("" + getResources().getText(R.string.LayTemplatePracticeMusicNum) + mainTemplatePractice.getMusicTemplatePracticeId());
         tvPracticeDetailLayPercent.setText("" + getResources().getText(R.string.LayTemplatePracticeSuccessPercent) + mainTemplatePractice.getCompletePercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd));
-        tvPracticeDetailLayFileName.setText("" + getResources().getText(R.string.LayTemplatePracticeFilePath) + mainTemplatePractice.getInnerFilename());
+        tvPracticeDetailLayFileName.setText("" + getResources().getText(R.string.LayTemplatePracticeFilePath) + getResources().getText(R.string.fileDefaultDir) + mainTemplatePractice.getInnerFilename());
         PresentFile.fileName = mainTemplatePractice.getInnerFilename();
     }
 }

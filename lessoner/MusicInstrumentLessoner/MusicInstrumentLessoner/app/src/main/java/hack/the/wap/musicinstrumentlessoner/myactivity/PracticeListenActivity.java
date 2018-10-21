@@ -77,7 +77,7 @@ public class PracticeListenActivity extends AppCompatActivity {
         tvPracticeListenLayName.setText(mainTemplate.getMusicTitle());
         tvPracticeListenLayCount.setText("" + getResources().getText(R.string.LayTemplatePracticeMusicNum) + mainTemplatePractice.getMusicTemplatePracticeId());
         tvPracticeListenLayPercent.setText("" + getResources().getText(R.string.LayTemplatePracticeSuccessPercent) + mainTemplatePractice.getCompletePercent() + getResources().getText(R.string.LayTemplatePracticeSuccessPercentEnd));
-        tvPracticeListenLayFileName.setText(getResources().getText(R.string.LayTemplatePracticeFilePath) + mainTemplatePractice.getInnerFilename());
+        tvPracticeListenLayFileName.setText(getResources().getText(R.string.LayTemplatePracticeFilePath) + "" + getResources().getText(R.string.fileDefaultDir) + mainTemplatePractice.getInnerFilename());
         for (int i = 0; i < wrongs.size(); i++) {
             if ((mainTemplate.getMusicTemplateId() == wrongs.get(i).getMusicTemplateId())) {
                 if ((mainTemplatePractice.getMusicTemplatePracticeId() == wrongs.get(i).getMusicTemplatePracticeId())) {
