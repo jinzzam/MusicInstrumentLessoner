@@ -273,7 +273,7 @@ public class TemplateService {
 
                     for (int i = 0; i < jsonArray.size(); i++) {
                         musicTemplateId = jsonArray.get(i).getAsJsonObject().get("music_template_id").getAsInt();
-                        musicTemplatePracticeId = jsonArray.get(i).getAsJsonObject().get("music_template_id").getAsInt();
+                        musicTemplatePracticeId = jsonArray.get(i).getAsJsonObject().get("music_template_practice_id").getAsInt();
                         studentEmail = jsonArray.get(i).getAsJsonObject().get("student_email").toString().replace("\"", "");
                         wrongTimeStart = jsonArray.get(i).getAsJsonObject().get("wrong_time_start").toString().replace("\"", "");
                         wrongTimeEnd = jsonArray.get(i).getAsJsonObject().get("wrong_time_end").toString().replace("\"", "");
