@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity
         checkPermission();
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setBackgroundColor(getResources().getColor(R.color.floatingMesseage));
         fab.setOnClickListener(view -> Snackbar.make(view, "원하는 선생님께 바로 메세지를 보내보세요", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
 
