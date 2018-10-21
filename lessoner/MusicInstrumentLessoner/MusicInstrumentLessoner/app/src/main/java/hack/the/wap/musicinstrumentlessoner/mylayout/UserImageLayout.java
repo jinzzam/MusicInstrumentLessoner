@@ -51,6 +51,7 @@ public class UserImageLayout extends ImageLayout {
     public void setListener() {
         setOnClickListener((v) -> {
             Intent intent = new Intent(getContext(), DebugActivity.class);
+            intent.putExtra("data", userService.getUserName(mainUser.getStudentEmail()));
             getContext().startActivity(intent);
         });
     }
