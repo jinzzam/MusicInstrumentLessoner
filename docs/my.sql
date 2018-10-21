@@ -5,7 +5,7 @@ create table mi_user(
   );
 
 create table music_template(
-  music_template_id int primary key auto_increment,
+  music_template_id int primary key,
   owner varchar(30) not null,
   music_title varchar(30) not null,
   musician varchar(30),
@@ -38,12 +38,11 @@ create table music_template_practice(
 );
 
 create table mi_notification(
-  mi_notification_id int primary key auto_increment,
+  mi_notification_id int primary key,
   music_template_id int not null,
   regist_date_time timestamp,
   type varchar(30) not null,
-  comment text(255) not null,
-  constraint fk_minotification_musictemplate_musictemplateid foreign key (mi_notification_id) references music_template (music_template_id) on delete cascade
+  comment text(255) not null
 );
 
 create table music_template_assignment(
@@ -54,16 +53,16 @@ create table music_template_assignment(
   done_count int not null,
   success_percent int not null,
   constraint fk_musictemplateassignment_musictemplate_musictamplateid foreign key (music_template_id) references music_template (music_template_id) on delete cascade,
-  constraint fk_musictemplateassignment_mifile_innerfilename foreign key (inner_filename) references mi_file (inner_filename) on delete cascade,
   constraint fk_misictemplateassignment_mistudent_studentemail foreign key (student_email) references mi_student (student_email) on delete cascade
 );
 
 create table music_template_wrong(
-  inner_filename varchar(255),
-  wrong_time_start time,
-  wrong_time_end time,
-  constraint pk_musicteplatewrong primary key (inner_filename, wrong_time_start, wrong_time_end),
-  constraint fk_musictemplatewrong_mifile_innerfilename foreign key (inner_filename) references mi_file (inner_filename) on delete cascade
+  music_template_id int,
+  music_template_practice_id int,
+  student_email varchar(30),
+  wrong_time_start varchar(30),
+  wrong_time_end varchar(30),
+  comment varchar(255)
 );
 
 create table mi_file(

@@ -4,6 +4,9 @@
 # 테이블 컬럼 추가
 # alter table 테이블명 add 컬럼명 타입 옵션;
 
+#검색
+# select * from mi_user WHERE username like '%유%';
+
 alter table music_template_assignment add student_email varchar(30) not null;
 
 # 테이블에 저장된 데이터 보기
