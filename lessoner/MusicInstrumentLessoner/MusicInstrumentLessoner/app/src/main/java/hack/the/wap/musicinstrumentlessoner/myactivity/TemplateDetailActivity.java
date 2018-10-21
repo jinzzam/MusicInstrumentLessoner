@@ -117,49 +117,51 @@ public class TemplateDetailActivity extends AppCompatActivity {
         templateService.getGuides();
         templatePractices = session.getTemplatePractices();
         for (MusicTemplatePracticeDto dto : templatePractices.values()) {
-            if (dto.isDone() == 1) {
-                TemplatePositivePracticeLayout atom = new TemplatePositivePracticeLayout(this);
-                atom.setCustomAttr(dto);
-                atom.getIvTemplatePositivePracticeLayListen().setOnClickListener(v -> {
-                    Intent posIntent = new Intent(this, PracticeDetailActivity.class);
-                    posIntent.putExtra("data", dto);
-                    posIntent.putExtra("main", mainTemplate);
-                    startActivity(posIntent);
-                });
-                atom.getIvTemplatePositivePracticeLayView().setOnClickListener(v -> {
-                    Intent posIntent = new Intent(this, PracticeListenActivity.class);
-                    posIntent.putExtra("data", dto);
-                    posIntent.putExtra("main", mainTemplate);
-                    startActivity(posIntent);
-                });
-                llActTemplateDetail.addView(atom);
-            } else {
-                TemplateNegativePracticeLayout atom = new TemplateNegativePracticeLayout(this);
-                atom.setCustomAttr(dto);
-                atom.setOnClickListener(v -> {
-                    rootDir = mkdir(dto);
+            if (dto.getMusicTemplateId() == mainTemplate.getMusicTemplateId()) {
+                if (dto.isDone() == 1) {
+                    TemplatePositivePracticeLayout atom = new TemplatePositivePracticeLayout(this);
+                    atom.setCustomAttr(dto);
+                    atom.getIvTemplatePositivePracticeLayListen().setOnClickListener(v -> {
+                        Intent posIntent = new Intent(this, PracticeDetailActivity.class);
+                        posIntent.putExtra("data", dto);
+                        posIntent.putExtra("main", mainTemplate);
+                        startActivity(posIntent);
+                    });
+                    atom.getIvTemplatePositivePracticeLayView().setOnClickListener(v -> {
+                        Intent posIntent = new Intent(this, PracticeListenActivity.class);
+                        posIntent.putExtra("data", dto);
+                        posIntent.putExtra("main", mainTemplate);
+                        startActivity(posIntent);
+                    });
+                    llActTemplateDetail.addView(atom);
+                } else {
+                    TemplateNegativePracticeLayout atom = new TemplateNegativePracticeLayout(this);
+                    atom.setCustomAttr(dto);
+                    atom.setOnClickListener(v -> {
+                        rootDir = mkdir(dto);
 //                    dirForUpload = "/" + mainTemplate.getMusicTitle() + "/" + dto.getMusicTemplatePracticeId();
-                    filePath = rootDir + getResources().getString(R.string.fileDefaultName);
-                    int requestCode = 0;
-                    curPractice = dto.getMusicTemplatePracticeId();
-                    curFile = filePath;
-                    AndroidAudioRecorder.with(this)
-                            // Required
-                            .setFilePath(filePath)
-                            .setColor(R.color.colorPrimaryDark)
-                            .setRequestCode(requestCode)
+                        filePath = rootDir + getResources().getString(R.string.fileDefaultName);
+                        int requestCode = 0;
+                        curPractice = dto.getMusicTemplatePracticeId();
+                        curFile = filePath;
+                        AndroidAudioRecorder.with(this)
+                                // Required
+                                .setFilePath(filePath)
+                                .setColor(R.color.colorPrimaryDark)
+                                .setRequestCode(requestCode)
 
-                            // Optional
-                            .setSource(AudioSource.MIC)
-                            .setChannel(AudioChannel.STEREO)
-                            .setSampleRate(AudioSampleRate.HZ_48000)
-                            .setAutoStart(true)
-                            .setKeepDisplayOn(true)
+                                // Optional
+                                .setSource(AudioSource.MIC)
+                                .setChannel(AudioChannel.STEREO)
+                                .setSampleRate(AudioSampleRate.HZ_48000)
+                                .setAutoStart(true)
+                                .setKeepDisplayOn(true)
 
-                            // Start recording
-                            .record();
-                });
-                llActTemplateDetail.addView(atom);
+                                // Start recording
+                                .record();
+                    });
+                    llActTemplateDetail.addView(atom);
+                }
             }
         }
     }
