@@ -20,9 +20,6 @@ insert into mi_user values('jenjen@gaga.game', 'sdv', '김제니');
 
 # music_template
 insert into music_template values(NULL, 'namolppam@pocket.mon', '나몰나몰송', '나몰빼미', '나몰나몰송은 포켓몬 나몰빼미들이 자주 부르는 노래이며 포켓몬들 사이에서도 인기가 만점입니다. 포켓몬에게 관심을 받고 싶나요? 그렇다면 누구보다도 나몰빼미처럼 이 곡을 연주해보세요.');
-
-
-
 insert into music_template values(NULL, 'yaho@man.se', '놀람 교향곡', '김태희', '안녕하세요, 김태희입니다.
   놀람교향곡은 베토벤이 작곡한 곡으로, 베토벤이 청중들의 관심을 이끌기 위해 중간중간 갑자기 크고 강하게 연주하는 부분이 많았습니다.
   저도 그 베토벤의 연주를 이어받아 강하게 연주해봤습니다.
@@ -118,6 +115,20 @@ insert into music_template_wrong values(1, 1, 'namolppam@pocket.mon', '00:01:02'
 insert into music_template_wrong values(1, 1, 'namolppam@pocket.mon', '00:02:54', '', '음을 살짝 끊어주세요.' );
 insert into music_template_wrong values(1, 2, 'namolppam@pocket.mon', '00:01:35', '00:01:50', '박자가 느립니다.' );
 insert into music_template_wrong values(1, 2, 'namolppam@pocket.mon', '00:02:07', '', '음이 틀렸습니다. 파 -> 파#' );
+insert into music_template_wrong values(2, 1, 'namolppam@pocket.mon', '00:00:07', '', '음이 틀렸습니다. 파 -> 미' );
+insert into music_template_wrong values(2, 1, 'namolppam@pocket.mon', '00:01:54', '00:02:15', '박자가 빠릅니다.' );
+insert into music_template_wrong values(2, 1, 'namolppam@pocket.mon', '00:02:45', '00:03:06', '디크레센도 느낌을 살려주세요.' );
+insert into music_template_wrong values(2, 2, 'namolppam@pocket.mon', '00:03:11', '', '음이 틀렸습니다. 도 -> 레' );
+insert into music_template_wrong values(2, 2, 'namolppam@pocket.mon', '00:02:05', '00:02:38', '박자가 느립니다.' );
+insert into music_template_wrong values(2, 3, 'namolppam@pocket.mon', '00:01:03', '', '음이 틀렸습니다. 파 -> 파#' );
+insert into music_template_wrong values(2, 3, 'namolppam@pocket.mon', '00:02:17', '00:02:20', '초킹 확인하세요.' );
+insert into music_template_wrong values(2, 4, 'namolppam@pocket.mon', '00:02:05', '', '음이 틀렸습니다. 솔 -> 파#' );
+insert into music_template_wrong values(2, 5, 'namolppam@pocket.mon', '00:01:59', '', '음이 틀렸습니다. 레 -> 레#' );
+
+  insert into music_template_wrong values(4, 1, 'namolppam@pocket.mon', '00:00:30', '', '음이 틀렸습니다. 솔 -> 라' );
+  insert into music_template_wrong values(4, 1, 'namolppam@pocket.mon', '00:01:02', '00:01:18', '크레센도 느낌을 살려주세요.' );
+  insert into music_template_wrong values(4, 1, 'namolppam@pocket.mon', '00:02:54', '', '음을 살짝 끊어주세요.' );
+
 
 # mi_file
 insert into mi_file values('namolppam@pocket.mon', 'namolnamolsong.mp3', '/storage/self/primary/Music/나몰나몰송/1/namolnamolsong.mp3');
