@@ -112,7 +112,7 @@ public class TemplateService {
                         owner = jsonArray.get(i).getAsJsonObject().get("owner").toString().replace("\"", "");
                         musicTitle = jsonArray.get(i).getAsJsonObject().get("music_title").toString().replace("\"", "");
                         musician = jsonArray.get(i).getAsJsonObject().get("musician").toString().replace("\"", "");
-                        guide = jsonArray.get(i).getAsJsonObject().get("guide").toString().replace("\"", "");
+                        guide = jsonArray.get(i).getAsJsonObject().get("guide").toString().replace("\"", "").replace("\\n", "\n");
                         templateDto = new MusicTemplateDto(musicTemplateId, owner, musicTitle, musician, guide);
                         templateDtoHashMap.put(templateDto.getMusicTitle(), templateDto);
                     }
