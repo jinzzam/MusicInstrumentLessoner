@@ -71,9 +71,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (DebugMode.DEBUG_LOGIN) {
-                    String inputEmail = "namolppam@pocket.mon";
-                    String inputPassword = "1234";
-                    String inputUserName = "나몰빼미";
+                    String inputEmail = "wapthehack@hackathon.kon";
+                    String inputPassword = "123";
+                    String inputUserName = "WAP THE HACK";
                     userDto = new MiUserDto(inputEmail, inputPassword, inputUserName);
                     session.setMainUser(userDto);
                     Log.e(TAG, "onClick: 메인유저 : " + session.getMainUser());
