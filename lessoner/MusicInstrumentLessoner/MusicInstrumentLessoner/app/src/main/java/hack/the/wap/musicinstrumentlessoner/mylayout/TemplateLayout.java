@@ -89,7 +89,7 @@ public class TemplateLayout extends LinearLayout {
     public void setCustomAttr(MusicTemplateAssignmentDto dto) {
         ivTemplateLayUserImage.setImageResource(DebugImageMatch.getImageFromName(session.getTemplates().get(templateService.getTemplateTitleById(dto.getMusicTemplateId())).getMusician()));
         tvTemplateLayMusicTitle.setText(session.getTemplates().get(templateService.getTemplateTitleById(dto.getMusicTemplateId())).getMusicTitle());
-        tvTemplateLayMain.setText("남은 반복 횟수 : " + dto.getToDoCount() + "/10");
+        tvTemplateLayMain.setText("진행 상황 : " + dto.getDoneCount() + "/" + dto.getToDoCount());
         String comment = successComment(dto.getSuccessPercent());
         tvTemplateLaySub.setText("성공률 : " + dto.getSuccessPercent() + "% " + comment);
         ivTemplateLayTeacherImage.setImageResource(DebugImageMatch.getImageFromName(session.getTemplates().get(templateService.getTemplateTitleById(dto.getMusicTemplateId())).getOwner()));
