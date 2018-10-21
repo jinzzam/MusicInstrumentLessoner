@@ -13,10 +13,10 @@ public class DebugImageMatch extends AppCompatActivity {
 
     public static int getImageFromName(String stringName) {
         switch (stringName) {
-            case "AOA Choa":
-                return R.drawable.choa_round;
-            case "Twice Dahyun":
-                return R.drawable.dahyun_round;
+            case "박유진":
+                return R.drawable.youjin_round;
+            case "한가인":
+                return R.drawable.gain_round;
             case "GirlsDay mina":
                 return R.drawable.mina;
             case "Beethoven":
@@ -25,9 +25,9 @@ public class DebugImageMatch extends AppCompatActivity {
                 return R.drawable.segyong_round;
             case "namolppam@pocket.mon":
                 return R.drawable.namolppami_round;
-            case "나몰빼미:":
+            case "나몰빼미":
                 return R.drawable.namolppami_round;
-            case "Hyoju":
+            case "한효주":
                 return R.drawable.hyoju_round;
             case "Kanna":
                 return R.drawable.kanna_round;
@@ -35,27 +35,27 @@ public class DebugImageMatch extends AppCompatActivity {
                 return R.drawable.haydn_round;
             case "Jia":
                 return R.drawable.jia_round;
-            case "Dongwon":
+            case "강동원":
                 return R.drawable.dongwon_round;
-            case "Jihyun":
+            case "전지현":
                 return R.drawable.jihyun_round;
-            case "Sarang":
+            case "김사랑":
                 return R.drawable.sarang_round;
-            case "Woobin":
+            case "김우빈":
                 return R.drawable.woobin_round;
-            case "Dongsuck":
+            case "마동석":
                 return R.drawable.dongsuck_round;
-            case "Jiho":
+            case "우지호":
                 return R.drawable.jiho_round;
-            case "Taehie":
+            case "김태희":
                 return R.drawable.taehie_round;
-            case "Youjung":
+            case "김유정":
                 return R.drawable.youjung_round;
-            case "Sohyun":
+            case "유소현":
                 return R.drawable.sohyun_round;
-            case "Joohyun":
+            case "배주현":
                 return R.drawable.joohyun_round;
-            case "Jeny":
+            case "김제니":
                 return R.drawable.jeny_round;
             case "Lim jung hyeon":
                 return R.drawable.canon_rock_round;
