@@ -16,6 +16,7 @@ import hack.the.wap.musicinstrumentlessoner.model.dto.MiNotificationDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MiGroupDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateGuideDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateWrongDto;
 
 public class Session {
     private static Session instance;
@@ -27,6 +28,7 @@ public class Session {
     private ArrayList<MusicTemplateGuideDto> templateGuides;
     private HashMap<String, MusicTemplateAssignmentDto> templateAssignments;
     private TreeMap<Integer, MusicTemplatePracticeDto> templatePractices;
+    private ArrayList<MusicTemplateWrongDto> templateWrongs;
     private HashMap<String, MiGroupDto> userGroups;
     private ArrayList<MiTeacherDto> groupTeachers;
     private ArrayList<MiStudentDto> groupStudents;
@@ -50,7 +52,7 @@ public class Session {
 
     }
 
-    public Session(MiUserDto mainUser, HashMap<String, MiUserDto> users, ArrayList<MiNotificationDto> notifications, HashMap<String, MiFileDto> files, HashMap<String, MusicTemplateDto> templates, ArrayList<MusicTemplateGuideDto> templateGuides, HashMap<String, MusicTemplateAssignmentDto> templateAssignments, TreeMap<Integer, MusicTemplatePracticeDto> templatePractices, HashMap<String, MiGroupDto> userGroups, ArrayList<MiTeacherDto> groupTeachers, ArrayList<MiStudentDto> groupStudents) {
+    public Session(MiUserDto mainUser, HashMap<String, MiUserDto> users, ArrayList<MiNotificationDto> notifications, HashMap<String, MiFileDto> files, HashMap<String, MusicTemplateDto> templates, ArrayList<MusicTemplateGuideDto> templateGuides, HashMap<String, MusicTemplateAssignmentDto> templateAssignments, TreeMap<Integer, MusicTemplatePracticeDto> templatePractices, ArrayList<MusicTemplateWrongDto> templateWrongs, HashMap<String, MiGroupDto> userGroups, ArrayList<MiTeacherDto> groupTeachers, ArrayList<MiStudentDto> groupStudents) {
         this.mainUser = mainUser;
         this.users = users;
         this.notifications = notifications;
@@ -59,6 +61,7 @@ public class Session {
         this.templateGuides = templateGuides;
         this.templateAssignments = templateAssignments;
         this.templatePractices = templatePractices;
+        this.templateWrongs = templateWrongs;
         this.userGroups = userGroups;
         this.groupTeachers = groupTeachers;
         this.groupStudents = groupStudents;
@@ -156,6 +159,14 @@ public class Session {
         this.groupStudents = groupStudents;
     }
 
+    public ArrayList<MusicTemplateWrongDto> getTemplateWrongs() {
+        return templateWrongs;
+    }
+
+    public void setTemplateWrongs(ArrayList<MusicTemplateWrongDto> templateWrongs) {
+        this.templateWrongs = templateWrongs;
+    }
+
     @Override
     public String toString() {
         return "Session{" +
@@ -167,6 +178,7 @@ public class Session {
                 ", templateGuides=" + templateGuides +
                 ", templateAssignments=" + templateAssignments +
                 ", templatePractices=" + templatePractices +
+                ", templateWrongs=" + templateWrongs +
                 ", userGroups=" + userGroups +
                 ", groupTeachers=" + groupTeachers +
                 ", groupStudents=" + groupStudents +

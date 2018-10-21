@@ -9,6 +9,10 @@ public class MusicTemplateWrongDto {
     private String wrongTimeEnd;
     private String comment;
 
+    public MusicTemplateWrongDto() {
+
+    }
+
     public MusicTemplateWrongDto(int musicTemplateId, int musicTemplatePracticeId, String studentEmail, String wrongTimeStart, String wrongTimeEnd, String comment) {
         this.musicTemplateId = musicTemplateId;
         this.musicTemplatePracticeId = musicTemplatePracticeId;

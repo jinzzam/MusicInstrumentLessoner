@@ -14,6 +14,7 @@ import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateAssignmentDto
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateGuideDto;
 import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplatePracticeDto;
+import hack.the.wap.musicinstrumentlessoner.model.dto.MusicTemplateWrongDto;
 import hack.the.wap.musicinstrumentlessoner.session.IpAddress;
 import hack.the.wap.musicinstrumentlessoner.session.Session;
 import okhttp3.OkHttpClient;
@@ -30,6 +31,7 @@ public class TemplateService {
     private String getAssignmentUrl = "http://" + ipAddress.getIp() + ":3000/api/template-assignment/";
     private String getPracticeUrl = "http://" + ipAddress.getIp() + ":3000/api/template-practice/";
     private String getGuideUrl = "http://" + ipAddress.getIp() + ":3000/api/template-guide/";
+    private String getWrongUrl = "http://" + ipAddress.getIp() + ":3000/api/template-wrong/";
 
     private int musicTemplateId;
     private String owner;
@@ -50,6 +52,9 @@ public class TemplateService {
     private String playTime;
     private String comment;
 
+    private String wrongTimeStart;
+    private String wrongTimeEnd;
+
     private HashMap<String, MusicTemplateDto> templateDtoHashMap;
     private MusicTemplateDto templateDto;
     private HashMap<String, MusicTemplateAssignmentDto> assignmentDtoHashMap;
@@ -58,6 +63,8 @@ public class TemplateService {
     private MusicTemplatePracticeDto practiceDto;
     private MusicTemplateGuideDto guideDto;
     private ArrayList<MusicTemplateGuideDto> guideDtoArrayList;
+    private MusicTemplateWrongDto wrongDto;
+    private ArrayList<MusicTemplateWrongDto> wrongDtoArrayList;
 
     private TemplateService() {
         session = Session.getInstance();
@@ -69,6 +76,8 @@ public class TemplateService {
         practiceDto = new MusicTemplatePracticeDto();
         guideDto = new MusicTemplateGuideDto();
         guideDtoArrayList = new ArrayList<>();
+        wrongDto = new MusicTemplateWrongDto();
+        wrongDtoArrayList = new ArrayList<>();
     }
 
     public static TemplateService getInstance() {
@@ -232,6 +241,47 @@ public class TemplateService {
                     }
                     session.setTemplateGuides(guideDtoArrayList);
                     Log.e(TAG, "run: 세션에 저장된 가이드 : " + session.getTemplateGuides().toString());
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+    public void getWrong() {
+        new Thread() {
+            public void run() {
+                try {
+                    sleep(200);
+                    OkHttpClient client = new OkHttpClient();
+
+                    okhttp3.Request request = new okhttp3.Request.Builder()
+                            .addHeader("Authorization", "TEST AUTH")
+                            .url(getWrongUrl)
+                            .build();
+
+                    okhttp3.Response response = client.newCall(request)
+                            .execute();
+
+                    String result = response.body().string();
+
+                    JsonParser jsonParser = new JsonParser();
+                    JsonArray jsonArray = (JsonArray) jsonParser.parse(result);
+
+                    for (int i = 0; i < jsonArray.size(); i++) {
+                        musicTemplateId = jsonArray.get(i).getAsJsonObject().get("music_template_id").getAsInt();
+                        musicTemplatePracticeId = jsonArray.get(i).getAsJsonObject().get("music_template_id").getAsInt();
+                        studentEmail = jsonArray.get(i).getAsJsonObject().get("student_email").toString().replace("\"", "");
+                        wrongTimeStart = jsonArray.get(i).getAsJsonObject().get("wrong_time_start").toString().replace("\"", "");
+                        wrongTimeEnd = jsonArray.get(i).getAsJsonObject().get("wrong_time_end").toString().replace("\"", "");
+                        wrongDto = new MusicTemplateWrongDto(musicTemplateId, musicTemplatePracticeId, studentEmail, wrongTimeStart, wrongTimeEnd, comment);
+                        wrongDtoArrayList.add(i, wrongDto);
+                    }
+                    session.setTemplateWrongs(wrongDtoArrayList);
+                    Log.e(TAG, "run: 세션에 저장된 가이드 : " + session.getTemplateWrongs().toString());
 
                 } catch (IOException e) {
                     e.printStackTrace();

@@ -48,6 +48,7 @@ public class TemplateFragment extends Fragment {
         templates = new HashMap<>();
         templateService.getAssignments();
         templateService.getPractices();
+        templateService.getWrong();
     }
 
     /**

@@ -28,6 +28,7 @@ public class GuideActivity extends AppCompatActivity {
     private TextView tvGuideActTeacherName;
     private TextView tvGuideActMusicName;
     private TextView tvGuideActMusicMainExplain;
+    private TextView tvGuideActMusicSubExplain;
     private LinearLayout llActUserGroupDetailUser;
 
     {
@@ -45,6 +46,7 @@ public class GuideActivity extends AppCompatActivity {
         tvGuideActTeacherName = findViewById(R.id.tvGuideActTeacherName);
         tvGuideActMusicName = findViewById(R.id.tvGuideActMusicName);
         tvGuideActMusicMainExplain = findViewById(R.id.tvGuideActMusicMainExplain);
+        tvGuideActMusicSubExplain = findViewById(R.id.tvGuideActMusicSubExplain);
         llActUserGroupDetailUser = findViewById(R.id.llActUserGroupDetailUser);
 
         instance = this;
